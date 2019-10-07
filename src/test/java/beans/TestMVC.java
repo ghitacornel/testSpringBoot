@@ -15,18 +15,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestREST extends AbstractTestSpringBootContext {
+public class TestMVC extends AbstractTestSpringBootContext {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testRestController() throws Exception {
-        String content = readFile("testREST.json");
-        mvc.perform(get("/users/")
-                .contentType(MediaType.APPLICATION_JSON))
+    public void testController() throws Exception {
+        String content = readFile("testMVC.html");
+        mvc.perform(get("/custom?name=ion")
+                .contentType(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(content().string(content));
     }
 
