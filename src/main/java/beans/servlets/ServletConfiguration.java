@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class ServletConfiguration {
 
     @Bean
-    public ServletRegistrationBean servletAnnotationExample() {
-        ServletRegistrationBean bean = new ServletRegistrationBean(new CustomServlet());
+    public ServletRegistrationBean servletAnnotationExample(CustomServlet customServlet) {
+        ServletRegistrationBean bean = new ServletRegistrationBean(customServlet);
         bean.setLoadOnStartup(1);
         return bean;
     }
