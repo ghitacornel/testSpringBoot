@@ -18,8 +18,8 @@ import java.io.PrintWriter;
 )
 public class CustomServlet extends HttpServlet {
 
-    public CustomServlet(){
-        System.err.println("xxxxxxxxxxxxxxxxxxxxxxx");
+    public CustomServlet() {
+        System.err.println("custom servlet eagerly initialized");
     }
 
     @Override
