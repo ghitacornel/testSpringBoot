@@ -9,7 +9,7 @@ public class ServletConfiguration {
 
     @Bean
     public ServletRegistrationBean servletAnnotationExample() {
-        ServletRegistrationBean bean = new ServletRegistrationBean(new CustomServlet(), "/AnnotationExample");
+        ServletRegistrationBean bean = new ServletRegistrationBean(new CustomServlet());
         bean.setLoadOnStartup(1);
         return bean;
     }
