@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 @WebServlet(
         name = "ServletAnnotationExample",
         description = "Example Servlet Using Annotations",
-        urlPatterns = {"/CustomServlet"}
+        urlPatterns = {"/customServletURL"}
 )
 public class CustomServlet extends HttpServlet {
 
