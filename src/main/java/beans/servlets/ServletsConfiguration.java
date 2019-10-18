@@ -20,10 +20,10 @@ public class ServletsConfiguration {
 
     @Bean
     FilterRegistrationBean myFilterRegistration() {
-        FilterRegistrationBean<CustomFilter> frb = new FilterRegistrationBean<>();
-        frb.setFilter(new CustomFilter());
-        frb.setUrlPatterns(Collections.singletonList("/customServletURL/*"));
-        return frb;
+        FilterRegistrationBean<CustomFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(new CustomFilter());
+        bean.setUrlPatterns(Collections.singletonList("/customServletURL/*"));
+        return bean;
     }
 
 }
