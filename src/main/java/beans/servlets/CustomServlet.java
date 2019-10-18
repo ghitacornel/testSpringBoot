@@ -23,7 +23,20 @@ public class CustomServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<p>Hello World! custom servlet</p>");
+        out.println("<p>Hello World! GET custom servlet</p>");
 
     }
+
+    @Override
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<p>Hello World! POST custom servlet</p>");
+
+    }
+
 }
