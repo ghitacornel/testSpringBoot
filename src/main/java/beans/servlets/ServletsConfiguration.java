@@ -19,6 +19,22 @@ public class ServletsConfiguration {
     }
 
     @Bean
+    public ServletRegistrationBean<CustomServletGET> myServletRegistrationGET() {
+        // mandatory specify the mapping URL
+        ServletRegistrationBean<CustomServletGET> bean = new ServletRegistrationBean<>(new CustomServletGET(), "/customServletURLGET");
+        bean.setLoadOnStartup(1);
+        return bean;
+    }
+
+    @Bean
+    public ServletRegistrationBean<CustomServletPOST> myServletRegistrationPOST() {
+        // mandatory specify the mapping URL
+        ServletRegistrationBean<CustomServletPOST> bean = new ServletRegistrationBean<>(new CustomServletPOST(), "/customServletURLPOST");
+        bean.setLoadOnStartup(1);
+        return bean;
+    }
+
+    @Bean
     FilterRegistrationBean myFilterRegistration() {
         FilterRegistrationBean<CustomFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new CustomFilter());
