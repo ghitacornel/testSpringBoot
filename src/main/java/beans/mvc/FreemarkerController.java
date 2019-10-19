@@ -1,5 +1,7 @@
 package beans.mvc;
 
+import beans.services.BusinessService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/custom")
 public class FreemarkerController {
 
+    @Autowired
+    BusinessService businessService;
+
     @GetMapping({""})
-    public String hello(Model model, @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-        model.addAttribute("namePlaceholder", name);
+    public String hello(Model model, @RequestParam(value = "name", required = false, defaultValue = "World") String input) {
+        model.addAttribute("namePlaceholder", calculateName(input));
         return "hello";
+    }
+
+    private String calculateName(String input) {
+        return businessService.calculateName(input);
     }
 }
