@@ -35,10 +35,18 @@ public class ServletsConfiguration {
     }
 
     @Bean
-    FilterRegistrationBean myFilterRegistration() {
+    FilterRegistrationBean customFilter() {
         FilterRegistrationBean<CustomFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new CustomFilter());
         bean.setUrlPatterns(Collections.singletonList("/customServletURL/*"));
+        return bean;
+    }
+
+    @Bean
+    FilterRegistrationBean customFilterPOST() {
+        FilterRegistrationBean<CustomFilterPOST> bean = new FilterRegistrationBean<>();
+        bean.setFilter(new CustomFilterPOST());
+        bean.setUrlPatterns(Collections.singletonList("/customServletURLPOST/*"));
         return bean;
     }
 

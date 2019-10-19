@@ -8,12 +8,10 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public class CustomFilter extends HttpFilter {
+public class CustomFilterPOST extends HttpFilter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String url = request instanceof HttpServletRequest ?
-                ((HttpServletRequest) request).getRequestURL().toString() : "N/A";
-        System.out.println("from filter, processing url: " + url);
+        request.setAttribute("nume", "gicu");
         chain.doFilter(request, response);
     }
 
