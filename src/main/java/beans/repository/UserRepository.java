@@ -1,6 +1,9 @@
 package beans.repository;
 
 import beans.rest.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -10,34 +13,33 @@ import java.util.Set;
 @Repository
 public class UserRepository {
 
-    Set<User> users = new HashSet<>();
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @PostConstruct
     public void init() {
-        users.add(new User(1, "ion", "parola"));
-        users.add(new User(2, "gheorghe", "n-are parola"));
+        jdbcTemplate.execute("create table user(id int, name varchar(50), password varchar(50));");
+        jdbcTemplate.execute("insert into user values (1,'ion','db pass ion');");
+        jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
     }
 
     public Set<User> getUsers() {
-        return users;
+        String sql = "SELECT * FROM user";
+        return new HashSet<>(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class)));
     }
 
     public User getUser(Integer id) {
-        for (User user : users) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
+        String sql = "SELECT * FROM user WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
     }
 
     public User createUser(User user) {
-        users.add(user);
+        jdbcTemplate.execute("insert into user values (" + user.getId() + ",'" + user.getName() + "','" + user.getPassword() + "');");
         return user;
     }
 
     public void deleteUser(User user) {
-        users.remove(user);
+        jdbcTemplate.execute("delete from user where id = " + user.getId());
     }
 
 }
