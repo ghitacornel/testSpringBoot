@@ -2,10 +2,7 @@ package beans.rest;
 
 import beans.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +23,10 @@ public class UserController {
     public User getUser(@RequestParam(name = "id") Integer id) {
         return userService.getUser(id);
     }
+
+    @PostMapping(value = "", consumes = "application/json", produces = "application/json")
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+
 }
