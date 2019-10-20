@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -15,7 +16,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return userService.getUsers();
     }
 

@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
 
-    List<User> users = new ArrayList<>();
+    Set<User> users = new HashSet<>();
 
     @PostConstruct
     public void init() {
@@ -18,7 +20,7 @@ public class UserService {
         users.add(new User(2, "gheorghe", "n-are parola"));
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
