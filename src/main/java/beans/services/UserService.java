@@ -37,4 +37,12 @@ public class UserService {
         users.add(user);
         return user;
     }
+
+    public void deleteUser(Integer id) {
+        User user = getUser(id);
+        if (user == null) {
+            throw new RuntimeException("user id not found");
+        }
+        users.remove(user);
+    }
 }
