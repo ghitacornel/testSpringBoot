@@ -1,21 +1,29 @@
 package beans.rest;
 
+import beans.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserController {
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @Autowired
+    UserService userService;
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User(1, "ion", "parola"));
-        users.add(new User(2, "gheorghe", "n-are parola"));
-        return users;
+        return userService.getUsers();
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public User getUser(@RequestParam(name = "id") Integer id) {
+        return userService.getUser(id);
     }
 }
