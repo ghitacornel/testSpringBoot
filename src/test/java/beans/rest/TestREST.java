@@ -19,7 +19,7 @@ public class TestREST extends AbstractTestSpringBootContext {
     @Test
     public void testRestController() throws Exception {
         String content = Utils.readFile("testREST.json");
-        mvc.perform(get("/users/")
+        mvc.perform(get("/user/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
