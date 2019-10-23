@@ -7,11 +7,14 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Collections;
 
+/**
+ * All servlets and filters configuration are defined here
+ */
 @Configuration
 public class ServletsConfiguration {
 
     @Bean
-    public ServletRegistrationBean<CustomServlet> myServletRegistration() {
+    ServletRegistrationBean<CustomServlet> customServlet() {
         // mandatory specify the mapping URL
         ServletRegistrationBean<CustomServlet> bean = new ServletRegistrationBean<>(new CustomServlet(), "/customServletURL");
         bean.setLoadOnStartup(1);
@@ -19,7 +22,7 @@ public class ServletsConfiguration {
     }
 
     @Bean
-    public ServletRegistrationBean<CustomServletGET> myServletRegistrationGET() {
+    ServletRegistrationBean<CustomServletGET> customServletGET() {
         // mandatory specify the mapping URL
         ServletRegistrationBean<CustomServletGET> bean = new ServletRegistrationBean<>(new CustomServletGET(), "/customServletURLGET");
         bean.setLoadOnStartup(1);
@@ -27,7 +30,7 @@ public class ServletsConfiguration {
     }
 
     @Bean
-    public ServletRegistrationBean<CustomServletPOST> myServletRegistrationPOST() {
+    ServletRegistrationBean<CustomServletPOST> customServletPOST() {
         // mandatory specify the mapping URL
         ServletRegistrationBean<CustomServletPOST> bean = new ServletRegistrationBean<>(new CustomServletPOST(), "/customServletURLPOST");
         bean.setLoadOnStartup(1);
