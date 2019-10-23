@@ -1,15 +1,15 @@
 package beans.services;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class BusinessService {
 
-    @Value("${my.custom.setting}")
-    private String setting;
+    @Autowired
+    BusinessConfiguration businessConfiguration;
 
     public String calculateName(String input) {
-        return input + " " + setting;
+        return input + " " + businessConfiguration.getSetting();
     }
 }
