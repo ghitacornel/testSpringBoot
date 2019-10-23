@@ -1,9 +1,9 @@
 [ {
   "id" : 1,
   "name" : "ion",
-  "password" : "parola"
+  "password" : "db pass ion"
 }, {
   "id" : 2,
   "name" : "gheorghe",
-  "password" : "n-are parola"
+  "password" : "db pass gheorghe"
 } ]

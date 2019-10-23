@@ -1,4 +1,4 @@
-package beans.rest;
+package beans.rest.model;
 
 import java.util.Objects;
 
