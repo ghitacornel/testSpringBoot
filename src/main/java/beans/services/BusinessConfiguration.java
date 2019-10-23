@@ -9,6 +9,8 @@ public class BusinessConfiguration {
 
     private String setting;
 
+    // MANDATORY getters and setters
+
     public void setSetting(String setting) {
         this.setting = setting;
     }
