@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TestREST extends AbstractTestSpringBootContext {
 
     @Autowired
-    private MockMvc mvc;
+    MockMvc mvc;
 
     @Test
     public void testRestController() throws Exception {
