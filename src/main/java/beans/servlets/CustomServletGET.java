@@ -15,11 +15,11 @@ public class CustomServletGET extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nume = request.getParameter("nume");
+        String customParameterValue = request.getParameter("customParameterName");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<p>Hello World! " + CustomServletGET.class.getCanonicalName() + " with parameter 'nume' = " + nume + "</p>");
+        out.println("<p>Hello World! " + CustomServletGET.class.getCanonicalName() + " with parameter 'customParameterName' = " + customParameterValue + "</p>");
 
     }
 }

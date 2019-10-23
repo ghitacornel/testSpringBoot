@@ -16,11 +16,11 @@ public class CustomServletPOST extends HttpServlet {
             throws ServletException, IOException {
 
         // attribute must be set somewhere else
-        String customAttributeName = (String) request.getAttribute("customAttributeName");
+        String customAttributeValue = (String) request.getAttribute("customAttributeName");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<p>Hello World! " + CustomServletPOST.class.getCanonicalName() + " with attribute 'customAttributeName'= " + customAttributeName + "</p>");
+        out.println("<p>Hello World! " + CustomServletPOST.class.getCanonicalName() + " with attribute 'customAttributeName'= " + customAttributeValue + "</p>");
 
     }
 }
