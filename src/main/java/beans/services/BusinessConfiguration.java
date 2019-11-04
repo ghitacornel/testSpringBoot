@@ -2,9 +2,11 @@ package beans.services;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ConfigurationProperties(prefix = "business.service")
+@PropertySource("classpath:custom.properties")
 public class BusinessConfiguration {
 
     private String setting;
