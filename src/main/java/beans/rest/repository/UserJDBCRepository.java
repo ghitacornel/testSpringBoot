@@ -14,17 +14,9 @@ import java.util.Set;
 @Repository
 public class UserJDBCRepository extends JDBCRepository<User, Integer> {
 
-    @PostConstruct
-    public void init() {
-        jdbcTemplate.execute("create table user(id int, name varchar(50), password varchar(50));");
-        jdbcTemplate.execute("insert into user values (1,'ion','db pass ion');");
-        jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
-    }
-
     @Override
     public List<User> getAll() {
-        String sql = "SELECT * FROM user";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT * FROM user", new BeanPropertyRowMapper<>(User.class));
     }
 
     @Override
@@ -33,17 +25,17 @@ public class UserJDBCRepository extends JDBCRepository<User, Integer> {
     }
 
     public void create(User e) {
-        jdbcTemplate.update("insert into user values (?,?,?);", e.getId(), e.getName(), e.getPassword());
+        jdbcTemplate.update("INSERT INTO user VALUES (?,?,?);", e.getId(), e.getName(), e.getPassword());
     }
 
     @Override
     public void remove(User e) {
-        jdbcTemplate.update("delete from user where id = ?", e.getId());
+        jdbcTemplate.update("DELETE FROM user WHERE id = ?", e.getId());
     }
 
     @Override
     public void removeById(Integer id) {
-        jdbcTemplate.update("delete from user where id = ?", id);
+        jdbcTemplate.update("DELETE FROM user WHERE id = ?", id);
     }
 
 }
