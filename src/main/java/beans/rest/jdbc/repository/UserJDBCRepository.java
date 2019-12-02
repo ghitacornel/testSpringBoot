@@ -10,7 +10,7 @@ import java.util.List;
 public class UserJDBCRepository extends JDBCRepository<User, Integer> {
 
     @Override
-    public List<User> getAll() {
+    public List<User> findAll() {
         return jdbcTemplate.query("SELECT * FROM user", new BeanPropertyRowMapper<>(User.class));
     }
 

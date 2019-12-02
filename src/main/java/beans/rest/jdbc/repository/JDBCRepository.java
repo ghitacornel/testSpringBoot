@@ -16,7 +16,7 @@ abstract class JDBCRepository<Entity, Id> {
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 
-    public abstract List<Entity> getAll();
+    public abstract List<Entity> findAll();
 
     public Entity getById(Id id) {
         Entity entity = findById(id);

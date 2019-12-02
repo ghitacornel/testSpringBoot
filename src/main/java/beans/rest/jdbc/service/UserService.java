@@ -13,8 +13,8 @@ public class UserService {
     @Autowired
     private UserJDBCRepository repository;
 
-    public List<User> getAll() {
-        return repository.getAll();
+    public List<User> findAll() {
+        return repository.findAll();
     }
 
     public User findById(Integer id) {

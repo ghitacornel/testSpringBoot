@@ -15,8 +15,8 @@ public class UserController {
     UserService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<User> getAll() {
-        return service.getAll();
+    public List<User> findAll() {
+        return service.findAll();
     }
 
     @GetMapping(value = "")

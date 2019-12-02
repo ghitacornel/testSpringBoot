@@ -2,8 +2,6 @@ package beans.rest.jdbc.model;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @ToString(of = "id")
 @EqualsAndHashCode(of = "id")
