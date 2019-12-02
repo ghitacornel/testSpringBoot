@@ -5,6 +5,7 @@ import beans.rest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -15,23 +16,23 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Set<User> getUsers() {
-        return userService.getUsers();
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public User getUser(@RequestParam(name = "id") Integer id) {
-        return userService.getUser(id);
+    public User findById(@RequestParam(name = "id") Integer id) {
+        return userService.findById(id);
     }
 
-    @PostMapping(value = "", consumes = "application/json", produces = "application/json")
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    @PostMapping(value = "", consumes = "application/json")
+    public void create(@RequestBody User user) {
+        userService.create(user);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteUser(@PathVariable("id") Integer id) {
-        userService.deleteUser(id);
+    public void removeById(@PathVariable("id") Integer id) {
+        userService.removeById(id);
     }
 
 }
