@@ -20,17 +20,17 @@ public class UserController {
         return userService.getAll();
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping(value = "")
     public User findById(@RequestParam(name = "id") Integer id) {
         return userService.findById(id);
     }
 
-    @PutMapping(value = "", consumes = "application/json")
+    @PutMapping(value = "")
     public void create(@RequestBody User user) {
         userService.create(user);
     }
 
-    @PostMapping(value = "", consumes = "application/json")
+    @PostMapping(value = "")
     public void update(@RequestBody User user) {
         userService.update(user);
     }
