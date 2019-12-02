@@ -36,7 +36,7 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(content));
+                .andExpect(content().json(content));
     }
 
     @Test
