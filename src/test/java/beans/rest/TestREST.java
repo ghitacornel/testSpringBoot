@@ -41,12 +41,11 @@ public class TestREST extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindById() throws Exception {
-        String content = Utils.readFile("testREST_Parameter.json");
         mvc.perform(get("/user")
                 .param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(content));
+                .andExpect(content().json("{\"id\":1,\"name\":\"ion\",\"password\":\"db pass ion\"}"));
     }
 
     @Test
