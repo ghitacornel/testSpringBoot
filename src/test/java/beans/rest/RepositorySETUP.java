@@ -15,8 +15,6 @@ public class RepositorySETUP {
     @PostConstruct
     public void init() {
         jdbcTemplate.execute("create table user(id int, name varchar(50), password varchar(50));");
-        jdbcTemplate.execute("insert into user values (1,'ion','db pass ion');");
-        jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
     }
 
 }
