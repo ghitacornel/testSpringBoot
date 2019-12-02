@@ -25,9 +25,14 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping(value = "", consumes = "application/json")
+    @PutMapping(value = "", consumes = "application/json")
     public void create(@RequestBody User user) {
         userService.create(user);
+    }
+
+    @PostMapping(value = "", consumes = "application/json")
+    public void update(@RequestBody User user) {
+        userService.update(user);
     }
 
     @DeleteMapping(value = "/{id}")

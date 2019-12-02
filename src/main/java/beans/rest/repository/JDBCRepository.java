@@ -30,6 +30,8 @@ abstract class JDBCRepository<Entity, Id> {
 
     public abstract void create(Entity e);
 
+    public abstract void update(Entity e);
+
     public abstract void remove(Entity e);
 
     public abstract void removeById(Id id);

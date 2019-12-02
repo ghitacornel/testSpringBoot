@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import template.AbstractTestSpringBootContext;
 import template.Utils;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,7 +21,7 @@ public class TestREST extends AbstractTestSpringBootContext {
     MockMvc mvc;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    JdbcTemplate jdbcTemplate;
 
     @Before
     public void before() {
@@ -43,8 +43,7 @@ public class TestREST extends AbstractTestSpringBootContext {
     public void testFindById() throws Exception {
         String content = Utils.readFile("testREST_Parameter.json");
         mvc.perform(get("/user")
-                .param("id", "1")
-                .contentType(MediaType.APPLICATION_JSON))
+                .param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().string(content));
@@ -54,7 +53,42 @@ public class TestREST extends AbstractTestSpringBootContext {
     public void testFindByIdWithNoResult() throws Exception {
         mvc.perform(get("/user").
                 param("id", "-1"))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testReadCreateReadUpdateDelete() throws Exception {
+
+        // read
+        mvc.perform(get("/user").
+                param("id", "3"))
+                .andExpect(status().isNotFound());
+
+        // create
+        mvc.perform(put("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\":3,\"name\":\"vasile\",\"password\":\"db pass vasile\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
+
+        // read
+        mvc.perform(get("/user")
+                .param("id", "3"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"id\":3,\"name\":\"vasile\",\"password\":\"db pass vasile\"}"));
+
+        // update
+        mvc.perform(post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
+
+        // read
+        mvc.perform(get("/user")
+                .param("id", "3"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"));
     }
 
 }

@@ -29,4 +29,8 @@ public class UserService {
     public void removeById(Integer id) {
         repository.removeById(id);
     }
+
+    public void update(User user) {
+        repository.update(user);
+    }
 }

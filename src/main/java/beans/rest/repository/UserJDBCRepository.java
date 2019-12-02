@@ -24,6 +24,11 @@ public class UserJDBCRepository extends JDBCRepository<User, Integer> {
     }
 
     @Override
+    public void update(User e) {
+        jdbcTemplate.update("UPDATE user SET name = ?, password = ? WHERE id = ?;", e.getName(), e.getPassword(), e.getId());
+    }
+
+    @Override
     public void remove(User e) {
         jdbcTemplate.update("DELETE FROM user WHERE id = ?", e.getId());
     }
