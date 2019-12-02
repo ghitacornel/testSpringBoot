@@ -1,6 +1,5 @@
 package beans.rest;
 
-import org.flywaydb.core.Flyway;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import template.AbstractTestSpringBootContext;
 import template.Utils;
-
-import javax.annotation.PostConstruct;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -28,7 +25,7 @@ public class TestREST extends AbstractTestSpringBootContext {
 
     @Before
     public void before() {
-        jdbcTemplate.execute("insert into user values (1,'ion','db pass ion');");
+        // data for this test only
         jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
     }
 
