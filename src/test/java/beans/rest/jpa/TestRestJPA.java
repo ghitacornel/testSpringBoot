@@ -1,5 +1,8 @@
 package beans.rest.jpa;
 
+import beans.rest.jpa.model.Person;
+import beans.rest.jpa.repository.PersonRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +20,19 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Autowired
     MockMvc mvc;
+
+    @Autowired
+    PersonRepository personRepository;
+
+    @Before
+    public void before() {
+        // data for this test only
+        Person person = new Person();
+        person.setId(2);
+        person.setName("gheorghe");
+        person.setPassword("db pass gheorghe");
+        personRepository.save(person);
+    }
 
     @Test
     public void testGetAll() throws Exception {
