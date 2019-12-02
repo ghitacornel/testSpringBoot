@@ -18,7 +18,7 @@ public class PersonService {
     }
 
     public Person findById(Integer id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     public void deleteById(Integer id) {
