@@ -1,4 +1,4 @@
-package beans.mvc;
+package beans.mvc.freemarker;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

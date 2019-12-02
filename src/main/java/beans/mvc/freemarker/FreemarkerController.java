@@ -1,4 +1,4 @@
-package beans.mvc;
+package beans.mvc.freemarker;
 
 import beans.services.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
