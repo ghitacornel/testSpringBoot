@@ -50,9 +50,7 @@ public class TestREST extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindByIdWithNoResult() throws Exception {
-        mvc.perform(get("/user").
-                param("id", "-1"))
-                .andExpect(status().isNotFound());
+        mvc.perform(get("/user").param("id", "-1")).andExpect(status().isNotFound());
     }
 
     @Test
