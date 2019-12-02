@@ -12,31 +12,31 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAll() {
-        return userService.getAll();
+        return service.getAll();
     }
 
     @GetMapping(value = "")
     public User findById(@RequestParam(name = "id") Integer id) {
-        return userService.findById(id);
+        return service.findById(id);
     }
 
     @PutMapping(value = "")
     public void create(@RequestBody User user) {
-        userService.create(user);
+        service.create(user);
     }
 
     @PostMapping(value = "")
     public void update(@RequestBody User user) {
-        userService.update(user);
+        service.update(user);
     }
 
     @DeleteMapping(value = "/{id}")
     public void removeById(@PathVariable("id") Integer id) {
-        userService.removeById(id);
+        service.removeById(id);
     }
 
 }
