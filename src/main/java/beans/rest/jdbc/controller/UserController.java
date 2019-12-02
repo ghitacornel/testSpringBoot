@@ -1,12 +1,11 @@
-package beans.rest.controller;
+package beans.rest.jdbc.controller;
 
-import beans.rest.model.User;
-import beans.rest.service.UserService;
+import beans.rest.jdbc.model.User;
+import beans.rest.jdbc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/user")

@@ -1,4 +1,4 @@
-package beans.rest.controller;
+package beans.rest.jdbc.controller;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
-package beans.rest.repository;
+package beans.rest.jdbc.repository;
 
-import beans.rest.model.User;
+import beans.rest.jdbc.model.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 

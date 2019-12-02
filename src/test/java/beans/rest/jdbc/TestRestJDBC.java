@@ -1,4 +1,4 @@
-package beans.rest;
+package beans.rest.jdbc;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-public class TestREST extends AbstractTestSpringBootContext {
+public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Autowired
     MockMvc mvc;

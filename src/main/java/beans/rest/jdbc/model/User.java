@@ -1,4 +1,4 @@
-package beans.rest.model;
+package beans.rest.jdbc.model;
 
 import lombok.*;
 
