@@ -5,7 +5,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public abstract class JDBCRepository<Entity, Id> {
+/**
+ * JDBC Template with Generics
+ *
+ * @param <Entity>
+ * @param <Id>
+ */
+abstract class JDBCRepository<Entity, Id> {
 
     @Autowired
     protected JdbcTemplate jdbcTemplate;
