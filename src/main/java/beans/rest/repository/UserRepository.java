@@ -1,4 +1,4 @@
-package beans.repository;
+package beans.rest.repository;
 
 import beans.rest.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
