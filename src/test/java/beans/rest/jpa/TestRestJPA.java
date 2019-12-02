@@ -21,7 +21,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     @Test
     public void testGetAll() throws Exception {
         String content = Utils.readFile("testREST_All.json");
-        mvc.perform(get("/user/all")
+        mvc.perform(get("/person/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -30,7 +30,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindById() throws Exception {
-        mvc.perform(get("/user")
+        mvc.perform(get("/person")
                 .param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -39,46 +39,46 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindByIdWithNoResult() throws Exception {
-        mvc.perform(get("/user").param("id", "-1")).andExpect(status().isNotFound());
+        mvc.perform(get("/person").param("id", "-1")).andExpect(status().isNotFound());
     }
 
     @Test
     public void testReadCreateReadUpdateDelete() throws Exception {
 
         // read
-        mvc.perform(get("/user").param("id", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person").param("id", "3")).andExpect(status().isNotFound());
 
         // create
-        mvc.perform(put("/user")
+        mvc.perform(put("/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\":3,\"name\":\"vasile\",\"password\":\"db pass vasile\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));
 
         // read
-        mvc.perform(get("/user")
+        mvc.perform(get("/person")
                 .param("id", "3"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{id:3,name:\"vasile\",password:\"db pass vasile\"}"));
 
         // update
-        mvc.perform(post("/user")
+        mvc.perform(post("/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));
 
         // read
-        mvc.perform(get("/user")
+        mvc.perform(get("/person")
                 .param("id", "3"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{id:3,name:\"vasile 1\",password:\"db pass vasile 1\"}"));
 
         // delete
-        mvc.perform(delete("/user/{id}", "3")).andExpect(status().isOk());
+        mvc.perform(delete("/person/{id}", "3")).andExpect(status().isOk());
 
         // read
-        mvc.perform(get("/user").param("id", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person").param("id", "3")).andExpect(status().isNotFound());
 
     }
 
