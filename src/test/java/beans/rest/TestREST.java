@@ -60,9 +60,7 @@ public class TestREST extends AbstractTestSpringBootContext {
     public void testReadCreateReadUpdateDelete() throws Exception {
 
         // read
-        mvc.perform(get("/user").
-                param("id", "3"))
-                .andExpect(status().isNotFound());
+        mvc.perform(get("/user").param("id", "3")).andExpect(status().isNotFound());
 
         // create
         mvc.perform(put("/user")
@@ -89,6 +87,13 @@ public class TestREST extends AbstractTestSpringBootContext {
                 .param("id", "3"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"));
+
+        // delete
+        mvc.perform(delete("/user/{id}", "3")).andExpect(status().isOk());
+
+        // read
+        mvc.perform(get("/user").param("id", "3")).andExpect(status().isNotFound());
+
     }
 
 }
