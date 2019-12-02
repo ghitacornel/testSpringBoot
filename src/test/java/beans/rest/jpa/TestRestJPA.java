@@ -1,10 +1,8 @@
-package beans.rest.jdbc;
+package beans.rest.jpa;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import template.AbstractTestSpringBootContext;
@@ -15,22 +13,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-public class TestRestJDBC extends AbstractTestSpringBootContext {
+public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Autowired
     MockMvc mvc;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    @Before
-    public void before() {
-        // data for this test only
-        jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
-    }
-
     @Test
-    public void testFindAll() throws Exception {
+    public void testGetAll() throws Exception {
         String content = Utils.readFile("testREST_All.json");
         mvc.perform(get("/user/all")
                 .contentType(MediaType.APPLICATION_JSON))
