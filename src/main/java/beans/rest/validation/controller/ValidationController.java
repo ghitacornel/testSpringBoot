@@ -1,7 +1,7 @@
-package beans.rest.validation;
+package beans.rest.validation.controller;
 
-import beans.rest.jpa.service.PersonService;
 import beans.rest.validation.model.Model;
+import beans.rest.validation.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +15,16 @@ import javax.validation.Valid;
 public class ValidationController {
 
     @Autowired
-    PersonService service;
+    ValidationService service;
 
     @PutMapping(value = "/rest")
-    public Model invoke(@Valid @RequestBody Model model) {
+    public Model invokeRest(@Valid @RequestBody Model model) {
         return model;
+    }
+
+    @PutMapping(value = "/service")
+    public Model invokeService(@RequestBody Model model) {
+        return service.invoke(model);
     }
 
 }
