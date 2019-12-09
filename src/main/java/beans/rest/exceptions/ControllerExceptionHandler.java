@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -21,19 +22,19 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ResponseEntity<Object> handleException(EmptyResultDataAccessException e) {
+    public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException e) {
         // better logs here
         return new ResponseEntity<>(e.getCause(), NOT_FOUND);
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Object> handleException(NoSuchElementException e) {
+    public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e) {
         // better logs here
         return new ResponseEntity<>(e.getCause(), NOT_FOUND);
     }
 
     /**
-     * override how validation constraints are handled
+     * override how validation constraints in REST layer are handled
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -41,6 +42,20 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         e.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * override how validation constraints in SERVICE layer are handled
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
+        Map<String, String> errors = new HashMap<>();
+        e.getConstraintViolations().forEach((error) -> {
+            String fieldName = error.getPropertyPath().toString();
+            String errorMessage = error.getMessage();
             errors.put(fieldName, errorMessage);
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);

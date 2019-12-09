@@ -32,7 +32,7 @@ public class TestServiceValidate extends AbstractTestSpringBootContext {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"vasile\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{id:\"must not be null\"}"));
+                .andExpect(content().json("{invoke.model.id:\"must not be null\"}"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestServiceValidate extends AbstractTestSpringBootContext {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{name:\"must not be null\"}"));
+                .andExpect(content().json("{invoke.model.name:\"must not be null\"}"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestServiceValidate extends AbstractTestSpringBootContext {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{name:\"must not be empty\"}"));
+                .andExpect(content().json("{invoke.model.name:\"must not be empty\"}"));
     }
 
 }
