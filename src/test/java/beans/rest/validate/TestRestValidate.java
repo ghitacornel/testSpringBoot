@@ -41,7 +41,7 @@ public class TestRestValidate extends AbstractTestSpringBootContext {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{name:\"must not be null\"}"));
+                .andExpect(content().json("{name:\"must not be empty\"}"));
     }
 
     @Test

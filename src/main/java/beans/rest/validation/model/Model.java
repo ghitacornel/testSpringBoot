@@ -11,7 +11,6 @@ public class Model {
     @NotNull
     private Integer id;
 
-    @NotNull
     @NotEmpty
     private String name;
 
