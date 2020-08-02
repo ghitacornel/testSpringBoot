@@ -9,9 +9,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestServiceDirect extends AbstractTestSpringBootContext {
+public class TestValidationControllerParameters extends AbstractTestSpringBootContext {
 
-    private static final String URL = "/validatedirect";
+    private static final String URL = "/validateParameters";
 
     @Autowired
     MockMvc mvc;

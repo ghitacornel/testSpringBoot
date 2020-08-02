@@ -17,11 +17,13 @@ public class ValidationController {
     @Autowired
     ValidationService service;
 
+    // validation performed in REST layer
     @PutMapping(value = "/rest")
     public Model invokeRest(@Valid @RequestBody Model model) {
         return model;
     }
 
+    // validation performed in Service layer
     @PutMapping(value = "/service")
     public Model invokeService(@RequestBody Model model) {
         return service.invoke(model);
