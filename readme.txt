@@ -7,3 +7,7 @@ PREREQUISITES
 
 - Java Reflection
 - java.lang.ThreadLocal
+
+
+http://localhost:8080/testSpringBoot/person/all
+http://localhost:8080/testSpringBoot/customServletURL
