@@ -17,11 +17,8 @@ public class FreemarkerController {
 
     @GetMapping({""})
     public String hello(Model model, @RequestParam(value = "name", required = false, defaultValue = "World") String input) {
-        model.addAttribute("namePlaceholder", calculateName(input));
+        model.addAttribute("namePlaceholder", businessService.calculateName(input));
         return "hello";
     }
 
-    private String calculateName(String input) {
-        return businessService.calculateName(input);
-    }
 }
