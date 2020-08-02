@@ -1,6 +1,6 @@
 package beans.configuration;
 
-import beans.services.BusinessConfiguration;
+import beans.properties.BusinessConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
