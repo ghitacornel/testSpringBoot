@@ -24,6 +24,11 @@ public class PersonController {
         return service.findById(id);
     }
 
+    @GetMapping(value = "/{password}")
+    public List<Person> findByPassword(@PathVariable String password) {
+        return service.findByPassword(password);
+    }
+
     @PutMapping(value = "")
     public void create(@RequestBody Person person) {
         service.save(person);

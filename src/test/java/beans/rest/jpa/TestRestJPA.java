@@ -68,6 +68,14 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     }
 
     @Test
+    public void testFindByPassword() throws Exception {
+        mvc.perform(get("/person/db pass gheorghe"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("[{id:2,name:\"gheorghe\",password:\"db pass gheorghe\"}]"));
+    }
+
+    @Test
     public void testFindByIdWithNoResult() throws Exception {
         mvc.perform(get("/person").param("id", "-1")).andExpect(status().isNotFound());
     }

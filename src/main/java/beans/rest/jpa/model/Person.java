@@ -4,16 +4,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "person")
 @Data
 @ToString(of = "id")
 @EqualsAndHashCode(of = "id")
+@NamedQuery(name = "Person.findByPassword", query = "select t from Person t where t.password = :password")
 public class Person {
 
     @Id
