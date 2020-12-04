@@ -2,6 +2,7 @@ package beans.rest.jpa;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.PersonRepository;
+import org.hsqldb.util.DatabaseManagerSwing;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,16 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         person.setPassword("db pass gheorghe");
         personRepository.save(person);
 
-        final Runnable r = () -> {
-            System.out.println("LAUNCHING HSQL DBMANAGERSWING");
-            final String[] args = { "--url", "jdbc:hsqldb:mem:testdb" ,"--noexit"};
-            try {
+//        final Runnable r = () -> {
+//            System.out.println("LAUNCHING HSQL DBMANAGERSWING");
+//            final String[] args = { "--url", "jdbc:hsqldb:mem:testdb" ,"--noexit"};
+//            try {
 //                DatabaseManagerSwing.main(args);
-            } catch (final Exception e) {
-                System.out.println("Could not start hsqldb database manager GUI: " + e.getMessage());
-            }
-        };
-        new Thread(r).start();
+//            } catch (final Exception e) {
+//                System.out.println("Could not start hsqldb database manager GUI: " + e.getMessage());
+//            }
+//        };
+//        new Thread(r).start();
 
     }
 
@@ -59,10 +60,10 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     @Test
     public void testFindById() throws Exception {
         mvc.perform(get("/person")
-                .param("id", "1"))
+                .param("id", "2"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().json("{id:1,name:\"ion\",password:\"db pass ion\"}"));
+                .andExpect(content().json("{id:2,name:\"gheorghe\",password:\"db pass gheorghe\"}"));
     }
 
     @Test
