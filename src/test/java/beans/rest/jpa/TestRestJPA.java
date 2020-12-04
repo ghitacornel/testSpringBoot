@@ -33,6 +33,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         person.setName("gheorghe");
         person.setPassword("db pass gheorghe");
         personRepository.save(person);
+        personRepository.flush();
 
 //        final Runnable r = () -> {
 //            System.out.println("LAUNCHING HSQL DBMANAGERSWING");
