@@ -1,6 +1,6 @@
 package beans.rest.jdbc.controller;
 
-import beans.rest.jdbc.model.User;
+import beans.rest.jdbc.model.PersonJDBC;
 import beans.rest.jdbc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +15,23 @@ public class UserController {
     UserService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<User> findAll() {
+    public List<PersonJDBC> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "")
-    public User findById(@RequestParam(name = "id") Integer id) {
+    public PersonJDBC findById(@RequestParam(name = "id") Integer id) {
         return service.findById(id);
     }
 
     @PutMapping(value = "")
-    public void create(@RequestBody User user) {
-        service.create(user);
+    public void create(@RequestBody PersonJDBC personJDBC) {
+        service.create(personJDBC);
     }
 
     @PostMapping(value = "")
-    public void update(@RequestBody User user) {
-        service.update(user);
+    public void update(@RequestBody PersonJDBC personJDBC) {
+        service.update(personJDBC);
     }
 
     @DeleteMapping(value = "/{id}")

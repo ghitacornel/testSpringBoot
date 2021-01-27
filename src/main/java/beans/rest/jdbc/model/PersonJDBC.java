@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @ToString(of = "id")
 @EqualsAndHashCode(of = "id")
-public class User {
+public class PersonJDBC {
 
     private Integer id;
     private String name;

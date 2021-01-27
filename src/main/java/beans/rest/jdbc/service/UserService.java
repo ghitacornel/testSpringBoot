@@ -1,7 +1,7 @@
 package beans.rest.jdbc.service;
 
+import beans.rest.jdbc.model.PersonJDBC;
 import beans.rest.jdbc.repository.UserJDBCRepository;
-import beans.rest.jdbc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +13,23 @@ public class UserService {
     @Autowired
     private UserJDBCRepository repository;
 
-    public List<User> findAll() {
+    public List<PersonJDBC> findAll() {
         return repository.findAll();
     }
 
-    public User findById(Integer id) {
+    public PersonJDBC findById(Integer id) {
         return repository.findById(id);
     }
 
-    public void create(User user) {
-        repository.create(user);
+    public void create(PersonJDBC personJDBC) {
+        repository.create(personJDBC);
     }
 
     public void removeById(Integer id) {
         repository.removeById(id);
     }
 
-    public void update(User user) {
-        repository.update(user);
+    public void update(PersonJDBC personJDBC) {
+        repository.update(personJDBC);
     }
 }
