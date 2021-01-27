@@ -1,7 +1,6 @@
 package beans.rest.jpa.controller;
 
 import beans.rest.jpa.model.Parent;
-import beans.rest.jpa.model.Person;
 import beans.rest.jpa.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
