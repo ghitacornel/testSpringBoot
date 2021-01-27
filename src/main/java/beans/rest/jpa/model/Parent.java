@@ -23,7 +23,7 @@ public class Parent {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     final private List<Child> children = new ArrayList<>();
 
 }
