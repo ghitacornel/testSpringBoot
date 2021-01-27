@@ -34,6 +34,16 @@ public class PersonController {
         service.save(person);
     }
 
+    @GetMapping(value = "/transaction1")
+    public void transaction1() {
+        service.validate2TransactionsArePresent();
+    }
+
+    @GetMapping(value = "/transaction2")
+    public void transaction2() {
+        service.validate1TransactionIsPresent();
+    }
+
     @PostMapping(value = "")
     public void update(@RequestBody Person person) {
         service.save(person);
@@ -42,6 +52,11 @@ public class PersonController {
     @DeleteMapping(value = "/{id}")
     public void deleteById(@PathVariable("id") Integer id) {
         service.deleteById(id);
+    }
+
+    @DeleteMapping(value = "")
+    public void deleteAll() {
+        service.deleteAll();
     }
 
 }
