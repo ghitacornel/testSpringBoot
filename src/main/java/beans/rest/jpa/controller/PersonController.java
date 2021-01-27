@@ -19,13 +19,13 @@ public class PersonController {
         return service.findAll();
     }
 
-    @GetMapping(value = "")
-    public Person findById(@RequestParam(name = "id") Integer id) {
+    @GetMapping(value = "/{id}")
+    public Person findById(@PathVariable(name = "id") Integer id) {
         return service.findById(id);
     }
 
-    @GetMapping(value = "/{password}")
-    public List<Person> findByPassword(@PathVariable String password) {
+    @GetMapping(value = "")
+    public List<Person> findByPassword(@RequestParam String password) {
         return service.findByPassword(password);
     }
 
