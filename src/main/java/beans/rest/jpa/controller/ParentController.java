@@ -1,6 +1,7 @@
 package beans.rest.jpa.controller;
 
 import beans.rest.jpa.model.Parent;
+import beans.rest.jpa.model.Person;
 import beans.rest.jpa.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,14 @@ public class ParentController {
     @Autowired
     ParentService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<Parent> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Parent findById(@PathVariable(name = "id") Integer id) {
+        return service.findById(id);
     }
 
     @PutMapping(value = "")

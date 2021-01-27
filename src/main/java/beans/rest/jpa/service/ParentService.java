@@ -47,4 +47,8 @@ public class ParentService {
         childRepository.deleteAll();
         parentRepository.deleteAll();
     }
+
+    public Parent findById(Integer id) {
+        return parentRepository.findById(id).get();
+    }
 }
