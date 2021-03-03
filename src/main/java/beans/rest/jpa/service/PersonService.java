@@ -81,14 +81,14 @@ public class PersonService {
     }
 
     @Transactional
-    public void firstMethodTransactionalFailsAtTheEnd() {
+    public void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked() {
 
         Person person1 = new Person();
         person1.setId(111);
         person1.setName("name 111");
         repository.save(person1);
 
-        methodWithTransactionRequiresNew();
+        this.methodWithTransactionRequiresNew();
 
         if (true) throw new MyBusinessException("Invocation with this. does not honor propagation level");
 
