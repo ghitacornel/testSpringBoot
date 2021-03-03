@@ -1,10 +1,12 @@
 package beans.rest.jpa.service;
 
+import beans.rest.exceptions.MyBusinessException;
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.CustomPersonRepository;
 import beans.rest.jpa.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -49,7 +51,7 @@ public class PersonService {
         person1.setName("name 111");
         repository.save(person1);
 
-        if (true) throw new RuntimeException("validate2TransactionsArePresent");
+        if (true) throw new MyBusinessException("Validate 2 Transactions Are Present");
 
         Person person2 = new Person();
         person2.setId(222);
@@ -66,7 +68,7 @@ public class PersonService {
         person1.setName("name 111");
         repository.save(person1);
 
-        if (true) throw new RuntimeException("validate1TransactionIsPresent");
+        if (true) throw new MyBusinessException("Validate 1 Transaction Is Present");
 
         Person person2 = new Person();
         person2.setId(222);
@@ -74,4 +76,29 @@ public class PersonService {
         repository.save(person2);
 
     }
+
+    @Transactional
+    public void firstMethodTransactionalFailsAtTheEnd() {
+
+        Person person1 = new Person();
+        person1.setId(111);
+        person1.setName("name 111");
+        repository.save(person1);
+
+        methodWithTransactionRequiresNew();
+
+        if (true) throw new MyBusinessException("Invocation with this. does not honor propagation level");
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void methodWithTransactionRequiresNew() {
+
+        Person person2 = new Person();
+        person2.setId(222);
+        person2.setName("name 222");
+        repository.save(person2);
+
+    }
+
 }

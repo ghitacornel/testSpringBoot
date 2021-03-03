@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
@@ -31,6 +32,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e) {
         // better logs here
         return new ResponseEntity<>(e.getCause(), NOT_FOUND);
+    }
+
+    @ExceptionHandler(MyBusinessException.class)
+    public ResponseEntity<Object> handleMyBusinessException(MyBusinessException e) {
+        // better logs here
+        return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
     }
 
     /**
