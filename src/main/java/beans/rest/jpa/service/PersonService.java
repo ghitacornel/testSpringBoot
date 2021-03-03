@@ -81,7 +81,7 @@ public class PersonService {
     }
 
     @Transactional
-    public void firstMethodTransactionalFailsAtTheEnd() {
+    public void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked() {
 
         Person person1 = new Person();
         person1.setId(111);

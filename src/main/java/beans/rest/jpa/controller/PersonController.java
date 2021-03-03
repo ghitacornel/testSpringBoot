@@ -46,7 +46,7 @@ public class PersonController {
 
     @GetMapping(value = "/transaction3")
     public void transaction3() {
-        service.firstMethodTransactionalFailsAtTheEnd();
+        service.firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked();
     }
 
     @GetMapping(value = "/transaction4")
