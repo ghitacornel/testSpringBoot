@@ -49,6 +49,11 @@ public class PersonController {
         service.firstMethodTransactionalFailsAtTheEnd();
     }
 
+    @GetMapping(value = "/transaction4")
+    public void transaction4() {
+        service.firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
+    }
+
     @PostMapping(value = "")
     public void update(@RequestBody Person person) {
         service.save(person);

@@ -101,4 +101,17 @@ public class PersonService {
 
     }
 
+    @Transactional
+    public void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked() {
+
+        Person person1 = new Person();
+        person1.setId(111);
+        person1.setName("name 111");
+        repository.save(person1);
+
+        methodWithTransactionRequiresNew();
+
+        if (true) throw new MyBusinessException("Invocation with SELF does honor propagation level");
+
+    }
 }
