@@ -18,6 +18,9 @@ public class PersonService {
     private PersonRepository repository;
 
     @Autowired
+    PersonService SELF;
+
+    @Autowired
     private CustomPersonRepository customPersonRepository;
 
     public List<Person> findAll() {
@@ -109,7 +112,7 @@ public class PersonService {
         person1.setName("name 111");
         repository.save(person1);
 
-        methodWithTransactionRequiresNew();
+        SELF.methodWithTransactionRequiresNew();
 
         if (true) throw new MyBusinessException("Invocation with SELF does honor propagation level");
 
