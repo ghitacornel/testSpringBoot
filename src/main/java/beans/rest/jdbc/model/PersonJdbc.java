@@ -4,14 +4,14 @@ public class PersonJdbc {
 
     private Integer id;
     private String name;
-    private String password;
+    private String pass;
 
     @Override
     public String toString() {
-        return "PersonJDBC{" +
+        return "PersonJdbc{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                ", pass='" + pass + '\'' +
                 '}';
     }
 
@@ -31,11 +31,11 @@ public class PersonJdbc {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }
