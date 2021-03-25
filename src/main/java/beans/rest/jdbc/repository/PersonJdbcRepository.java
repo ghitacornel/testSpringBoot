@@ -1,35 +1,35 @@
 package beans.rest.jdbc.repository;
 
-import beans.rest.jdbc.model.PersonJDBC;
+import beans.rest.jdbc.model.PersonJdbc;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class UserJDBCRepository extends JDBCRepository<PersonJDBC, Integer> {
+public class PersonJdbcRepository extends JdbcRepository<PersonJdbc, Integer> {
 
     @Override
-    public List<PersonJDBC> findAll() {
-        return jdbcTemplate.query("SELECT * FROM person_jdbc", new BeanPropertyRowMapper<>(PersonJDBC.class));
+    public List<PersonJdbc> findAll() {
+        return jdbcTemplate.query("SELECT * FROM person_jdbc", new BeanPropertyRowMapper<>(PersonJdbc.class));
     }
 
     @Override
-    public PersonJDBC findById(Integer id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM person_jdbc WHERE id = ?", new BeanPropertyRowMapper<>(PersonJDBC.class), id);
+    public PersonJdbc findById(Integer id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM person_jdbc WHERE id = ?", new BeanPropertyRowMapper<>(PersonJdbc.class), id);
     }
 
-    public void create(PersonJDBC e) {
+    public void create(PersonJdbc e) {
         jdbcTemplate.update("INSERT INTO person_jdbc VALUES (?,?,?);", e.getId(), e.getName(), e.getPassword());
     }
 
     @Override
-    public void update(PersonJDBC e) {
+    public void update(PersonJdbc e) {
         jdbcTemplate.update("UPDATE person_jdbc SET name = ?, password = ? WHERE id = ?;", e.getName(), e.getPassword(), e.getId());
     }
 
     @Override
-    public void remove(PersonJDBC e) {
+    public void remove(PersonJdbc e) {
         jdbcTemplate.update("DELETE FROM person_jdbc WHERE id = ?", e.getId());
     }
 

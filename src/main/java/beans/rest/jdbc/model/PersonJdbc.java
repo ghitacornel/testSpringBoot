@@ -1,6 +1,6 @@
 package beans.rest.jdbc.model;
 
-public class PersonJDBC {
+public class PersonJdbc {
 
     private Integer id;
     private String name;

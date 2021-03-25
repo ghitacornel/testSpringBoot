@@ -1,6 +1,5 @@
 package beans.rest.jdbc;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,12 +21,6 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-
-    @Before
-    public void before() {
-        // data for this test only
-        jdbcTemplate.execute("insert into user values (2,'gheorghe','db pass gheorghe');");
-    }
 
     @Test
     public void testFindAll() throws Exception {

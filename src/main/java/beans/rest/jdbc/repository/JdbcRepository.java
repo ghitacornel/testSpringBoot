@@ -11,7 +11,7 @@ import java.util.List;
  * @param <Entity>
  * @param <Id>
  */
-abstract class JDBCRepository<Entity, Id> {
+abstract class JdbcRepository<Entity, Id> {
 
     @Autowired
     protected JdbcTemplate jdbcTemplate;

@@ -1,7 +1,7 @@
 package beans.rest.jdbc.controller;
 
-import beans.rest.jdbc.model.PersonJDBC;
-import beans.rest.jdbc.service.UserService;
+import beans.rest.jdbc.model.PersonJdbc;
+import beans.rest.jdbc.service.PersonJdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,28 +9,31 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
-public class UserController {
+public class PersonJdbcController {
 
-    @Autowired
-    UserService service;
+    final PersonJdbcService service;
+
+    public PersonJdbcController(PersonJdbcService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<PersonJDBC> findAll() {
+    public List<PersonJdbc> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "")
-    public PersonJDBC findById(@RequestParam(name = "id") Integer id) {
+    public PersonJdbc findById(@RequestParam(name = "id") Integer id) {
         return service.findById(id);
     }
 
     @PutMapping(value = "")
-    public void create(@RequestBody PersonJDBC personJDBC) {
+    public void create(@RequestBody PersonJdbc personJDBC) {
         service.create(personJDBC);
     }
 
     @PostMapping(value = "")
-    public void update(@RequestBody PersonJDBC personJDBC) {
+    public void update(@RequestBody PersonJdbc personJDBC) {
         service.update(personJDBC);
     }
 
