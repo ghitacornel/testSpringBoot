@@ -64,7 +64,7 @@ public class PersonController {
         service.deleteById(id);
     }
 
-    @DeleteMapping(value = "")
+    @DeleteMapping
     public void deleteAll() {
         service.deleteAll();
     }
