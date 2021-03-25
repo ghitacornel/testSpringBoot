@@ -24,7 +24,7 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindAll() throws Exception {
-        String content = Utils.readFile("output/testREST_JDBC_FIND_All.json");
+        String content = Utils.readFile("output/TestRestJDBC_testFindAll");
         mvc.perform(get("/user/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -34,7 +34,7 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindById() throws Exception {
-        String content = Utils.readFile("output/testREST_JDBC_FIND_BY_ID.json");
+        String content = Utils.readFile("output/TestRestJDBC_testFindById.json");
         mvc.perform(get("/user")
                 .param("id", "1"))
                 .andExpect(status().isOk())
