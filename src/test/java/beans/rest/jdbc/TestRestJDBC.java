@@ -3,9 +3,7 @@ package beans.rest.jdbc;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 import template.AbstractTestSpringBootContext;
 import template.Utils;
 
@@ -13,14 +11,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Transactional
 public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Autowired
     MockMvc mvc;
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     @Test
     public void testFindAll() throws Exception {
