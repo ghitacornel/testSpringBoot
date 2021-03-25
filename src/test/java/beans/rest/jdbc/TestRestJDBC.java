@@ -54,30 +54,43 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
         mvc.perform(get("/user").param("id", "3")).andExpect(status().isNotFound());
 
         // create
-        mvc.perform(put("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"vasile\",\"password\":\"db pass vasile\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(""));
+        {
+            String content = Utils.readFile("input/TestRestJDBC_testReadCreateReadUpdateDelete_CREATE.json");
+            mvc.perform(put("/user")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(""));
+        }
 
         // read
-        mvc.perform(get("/user")
-                .param("id", "3"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{id:3,name:\"vasile\",password:\"db pass vasile\"}"));
+        {
+            String content = Utils.readFile("output/TestRestJDBC_testReadCreateReadUpdateDelete_AFTER_CREATE.json");
+            mvc.perform(get("/user")
+                    .param("id", "3"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(content().json(content));
+        }
 
         // update
-        mvc.perform(post("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(""));
+        {
+            String content = Utils.readFile("input/TestRestJDBC_testReadCreateReadUpdateDelete_UPDATE.json");
+            mvc.perform(post("/user")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(""));
+        }
 
         // read
-        mvc.perform(get("/user")
-                .param("id", "3"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{id:3,name:\"vasile 1\",password:\"db pass vasile 1\"}"));
+        {
+            String content = Utils.readFile("output/TestRestJDBC_testReadCreateReadUpdateDelete_AFTER_UPDATE.json");
+            mvc.perform(get("/user")
+                    .param("id", "3"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().json(content));
+        }
 
         // delete
         mvc.perform(delete("/user/{id}", "3")).andExpect(status().isOk());
