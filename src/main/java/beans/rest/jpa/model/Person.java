@@ -1,16 +1,9 @@
 package beans.rest.jpa.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "person")
-@Data
-@ToString(of = "id")
-@EqualsAndHashCode(of = "id")
 @NamedQuery(name = "Person.findByPassword", query = "select t from Person t where t.password = :password")
 public class Person {
 
@@ -24,4 +17,36 @@ public class Person {
     @Column(name = "pass")
     private String password;
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

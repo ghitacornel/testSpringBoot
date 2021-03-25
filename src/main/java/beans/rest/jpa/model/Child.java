@@ -1,17 +1,11 @@
 package beans.rest.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "child")
-@Data
-@ToString(of = "id")
-@EqualsAndHashCode(of = "id")
 public class Child {
 
     @Id
@@ -25,4 +19,36 @@ public class Child {
     @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
 
+    @Override
+    public String toString() {
+        return "Child{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parent=" + parent +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 }
