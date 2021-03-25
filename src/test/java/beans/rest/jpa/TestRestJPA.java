@@ -49,7 +49,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testGetAll() throws Exception {
-        String content = Utils.readFile("output/TestRestJDBC_testFindAll");
+        String content = Utils.readFile("output/TestRestJPA_testFindAll.json");
         mvc.perform(get("/person/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -59,11 +59,11 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindById() throws Exception {
-        mvc.perform(get("/person")
-                .param("id", "2"))
+        String content = Utils.readFile("output/TestRestJPA_testFindById.json");
+        mvc.perform(get("/person/{id}", "2"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().json("{id:2,name:\"gheorghe\",password:\"db pass gheorghe\"}"));
+                .andExpect(content().json(content));
     }
 
     @Test

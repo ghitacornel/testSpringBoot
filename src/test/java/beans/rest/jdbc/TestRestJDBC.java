@@ -18,7 +18,7 @@ public class TestRestJDBC extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindAll() throws Exception {
-        String content = Utils.readFile("output/TestRestJDBC_testFindAll");
+        String content = Utils.readFile("output/TestRestJDBC_testFindAll.json");
         mvc.perform(get("/user/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
