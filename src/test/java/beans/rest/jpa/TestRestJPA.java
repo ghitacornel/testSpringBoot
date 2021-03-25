@@ -69,7 +69,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     @Test
     public void testFindByPassword() throws Exception {
         String content = Utils.readFile("output/TestRestJPA_testFindByPassword.json");
-        mvc.perform(get("/person/db pass gheorghe"))
+        mvc.perform(get("/person?pass=db pass gheorghe"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(content));

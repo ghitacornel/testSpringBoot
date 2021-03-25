@@ -24,8 +24,8 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @GetMapping(value = "")
-    public List<Person> findByPassword(@RequestParam String password) {
+    @GetMapping
+    public List<Person> findByPassword(@RequestParam(name = "pass") String password) {
         return service.findByPassword(password);
     }
 
