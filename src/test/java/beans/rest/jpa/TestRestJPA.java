@@ -2,7 +2,6 @@ package beans.rest.jpa;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.PersonRepository;
-import org.hsqldb.util.DatabaseManagerSwing;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +49,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testGetAll() throws Exception {
-        String content = Utils.readFile("testREST_All.json");
+        String content = Utils.readFile("output/testREST_All.json");
         mvc.perform(get("/person/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

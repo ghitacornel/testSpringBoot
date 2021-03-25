@@ -2,11 +2,11 @@
   {
     "id": 1,
     "name": "ion",
-    "password": "db pass ion"
+    "pass": "db pass ion"
   },
   {
     "id": 2,
     "name": "gheorghe",
-    "password": "db pass gheorghe"
+    "pass": "db pass gheorghe"
   }
 ]
