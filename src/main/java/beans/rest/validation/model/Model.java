@@ -11,6 +11,9 @@ public class Model {
     @NotEmpty
     private String name;
 
+    public Model() {
+    }
+
     public Model(@NotNull Integer id, @NotEmpty String name) {
         this.id = id;
         this.name = name;
