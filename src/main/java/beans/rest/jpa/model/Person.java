@@ -1,5 +1,7 @@
 package beans.rest.jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Person {
     @Column(name = "name")
     private String name;
 
+    @JsonProperty("pass")
     @Column(name = "pass")
     private String password;
 
