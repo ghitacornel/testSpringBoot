@@ -22,17 +22,17 @@ public class PersonJdbcController {
         return service.findAll();
     }
 
-    @GetMapping(value = "")
+    @GetMapping
     public PersonJdbc findById(@RequestParam(name = "id") Integer id) {
         return service.findById(id);
     }
 
-    @PutMapping(value = "")
+    @PutMapping
     public void create(@RequestBody PersonJdbc personJDBC) {
         service.create(personJDBC);
     }
 
-    @PostMapping(value = "")
+    @PostMapping
     public void update(@RequestBody PersonJdbc personJDBC) {
         service.update(personJDBC);
     }

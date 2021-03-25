@@ -29,7 +29,7 @@ public class PersonController {
         return service.findByPassword(password);
     }
 
-    @PutMapping(value = "")
+    @PutMapping
     public void create(@RequestBody Person person) {
         service.save(person);
     }
@@ -54,7 +54,7 @@ public class PersonController {
         service.firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
     }
 
-    @PostMapping(value = "")
+    @PostMapping
     public void update(@RequestBody Person person) {
         service.save(person);
     }
