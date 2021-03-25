@@ -77,7 +77,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Test
     public void testFindByIdWithNoResult() throws Exception {
-        mvc.perform(get("/person").param("id", "-1")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "-1")).andExpect(status().isNotFound());
     }
 
     @Test
