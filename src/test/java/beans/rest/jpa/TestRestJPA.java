@@ -84,7 +84,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     public void testReadCreateReadUpdateDelete() throws Exception {
 
         // read
-        mvc.perform(get("/person").param("id", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "3")).andExpect(status().isNotFound());
 
         // create
         mvc.perform(put("/person")
@@ -94,8 +94,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
                 .andExpect(content().string(""));
 
         // read
-        mvc.perform(get("/person")
-                .param("id", "3"))
+        mvc.perform(get("/person/{id}", "3"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{id:3,name:\"vasile\",password:\"db pass vasile\"}"));
 
@@ -107,8 +106,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
                 .andExpect(content().string(""));
 
         // read
-        mvc.perform(get("/person")
-                .param("id", "3"))
+        mvc.perform(get("/person/{id}", "3"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{id:3,name:\"vasile 1\",password:\"db pass vasile 1\"}"));
 
@@ -116,7 +114,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         mvc.perform(delete("/person/{id}", "3")).andExpect(status().isOk());
 
         // read
-        mvc.perform(get("/person").param("id", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "3")).andExpect(status().isNotFound());
 
     }
 
