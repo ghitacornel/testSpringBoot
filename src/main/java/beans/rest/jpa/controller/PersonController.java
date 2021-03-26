@@ -37,22 +37,22 @@ public class PersonController {
     }
 
     @GetMapping(value = "/transaction1")
-    public void transaction1() {
+    public void validate2TransactionsArePresent() {
         service.validate2TransactionsArePresent();
     }
 
     @GetMapping(value = "/transaction2")
-    public void transaction2() {
+    public void validate1TransactionIsPresent() {
         service.validate1TransactionIsPresent();
     }
 
     @GetMapping(value = "/transaction3")
-    public void transaction3() {
+    public void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked() {
         service.firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked();
     }
 
     @GetMapping(value = "/transaction4")
-    public void transaction4() {
+    public void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked() {
         service.firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
     }
 
