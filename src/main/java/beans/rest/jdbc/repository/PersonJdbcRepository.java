@@ -1,5 +1,6 @@
 package beans.rest.jdbc.repository;
 
+import beans.aop.LogExecution;
 import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@LogExecution
 @Repository
 public class PersonJdbcRepository extends JdbcRepository<PersonJdbc, Integer> {
 

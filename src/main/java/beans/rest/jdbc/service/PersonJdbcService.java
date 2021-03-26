@@ -1,5 +1,6 @@
 package beans.rest.jdbc.service;
 
+import beans.aop.LogExecution;
 import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import beans.rest.jdbc.repository.PersonJdbcRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@LogExecution
 @Service
 public class PersonJdbcService {
 

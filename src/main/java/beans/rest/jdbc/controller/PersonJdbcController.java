@@ -1,5 +1,6 @@
 package beans.rest.jdbc.controller;
 
+import beans.aop.LogExecution;
 import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import beans.rest.jdbc.service.PersonJdbcService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@LogExecution
 @RestController
 @RequestMapping(value = "/user")
 public class PersonJdbcController {
