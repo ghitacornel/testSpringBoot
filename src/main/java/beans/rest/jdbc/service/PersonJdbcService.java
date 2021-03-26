@@ -1,5 +1,6 @@
 package beans.rest.jdbc.service;
 
+import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import beans.rest.jdbc.repository.PersonJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class PersonJdbcService {
         this.repository = repository;
     }
 
+    @LogExecutionTime
     public List<PersonJdbc> findAll() {
         return repository.findAll();
     }

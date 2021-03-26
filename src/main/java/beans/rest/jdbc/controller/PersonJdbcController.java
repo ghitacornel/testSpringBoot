@@ -1,5 +1,6 @@
 package beans.rest.jdbc.controller;
 
+import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import beans.rest.jdbc.service.PersonJdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class PersonJdbcController {
         this.service = service;
     }
 
+    @LogExecutionTime
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<PersonJdbc> findAll() {
         return service.findAll();
