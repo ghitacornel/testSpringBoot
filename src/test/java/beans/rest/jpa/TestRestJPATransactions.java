@@ -57,14 +57,6 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
                 personRepository.save(person);
                 personRepository.flush();
             }
-            {
-                Person person = new Person();
-                person.setId(2);
-                person.setName("gheorghe");
-                person.setPassword("db pass gheorghe");
-                personRepository.save(person);
-                personRepository.flush();
-            }
         }
 
     }

@@ -2,6 +2,7 @@ package beans.rest.jpa;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.PersonRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @Before
     public void before() {
-        // data for this test only
+
+        // add data for this tests only
         Person person = new Person();
         person.setId(2);
         person.setName("gheorghe");
@@ -43,6 +45,15 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 //        };
 //        new Thread(r).start();
 
+    }
+
+    @After
+    public void after() {
+
+        // clear data added for this tests only
+
+        personRepository.deleteById(2);
+        personRepository.flush();
     }
 
     @Test
