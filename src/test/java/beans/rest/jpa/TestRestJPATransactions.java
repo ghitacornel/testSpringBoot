@@ -77,4 +77,19 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
 
     }
 
+    @Test
+    public void testTransaction2() throws Exception {
+
+        mvc.perform(get("/person/transaction2")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
+
+        String content = Utils.readFile("output/TestRestJPATransactions_testTransaction2.json");
+        mvc.perform(get("/person/all")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(content));
+
+    }
 }
