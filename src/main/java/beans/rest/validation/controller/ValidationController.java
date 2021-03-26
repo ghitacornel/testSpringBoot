@@ -2,7 +2,6 @@ package beans.rest.validation.controller;
 
 import beans.rest.validation.model.Model;
 import beans.rest.validation.service.ValidationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,11 @@ import javax.validation.Valid;
 @RequestMapping(value = "/validate")
 public class ValidationController {
 
-    @Autowired
-    ValidationService service;
+    final ValidationService service;
+
+    public ValidationController(ValidationService service) {
+        this.service = service;
+    }
 
     // validation performed in REST layer
     @PutMapping(value = "/rest")
