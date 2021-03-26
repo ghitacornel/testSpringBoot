@@ -66,7 +66,8 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
 
         mvc.perform(get("/person/transaction1")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string("Validate 2 Transactions Are Present"));
 
         String content = Utils.readFile("output/TestRestJPATransactions_testTransaction1.json");
         mvc.perform(get("/person/all")
@@ -82,7 +83,8 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
 
         mvc.perform(get("/person/transaction2")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string("Validate 1 Transaction Is Present"));
 
         String content = Utils.readFile("output/TestRestJPATransactions_testTransaction2.json");
         mvc.perform(get("/person/all")
@@ -98,7 +100,8 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
 
         mvc.perform(get("/person/transaction3")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string("Invocation with this. does not honor propagation level"));
 
         String content = Utils.readFile("output/TestRestJPATransactions_testTransaction3.json");
         mvc.perform(get("/person/all")
@@ -114,7 +117,8 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
 
         mvc.perform(get("/person/transaction4")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string("Invocation with SELF does honor propagation level"));
 
         String content = Utils.readFile("output/TestRestJPATransactions_testTransaction4.json");
         mvc.perform(get("/person/all")
