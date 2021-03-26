@@ -4,7 +4,6 @@ import beans.rest.jpa.model.Child;
 import beans.rest.jpa.model.Parent;
 import beans.rest.jpa.repository.ChildRepository;
 import beans.rest.jpa.repository.ParentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,13 @@ import java.util.List;
 @Service
 public class ParentService {
 
-    @Autowired
-    ParentRepository parentRepository;
+    final ParentRepository parentRepository;
+    final ChildRepository childRepository;
 
-    @Autowired
-    ChildRepository childRepository;
+    public ParentService(ParentRepository parentRepository, ChildRepository childRepository) {
+        this.parentRepository = parentRepository;
+        this.childRepository = childRepository;
+    }
 
     public List<Parent> findAll() {
         return parentRepository.findAll();

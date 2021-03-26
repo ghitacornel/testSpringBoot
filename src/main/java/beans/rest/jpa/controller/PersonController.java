@@ -2,7 +2,6 @@ package beans.rest.jpa.controller;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @RequestMapping(value = "/person")
 public class PersonController {
 
-    @Autowired
-    PersonService service;
+    final PersonService service;
+
+    public PersonController(PersonService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Person> findAll() {

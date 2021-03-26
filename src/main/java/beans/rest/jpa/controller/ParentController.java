@@ -2,7 +2,6 @@ package beans.rest.jpa.controller;
 
 import beans.rest.jpa.model.Parent;
 import beans.rest.jpa.service.ParentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @RequestMapping(value = "/parent")
 public class ParentController {
 
-    @Autowired
-    ParentService service;
+    final ParentService service;
+
+    public ParentController(ParentService service) {
+        this.service = service;
+    }
 
     @GetMapping(value = "/all")
     public List<Parent> findAll() {
