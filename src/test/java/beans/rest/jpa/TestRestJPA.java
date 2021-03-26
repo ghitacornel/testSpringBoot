@@ -48,7 +48,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void testFindAll() throws Exception {
         String content = Utils.readFile("output/TestRestJPA_testFindAll.json");
         mvc.perform(get("/person/all")
                 .contentType(MediaType.APPLICATION_JSON))
