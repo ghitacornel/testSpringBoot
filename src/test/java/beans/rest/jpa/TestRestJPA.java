@@ -87,28 +87,42 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         mvc.perform(get("/person/{id}", "3")).andExpect(status().isNotFound());
 
         // create
-        mvc.perform(put("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"vasile\",\"password\":\"db pass vasile\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(""));
+        {
+            String content = Utils.readFile("input/TestRestJPA_testReadCreateReadUpdateDelete_CREATE.json");
+            mvc.perform(put("/person")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(""));
+        }
 
         // read
-        mvc.perform(get("/person/{id}", "3"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{id:3,name:\"vasile\",password:\"db pass vasile\"}"));
+        {
+            String content = Utils.readFile("output/TestRestJPA_testReadCreateReadUpdateDelete_AFTER_CREATE.json");
+            mvc.perform(get("/person/{id}", "3"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(content().json(content));
+        }
 
         // update
-        mvc.perform(post("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"vasile 1\",\"password\":\"db pass vasile 1\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(""));
+        {
+            String content = Utils.readFile("input/TestRestJPA_testReadCreateReadUpdateDelete_UPDATE.json");
+            mvc.perform(post("/person")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(""));
+        }
 
         // read
-        mvc.perform(get("/person/{id}", "3"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{id:3,name:\"vasile 1\",password:\"db pass vasile 1\"}"));
+        {
+            String content = Utils.readFile("output/TestRestJPA_testReadCreateReadUpdateDelete_AFTER_UPDATE.json");
+            mvc.perform(get("/person/{id}", "3"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(content().json(content));
+        }
 
         // delete
         mvc.perform(delete("/person/{id}", "3")).andExpect(status().isOk());
