@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 @EnableCaching
 public class CacheConfiguration {
 
+    public static final String CACHE_NAME = "cache_name";
+
     @Bean
     public Caffeine caffeineConfig() {
         return Caffeine.newBuilder().expireAfterWrite(60, TimeUnit.MINUTES);

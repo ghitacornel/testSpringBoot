@@ -1,5 +1,6 @@
 package beans.cache;
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -8,12 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import static beans.cache.CacheConfiguration.CACHE_NAME;
+
 @Service
+@CacheConfig(cacheNames = CACHE_NAME)
 public class CacheableService {
 
     private final Map<Integer, CacheableModel> data = new HashMap<>();
 
-    @CachePut(value = "address_cache", key = "#model.id")
+    @CachePut(key = "#model.id")
     public void addAlsoInCache(CacheableModel model) {
         data.put(model.getId(), model);
     }
@@ -22,13 +26,13 @@ public class CacheableService {
         data.put(model.getId(), model);
     }
 
-    @Cacheable(value = "address_cache")
+    @Cacheable
     public CacheableModel findById(Integer id) {
         cacheHit = false;
         return data.get(id);
     }
 
-    @CacheEvict(value = "address_cache")
+    @CacheEvict
     public void removeById(Integer id) {
         data.remove(id);
     }
