@@ -18,8 +18,9 @@ public class CacheableService {
     private final Map<Integer, CacheableModel> data = new HashMap<>();
 
     @CachePut(key = "#model.id")
-    public void addAlsoInCache(CacheableModel model) {
+    public CacheableModel addAlsoInCache(CacheableModel model) {
         data.put(model.getId(), model);
+        return model;
     }
 
     public void add(CacheableModel model) {
