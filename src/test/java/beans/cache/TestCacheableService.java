@@ -58,7 +58,7 @@ public class TestCacheableService extends AbstractTestSpringBootContext {
         // add and add in cache also
         cacheableService.addAlsoInCache(cacheableModel);
 
-        {// first time fail
+        {// first time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
             Assert.assertTrue(cacheableService.isCacheHit());
