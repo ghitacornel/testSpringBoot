@@ -12,6 +12,13 @@ public class CacheController {
 
     private final CacheableService service;
 
+    @GetMapping
+    public CacheableModel createWithId1() {
+        CacheableModel cacheableModel = new CacheableModel(1, "value 1");
+        service.add(cacheableModel);
+        return cacheableModel;
+    }
+
     @GetMapping(value = "/{id}")
     public CacheableModel findById(Integer id) {
         return service.findById(id);
