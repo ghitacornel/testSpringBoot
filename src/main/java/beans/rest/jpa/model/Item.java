@@ -26,7 +26,7 @@ public class Item {
     @Column(name = "fake")
     private Boolean fake;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "state")
     private State state;
 
