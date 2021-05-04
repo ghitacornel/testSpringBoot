@@ -10,7 +10,7 @@ public class CacheController {
 
     private final CacheableService service;
 
-    @GetMapping("/create")
+    @PostMapping("/create")
     public CacheableModel createWithId1() {
         CacheableModel cacheableModel = new CacheableModel(1, "value 1");
         service.add(cacheableModel);
