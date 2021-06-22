@@ -23,7 +23,7 @@ public class TestFreemarker extends AbstractTestSpringBootContext {
                 .contentType(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
 //                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(content().string(content));
+                .andExpect(content().xml(content));
     }
 
 }
