@@ -1,40 +1,28 @@
 package beans.servlets;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
-import org.springframework.http.MediaType;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
+import org.xmlunit.matchers.CompareMatcher;
 import template.AbstractTestSpringBootContext;
 
-import java.util.HashMap;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestServlet extends AbstractTestSpringBootContext {
 
-    @Autowired
-    private MockMvc mvc;
+    @LocalServerPort
+    private int port;
 
-    @Autowired
-    private ServletWebServerApplicationContext webServerAppCtxt;
+    private final TestRestTemplate template = new TestRestTemplate();
 
-    private final TestRestTemplate testRestTemplate = new TestRestTemplate();
-
-    // http://localhost:8080/customServletURL
     @Test
     public void testServlet() throws Exception {
-//        ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:8080/customServletURL", String.class);
-//        mvc.perform(get("/customServletURL")
-//                .contentType(MediaType.TEXT_HTML))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-//                .andExpect(content().string("aaa"));
+        ResponseEntity<String> entity = template.getForEntity("http://localhost:" + port + "/customServletURL", String.class);
+        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! GET custom servlet</body></html>").ignoreComments().ignoreWhitespace());
     }
 
 }
