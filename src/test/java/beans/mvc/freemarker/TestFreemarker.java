@@ -2,7 +2,6 @@ package beans.mvc.freemarker;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import template.AbstractTestSpringBootContext;
 import template.Utils;
@@ -20,7 +19,7 @@ public class TestFreemarker extends AbstractTestSpringBootContext {
     public void testController() throws Exception {
         String content = Utils.readFile("output/testMVC.html");
         mvc.perform(get("/freemarker?name=ion"))
-                .andExpect(content().string(content))
+                .andExpect(content().xml(content))
                 .andExpect(status().isOk());
     }
 
