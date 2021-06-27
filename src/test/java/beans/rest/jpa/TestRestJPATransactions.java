@@ -32,7 +32,7 @@ public class TestRestJPATransactions extends AbstractTestSpringBootContext {
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                    .andExpect(content().string("[]"));
+                    .andExpect(content().json("[]"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
