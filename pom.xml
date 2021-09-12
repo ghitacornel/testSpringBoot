@@ -19,21 +19,6 @@
         <spring.boot.version>2.5.4</spring.boot.version>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>

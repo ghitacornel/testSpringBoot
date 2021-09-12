@@ -1,0 +1,653 @@
+{
+	"info": {
+		"_postman_id": "14eee3ca-2dd9-4b48-9e95-47511b2434c1",
+		"name": "testSpringBoot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "servlets",
+			"item": [
+				{
+					"name": "http://localhost:8080/customServletURL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! GET custom servlet\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customServletURL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customServletURL"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customServletURLGET?customParameterName=aaa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.servlets.CustomServletGET with parameter 'customParameterName' = aaa custom servlet\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customServletURLGET?customParameterName=aaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customServletURLGET"
+							],
+							"query": [
+								{
+									"key": "customParameterName",
+									"value": "aaa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customServletURLPOST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.servlets.CustomServletPOST with attribute 'customAttributeName' = gicu custom servlet\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customServletURLPOST",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customServletURLPOST"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"[ ]\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "freemarker",
+			"item": [
+				{
+					"name": "http://localhost:8080/freemarker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello domnul World!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/freemarker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"freemarker"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rest jdbc",
+			"item": [
+				{
+					"name": "http://localhost:8080/user/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"[ ]\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user?id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"vasile\",\r\n  \"pass\": \"db pass vasile\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user DUPLICATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"vasile\",\r\n  \"pass\": \"db pass vasile\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user UPDATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"vasile\",\r\n  \"pass\": \"db pass vasile\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user SECOND UPDATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"vasile\",\r\n  \"pass\": \"db pass vasile\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user?id=1 WITH DATA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = \r",
+									"    {\r",
+									"        \"id\": 1,\r",
+									"        \"name\": \"vasile\",\r",
+									"        \"pass\": \"db pass vasile\"\r",
+									"    }\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user/all WITH DATA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = [\r",
+									"    {\r",
+									"        \"id\": 1,\r",
+									"        \"name\": \"vasile\",\r",
+									"        \"pass\": \"db pass vasile\"\r",
+									"    }\r",
+									"]\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user?id=1 NO DATA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user/all NO DATA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"[ ]\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
