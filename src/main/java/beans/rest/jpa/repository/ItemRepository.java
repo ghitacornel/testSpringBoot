@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-    boolean existsById(Integer id);
-
     boolean existsByNameContains(String name);
 
     boolean existsByNameStartsWith(String name);
