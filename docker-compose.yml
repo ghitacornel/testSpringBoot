@@ -6,7 +6,7 @@ services:
     image: postgres:latest
     container_name: postgresql
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRES_USER=cornel
       - POSTGRES_PASSWORD=sefusefu
@@ -20,7 +20,7 @@ services:
     links:
       - postgres
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - pn
 
