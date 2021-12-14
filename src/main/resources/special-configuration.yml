@@ -1,0 +1,11 @@
+customprefix:
+  name: test-YAML
+  environment: testing
+  enabled: false
+  servers:
+    - www.abc.test.com
+    - www.xyz.test.com
+  props:
+    a: 1
+    b: 2
+    c: 3
