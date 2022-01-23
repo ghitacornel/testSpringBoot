@@ -2,6 +2,7 @@ package beans.data;
 
 import beans.rest.jpa.model.Item;
 import beans.rest.jpa.repository.ItemRepository;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import template.AbstractTestSpringBootContext;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Rollback
@@ -17,6 +19,8 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     @Autowired
     ItemRepository repository;
+
+    List<Item> items = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -29,46 +33,47 @@ public class TestSpringData extends AbstractTestSpringBootContext {
             item.setWeight((i * 10 + i) / (double) 10);
             item.setRegistration(LocalDateTime.now().plusDays(i));
             item.setState(Item.State.values()[i % 3]);
+            items.add(item);
             repository.save(item);
         }
     }
 
     @Test
     public void findAll() {
-        System.out.println(repository.findAll());
+        Assert.assertEquals(items, repository.findAll());
     }
 
     @Test
     public void findById() {
-        System.out.println(repository.findById(0));
+        Assert.assertEquals(items.get(0), repository.findById(0).orElseThrow());
     }
 
     @Transactional// due to returned proxy
     @Test
     public void getOne() {
-        System.out.println(repository.getOne(0));
+        Assert.assertEquals(items.get(0), repository.getById(0));
     }
 
     @Test
     public void findAllById() {
-        System.out.println(repository.findAllById(List.of(0, 1, 2, 3)));
+        Assert.assertEquals(items.subList(0, 4), repository.findAllById(List.of(0, 1, 2, 3)));
     }
 
     @Test
     public void existsById() {
-        System.out.println(repository.existsById(0));
-        System.out.println(repository.existsById(-1));
-        System.out.println(repository.existsByNameContains("1-"));
-        System.out.println(repository.existsByNameStartsWith("name 1-"));
-        System.out.println(repository.existsByNameEndsWith("-2"));
+        Assert.assertTrue(repository.existsById(0));
+        Assert.assertFalse(repository.existsById(-1));
+        Assert.assertTrue(repository.existsByNameContains("1-"));
+        Assert.assertTrue(repository.existsByNameStartsWith("name 1-"));
+        Assert.assertTrue(repository.existsByNameEndsWith("-2"));
     }
 
     @Test
     public void count() {
-        System.out.println(repository.count());
-        System.out.println(repository.countByNameContains("1-"));
-        System.out.println(repository.countByNameStartsWith("name 1-"));
-        System.out.println(repository.countByNameEndsWith("-2"));
+        Assert.assertEquals(20, repository.count());
+        Assert.assertEquals(2, repository.countByNameContains("1-"));
+        Assert.assertEquals(1, repository.countByNameStartsWith("name 1-"));
+        Assert.assertEquals(1, repository.countByNameEndsWith("-2"));
     }
 
     @Test
@@ -80,7 +85,7 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     @Test
     public void findInterfaceDto() {
-        System.out.println(repository.findUsingProjection("2"));
+        Assert.assertEquals(2, repository.findUsingProjection("2").size());
     }
 
 }
