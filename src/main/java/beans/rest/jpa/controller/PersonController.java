@@ -2,19 +2,17 @@ package beans.rest.jpa.controller;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.service.PersonService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/person")
+@RequiredArgsConstructor
 public class PersonController {
 
-    final PersonService service;
-
-    public PersonController(PersonService service) {
-        this.service = service;
-    }
+    private final PersonService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Person> findAll() {
