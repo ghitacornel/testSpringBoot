@@ -80,7 +80,7 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     @Test
     public void findInterfaceDto() {
-        System.out.println(repository.findByNameEndsWith("2"));
+        System.out.println(repository.findUsingProjection("2"));
     }
 
 }

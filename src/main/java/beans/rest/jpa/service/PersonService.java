@@ -1,120 +1,33 @@
 package beans.rest.jpa.service;
 
-import beans.rest.exceptions.MyBusinessException;
 import beans.rest.jpa.model.Person;
-import beans.rest.jpa.repository.CustomPersonRepository;
-import beans.rest.jpa.repository.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-public class PersonService {
+public interface PersonService {
 
-    @Autowired
-    private PersonRepository repository;
+    List<Person> findAll();
 
-    @Autowired
-    PersonService SELF;
+    Person findById(Integer id);
 
-    @Autowired
-    private CustomPersonRepository customPersonRepository;
+    void deleteById(Integer id);
 
-    public List<Person> findAll() {
-        return repository.findAll();
-    }
+    void save(Person person);
 
-    public Person findById(Integer id) {
-        return repository.findById(id).get();
-    }
+    List<Person> findByPassword(String password);
 
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
-    }
+    void deleteAll();
 
-    public void save(Person person) {
-        repository.save(person);
-    }
+    void validate2TransactionsArePresent();
 
-    public List<Person> findByPassword(String password) {
-        return customPersonRepository.findByPassword(password);
-    }
 
-    public void deleteAll() {
-        repository.deleteAll();
-    }
+    void validate1TransactionIsPresent();
 
-    public void validate2TransactionsArePresent() {
 
-        Person person1 = new Person();
-        person1.setId(111);
-        person1.setName("name 111");
-        repository.save(person1);
+    void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked();
 
-        if (true) throw new MyBusinessException("Validate 2 Transactions Are Present");
 
-        Person person2 = new Person();
-        person2.setId(222);
-        person2.setName("name 222");
-        repository.save(person2);
+    void methodWithTransactionRequiresNew();
 
-    }
-
-    @Transactional
-    public void validate1TransactionIsPresent() {
-
-        Person person1 = new Person();
-        person1.setId(111);
-        person1.setName("name 111");
-        repository.save(person1);
-
-        if (true) throw new MyBusinessException("Validate 1 Transaction Is Present");
-
-        Person person2 = new Person();
-        person2.setId(222);
-        person2.setName("name 222");
-        repository.save(person2);
-
-    }
-
-    @Transactional
-    public void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked() {
-
-        Person person1 = new Person();
-        person1.setId(111);
-        person1.setName("name 111");
-        repository.save(person1);
-
-        this.methodWithTransactionRequiresNew();
-
-        if (true) throw new MyBusinessException("Invocation with this. does not honor propagation level");
-
-    }
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void methodWithTransactionRequiresNew() {
-
-        Person person2 = new Person();
-        person2.setId(222);
-        person2.setName("name 222");
-        repository.save(person2);
-
-    }
-
-    @Transactional
-    public void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked() {
-
-        Person person1 = new Person();
-        person1.setId(111);
-        person1.setName("name 111");
-        repository.save(person1);
-
-        SELF.methodWithTransactionRequiresNew();
-
-        if (true) throw new MyBusinessException("Invocation with SELF does honor propagation level");
-
-    }
+    void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
 }

@@ -103,9 +103,4 @@ public class Item {
                 '}';
     }
 
-    public interface ItemProjection {
-        Integer getId();
-
-        String getName();
-    }
 }

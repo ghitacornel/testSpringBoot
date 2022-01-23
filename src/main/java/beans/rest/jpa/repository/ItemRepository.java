@@ -1,7 +1,9 @@
 package beans.rest.jpa.repository;
 
 import beans.rest.jpa.model.Item;
+import beans.rest.jpa.model.ItemProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     List<Item> findByLengthGreaterThanAndWeightLessThanAndStateIn(Integer minLength, Double maxWeight, List<Item.State> states);
 
-    List<Item.ItemProjection> findByNameEndsWith(String value);
+    @Query("select new beans.rest.jpa.model.ItemProjection(t.id,t.name) from Item t where t.name like '%:value'")
+    List<ItemProjection> findUsingProjection(String value);
 
 }
