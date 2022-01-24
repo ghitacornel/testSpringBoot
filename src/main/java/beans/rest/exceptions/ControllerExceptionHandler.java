@@ -20,23 +20,21 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
+// logs can be added here
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException e) {
-        // better logs here
         return new ResponseEntity<>(e.getCause(), NOT_FOUND);
     }
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e) {
-        // better logs here
         return new ResponseEntity<>(e.getCause(), NOT_FOUND);
     }
 
-    @ExceptionHandler(MyBusinessException.class)
-    public ResponseEntity<Object> handleMyBusinessException(MyBusinessException e) {
-        // better logs here
+    @ExceptionHandler(CustomBusinessException.class)
+    public ResponseEntity<Object> handleCustomBusinessException(CustomBusinessException e) {
         return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
     }
 

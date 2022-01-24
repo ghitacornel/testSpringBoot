@@ -1,10 +1,9 @@
 package beans.rest.jpa.service;
 
-import beans.rest.exceptions.MyBusinessException;
+import beans.rest.exceptions.CustomBusinessException;
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.CustomPersonRepository;
 import beans.rest.jpa.repository.PersonRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class PersonServiceImpl implements PersonService {
         person1.setName("name 111");
         repository.save(person1);
 
-        if (true) throw new MyBusinessException("Validate 2 Transactions Are Present");
+        if (true) throw new CustomBusinessException("Validate 2 Transactions Are Present");
 
         Person person2 = new Person();
         person2.setId(222);
@@ -74,7 +73,7 @@ public class PersonServiceImpl implements PersonService {
         person1.setName("name 111");
         repository.save(person1);
 
-        if (true) throw new MyBusinessException("Validate 1 Transaction Is Present");
+        if (true) throw new CustomBusinessException("Validate 1 Transaction Is Present");
 
         Person person2 = new Person();
         person2.setId(222);
@@ -93,7 +92,7 @@ public class PersonServiceImpl implements PersonService {
 
         this.methodWithTransactionRequiresNew();
 
-        if (true) throw new MyBusinessException("Invocation with this. does not honor propagation level");
+        if (true) throw new CustomBusinessException("Invocation with this. does not honor propagation level");
 
     }
 
@@ -117,7 +116,7 @@ public class PersonServiceImpl implements PersonService {
 
         SELF.methodWithTransactionRequiresNew();
 
-        if (true) throw new MyBusinessException("Invocation with SELF does honor propagation level");
+        if (true) throw new CustomBusinessException("Invocation with SELF does honor propagation level");
 
     }
 }
