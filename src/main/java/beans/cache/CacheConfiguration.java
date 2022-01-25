@@ -11,6 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableCaching
+// defaults org.springframework.boot.autoconfigure.cache.SimpleCacheConfiguration
+// defaults org.springframework.cache.concurrent.ConcurrentMapCacheManager
+// currently overridden as an example with Caffeine
 public class CacheConfiguration {
 
     public static final String CACHE_NAME = "cache_name";
