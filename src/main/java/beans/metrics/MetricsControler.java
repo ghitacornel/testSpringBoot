@@ -14,6 +14,15 @@ public class MetricsControler {
 
     private final MetricsService metricsService;
 
+    // invoke a couple of times http://localhost:8081/monitored/count
+    // invoke a couple of times http://localhost:8081/monitored/duration
+    // check http://localhost:8081/actuator
+    // check http://localhost:8081/actuator/metrics
+    // check http://localhost:8081/actuator/metrics/count.number
+    // check http://localhost:8081/actuator/metrics/count.time
+    // check http://localhost:8081/actuator/metrics/duration.number
+    // check http://localhost:8081/actuator/metrics/duration.time
+
     @Counted(value = "count.number", description = "invokeForCount invocations number")
     @Timed(value = "count.time", description = "invokeForCount time duration")
     @GetMapping("/count")
