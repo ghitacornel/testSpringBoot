@@ -117,12 +117,6 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
-        <!-- JAVAX API -->
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-        </dependency>
-
         <!-- TESTS -->
         <dependency>
             <groupId>junit</groupId>
