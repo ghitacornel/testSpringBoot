@@ -38,6 +38,7 @@ public class CacheableService {
         data.remove(id);
     }
 
+    // for test purpose
     private boolean cacheHit = false;
 
     public boolean isCacheHit() {
