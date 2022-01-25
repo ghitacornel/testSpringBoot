@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MetricsService {
 
+    // for tests purpose
     public int noCount;
+    // for tests purpose
     public int noDuration;
 
     public int count() {
