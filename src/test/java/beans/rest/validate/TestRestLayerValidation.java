@@ -20,8 +20,8 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
     @Test
     public void testIsValid() throws Exception {
         mvc.perform(put(URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"vasile\"}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":3,\"name\":\"vasile\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{id:3,name:\"vasile\"}"));
     }
@@ -29,8 +29,8 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
     @Test
     public void testIdIsNull() throws Exception {
         mvc.perform(put(URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"vasile\"}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"vasile\"}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("{id:\"must not be null\"}"));
     }
@@ -38,8 +38,8 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
     @Test
     public void testNameIsNull() throws Exception {
         mvc.perform(put(URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("{name:\"must not be empty\"}"));
     }
@@ -47,10 +47,19 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
     @Test
     public void testNameIsEmpty() throws Exception {
         mvc.perform(put(URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":3,\"name\":\"\"}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json("{name:\"must not be empty\"}"));
+    }
+
+    @Test
+    public void testIdIsNullAndNameIsEmpty() throws Exception {
+        mvc.perform(put(URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{\"name\":\"must not be empty\",\"id\":\"must not be null\"}"));
     }
 
 }
