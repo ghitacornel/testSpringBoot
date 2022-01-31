@@ -42,6 +42,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        // TODO do not return a map , multiple errors can have same "key"
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getFieldErrors().forEach((error) -> {
             String fieldName = error.getField();
