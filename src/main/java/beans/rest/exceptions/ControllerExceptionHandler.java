@@ -1,5 +1,6 @@
 package beans.rest.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.NoSuchElementException;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
+@Slf4j
 @RestControllerAdvice
 // logs can be added here
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
@@ -63,6 +65,10 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
+
+        // can log errors here and not in the application
+        log.error("validation error", e);
+
         Map<String, String> errors = new HashMap<>();
         e.getConstraintViolations().forEach((error) -> {
             String fieldName = error.getPropertyPath().toString();
