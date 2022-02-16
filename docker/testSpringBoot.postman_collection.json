@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "14eee3ca-2dd9-4b48-9e95-47511b2434c1",
+		"_postman_id": "31c261c1-b713-4fd3-b0f4-dad485434372",
 		"name": "testSpringBoot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "servlets",
 			"item": [
 				{
-					"name": "http://localhost:8080/customServletURL",
+					"name": "simple",
 					"event": [
 						{
 							"listen": "test",
@@ -30,12 +30,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customServletURL",
-							"protocol": "http",
+							"raw": "{{url}}/customServletURL",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"customServletURL"
 							]
@@ -44,7 +42,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/customServletURLGET?customParameterName=aaa",
+					"name": "with query parameters",
 					"event": [
 						{
 							"listen": "test",
@@ -65,12 +63,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customServletURLGET?customParameterName=aaa",
-							"protocol": "http",
+							"raw": "{{url}}/customServletURLGET?customParameterName=aaa",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"customServletURLGET"
 							],
@@ -85,7 +81,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/customServletURLPOST",
+					"name": "test post",
 					"event": [
 						{
 							"listen": "test",
@@ -106,12 +102,10 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customServletURLPOST",
-							"protocol": "http",
+							"raw": "{{url}}/customServletURLPOST",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"customServletURLPOST"
 							]
@@ -120,7 +114,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user/all",
+					"name": "{{url}}/user/all",
 					"event": [
 						{
 							"listen": "test",
@@ -141,12 +135,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/all",
-							"protocol": "http",
+							"raw": "{{url}}/user/all",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"all"
@@ -161,7 +153,7 @@
 			"name": "freemarker",
 			"item": [
 				{
-					"name": "http://localhost:8080/freemarker",
+					"name": "{{url}}/freemarker",
 					"event": [
 						{
 							"listen": "test",
@@ -185,12 +177,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/freemarker",
-							"protocol": "http",
+							"raw": "{{url}}/freemarker",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"freemarker"
 							]
@@ -204,7 +194,7 @@
 			"name": "rest jdbc",
 			"item": [
 				{
-					"name": "http://localhost:8080/user/all",
+					"name": "{{url}}/user/all",
 					"event": [
 						{
 							"listen": "test",
@@ -225,12 +215,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/all",
-							"protocol": "http",
+							"raw": "{{url}}/user/all",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"all"
@@ -240,7 +228,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user?id=1",
+					"name": "{{url}}/user?id=1",
 					"event": [
 						{
 							"listen": "test",
@@ -261,12 +249,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user?id=1",
-							"protocol": "http",
+							"raw": "{{url}}/user?id=1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							],
@@ -281,7 +267,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user",
+					"name": "{{url}}/user",
 					"event": [
 						{
 							"listen": "test",
@@ -308,12 +294,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user",
-							"protocol": "http",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							]
@@ -322,7 +306,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user DUPLICATE",
+					"name": "{{url}}/user DUPLICATE",
 					"event": [
 						{
 							"listen": "test",
@@ -349,12 +333,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user",
-							"protocol": "http",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							]
@@ -363,7 +345,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user UPDATE",
+					"name": "{{url}}/user UPDATE",
 					"event": [
 						{
 							"listen": "test",
@@ -390,12 +372,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user",
-							"protocol": "http",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							]
@@ -404,7 +384,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user SECOND UPDATE",
+					"name": "{{url}}/user SECOND UPDATE",
 					"event": [
 						{
 							"listen": "test",
@@ -431,12 +411,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/user",
-							"protocol": "http",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							]
@@ -445,7 +423,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user?id=1 WITH DATA",
+					"name": "{{url}}/user?id=1 WITH DATA",
 					"event": [
 						{
 							"listen": "test",
@@ -474,12 +452,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user?id=1",
-							"protocol": "http",
+							"raw": "{{url}}/user?id=1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							],
@@ -494,7 +470,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user/all WITH DATA",
+					"name": "{{url}}/user/all WITH DATA",
 					"event": [
 						{
 							"listen": "test",
@@ -523,12 +499,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/all",
-							"protocol": "http",
+							"raw": "{{url}}/user/all",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"all"
@@ -538,7 +512,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user/1",
+					"name": "{{url}}/user/1",
 					"event": [
 						{
 							"listen": "test",
@@ -556,12 +530,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/1",
-							"protocol": "http",
+							"raw": "{{url}}/user/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"1"
@@ -571,7 +543,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user?id=1 NO DATA",
+					"name": "{{url}}/user?id=1 NO DATA",
 					"event": [
 						{
 							"listen": "test",
@@ -592,12 +564,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user?id=1",
-							"protocol": "http",
+							"raw": "{{url}}/user?id=1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user"
 							],
@@ -612,7 +582,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/user/all NO DATA",
+					"name": "{{url}}/user/all NO DATA",
 					"event": [
 						{
 							"listen": "test",
@@ -633,12 +603,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/user/all",
-							"protocol": "http",
+							"raw": "{{url}}/user/all",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"user",
 								"all"
@@ -648,6 +616,182 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "validation",
+			"item": [
+				{
+					"name": "no id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"var expected = \r",
+									"{\r",
+									"    \"id\": \"must not be null\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"vasile\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/validate/rest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"validate",
+								"rest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "empty name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"var expected = \r",
+									"{\r",
+									"    \"name\": \"must not be empty\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"1\",\r\n  \"name\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/validate/rest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"validate",
+								"rest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "empty name service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"var expected = \r",
+									"{\r",
+									"    \"invoke.model.name\": \"must not be empty\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"1\",\r\n  \"name\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/validate/service",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"validate",
+								"service"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8081",
+			"type": "default"
 		}
 	]
 }
