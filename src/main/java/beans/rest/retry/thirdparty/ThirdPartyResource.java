@@ -3,6 +3,9 @@ package beans.rest.retry.thirdparty;
 import beans.rest.retry.exceptions.ResourceException;
 import org.springframework.stereotype.Service;
 
+/**
+ * provides access to an unstable resource
+ */
 @Service
 public class ThirdPartyResource {
 
