@@ -765,6 +765,121 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "retry",
+			"item": [
+				{
+					"name": "stableResource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = \"stable resource\"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.text();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/retry/stableResource",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"retry",
+								"stableResource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resourceFailBasedOnParameter_OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = \"resource with temporary issues\"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.text();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/retry/resourceFailBasedOnParameter/false",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"retry",
+								"resourceFailBasedOnParameter",
+								"false"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resourceFailBasedOnParameter_FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = \"resource unavailable for now, returning default for parameter=true\"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.text();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/retry/resourceFailBasedOnParameter/true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"retry",
+								"resourceFailBasedOnParameter",
+								"true"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

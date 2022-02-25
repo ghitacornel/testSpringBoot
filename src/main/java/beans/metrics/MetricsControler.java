@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/monitored")
+@RequestMapping(value = "monitored")
 @RequiredArgsConstructor
 public class MetricsControler {
 
@@ -25,14 +25,14 @@ public class MetricsControler {
 
     @Counted(value = "count.number", description = "invokeForCount invocations number")
     @Timed(value = "count.time", description = "invokeForCount time duration")
-    @GetMapping("/count")
+    @GetMapping("count")
     public int invokeForCount() {
         return metricsService.count();
     }
 
     @Counted(value = "duration.number", description = "invokeForDuration invocations number")
     @Timed(value = "duration.time", description = "invokeForDuration time duration")
-    @GetMapping("/duration")
+    @GetMapping("duration")
     public int invokeForDuration() {
         return metricsService.duration();
     }
