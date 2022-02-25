@@ -4,6 +4,7 @@ import beans.rest.retry.exceptions.ResourceException;
 import beans.rest.retry.thirdparty.ThirdPartyResource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class RetryService {
         return thirdPartyResource.stableResource();
     }
 
-    @Retryable(value = ResourceException.class)
+    @Retryable(value = ResourceException.class, backoff = @Backoff(delay = 100))
     public String resourceFailBasedOnParameter(boolean parameter) {
         log.info("retrying ...");
         return thirdPartyResource.resourceFailBasedOnParameter(parameter);
