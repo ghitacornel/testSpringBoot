@@ -8,28 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/parent")
+@RequestMapping(value = "parent")
 @RequiredArgsConstructor
 public class ParentController {
 
     private final ParentService service;
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "all")
     public List<Parent> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "{id}")
     public Parent findById(@PathVariable(name = "id") Integer id) {
         return service.findById(id);
     }
 
-    @PutMapping(value = "")
+    @PutMapping
     public void createSome() {
         service.createSome();
     }
 
-    @DeleteMapping(value = "")
+    @DeleteMapping
     public void deleteAll() {
         service.deleteAll();
     }

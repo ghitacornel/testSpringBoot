@@ -4,14 +4,13 @@ import beans.aop.LogExecution;
 import beans.aop.LogExecutionTime;
 import beans.rest.jdbc.model.PersonJdbc;
 import beans.rest.jdbc.service.PersonJdbcService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @LogExecution
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "user")
 public class PersonJdbcController {
 
     final PersonJdbcService service;
@@ -21,7 +20,7 @@ public class PersonJdbcController {
     }
 
     @LogExecutionTime
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<PersonJdbc> findAll() {
         return service.findAll();
     }
@@ -41,7 +40,7 @@ public class PersonJdbcController {
         service.update(personJDBC);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "{id}")
     public void removeById(@PathVariable("id") Integer id) {
         service.removeById(id);
     }

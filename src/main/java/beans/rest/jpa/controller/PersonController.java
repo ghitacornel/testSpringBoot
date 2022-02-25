@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/person")
+@RequestMapping(value = "person")
 @RequiredArgsConstructor
 public class PersonController {
 
     private final PersonService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<Person> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "{id}")
     public Person findById(@PathVariable(name = "id") Integer id) {
         return service.findById(id);
     }
@@ -34,22 +34,22 @@ public class PersonController {
         service.save(person);
     }
 
-    @GetMapping(value = "/transaction1")
+    @GetMapping(value = "transaction1")
     public void validate2TransactionsArePresent() {
         service.validate2TransactionsArePresent();
     }
 
-    @GetMapping(value = "/transaction2")
+    @GetMapping(value = "transaction2")
     public void validate1TransactionIsPresent() {
         service.validate1TransactionIsPresent();
     }
 
-    @GetMapping(value = "/transaction3")
+    @GetMapping(value = "transaction3")
     public void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked() {
         service.firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked();
     }
 
-    @GetMapping(value = "/transaction4")
+    @GetMapping(value = "transaction4")
     public void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked() {
         service.firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
     }
@@ -59,7 +59,7 @@ public class PersonController {
         service.save(person);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "{id}")
     public void deleteById(@PathVariable("id") Integer id) {
         service.deleteById(id);
     }

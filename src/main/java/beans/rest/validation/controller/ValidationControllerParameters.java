@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.Min;
 
 @RestController
-@RequestMapping(value = "/validateParameters")
+@RequestMapping(value = "validateParameters")
 @Validated// needed only if we want to validate manually the parameters sent to the service
 public class ValidationControllerParameters {
 
     // validation rules on parameters
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "{id}")
     public int invokeDirect(@PathVariable("id") @Min(5) int x) {
         return x;
     }

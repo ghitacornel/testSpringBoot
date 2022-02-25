@@ -2,6 +2,7 @@ package beans.rest.validation.controller;
 
 import beans.rest.validation.model.Model;
 import beans.rest.validation.service.ValidationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,23 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/validate")
+@RequestMapping(value = "validate")
+@RequiredArgsConstructor
 public class ValidationController {
 
-    final ValidationService service;
-
-    public ValidationController(ValidationService service) {
-        this.service = service;
-    }
+    private final ValidationService service;
 
     // validation performed in REST layer
-    @PutMapping(value = "/rest")
+    @PutMapping(value = "rest")
     public Model invokeRest(@Valid @RequestBody Model model) {
         return model;
     }
 
     // validation performed in Service layer
-    @PutMapping(value = "/service")
+    @PutMapping(value = "service")
     public Model invokeService(@RequestBody Model model) {
         return service.invoke(model);
     }
