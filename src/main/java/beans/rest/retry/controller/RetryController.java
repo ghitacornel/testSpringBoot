@@ -23,4 +23,9 @@ public class RetryController {
     public String resourceFailBasedOnParameter(@PathVariable(name = "parameter") Boolean parameter) {
         return retryService.resourceFailBasedOnParameter(parameter);
     }
+
+    @GetMapping("resourceFailWithNoBackup")
+    public String resourceFailWithNoBackup() {
+        return retryService.resourceFailWithNoBackup();
+    }
 }

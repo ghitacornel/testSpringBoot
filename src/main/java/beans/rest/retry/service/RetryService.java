@@ -30,4 +30,8 @@ public class RetryService {
     public String recover(ResourceException e, boolean parameter) {
         return e.getMessage() + " for now, returning default for parameter=" + parameter;
     }
+
+    public String resourceFailWithNoBackup() {
+        return thirdPartyResource.resourceFailBasedOnParameter(true);
+    }
 }

@@ -13,6 +13,7 @@ public class TestRetryController extends AbstractTestSpringBootContext {
 
     private static final String STABLE_RESOURCE = "/retry/stableResource";
     private static final String RETRY_RESOURCE_FAIL_BASED_ON_PARAMETER = "/retry/resourceFailBasedOnParameter";
+    private static final String RETRY_RESOURCE_FAIL_WITH_NO_BACKUP = "/retry/resourceFailWithNoBackup";
 
     @Autowired
     MockMvc mvc;
@@ -38,4 +39,10 @@ public class TestRetryController extends AbstractTestSpringBootContext {
                 .andExpect(content().string("resource unavailable for now, returning default for parameter=true"));
     }
 
+    @Test
+    public void resourceFailWithNoBackup() throws Exception {
+        mvc.perform(get(RETRY_RESOURCE_FAIL_WITH_NO_BACKUP))
+                .andExpect(status().isOk())
+                .andExpect(content().string("resource unavailable for now, returning default for parameter=true"));
+    }
 }
