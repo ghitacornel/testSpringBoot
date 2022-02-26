@@ -31,8 +31,9 @@ public class RetryService {
         return e.getMessage() + " for now, returning default for parameter=" + parameter;
     }
 
-    @Retryable(value = RecoverableResourceException.class, backoff = @Backoff(delay = 100))
+    @Retryable
     public String resourceFailWithNoBackup() {
+        log.info("retrying ...");
         return thirdPartyResource.resourceFailBasedOnParameterWithUnrecoverableError(true);
     }
 }
