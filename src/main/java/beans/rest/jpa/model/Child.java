@@ -7,16 +7,13 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "child")
 @Data
 @EqualsAndHashCode(of = "id")
 public class Child {
 
     @Id
-    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
     private String name;
 
     @JsonIgnore

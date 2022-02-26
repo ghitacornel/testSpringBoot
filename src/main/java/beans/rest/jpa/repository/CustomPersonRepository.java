@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public class CustomPersonRepository extends SimpleJpaRepository<Person, Integer> {
 
-    // automatically injected
-    private EntityManager em;
+    private final EntityManager em;
 
     public CustomPersonRepository(EntityManager em) {
         super(Person.class, em);
