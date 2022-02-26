@@ -1,6 +1,7 @@
 package beans.rest.retry.thirdparty;
 
-import beans.rest.retry.exceptions.ResourceException;
+import beans.rest.retry.exceptions.RecoverableResourceException;
+import beans.rest.retry.exceptions.UnrecoverableResourceException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +14,13 @@ public class ThirdPartyResource {
         return "stable resource";
     }
 
-    public String resourceFailBasedOnParameter(boolean parameter) {
-        if (parameter) throw new ResourceException("resource unavailable");
+    public String resourceFailBasedOnParameterWithRecoverableError(boolean parameter) {
+        if (parameter) throw new RecoverableResourceException("resource unavailable");
+        return "resource with temporary issues";
+    }
+
+    public String resourceFailBasedOnParameterWithUnrecoverableError(boolean parameter) {
+        if (parameter) throw new UnrecoverableResourceException("resource unavailable and unrecoverable");
         return "resource with temporary issues";
     }
 

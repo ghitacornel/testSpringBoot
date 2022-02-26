@@ -43,6 +43,6 @@ public class TestRetryController extends AbstractTestSpringBootContext {
     public void resourceFailWithNoBackup() throws Exception {
         mvc.perform(get(RETRY_RESOURCE_FAIL_WITH_NO_BACKUP))
                 .andExpect(status().is5xxServerError())
-                .andExpect(content().string("resource unavailable"));
+                .andExpect(content().string("resource unavailable and unrecoverable"));
     }
 }
