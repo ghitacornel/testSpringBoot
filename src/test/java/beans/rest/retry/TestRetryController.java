@@ -32,7 +32,7 @@ public class TestRetryController extends AbstractTestSpringBootContext {
     }
 
     @Test
-    public void resourceFailBasedOnParameter_FAIL() throws Exception {
+    public void resourceFailBasedOnParameter_FAIL_TO_DEFAULT() throws Exception {
         mvc.perform(get(RETRY_RESOURCE_FAIL_BASED_ON_PARAMETER + "/true"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("resource unavailable for now, returning default for parameter=true"));
