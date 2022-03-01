@@ -2,9 +2,9 @@ package beans.rest.jpa;
 
 import beans.rest.jpa.model.Person;
 import beans.rest.jpa.repository.PersonRepository;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,7 +23,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
     @Autowired
     PersonRepository personRepository;
 
-    @Before
+    @BeforeEach
     public void before() {
 
         // add data for this tests only
@@ -47,7 +47,7 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     }
 
-    @After
+    @AfterEach
     public void after() {
 
         // clear data added for this tests only

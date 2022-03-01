@@ -1,7 +1,7 @@
 package beans.cache;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import template.AbstractTestSpringBootContext;
 
@@ -20,22 +20,23 @@ public class TestCacheableService extends AbstractTestSpringBootContext {
         {// first time fail
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertFalse(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertFalse(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         {// second time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertTrue(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertTrue(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         {// third time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertTrue(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertTrue(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         // remove and evict automatically
@@ -44,8 +45,8 @@ public class TestCacheableService extends AbstractTestSpringBootContext {
         {// at last time cache miss
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertFalse(cacheableService.isCacheHit());
-            Assert.assertNull(model);
+            Assertions.assertFalse(cacheableService.isCacheHit());
+            Assertions.assertNull(model);
         }
 
     }
@@ -61,22 +62,22 @@ public class TestCacheableService extends AbstractTestSpringBootContext {
         {// first time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertTrue(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertTrue(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         {// second time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertTrue(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertTrue(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         {// third time cache hit
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertTrue(cacheableService.isCacheHit());
-            Assert.assertEquals(cacheableModel, model);
+            Assertions.assertTrue(cacheableService.isCacheHit());
+            Assertions.assertEquals(cacheableModel, model);
         }
 
         // remove and evict automatically
@@ -85,8 +86,8 @@ public class TestCacheableService extends AbstractTestSpringBootContext {
         {// at last time cache miss
             cacheableService.setCacheHit(true);
             CacheableModel model = cacheableService.findById(1);
-            Assert.assertFalse(cacheableService.isCacheHit());
-            Assert.assertNull(model);
+            Assertions.assertFalse(cacheableService.isCacheHit());
+            Assertions.assertNull(model);
         }
 
     }

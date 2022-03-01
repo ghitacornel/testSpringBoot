@@ -2,9 +2,9 @@ package beans.data;
 
 import beans.rest.jpa.model.Item;
 import beans.rest.jpa.repository.ItemRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     List<Item> items = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp() {
         for (int i = 0; i < 20; i++) {
             Item item = new Item();
@@ -40,40 +40,40 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     @Test
     public void findAll() {
-        Assert.assertEquals(items, repository.findAll());
+        Assertions.assertEquals(items, repository.findAll());
     }
 
     @Test
     public void findById() {
-        Assert.assertEquals(items.get(0), repository.findById(0).orElseThrow());
+        Assertions.assertEquals(items.get(0), repository.findById(0).orElseThrow());
     }
 
     @Transactional// due to returned proxy
     @Test
     public void getOne() {
-        Assert.assertEquals(items.get(0), repository.getById(0));
+        Assertions.assertEquals(items.get(0), repository.getById(0));
     }
 
     @Test
     public void findAllById() {
-        Assert.assertEquals(items.subList(0, 4), repository.findAllById(List.of(0, 1, 2, 3)));
+        Assertions.assertEquals(items.subList(0, 4), repository.findAllById(List.of(0, 1, 2, 3)));
     }
 
     @Test
     public void existsById() {
-        Assert.assertTrue(repository.existsById(0));
-        Assert.assertFalse(repository.existsById(-1));
-        Assert.assertTrue(repository.existsByNameContains("1-"));
-        Assert.assertTrue(repository.existsByNameStartsWith("name 1-"));
-        Assert.assertTrue(repository.existsByNameEndsWith("-2"));
+        Assertions.assertTrue(repository.existsById(0));
+        Assertions.assertFalse(repository.existsById(-1));
+        Assertions.assertTrue(repository.existsByNameContains("1-"));
+        Assertions.assertTrue(repository.existsByNameStartsWith("name 1-"));
+        Assertions.assertTrue(repository.existsByNameEndsWith("-2"));
     }
 
     @Test
     public void count() {
-        Assert.assertEquals(20, repository.count());
-        Assert.assertEquals(2, repository.countByNameContains("1-"));
-        Assert.assertEquals(1, repository.countByNameStartsWith("name 1-"));
-        Assert.assertEquals(1, repository.countByNameEndsWith("-2"));
+        Assertions.assertEquals(20, repository.count());
+        Assertions.assertEquals(2, repository.countByNameContains("1-"));
+        Assertions.assertEquals(1, repository.countByNameStartsWith("name 1-"));
+        Assertions.assertEquals(1, repository.countByNameEndsWith("-2"));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TestSpringData extends AbstractTestSpringBootContext {
 
     @Test
     public void findInterfaceDto() {
-        Assert.assertEquals(2, repository.findUsingProjection("2").size());
+        Assertions.assertEquals(2, repository.findUsingProjection("2").size());
     }
 
 }
