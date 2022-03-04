@@ -57,6 +57,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
+        if (errors.isEmpty()) return super.handleMethodArgumentNotValid(e, headers, status, request);
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
