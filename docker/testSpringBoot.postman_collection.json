@@ -631,9 +631,13 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"var expected = \r",
-									"{\r",
-									"    \"id\": \"must not be null\"\r",
-									"}\r",
+									"[\r",
+									"    {\r",
+									"        \"fieldName\": \"id\",\r",
+									"        \"message\": \"must not be null\",\r",
+									"        \"messageCode\": \"NotNull\"\r",
+									"    }\r",
+									"]\r",
 									"pm.test(\"Body is correct\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.eql(expected);\r",
@@ -669,6 +673,63 @@
 					"response": []
 				},
 				{
+					"name": "null id and empty name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"var expected = \r",
+									"[\r",
+									"    {\r",
+									"        \"fieldName\": \"id\",\r",
+									"        \"message\": \"must not be null\",\r",
+									"        \"messageCode\": \"NotNull\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fieldName\": \"name\",\r",
+									"        \"message\": \"must not be empty\",\r",
+									"        \"messageCode\": \"NotEmpty\"\r",
+									"    }\r",
+									"]\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/validate/rest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"validate",
+								"rest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "empty name",
 					"event": [
 						{
@@ -679,9 +740,13 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"var expected = \r",
-									"{\r",
-									"    \"name\": \"must not be empty\"\r",
-									"}\r",
+									"[\r",
+									"    {\r",
+									"        \"fieldName\": \"name\",\r",
+									"        \"message\": \"must not be empty\",\r",
+									"        \"messageCode\": \"NotEmpty\"\r",
+									"    }\r",
+									"]\r",
 									"pm.test(\"Body is correct\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.eql(expected);\r",

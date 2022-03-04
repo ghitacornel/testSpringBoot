@@ -1,5 +1,7 @@
 package beans.rest.exceptions;
 
+import lombok.Builder;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -13,8 +15,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -44,21 +48,22 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        if (e.getFieldErrors().isEmpty()) {
+            return super.handleMethodArgumentNotValid(e, headers, status, request);
+        }
+        List<FieldErrorJson> response = e.getFieldErrors().stream()
+                .sorted((o1, o2) -> o1.getField().compareToIgnoreCase(o2.getField()))// keep an order useful for tests
+                .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getField()).message(fieldError.getDefaultMessage()).messageCode(fieldError.getCode()).build())
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 
-        // TODO do not return a map , multiple errors can have same "key"
-        Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getFieldErrors().forEach((error) -> {
-            String fieldName = error.getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        e.getBindingResult().getGlobalErrors().forEach((error) -> {
-            String fieldName = error.getObjectName();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        if (errors.isEmpty()) return super.handleMethodArgumentNotValid(e, headers, status, request);
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    @Value
+    @Builder
+    private static class FieldErrorJson {
+        String fieldName;
+        String message;
+        String messageCode;
     }
 
     /**

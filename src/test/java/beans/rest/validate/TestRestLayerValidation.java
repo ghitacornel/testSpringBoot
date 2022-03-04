@@ -23,7 +23,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3,\"name\":\"vasile\"}"))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{id:3,name:\"vasile\"}"));
+                .andExpect(content().json("{\"id\":3,\"name\":\"vasile\"}"));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"vasile\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{id:\"must not be null\"}"));
+                .andExpect(content().json("[{\"fieldName\":\"id\",\"message\":\"must not be null\",\"messageCode\":\"NotNull\"}]"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{name:\"must not be empty\"}"));
+                .andExpect(content().json("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"}]"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{name:\"must not be empty\"}"));
+                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"}]"));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{\"name\":\"must not be empty\",\"id\":\"must not be null\"}"));
+                .andExpect(content().json("[{\"fieldName\":\"id\",\"message\":\"must not be null\",\"messageCode\":\"NotNull\"},{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"}]"));
     }
 
 }
