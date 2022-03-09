@@ -50,7 +50,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"},{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"Size\"}]"));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("[{\"fieldName\":\"id\",\"message\":\"must not be null\",\"messageCode\":\"NotNull\"},{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"id\",\"message\":\"must not be null\",\"messageCode\":\"NotNull\"},{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"},{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"Size\"}]"));
     }
 
 }

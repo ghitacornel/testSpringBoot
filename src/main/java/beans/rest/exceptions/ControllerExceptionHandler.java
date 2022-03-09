@@ -14,10 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
@@ -52,7 +49,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             return super.handleMethodArgumentNotValid(e, headers, status, request);
         }
         List<FieldErrorJson> response = e.getFieldErrors().stream()
-                .sorted((o1, o2) -> o1.getField().compareToIgnoreCase(o2.getField()))// keep an order useful for tests
+                .sorted((o1, o2) -> {
+                    int i = o1.getField().compareToIgnoreCase(o2.getField());
+                    if (i != 0) return i;
+                    return o1.getCode().compareToIgnoreCase(o2.getCode());
+                })// keep an order useful for tests
                 .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getField()).message(fieldError.getDefaultMessage()).messageCode(fieldError.getCode()).build())
                 .collect(Collectors.toList());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -75,13 +76,15 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         // can log errors here and not in the application
         log.error("validation error", e);
 
-        Map<String, String> errors = new HashMap<>();
-        e.getConstraintViolations().forEach((error) -> {
-            String fieldName = error.getPropertyPath().toString();
-            String errorMessage = error.getMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        List<FieldErrorJson> response = e.getConstraintViolations().stream()
+                .sorted((o1, o2) -> {
+                    int i = o1.getPropertyPath().toString().compareToIgnoreCase(o2.getPropertyPath().toString());
+                    if (i != 0) return i;
+                    return o1.getMessageTemplate().compareToIgnoreCase(o2.getMessageTemplate());
+                })// keep an order useful for tests
+                .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getPropertyPath().toString()).message(fieldError.getMessage()).messageCode(fieldError.getMessageTemplate()).build())
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
 }

@@ -27,7 +27,7 @@ public class TestValidationControllerParameters extends AbstractTestSpringBootCo
     public void testIsInvalid() throws Exception {
         mvc.perform(get(URL + "/4"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().json("{\"invokeDirect.x\" : \"must be greater than or equal to 5\"}"));
+                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.x\",\"message\":\"must be greater than or equal to 5\",\"messageCode\":\"{javax.validation.constraints.Min.message}\"}]"));
     }
 
 }
