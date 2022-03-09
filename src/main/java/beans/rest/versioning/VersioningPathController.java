@@ -1,4 +1,4 @@
-package beans.rest.versioning.path;
+package beans.rest.versioning;
 
 import beans.rest.versioning.model.StudentV1;
 import beans.rest.versioning.model.StudentV2;
