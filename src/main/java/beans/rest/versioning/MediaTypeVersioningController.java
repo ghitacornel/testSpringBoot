@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "version/header")
-public class VersioningHeaderController {
+@RequestMapping(value = "version/media-type")
+public class MediaTypeVersioningController {
 
-    @GetMapping(value = "student", headers = "X-API-VERSION=1")
+    @GetMapping(value = "student", produces = "application/vnd.company.app-v1+json")
     public StudentV1 studentV1() {
         return new StudentV1("Bob Charlie");
     }
 
-    @GetMapping(value = "student", headers = "X-API-VERSION=2")
+    @GetMapping(value = "student", produces = "application/vnd.company.app-v2+json")
     public StudentV2 studentV2() {
         return new StudentV2("Bob", "Charlie");
     }
