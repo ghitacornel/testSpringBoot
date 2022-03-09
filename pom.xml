@@ -83,6 +83,7 @@
         <!-- yaml documentation available at : http://localhost:8081/v3/api-docs.yaml -->
         <!-- for custom url use : springdoc.api-docs.path=/api-docs -->
         <!-- SWAGGER available at : http://localhost:8081/swagger-ui/index.html -->
+        <!-- check Validation Controller generated docs -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
