@@ -78,6 +78,17 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!-- OPEN API -->
+        <!-- documentation generated at : http://localhost:8081/v3/api-docs/ -->
+        <!-- yaml documentation available at : http://localhost:8081/v3/api-docs.yaml -->
+        <!-- for custom url use : springdoc.api-docs.path=/api-docs -->
+        <!-- SWAGGER available at : http://localhost:8081/swagger-ui/index.html -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.6</version>
+        </dependency>
+
         <!-- validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
