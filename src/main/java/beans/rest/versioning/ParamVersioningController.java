@@ -1,5 +1,6 @@
 package beans.rest.versioning;
 
+import beans.rest.versioning.model.Student;
 import beans.rest.versioning.model.StudentV1;
 import beans.rest.versioning.model.StudentV2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,4 +21,9 @@ public class ParamVersioningController {
         return new StudentV2("Bob", "Charlie");
     }
 
+    // latest
+    @GetMapping(value = "student")
+    public Student student() {
+        return new Student(1, "Bob", "Charlie");
+    }
 }

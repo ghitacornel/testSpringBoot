@@ -1,5 +1,6 @@
 package beans.rest.versioning;
 
+import beans.rest.versioning.model.Student;
 import beans.rest.versioning.model.StudentV1;
 import beans.rest.versioning.model.StudentV2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,12 @@ public class MediaTypeVersioningController {
     @GetMapping(value = "student", produces = "application/vnd.company.app-v2+json")
     public StudentV2 studentV2() {
         return new StudentV2("Bob", "Charlie");
+    }
+
+    // latest
+    @GetMapping(value = "student", produces = "application/vnd.company.app+json")
+    public Student student() {
+        return new Student(1, "Bob", "Charlie");
     }
 
 }
