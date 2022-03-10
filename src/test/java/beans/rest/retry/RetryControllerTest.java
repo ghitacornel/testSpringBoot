@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestRetryController extends AbstractTestSpringBootContext {
+public class RetryControllerTest extends AbstractTestSpringBootContext {
 
     private static final String STABLE_RESOURCE = "/retry/stableResource";
     private static final String RETRY_RESOURCE_FAIL_BASED_ON_PARAMETER = "/retry/resourceFailBasedOnParameter";
