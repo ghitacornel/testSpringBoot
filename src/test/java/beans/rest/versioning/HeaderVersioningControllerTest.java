@@ -24,7 +24,14 @@ public class HeaderVersioningControllerTest extends AbstractTestSpringBootContex
         mvc.perform(get(URL + "/student").header("X-API-VERSION", "2"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
+
+        // no header
         mvc.perform(get(URL + "/student"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"id\":1,\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
+
+        // invalid header value
+        mvc.perform(get(URL + "/student").header("X-API-VERSION", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"id\":1,\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
     }

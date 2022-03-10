@@ -24,7 +24,14 @@ public class ParamVersioningControllerTest extends AbstractTestSpringBootContext
         mvc.perform(get(URL + "/student?version=2"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
+
+        // no query param
         mvc.perform(get(URL + "/student"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"id\":1,\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
+
+        // invalid query param value
+        mvc.perform(get(URL + "/student?version=x"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"id\":1,\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
     }
