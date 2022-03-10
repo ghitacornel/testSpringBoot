@@ -1,6 +1,5 @@
 package beans.rest.exceptions;
 
-import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -40,6 +39,26 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
     }
 
+    @Value
+    private static class FieldErrorJson implements Comparable<FieldErrorJson> {
+
+        String fieldName;
+        String message;
+        String messageCode;
+
+        private static final Comparator<String> nullSafeStringComparator = Comparator.nullsFirst(String::compareToIgnoreCase);
+
+        // keep them ordered for predictability
+        @Override
+        final public int compareTo(FieldErrorJson o) {
+            int compareByField = nullSafeStringComparator.compare(fieldName, o.fieldName);
+            if (compareByField != 0) return compareByField;
+            int compareByMessage = nullSafeStringComparator.compare(message, o.message);
+            if (compareByMessage != 0) return compareByMessage;
+            return nullSafeStringComparator.compare(messageCode, o.messageCode);
+        }
+    }
+
     /**
      * override how validation constraints in REST layer are handled
      */
@@ -55,31 +74,10 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
                 e.getFieldErrors()
                         .stream()
-                        .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getField()).message(fieldError.getDefaultMessage()).messageCode(fieldError.getCode()).build())
-                        .sorted()// keep an order useful for tests
+                        .map(fieldError -> new FieldErrorJson(fieldError.getField(), fieldError.getDefaultMessage(), fieldError.getCode()))
+                        .sorted()// keep them ordered for predictability
                         .collect(Collectors.toList()),
                 HttpStatus.BAD_REQUEST);
-    }
-
-    @Value
-    @Builder
-    private static class FieldErrorJson implements Comparable<FieldErrorJson> {
-
-        String fieldName;
-        String message;
-        String messageCode;
-
-        private static final Comparator<String> nullSafeStringComparator = Comparator.nullsFirst(String::compareToIgnoreCase);
-
-        // useful for tests
-        @Override
-        public int compareTo(FieldErrorJson o) {
-            int compareByField = nullSafeStringComparator.compare(fieldName, o.fieldName);
-            if (compareByField != 0) return compareByField;
-            int compareByMessage = nullSafeStringComparator.compare(message, o.message);
-            if (compareByMessage != 0) return compareByMessage;
-            return nullSafeStringComparator.compare(messageCode, o.messageCode);
-        }
     }
 
     /**
@@ -93,8 +91,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(
                 e.getConstraintViolations().stream()
-                        .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getPropertyPath().toString()).message(fieldError.getMessage()).messageCode(fieldError.getMessageTemplate()).build())
-                        .sorted()// keep an order useful for tests
+                        .map(fieldError -> new FieldErrorJson(fieldError.getPropertyPath().toString(), fieldError.getMessage(), fieldError.getMessageTemplate()))
+                        .sorted()// keep them ordered for predictability
                         .collect(Collectors.toList()),
                 HttpStatus.BAD_REQUEST);
     }
