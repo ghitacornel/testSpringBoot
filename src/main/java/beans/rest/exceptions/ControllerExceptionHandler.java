@@ -48,23 +48,38 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         if (e.getFieldErrors().isEmpty()) {
             return super.handleMethodArgumentNotValid(e, headers, status, request);
         }
-        List<FieldErrorJson> response = e.getFieldErrors().stream()
-                .sorted((o1, o2) -> {
-                    int i = o1.getField().compareToIgnoreCase(o2.getField());
-                    if (i != 0) return i;
-                    return o1.getCode().compareToIgnoreCase(o2.getCode());
-                })// keep an order useful for tests
-                .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getField()).message(fieldError.getDefaultMessage()).messageCode(fieldError.getCode()).build())
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+
+        // can log errors here and not in the application
+        log.error("validation error", e);
+
+        return new ResponseEntity<>(
+                e.getFieldErrors()
+                        .stream()
+                        .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getField()).message(fieldError.getDefaultMessage()).messageCode(fieldError.getCode()).build())
+                        .sorted()// keep an order useful for tests
+                        .collect(Collectors.toList()),
+                HttpStatus.BAD_REQUEST);
     }
 
     @Value
     @Builder
-    private static class FieldErrorJson {
+    private static class FieldErrorJson implements Comparable<FieldErrorJson> {
+
         String fieldName;
         String message;
         String messageCode;
+
+        private static final Comparator<String> nullSafeStringComparator = Comparator.nullsFirst(String::compareToIgnoreCase);
+
+        // useful for tests
+        @Override
+        public int compareTo(FieldErrorJson o) {
+            int compareByField = nullSafeStringComparator.compare(fieldName, o.fieldName);
+            if (compareByField != 0) return compareByField;
+            int compareByMessage = nullSafeStringComparator.compare(message, o.message);
+            if (compareByMessage != 0) return compareByMessage;
+            return nullSafeStringComparator.compare(messageCode, o.messageCode);
+        }
     }
 
     /**
@@ -76,15 +91,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         // can log errors here and not in the application
         log.error("validation error", e);
 
-        List<FieldErrorJson> response = e.getConstraintViolations().stream()
-                .sorted((o1, o2) -> {
-                    int i = o1.getPropertyPath().toString().compareToIgnoreCase(o2.getPropertyPath().toString());
-                    if (i != 0) return i;
-                    return o1.getMessageTemplate().compareToIgnoreCase(o2.getMessageTemplate());
-                })// keep an order useful for tests
-                .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getPropertyPath().toString()).message(fieldError.getMessage()).messageCode(fieldError.getMessageTemplate()).build())
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(
+                e.getConstraintViolations().stream()
+                        .map(fieldError -> FieldErrorJson.builder().fieldName(fieldError.getPropertyPath().toString()).message(fieldError.getMessage()).messageCode(fieldError.getMessageTemplate()).build())
+                        .sorted()// keep an order useful for tests
+                        .collect(Collectors.toList()),
+                HttpStatus.BAD_REQUEST);
     }
 
 }
