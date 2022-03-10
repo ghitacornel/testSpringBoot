@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestServiceLayerValidation extends AbstractTestSpringBootContext {
+public class ValidationControllerServiceTest extends AbstractTestSpringBootContext {
 
     private static final String URL = "/validate/service";
 

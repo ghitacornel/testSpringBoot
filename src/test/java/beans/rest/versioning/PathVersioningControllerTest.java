@@ -9,19 +9,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestVersioningParam extends AbstractTestSpringBootContext {
+public class PathVersioningControllerTest extends AbstractTestSpringBootContext {
 
-    private static final String URL = "/version/param";
+    private static final String URL = "/version/path";
 
     @Autowired
     MockMvc mvc;
 
     @Test
     public void testVersioning() throws Exception {
-        mvc.perform(get(URL + "/student?version=1"))
+        mvc.perform(get(URL + "/v1/student"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"name\":\"Bob Charlie\"}"));
-        mvc.perform(get(URL + "/student?version=2"))
+        mvc.perform(get(URL + "/v2/student"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
         mvc.perform(get(URL + "/student"))

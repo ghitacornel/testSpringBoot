@@ -9,19 +9,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestVersioningPath extends AbstractTestSpringBootContext {
+public class HeaderVersioningControllerTest extends AbstractTestSpringBootContext {
 
-    private static final String URL = "/version/path";
+    private static final String URL = "/version/header";
 
     @Autowired
     MockMvc mvc;
 
     @Test
     public void testVersioning() throws Exception {
-        mvc.perform(get(URL + "/v1/student"))
+        mvc.perform(get(URL + "/student").header("X-API-VERSION", "1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"name\":\"Bob Charlie\"}"));
-        mvc.perform(get(URL + "/v2/student"))
+        mvc.perform(get(URL + "/student").header("X-API-VERSION", "2"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
         mvc.perform(get(URL + "/student"))

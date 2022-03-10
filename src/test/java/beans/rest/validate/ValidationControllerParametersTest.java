@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestValidationControllerParameters extends AbstractTestSpringBootContext {
+public class ValidationControllerParametersTest extends AbstractTestSpringBootContext {
 
     private static final String URL = "/validateParameters";
 

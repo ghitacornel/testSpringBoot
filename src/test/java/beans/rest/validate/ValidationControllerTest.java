@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestRestLayerValidation extends AbstractTestSpringBootContext {
+public class ValidationControllerTest extends AbstractTestSpringBootContext {
 
     private static final String URL = "/validate/rest";
 
@@ -60,6 +60,15 @@ public class TestRestLayerValidation extends AbstractTestSpringBootContext {
                         .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"NotEmpty\"},{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"Size\"}]"));
+    }
+
+    @Test
+    public void testNameIsBlankButMoreThan30() throws Exception {
+        mvc.perform(put(URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":3,\"name\":\"                                   \"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"Size\"}]"));
     }
 
     @Test
