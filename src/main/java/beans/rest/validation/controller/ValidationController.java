@@ -1,6 +1,6 @@
 package beans.rest.validation.controller;
 
-import beans.rest.validation.model.Model;
+import beans.rest.validation.model.ValidationModel;
 import beans.rest.validation.service.ValidationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,13 +17,15 @@ public class ValidationController {
 
     private final ValidationService service;
 
+    // model validated by the REST Controller
     @PutMapping(value = "rest")
-    public Model invokeRest(@Valid @RequestBody Model model) {
+    public ValidationModel invokeRest(@Valid @RequestBody ValidationModel model) {
         return model;
     }
 
+    // model validated in the Service layer
     @PutMapping(value = "service")
-    public Model invokeService(@RequestBody Model model) {
+    public ValidationModel invokeService(@RequestBody ValidationModel model) {
         return service.invoke(model);
     }
 

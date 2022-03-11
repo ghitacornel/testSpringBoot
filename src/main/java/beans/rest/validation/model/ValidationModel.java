@@ -8,7 +8,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Data
-public class Model {
+public class ValidationModel {
 
     @Positive
     @NotNull
