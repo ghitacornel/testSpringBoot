@@ -17,9 +17,8 @@ public class TestFreemarker extends AbstractTestSpringBootContext {
 
     @Test
     public void testController() throws Exception {
-        String content = Utils.readFile("output/testMVC.html");
         mvc.perform(get("/freemarker?name=ion"))
-                .andExpect(content().xml(content))
+                .andExpect(content().xml(Utils.readFile(TestFreemarker.class, "/testMVC.html")))
                 .andExpect(status().isOk());
     }
 
