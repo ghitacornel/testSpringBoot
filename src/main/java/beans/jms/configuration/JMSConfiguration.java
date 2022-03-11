@@ -1,4 +1,4 @@
-package beans.jms;
+package beans.jms.configuration;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;

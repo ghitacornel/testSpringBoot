@@ -1,5 +1,6 @@
 package beans.jms;
 
+import beans.jms.model.JMSMessage;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
