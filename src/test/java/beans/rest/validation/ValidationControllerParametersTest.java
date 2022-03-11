@@ -1,4 +1,4 @@
-package beans.rest.validate;
+package beans.rest.validation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
