@@ -2,26 +2,31 @@ package beans.metrics;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class MetricsService {
 
-    // for tests purpose
-    public int noCount;
-    // for tests purpose
-    public int noDuration;
+    public int service1Count;
+    public int service2Count;
 
-    public int count() {
-        noCount++;
-        return noCount;
-    }
-
-    public int duration() {
-        noDuration++;
+    public int service1() {
+        service1Count++;
         try {
-            Thread.sleep(100);
+            Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
             throw new RuntimeException("wait failed", e);
         }
-        return noDuration;
+        return service1Count;
+    }
+
+    public int service2() {
+        service2Count++;
+        try {
+            Thread.sleep(new Random().nextInt(100));
+        } catch (InterruptedException e) {
+            throw new RuntimeException("wait failed", e);
+        }
+        return service2Count;
     }
 }
