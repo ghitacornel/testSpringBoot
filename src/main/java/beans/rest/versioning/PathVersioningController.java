@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller with REST versioning using path prefix
+ */
 @RestController
 @RequestMapping(value = "version/path")
 public class PathVersioningController {
@@ -21,7 +24,9 @@ public class PathVersioningController {
         return new StudentV2("Bob", "Charlie");
     }
 
-    // latest
+    /**
+     * no prefix => default use latest
+     */
     @GetMapping("student")
     public Student student() {
         return new Student(1, "Bob", "Charlie");

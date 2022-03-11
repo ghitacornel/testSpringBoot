@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller with REST endpoint versioning using HTTP headers
+ */
 @RestController
 @RequestMapping(value = "version/header")
 public class HeaderVersioningController {
@@ -21,7 +24,9 @@ public class HeaderVersioningController {
         return new StudentV2("Bob", "Charlie");
     }
 
-    // latest
+    /**
+     * no header => default use latest
+     */
     @GetMapping(value = "student")
     public Student student() {
         return new Student(1, "Bob", "Charlie");

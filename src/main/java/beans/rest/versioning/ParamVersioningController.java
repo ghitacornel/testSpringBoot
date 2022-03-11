@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller with REST endpoint versioning using HTTP query params
+ */
 @RestController
 @RequestMapping(value = "version/param")
 public class ParamVersioningController {
@@ -21,9 +24,12 @@ public class ParamVersioningController {
         return new StudentV2("Bob", "Charlie");
     }
 
-    // latest
+    /**
+     * no param => default use latest
+     */
     @GetMapping(value = "student")
     public Student student() {
         return new Student(1, "Bob", "Charlie");
     }
+
 }
