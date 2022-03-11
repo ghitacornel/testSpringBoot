@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller with REST endpoint versioning using HTTP headers
  */
-@Hidden// due to issues on OpenAPI parsing of headers
+@Hidden// do not expose it via Swagger due to issues on OpenAPI parsing of headers
 @RestController
 @RequestMapping(value = "version/header")
 public class HeaderVersioningController {
