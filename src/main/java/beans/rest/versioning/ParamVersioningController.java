@@ -1,8 +1,8 @@
 package beans.rest.versioning;
 
-import beans.rest.versioning.model.Student;
-import beans.rest.versioning.model.StudentV1;
-import beans.rest.versioning.model.StudentV2;
+import beans.rest.versioning.model.VersionedModel;
+import beans.rest.versioning.model.VersionedModelV1;
+import beans.rest.versioning.model.VersionedModelV2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "version/param")
 public class ParamVersioningController {
 
-    @GetMapping(value = "student", params = "version=1")
-    public StudentV1 studentV1() {
-        return new StudentV1("Bob Charlie");
+    @GetMapping(value = "invoke", params = "version=1")
+    public VersionedModelV1 studentV1() {
+        return new VersionedModelV1("Bob Charlie");
     }
 
-    @GetMapping(value = "student", params = "version=2")
-    public StudentV2 studentV2() {
-        return new StudentV2("Bob", "Charlie");
+    @GetMapping(value = "invoke", params = "version=2")
+    public VersionedModelV2 studentV2() {
+        return new VersionedModelV2("Bob", "Charlie");
     }
 
     /**
      * no param => default use latest
      */
-    @GetMapping(value = "student")
-    public Student student() {
-        return new Student(1, "Bob", "Charlie");
+    @GetMapping(value = "invoke")
+    public VersionedModel student() {
+        return new VersionedModel(1, "Bob", "Charlie");
     }
 
 }

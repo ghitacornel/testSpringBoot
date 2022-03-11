@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * model version 1
+ * model version 2
  */
 @Data
 @AllArgsConstructor
-public class StudentV1 {
+public class VersionedModelV2 {
 
-    private String name;
+    private String firstName;
+    private String lastName;
 
 }

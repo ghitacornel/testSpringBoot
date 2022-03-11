@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class Student {
+public class VersionedModel {
 
     private Integer id;
     private String firstName;

@@ -18,13 +18,13 @@ public class PathVersioningControllerTest extends AbstractTestSpringBootContext 
 
     @Test
     public void testVersioning() throws Exception {
-        mvc.perform(get(URL + "/v1/student"))
+        mvc.perform(get(URL + "/v1/invoke"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"name\":\"Bob Charlie\"}"));
-        mvc.perform(get(URL + "/v2/student"))
+        mvc.perform(get(URL + "/v2/invoke"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
-        mvc.perform(get(URL + "/student"))
+        mvc.perform(get(URL + "/invoke"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"id\":1,\"firstName\":\"Bob\",\"lastName\":\"Charlie\"}"));
     }
