@@ -3,15 +3,12 @@ package beans.rest.swagger.controller;
 import beans.rest.swagger.model.DocumentedInputModel;
 import beans.rest.swagger.model.DocumentedOutputModel;
 import io.swagger.v3.oas.annotations.Hidden;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
-@OpenAPIDefinition(info = @Info(title = "Custom REST Documentation title", description = "Custom Documented Controller description", version = "1"))
 @RestController
 @RequestMapping(value = "documented")
 public class DocumentedController {
