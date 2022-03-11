@@ -1,7 +1,7 @@
 package beans.rest.swagger.controller;
 
-import beans.rest.swagger.model.InputModel;
-import beans.rest.swagger.model.OutputModel;
+import beans.rest.swagger.model.DocumentedInputModel;
+import beans.rest.swagger.model.DocumentedOutputModel;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +32,7 @@ public class DocumentedController {
             @ApiResponse(responseCode = "400", description = "Bad boy DELETE request")
     }
     )
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping
     public String deleteRequest(@Parameter(description = "Documented Model used as input for DELETE") @RequestParam(name = "id") Integer id) {
         return "GET an OK for this " + id;
     }
@@ -43,9 +43,9 @@ public class DocumentedController {
             @ApiResponse(responseCode = "400", description = "Bad boy POST request")
     }
     )
-    @PostMapping(value = "postRequest")
-    public OutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody InputModel inputModel) {
-        return new OutputModel();
+    @PostMapping
+    public DocumentedOutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody DocumentedInputModel documentedInputModel) {
+        return new DocumentedOutputModel();
     }
 
     @Operation(summary = "PUT request documentation", description = "full documentation of this PUT request")
@@ -54,9 +54,9 @@ public class DocumentedController {
             @ApiResponse(responseCode = "400", description = "Bad boy PUT request")
     }
     )
-    @PutMapping(value = "putRequest")
-    public OutputModel putRequest(@Parameter(description = "Documented Model used as input for PUT", required = true) @RequestBody InputModel inputModel) {
-        return new OutputModel();
+    @PutMapping
+    public DocumentedOutputModel putRequest(@Parameter(description = "Documented Model used as input for PUT", required = true) @RequestBody DocumentedInputModel documentedInputModel) {
+        return new DocumentedOutputModel();
     }
 
 }

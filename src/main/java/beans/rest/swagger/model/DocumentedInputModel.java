@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 
 @Schema(description = "documented input model description")
 @Data
-public class InputModel {
+public class DocumentedInputModel {
 
     @Schema(description = "Unique identifier of the input Model", example = "1", required = true)
     @Positive

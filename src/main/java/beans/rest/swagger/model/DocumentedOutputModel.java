@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Schema(description = "documented output model description")
 @Data
-public class OutputModel {
+public class DocumentedOutputModel {
 
     @Schema(description = "Unique identifier of the output Model", example = "1", required = true)
     @Positive
