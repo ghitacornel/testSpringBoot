@@ -11,12 +11,19 @@ import javax.jms.Queue;
 @RequiredArgsConstructor
 public class JmsProducer {
 
-    private final Queue queue;
+    private final Queue queue1;
+    private final Queue queue2;
+
     private final JmsTemplate jmsTemplate;
 
-    public void createMessageAndSendItToTheQueue() {
-        JMSMessage message = new JMSMessage(1, "payload");
-        jmsTemplate.convertAndSend(queue, message);
+    public void createMessageAndSendItToTheQueue1() {
+        JMSMessage message = new JMSMessage(1, "payload for queue 1");
+        jmsTemplate.convertAndSend(queue1, message);
+    }
+
+    public void createMessageAndSendItToTheQueue2() {
+        JMSMessage message = new JMSMessage(2, "payload for queue 2");
+        jmsTemplate.convertAndSend(queue2, message);
     }
 
 }

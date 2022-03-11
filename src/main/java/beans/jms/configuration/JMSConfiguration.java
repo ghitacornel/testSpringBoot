@@ -19,8 +19,13 @@ import org.springframework.jms.support.converter.MessageType;
 public class JMSConfiguration {
 
     @Bean
-    public Queue queue(){
-        return new ActiveMQQueue("simple-jms-queue");
+    public Queue queue1(){
+        return new ActiveMQQueue("simple-jms-queue-1");
+    }
+
+    @Bean
+    public Queue queue2(){
+        return new ActiveMQQueue("simple-jms-queue-2");
     }
 
     @Bean
