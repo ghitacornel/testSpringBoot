@@ -4,16 +4,12 @@ import beans.jms.model.JMSMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 import template.AbstractTestSpringBootContext;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class TestJMS extends AbstractTestSpringBootContext {
 
     @Autowired
-    MockMvc mvc;
+    JmsProducer jmsProducer;
 
     @Autowired
     JmsConsumer jmsConsumer;
@@ -21,7 +17,7 @@ public class TestJMS extends AbstractTestSpringBootContext {
     @Test
     public void testJMS() throws Exception {
         Assertions.assertNull(jmsConsumer.message);
-        mvc.perform(post("/jms")).andExpect(status().isOk());
+        jmsProducer.createMessageAndSendItToTheQueue();
 
         // wait a little
         Thread.sleep(100);
