@@ -14,6 +14,7 @@ public class CustomFilter extends HttpFilter {
         String url = request instanceof HttpServletRequest ?
                 ((HttpServletRequest) request).getRequestURL().toString() : "N/A";
         System.out.println("from filter, processing url: " + url);
+        request.setAttribute("attributeAddedByFilter", "filterAddedValue");
         chain.doFilter(request, response);
     }
 

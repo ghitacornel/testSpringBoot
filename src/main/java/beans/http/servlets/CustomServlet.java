@@ -14,7 +14,7 @@ public class CustomServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>Hello World! " + request.getMethod() + " custom servlet</body></html>");
+        out.println("<html><body>Hello World! " + request.getMethod() + " with filter attribute value " + request.getAttribute("attributeAddedByFilter") + " custom servlet</body></html>");
 
     }
 

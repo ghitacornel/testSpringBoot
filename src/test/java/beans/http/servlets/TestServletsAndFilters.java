@@ -21,7 +21,7 @@ public class TestServletsAndFilters extends AbstractTestSpringBootContext {
     @Test
     public void testCustomServlet() {
         ResponseEntity<String> entity = template.getForEntity("http://localhost:" + port + "/customServletURL", String.class);
-        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! GET custom servlet</body></html>")
+        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! GET with filter attribute value filterAddedValue custom servlet</body></html>")
                 .ignoreComments()
                 .ignoreWhitespace());
     }
@@ -36,7 +36,7 @@ public class TestServletsAndFilters extends AbstractTestSpringBootContext {
 
     @Test
     public void testCustomServletPOST() {
-        ResponseEntity<String> entity = template.postForEntity("http://localhost:" + port + "/customServletURLPOST",null, String.class);
+        ResponseEntity<String> entity = template.postForEntity("http://localhost:" + port + "/customServletURLPOST", null, String.class);
         assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! beans.http.servlets.CustomServletPOST with attribute 'customAttributeName' = gicu custom servlet</body></html>")
                 .ignoreComments()
                 .ignoreWhitespace());
