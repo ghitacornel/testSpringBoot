@@ -21,4 +21,14 @@ final public class Utils {
         }
     }
 
+    public static String readFile(Class<?> aClass, String fileName) {
+        try {
+            Path resourceDirectory = Paths.get("src", "test", "resources", aClass.getPackage().getName());
+            String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+            byte[] encoded = Files.readAllBytes(Paths.get(absolutePath, fileName));
+            return new String(encoded, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

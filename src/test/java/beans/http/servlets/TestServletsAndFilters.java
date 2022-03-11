@@ -7,6 +7,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.xmlunit.matchers.CompareMatcher;
 import template.AbstractTestSpringBootContext;
+import template.Utils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -21,7 +22,7 @@ public class TestServletsAndFilters extends AbstractTestSpringBootContext {
     @Test
     public void testCustomServlet() {
         ResponseEntity<String> entity = template.getForEntity("http://localhost:" + port + "/customServletURL", String.class);
-        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! GET with filter attribute value filterAddedValue custom servlet</body></html>")
+        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo(Utils.readFile(TestServletsAndFilters.class, "testCustomServlet.html"))
                 .ignoreComments()
                 .ignoreWhitespace());
     }
@@ -29,7 +30,7 @@ public class TestServletsAndFilters extends AbstractTestSpringBootContext {
     @Test
     public void testCustomServletGET() {
         ResponseEntity<String> entity = template.getForEntity("http://localhost:" + port + "/customServletURLGET?customParameterName=aaa", String.class);
-        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! beans.http.servlets.CustomServletGET with parameter 'customParameterName' = aaa custom servlet</body></html>")
+        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo(Utils.readFile(TestServletsAndFilters.class, "testCustomServletGET.html"))
                 .ignoreComments()
                 .ignoreWhitespace());
     }
@@ -37,7 +38,7 @@ public class TestServletsAndFilters extends AbstractTestSpringBootContext {
     @Test
     public void testCustomServletPOST() {
         ResponseEntity<String> entity = template.postForEntity("http://localhost:" + port + "/customServletURLPOST", null, String.class);
-        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo("<html><body>Hello World! beans.http.servlets.CustomServletPOST with attribute 'customAttributeName' = gicu custom servlet</body></html>")
+        assertThat(entity.getBody(), CompareMatcher.isIdenticalTo(Utils.readFile(TestServletsAndFilters.class, "testCustomServletPOST.html"))
                 .ignoreComments()
                 .ignoreWhitespace());
     }
