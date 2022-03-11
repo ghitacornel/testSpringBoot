@@ -2,6 +2,7 @@ package beans.rest.swagger.controller;
 
 import beans.rest.swagger.model.DocumentedInputModel;
 import beans.rest.swagger.model.DocumentedOutputModel;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,6 +25,12 @@ public class DocumentedController {
     @GetMapping(value = "{id}")
     public String getRequest(@Parameter(description = "Documented Model used as input for GET") @PathVariable(name = "id") Integer id) {
         return "GET an OK for this " + id;
+    }
+
+    @Hidden
+    @GetMapping(value = "/hidden")
+    public String getRequest() {
+        return "Rest endpoint not exposed on Swagger";
     }
 
     @Operation(summary = "DELETE request documentation", description = "full documentation of this DELETE request")
