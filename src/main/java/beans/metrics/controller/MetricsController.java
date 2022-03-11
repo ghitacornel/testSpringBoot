@@ -1,5 +1,6 @@
-package beans.metrics;
+package beans.metrics.controller;
 
+import beans.metrics.service.MetricsService;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;

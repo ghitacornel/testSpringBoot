@@ -1,4 +1,4 @@
-package beans.metrics;
+package beans.metrics.service;
 
 import org.springframework.stereotype.Service;
 
