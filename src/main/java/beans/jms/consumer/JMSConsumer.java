@@ -1,11 +1,11 @@
-package beans.jms;
+package beans.jms.consumer;
 
 import beans.jms.model.JMSMessage;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JmsConsumer {
+public class JMSConsumer {
 
     // record last message for test purpose
     public JMSMessage messageFromQueue1;

@@ -1,4 +1,4 @@
-package beans.jms;
+package beans.jms.producer;
 
 import beans.jms.model.JMSMessage;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import javax.jms.Queue;
 
 @Service
 @RequiredArgsConstructor
-public class JmsProducer {
+public class JMSProducer {
 
     private final Queue queue1;
     private final Queue queue2;

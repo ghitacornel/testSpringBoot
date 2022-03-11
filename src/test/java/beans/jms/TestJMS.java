@@ -1,6 +1,8 @@
 package beans.jms;
 
+import beans.jms.consumer.JMSConsumer;
 import beans.jms.model.JMSMessage;
+import beans.jms.producer.JMSProducer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,10 @@ import template.AbstractTestSpringBootContext;
 public class TestJMS extends AbstractTestSpringBootContext {
 
     @Autowired
-    JmsProducer jmsProducer;
+    JMSProducer jmsProducer;
 
     @Autowired
-    JmsConsumer jmsConsumer;
+    JMSConsumer jmsConsumer;
 
     @Test
     public void testJMS() throws Exception {
