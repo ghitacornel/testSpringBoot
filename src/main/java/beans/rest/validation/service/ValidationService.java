@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 
 @Service
-@Validated// in order to tell Spring to validate this service
+@Validated// needed in order to tell Spring to validate this service
 public class ValidationService {
 
     public Model invoke(@Valid Model model) {
