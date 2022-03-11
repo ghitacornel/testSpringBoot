@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
  * Custom url : springdoc.api-docs.path=/api-docs
  * Disabling the /v3/api-docs endpoint : springdoc.api-docs.enabled=false
  * Disabling the swagger-ui : springdoc.swagger-ui.enabled=false
+ * Packages to include : springdoc.packagesToScan=com.package1, com.package2
+ * Paths to include : springdoc.pathsToMatch=/v1, /api/balance/**
  */
 @OpenAPIDefinition(info = @Info(title = "Custom REST Documentation title", description = "All REST API custom description", version = "1"))
 @Configuration
