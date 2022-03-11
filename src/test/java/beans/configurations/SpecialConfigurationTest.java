@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import template.AbstractTestSpringBootContext;
+import template.Utils;
 
 public class SpecialConfigurationTest extends AbstractTestSpringBootContext {
 
@@ -12,6 +13,6 @@ public class SpecialConfigurationTest extends AbstractTestSpringBootContext {
 
     @Test
     public void testSpecialConfiguration() {
-        Assertions.assertEquals("MySpecialConfiguration{name='test-YAML', environment='testing', enabled=false, servers=[www.abc.test.com, www.xyz.test.com], props={a=1, b=2, c=3}}", specialConfiguration.toString());
+        Assertions.assertEquals(Utils.readFile(SpecialConfigurationTest.class, "specialConfiguration.txt"), specialConfiguration.toString());
     }
 }
