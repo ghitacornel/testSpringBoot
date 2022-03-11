@@ -37,16 +37,16 @@ public class DocumentedController {
 //        return "GET an OK for this " + id;
 //    }
 //
-//    @Operation(summary = "POST request documentation", description = "full documentation of this POST request")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "all good on POST"),
-//            @ApiResponse(responseCode = "400", description = "Bad boy POST request")
-//    }
-//    )
-//    @PostMapping(value = "postRequest")
-//    public OutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody InputModel inputModel) {
-//        return new OutputModel();
-//    }
+    @Operation(summary = "POST request documentation", description = "full documentation of this POST request")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "all good on POST"),
+            @ApiResponse(responseCode = "400", description = "Bad boy POST request")
+    }
+    )
+    @PostMapping(value = "postRequest")
+    public OutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody InputModel inputModel) {
+        return new OutputModel();
+    }
 //
 //    @Operation(summary = "PUT request documentation", description = "full documentation of this PUT request")
 //    @ApiResponses(value = {
