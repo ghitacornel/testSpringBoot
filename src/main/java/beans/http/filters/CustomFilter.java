@@ -1,4 +1,4 @@
-package beans.servlets;
+package beans.http.filters;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
