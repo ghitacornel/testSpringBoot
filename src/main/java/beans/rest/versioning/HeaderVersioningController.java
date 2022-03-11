@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "version/header")
 public class HeaderVersioningController {
 
-    @GetMapping(value = "student", headers = "X-API-VERSION=1")
-    public StudentV1 studentV1() {
-        return new StudentV1("Bob Charlie");
-    }
-
-    @GetMapping(value = "student", headers = "X-API-VERSION=2")
-    public StudentV2 studentV2() {
-        return new StudentV2("Bob", "Charlie");
-    }
+//    @GetMapping(value = "student", headers = "X-API-VERSION=1")
+//    public StudentV1 studentV1() {
+//        return new StudentV1("Bob Charlie");
+//    }
+//
+//    @GetMapping(value = "student", headers = "X-API-VERSION=2")
+//    public StudentV2 studentV2() {
+//        return new StudentV2("Bob", "Charlie");
+//    }
 
     /**
      * no header => default use latest
