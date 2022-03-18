@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class ExternalRestClient {
+public class ExternalRestClientRestTemplate {
 
     private final ServerProperties serverProperties;
 
@@ -25,6 +25,6 @@ public class ExternalRestClient {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ExternalRestServiceOutputModel> response = restTemplate.postForEntity("http://localhost:" + serverProperties.getPort() + "/externalService", request, ExternalRestServiceOutputModel.class);
-        return Objects.requireNonNull(response.getBody()).getOutput();
+        return Objects.requireNonNull(response.getBody()).getOutput() + " + added by internal client";
     }
 }

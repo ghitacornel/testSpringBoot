@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import template.AbstractTestSpringBootContext;
 
-public class ExternalRestClientTest extends AbstractTestSpringBootContext {
+public class ExternalRestClientRestTemplateTest extends AbstractTestSpringBootContext {
 
     @Autowired
-    ExternalRestClient client;
+    ExternalRestClientRestTemplate client;
 
     @Test
     public void testClient() {
-        Assertions.assertThat(client.callExternalService("input data")).isEqualTo("input datainput data");
+        Assertions.assertThat(client.callExternalService("input data")).isEqualTo("input data + added by external client + added by internal client");
     }
 }
