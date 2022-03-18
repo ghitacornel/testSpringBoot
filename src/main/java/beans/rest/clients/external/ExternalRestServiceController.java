@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
  * acts as an external to the application REST endpoint provider
  */
 @RestController
-@RequestMapping("resttemplate")
+@RequestMapping("externalService")
 public class ExternalRestServiceController {
 
     @GetMapping

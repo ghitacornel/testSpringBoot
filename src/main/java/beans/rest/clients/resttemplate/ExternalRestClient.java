@@ -24,7 +24,7 @@ public class ExternalRestClient {
         HttpEntity<ExternalRestServiceInputModel> request = new HttpEntity<>(inputModel);
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<ExternalRestServiceOutputModel> response = restTemplate.postForEntity("http://localhost:" + serverProperties.getPort() + "/resttemplate", request, ExternalRestServiceOutputModel.class);
+        ResponseEntity<ExternalRestServiceOutputModel> response = restTemplate.postForEntity("http://localhost:" + serverProperties.getPort() + "/externalService", request, ExternalRestServiceOutputModel.class);
         return Objects.requireNonNull(response.getBody()).getOutput();
     }
 }

@@ -138,6 +138,23 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!-- FEIGN REST client -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>11.8</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-gson</artifactId>
+            <version>11.8</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-slf4j</artifactId>
+            <version>11.8</version>
+        </dependency>
+
         <!-- TESTS -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
