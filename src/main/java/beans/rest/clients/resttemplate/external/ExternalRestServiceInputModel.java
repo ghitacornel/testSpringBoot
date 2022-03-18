@@ -1,4 +1,4 @@
-package beans.rest.clients.resttemplate.model;
+package beans.rest.clients.resttemplate.external;
 
 import lombok.Data;
 

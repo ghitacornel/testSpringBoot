@@ -1,7 +1,5 @@
-package beans.rest.clients.resttemplate.controller;
+package beans.rest.clients.resttemplate.external;
 
-import beans.rest.clients.resttemplate.model.ExternalRestServiceInputModel;
-import beans.rest.clients.resttemplate.model.ExternalRestServiceOutputModel;
 import org.springframework.web.bind.annotation.*;
 
 /**
