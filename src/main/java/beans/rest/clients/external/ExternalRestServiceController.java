@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("resttemplate")
 public class ExternalRestServiceController {
 
+    @GetMapping
+    public String callGet() {
+        return "some data from external service";
+    }
+
     @PostMapping
-    public ExternalRestServiceOutputModel call(@RequestBody ExternalRestServiceInputModel input) {
+    public ExternalRestServiceOutputModel callPost(@RequestBody ExternalRestServiceInputModel input) {
         ExternalRestServiceOutputModel output = new ExternalRestServiceOutputModel();
         output.setOutput(input.getInput() + input.getInput());
         return output;
