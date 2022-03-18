@@ -1,7 +1,7 @@
 package beans.rest.clients.resttemplate;
 
-import beans.rest.clients.resttemplate.external.ExternalRestServiceInputModel;
-import beans.rest.clients.resttemplate.external.ExternalRestServiceOutputModel;
+import beans.rest.clients.external.ExternalRestServiceInputModel;
+import beans.rest.clients.external.ExternalRestServiceOutputModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpEntity;
