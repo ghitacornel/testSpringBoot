@@ -12,7 +12,7 @@ public class ExternalRestClientFeignTest extends AbstractTestSpringBootContext {
 
     @Test
     public void testClient() {
-        Assertions.assertThat(client.invokeGet("input data")).isEqualTo("null + added by external client + added by internal client");
         Assertions.assertThat(client.invokePost("input data")).isEqualTo("input data + added by external client + added by internal client");
+        Assertions.assertThat(client.invokeGet("input data")).isEqualTo("input data + added by external client + added by internal client");
     }
 }

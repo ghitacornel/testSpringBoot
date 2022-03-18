@@ -2,8 +2,6 @@ package beans.rest.clients.external;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-
 /**
  * acts as an external to the application REST endpoint provider
  */
@@ -12,7 +10,7 @@ import javax.websocket.server.PathParam;
 public class ExternalRestServiceController {
 
     @GetMapping("{input}")
-    public String callGet(@PathParam("input") String input) {
+    public String callGet(@PathVariable("input") String input) {
         return input + " + added by external client";
     }
 

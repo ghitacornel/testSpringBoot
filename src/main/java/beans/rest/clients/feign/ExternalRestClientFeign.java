@@ -19,7 +19,6 @@ public class ExternalRestClientFeign {
 
     public String invokeGet(String input) {
         ExternalServiceContract client = Feign.builder()
-                .client(new OkHttpClient())
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, "http://localhost:" + serverProperties.getPort());
