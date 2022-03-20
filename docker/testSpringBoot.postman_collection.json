@@ -19,7 +19,7 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"Hello World! GET custom servlet\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! GET with filter attribute value filterAddedValue custom servlet\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -52,7 +52,7 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.servlets.CustomServletGET with parameter 'customParameterName' = aaa custom servlet\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.http.servlets.CustomServletGET with parameter 'customParameterName' = aaa custom servlet\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -91,7 +91,7 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.servlets.CustomServletPOST with attribute 'customAttributeName' = gicu custom servlet\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello World! beans.http.servlets.CustomServletPOST with attribute 'customAttributeName' = gicu custom servlet\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -693,6 +693,11 @@
 									"        \"fieldName\": \"name\",\r",
 									"        \"message\": \"must not be empty\",\r",
 									"        \"messageCode\": \"NotEmpty\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fieldName\": \"name\",\r",
+									"        \"message\": \"size must be between 2 and 30\",\r",
+									"        \"messageCode\": \"Size\"\r",
 									"    }\r",
 									"]\r",
 									"pm.test(\"Body is correct\", function () {\r",
@@ -745,6 +750,11 @@
 									"        \"fieldName\": \"name\",\r",
 									"        \"message\": \"must not be empty\",\r",
 									"        \"messageCode\": \"NotEmpty\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fieldName\": \"name\",\r",
+									"        \"message\": \"size must be between 2 and 30\",\r",
+									"        \"messageCode\": \"Size\"\r",
 									"    }\r",
 									"]\r",
 									"pm.test(\"Body is correct\", function () {\r",
@@ -792,9 +802,18 @@
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"var expected = \r",
-									"{\r",
-									"    \"invoke.model.name\": \"must not be empty\"\r",
-									"}\r",
+									"[\r",
+									"    {\r",
+									"        \"fieldName\": \"invoke.model.name\",\r",
+									"        \"message\": \"must not be empty\",\r",
+									"        \"messageCode\": \"{javax.validation.constraints.NotEmpty.message}\"\r",
+									"    },\r",
+									"    {\r",
+									"        \"fieldName\": \"invoke.model.name\",\r",
+									"        \"message\": \"size must be between 2 and 30\",\r",
+									"        \"messageCode\": \"{javax.validation.constraints.Size.message}\"\r",
+									"    }\r",
+									"]\r",
 									"pm.test(\"Body is correct\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.eql(expected);\r",
@@ -939,6 +958,61 @@
 								"retry",
 								"resourceFailBasedOnParameter",
 								"true"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "security",
+			"item": [
+				{
+					"name": "secured",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var expected = \"secured answer\"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    var jsonData = pm.response.text();\r",
+									"    pm.expect(jsonData).to.eql(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/secured",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"secured"
 							]
 						}
 					},
