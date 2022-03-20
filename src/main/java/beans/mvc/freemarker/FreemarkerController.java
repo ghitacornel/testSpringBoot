@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(value = "/freemarker")
+@RequestMapping(value = "freemarker")
 public class FreemarkerController {
 
     @GetMapping

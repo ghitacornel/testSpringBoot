@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "retry")
+@RequestMapping("retry")
 @RequiredArgsConstructor
 public class RetryController {
 
