@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Spring scans for classes considering the current package as the root scan package
  */
 @SpringBootApplication
-@EnableJpaRepositories({"beans.rest.jpa.repository", "beans.rest.retry.repository"})
+@EnableJpaRepositories
 public class SpringBootMain {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootMain.class, args);
