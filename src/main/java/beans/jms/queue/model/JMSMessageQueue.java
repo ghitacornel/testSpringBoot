@@ -1,4 +1,4 @@
-package beans.jms.model;
+package beans.jms.queue.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JMSMessage implements Serializable {
+public class JMSMessageQueue implements Serializable {
 
     private int id;
     private String payload;

@@ -1,4 +1,4 @@
-package beans.jms.model;
+package beans.jms.topic.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
