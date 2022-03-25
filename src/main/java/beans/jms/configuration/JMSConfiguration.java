@@ -18,16 +18,18 @@ import javax.jms.Topic;
 @Configuration
 public class JMSConfiguration {
 
-    public static final String TOPIC_NAME = "spring";
+    public static final String TOPIC_NAME = "topicName";
+    public static final String QUEUE_1 = "Queue1";
+    public static final String QUEUE_2 = "Queue2";
 
     @Bean
     Queue queue1() {
-        return new ActiveMQQueue("simple-jms-queue-1");
+        return new ActiveMQQueue(QUEUE_1);
     }
 
     @Bean
     Queue queue2() {
-        return new ActiveMQQueue("simple-jms-queue-2");
+        return new ActiveMQQueue(QUEUE_2);
     }
 
     @Bean
