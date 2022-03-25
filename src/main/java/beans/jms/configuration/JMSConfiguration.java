@@ -18,24 +18,29 @@ import javax.jms.Topic;
 @Configuration
 public class JMSConfiguration {
 
+    public static final String TOPIC_NAME = "spring";
+
     @Bean
-    public Queue queue1() {
+    Queue queue1() {
         return new ActiveMQQueue("simple-jms-queue-1");
     }
 
     @Bean
-    public Queue queue2() {
+    Queue queue2() {
         return new ActiveMQQueue("simple-jms-queue-2");
     }
 
     @Bean
-    public Queue queueWithTopic() {
-        return new ActiveMQQueue("jms-queue-with-topic");
+    Topic topic(JmsTemplate jmsTemplateTopic) throws JMSException {
+        return jmsTemplateTopic.getConnectionFactory()
+                .createConnection()
+                .createSession()
+                .createTopic(TOPIC_NAME);
     }
 
     @Bean
-    public JmsListenerContainerFactory<?> queueConnectionFactory(ConnectionFactory connectionFactory,
-                                                                 DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    JmsListenerContainerFactory<?> queueConnectionFactory(ConnectionFactory connectionFactory,
+                                                          DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         // This provides all boot's default to this factory, including the message converter
         configurer.configure(factory, connectionFactory);
@@ -46,13 +51,12 @@ public class JMSConfiguration {
     }
 
     @Bean
-    public JmsTemplate jmsTemplate(ConnectionFactory queueConnectionFactory) {
-        JmsTemplate jmsTemplate = new JmsTemplate(queueConnectionFactory);
-        return jmsTemplate;
+    JmsTemplate jmsTemplate(ConnectionFactory queueConnectionFactory) {
+        return new JmsTemplate(queueConnectionFactory);
     }
 
     @Bean
-    public DefaultJmsListenerContainerFactory topicConnectionFactory(ConnectionFactory connectionFactory) {
+    DefaultJmsListenerContainerFactory topicConnectionFactory(ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
         containerFactory.setConnectionFactory(connectionFactory);
         containerFactory.setPubSubDomain(true);
@@ -60,18 +64,10 @@ public class JMSConfiguration {
     }
 
     @Bean
-    public JmsTemplate jmsTemplateTopic(ConnectionFactory topicConnectionFactory) {
+    JmsTemplate jmsTemplateTopic(ConnectionFactory topicConnectionFactory) {
         JmsTemplate jmsTemplate = new JmsTemplate(topicConnectionFactory);
         jmsTemplate.setPubSubDomain(true);
         return jmsTemplate;
-    }
-
-    @Bean
-    Topic topic(JmsTemplate jmsTemplateTopic) throws JMSException {
-        return jmsTemplateTopic.getConnectionFactory()
-                .createConnection()
-                .createSession()
-                .createTopic("spring");
     }
 
 }
