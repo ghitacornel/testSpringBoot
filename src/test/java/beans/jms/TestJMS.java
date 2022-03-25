@@ -4,6 +4,7 @@ import beans.jms.consumer.JMSConsumer;
 import beans.jms.consumer.JMSConsumer1Topic;
 import beans.jms.consumer.JMSConsumer2Topic;
 import beans.jms.model.JMSMessage;
+import beans.jms.model.JMSMessageForTopic;
 import beans.jms.producer.JMSProducer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -44,8 +45,8 @@ public class TestJMS extends AbstractTestSpringBootContext {
         Assertions.assertNotNull(jmsConsumer2Topic.message);
         Assertions.assertEquals(new JMSMessage(1, "payload for queue 1"), jmsConsumer.messageFromQueue1);
         Assertions.assertEquals(new JMSMessage(2, "payload for queue 2"), jmsConsumer.messageFromQueue2);
-        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer1Topic.message);
-        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer2Topic.message);
+        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), jmsConsumer1Topic.message);
+        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), jmsConsumer2Topic.message);
     }
 
 }

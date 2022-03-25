@@ -1,6 +1,7 @@
 package beans.jms.producer;
 
 import beans.jms.model.JMSMessage;
+import beans.jms.model.JMSMessageForTopic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class JMSProducer {
     }
 
     public void createMessageAndSendItToTheQueueWithTopic() {
-        JMSMessage message = new JMSMessage(3, "payload for queue with topic");
+        JMSMessageForTopic message = new JMSMessageForTopic(3, "payload for queue with topic");
         jmsTemplateTopic.convertAndSend(topic, message);
     }
 

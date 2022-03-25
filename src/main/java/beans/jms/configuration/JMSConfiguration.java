@@ -47,8 +47,6 @@ public class JMSConfiguration {
         // This provides all boot's default to this factory, including the message converter
         configurer.configure(factory, connectionFactory);
         // You could still override some of Boot's default if necessary.
-        factory.setPubSubDomain(false);
-        factory.setSubscriptionDurable(false);
         return factory;
     }
 
