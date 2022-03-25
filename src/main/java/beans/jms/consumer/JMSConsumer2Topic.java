@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 public class JMSConsumer2Topic {
 
     // record last message for test purpose
-    public JMSMessage message2FromQueueWithTopic;
+    public JMSMessage message;
 
     @JmsListener(destination = JMSConfiguration.TOPIC_NAME, containerFactory = "topicConnectionFactory")
     public void listener2ForQueueWithTopic(JMSMessage message) {
-        this.message2FromQueueWithTopic = message;
+        this.message = message;
     }
 
 }

@@ -28,6 +28,9 @@ public class TestJMS extends AbstractTestSpringBootContext {
     public void testJMS() throws Exception {
         Assertions.assertNull(jmsConsumer.messageFromQueue1);
         Assertions.assertNull(jmsConsumer.messageFromQueue2);
+        Assertions.assertNull(jmsConsumer1Topic.message);
+        Assertions.assertNull(jmsConsumer2Topic.message);
+
         jmsProducer.createMessageAndSendItToTheQueue1();
         jmsProducer.createMessageAndSendItToTheQueue2();
         jmsProducer.createMessageAndSendItToTheQueueWithTopic();
@@ -37,12 +40,12 @@ public class TestJMS extends AbstractTestSpringBootContext {
 
         Assertions.assertNotNull(jmsConsumer.messageFromQueue1);
         Assertions.assertNotNull(jmsConsumer.messageFromQueue2);
-        Assertions.assertNotNull(jmsConsumer1Topic.message1FromQueueWithTopic);
-        Assertions.assertNotNull(jmsConsumer2Topic.message2FromQueueWithTopic);
+        Assertions.assertNotNull(jmsConsumer1Topic.message);
+        Assertions.assertNotNull(jmsConsumer2Topic.message);
         Assertions.assertEquals(new JMSMessage(1, "payload for queue 1"), jmsConsumer.messageFromQueue1);
         Assertions.assertEquals(new JMSMessage(2, "payload for queue 2"), jmsConsumer.messageFromQueue2);
-        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer1Topic.message1FromQueueWithTopic);
-        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer2Topic.message2FromQueueWithTopic);
+        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer1Topic.message);
+        Assertions.assertEquals(new JMSMessage(3, "payload for queue with topic"), jmsConsumer2Topic.message);
     }
 
 }
