@@ -1,9 +1,10 @@
-create table item(
-    id int primary key,
-    name varchar(50),
-    length int,
-    weight float,
+create table item
+(
+    id           int primary key,
+    name         varchar(50),
+    length       int,
+    weight       float,
     registration timestamp,
-    fake boolean,
-    state varchar(50)
+    fake         boolean,
+    state        varchar(50)
 );
