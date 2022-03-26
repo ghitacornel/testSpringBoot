@@ -33,7 +33,10 @@ public class JMSConfigurationTransactionalQueue {
 
     @Bean
     JmsTemplate jmsTemplateTransactionalQueue(ConnectionFactory transactionalQueueConnectionFactory) {
-        return new JmsTemplate(transactionalQueueConnectionFactory);
+        JmsTemplate jmsTemplate = new JmsTemplate(transactionalQueueConnectionFactory);
+        // make it "transactional"
+        jmsTemplate.setSessionTransacted(true);
+        return jmsTemplate;
     }
 
 }
