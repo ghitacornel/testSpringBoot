@@ -27,6 +27,8 @@ public class JMSConfigurationTransactionalQueue {
     JmsListenerContainerFactory<?> transactionalQueueConnectionFactory(ConnectionFactory connectionFactory,
                                                                        DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        // can use and inject a custom org.springframework.transaction.PlatformTransactionManager
+        // factory.setTransactionManager(platformTransactionManager);
         configurer.configure(factory, connectionFactory);
         return factory;
     }
