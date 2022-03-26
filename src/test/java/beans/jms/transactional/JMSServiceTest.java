@@ -6,6 +6,7 @@ import beans.jms.transactional.repository.JMSEntityRepository;
 import beans.jms.transactional.repository.entity.JMSEntity;
 import beans.jms.transactional.service.JMSService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import template.AbstractTestSpringBootContext;
@@ -23,10 +24,14 @@ public class JMSServiceTest extends AbstractTestSpringBootContext {
     @Autowired
     JMSConsumerTransactionalQueue consumer;
 
-    @Test
-    public void testTransactionOK() {
+    @BeforeEach
+    public void setUp() {
         repository.deleteAll();
         consumer.message = null;
+    }
+
+    @Test
+    public void testTransactionOK() {
 
         jmsService.triggerTransaction(true);
 
@@ -35,13 +40,10 @@ public class JMSServiceTest extends AbstractTestSpringBootContext {
         Assertions.assertThat(all.get(0)).isEqualTo(new JMSEntity(1, "message"));
 
         Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue"));
-
     }
 
     @Test
     public void testTransactionFail() {
-        repository.deleteAll();
-        consumer.message = null;
 
         boolean exceptionRaised = false;
         try {
@@ -56,6 +58,5 @@ public class JMSServiceTest extends AbstractTestSpringBootContext {
         Assertions.assertThat(all.isEmpty()).isTrue();
 
         Assertions.assertThat(consumer.message).isNull();
-
     }
 }
