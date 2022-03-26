@@ -34,9 +34,7 @@ public class JMSConfigurationTopic {
 
     @Bean
     JmsTemplate jmsTemplateTopic(ConnectionFactory topicConnectionFactory) {
-        JmsTemplate jmsTemplate = new JmsTemplate(topicConnectionFactory);
-        jmsTemplate.setPubSubDomain(true);
-        return jmsTemplate;
+        return new JmsTemplate(topicConnectionFactory);
     }
 
 }
