@@ -1,5 +1,6 @@
 package beans.jms.transactional.service;
 
+import beans.jms.transactional.producer.JMSProducerNonTransactionalQueue;
 import beans.jms.transactional.producer.JMSProducerTransactionalQueue;
 import beans.jms.transactional.repository.JMSEntityRepository;
 import beans.jms.transactional.repository.entity.JMSEntity;
@@ -12,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class JMSService {
 
     private final JMSEntityRepository repository;
-    private final JMSProducerTransactionalQueue producer;
+    private final JMSProducerTransactionalQueue producerTransactional;
+    private final JMSProducerNonTransactionalQueue producerNonTransactional;
 
     @Transactional
     public void triggerTransaction(boolean ok) {
@@ -20,7 +22,17 @@ public class JMSService {
         jmsEntity.setId(1);
         jmsEntity.setMessage("message");
         repository.save(jmsEntity);
-        producer.createMessageAndSendItToTheTransactionalQueue();
+        producerTransactional.createMessageAndSendItToTheTransactionalQueue();
+        if (!ok) throw new RuntimeException("controlled failure");
+    }
+
+    @Transactional
+    public void triggerTransactionNonTransactional(boolean ok) {
+        JMSEntity jmsEntity = new JMSEntity();
+        jmsEntity.setId(1);
+        jmsEntity.setMessage("message");
+        repository.save(jmsEntity);
+        producerNonTransactional.createMessageAndSendItToTheTransactionalQueue();
         if (!ok) throw new RuntimeException("controlled failure");
     }
 

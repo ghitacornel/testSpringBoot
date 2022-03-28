@@ -41,4 +41,12 @@ public class JMSConfigurationTransactionalQueue {
         return jmsTemplate;
     }
 
+    @Bean
+    JmsTemplate jmsTemplateNonTransactionalQueue(ConnectionFactory transactionalQueueConnectionFactory) {
+        JmsTemplate jmsTemplate = new JmsTemplate(transactionalQueueConnectionFactory);
+        // make it "non-transactional", which is by default
+        jmsTemplate.setSessionTransacted(false);
+        return jmsTemplate;
+    }
+
 }

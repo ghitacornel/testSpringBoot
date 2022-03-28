@@ -59,4 +59,34 @@ public class JMSServiceTest extends AbstractTestSpringBootContext {
 
         Assertions.assertThat(consumer.message).isNull();
     }
+
+    @Test
+    public void testTransactionNotRolledBackAndMessageSent() {
+
+        jmsService.triggerTransactionNonTransactional(true);
+
+        List<JMSEntity> all = repository.findAll();
+        Assertions.assertThat(all.size()).isEqualTo(1);
+        Assertions.assertThat(all.get(0)).isEqualTo(new JMSEntity(1, "message"));
+
+        Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue non transactional"));
+    }
+
+    @Test
+    public void testTransactionRolledBackButMessageStillSent() {
+
+        boolean exceptionRaised = false;
+        try {
+            jmsService.triggerTransactionNonTransactional(false);
+        } catch (Exception e) {
+            exceptionRaised = true;
+            Assertions.assertThat(e.getMessage()).isEqualTo("controlled failure");
+        }
+        Assertions.assertThat(exceptionRaised).isTrue();
+
+        List<JMSEntity> all = repository.findAll();
+        Assertions.assertThat(all.isEmpty()).isTrue();
+
+        Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue non transactional"));
+    }
 }
