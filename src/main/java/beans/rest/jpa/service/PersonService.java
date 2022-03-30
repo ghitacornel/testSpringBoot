@@ -18,16 +18,4 @@ public interface PersonService {
 
     void deleteAll();
 
-    void validate2TransactionsArePresent();
-
-
-    void validate1TransactionIsPresent();
-
-
-    void firstMethodTransactionalFailsAtTheEndSecondMethodTHISInvoked();
-
-
-    void methodWithTransactionRequiresNew();
-
-    void firstMethodTransactionalFailsAtTheEndSecondMethodSELFInvoked();
 }
