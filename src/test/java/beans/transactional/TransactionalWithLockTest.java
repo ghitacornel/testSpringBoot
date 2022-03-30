@@ -45,7 +45,9 @@ public class TransactionalWithLockTest extends AbstractTestSpringBootContext {
         executor.submit(runnable1);
         executor.submit(runnable2);
         executor.submit(runnable3);
-        executor.awaitTermination(10, TimeUnit.SECONDS);
+        executor.shutdown();
+        boolean awaitTermination = executor.awaitTermination(1, TimeUnit.MINUTES);
+        if (!awaitTermination) throw new RuntimeException("not all threads finished the job");
         List<TransactionalEntity> all = repository.findAll();
         Assertions.assertThat(all.size()).isEqualTo(1);
 
