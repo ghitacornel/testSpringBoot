@@ -3,6 +3,7 @@ package beans.transactional.controller;
 import beans.transactional.service.TransactionalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +37,10 @@ public class TransactionalController {
     @GetMapping("validateTransactionRequiresNewIsHonoredWhenUsingSELF")
     public void validateTransactionRequiresNewIsHonoredWhenUsingSELF() {
         service.validateTransactionRequiresNewIsHonoredWhenUsingSELF();
+    }
+
+    @GetMapping("validateModifyWithLock/{id}")
+    public void validateModifyWithLock(@PathVariable("id") Integer id) {
+        service.validateModifyWithLock(id);
     }
 }

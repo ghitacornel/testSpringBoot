@@ -56,4 +56,17 @@ public class TransactionalService {
         repository.save(new TransactionalEntity(2, "data2"));
     }
 
+    @Transactional
+    public void validateModifyWithLock(Integer id) {
+        TransactionalEntity entity = repository.getByIdWithLock(id);
+        entity.setData(entity.getData() + " " + id);
+
+        // wait in order to simulate a long-running business flow
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("error waiting ", e);
+        }
+    }
+
 }
