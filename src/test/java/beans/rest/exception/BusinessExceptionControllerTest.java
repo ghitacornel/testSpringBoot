@@ -25,6 +25,6 @@ public class BusinessExceptionControllerTest extends AbstractTestSpringBootConte
     public void executeAndRaiseBusinessExceptionMarked() throws Exception {
         mvc.perform(get("/exceptions/executeAndRaiseBusinessExceptionMarked"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("custom business exception message"));
+                .andExpect(content().string("custom business exception message marked"));
     }
 }

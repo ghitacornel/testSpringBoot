@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CustomBusinessExceptionMarked extends RuntimeException {
 
     public CustomBusinessExceptionMarked() {
-        super("custom business exception message");
+        super("custom business exception message marked");
     }
 }
