@@ -16,4 +16,10 @@ public class BusinessExceptionController {
     public void executeAndRaiseBusinessException() {
         service.executeAndRaiseBusinessException();
     }
+
+    @GetMapping("executeAndRaiseBusinessExceptionMarked")
+    public void executeAndRaiseBusinessExceptionMarked() {
+        service.executeAndRaiseBusinessExceptionMarked();
+    }
+
 }
