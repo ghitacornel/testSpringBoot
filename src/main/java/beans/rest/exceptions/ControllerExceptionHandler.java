@@ -16,8 +16,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @Slf4j
 @RestControllerAdvice
@@ -36,7 +35,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CustomBusinessException.class)
     public ResponseEntity<Object> handleCustomBusinessException(CustomBusinessException e) {
-        return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(e.getMessage(), BAD_REQUEST);
     }
 
     @Value
