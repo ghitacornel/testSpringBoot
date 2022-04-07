@@ -1,6 +1,7 @@
 package beans.pagination;
 
 import beans.Utils;
+import beans.pagination.model.PageableDto;
 import beans.pagination.model.SortDto;
 import beans.pagination.repository.PageableEntityRepository;
 import beans.pagination.repository.entity.PageableEntity;
@@ -34,8 +35,7 @@ public class TestPagination {
     public void before() {
         repository.deleteAll();
         for (int i = 0; i < 100; i++) {
-            PageableEntity pageableEntity = new PageableEntity();
-            pageableEntity.setData("dummy data " + i);
+            PageableEntity pageableEntity = new PageableEntity(i, "dummy data " + i);
             repository.save(pageableEntity);
         }
     }
@@ -57,7 +57,17 @@ public class TestPagination {
                         .content(MAPPER.writeValueAsString(new SortDto("data", "desc"))))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(content));
+                .andExpect(content().json(content));
     }
 
+    @Test
+    public void testPage() throws Exception {
+        String content = Utils.readFile("output/TestPagination_testPage.json");
+        mvc.perform(post("/pageable/page")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(MAPPER.writeValueAsString(new PageableDto(2, 5, "data", "desc"))))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(content));
+    }
 }
