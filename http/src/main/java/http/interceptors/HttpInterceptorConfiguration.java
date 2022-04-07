@@ -1,15 +1,15 @@
-package beans.rest.interceptors;
+package http.interceptors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Component
-public class InterceptorConfig implements WebMvcConfigurer {
+@RequiredArgsConstructor
+public class HttpInterceptorConfiguration implements WebMvcConfigurer {
 
-    @Autowired
-    HttpInterceptor interceptor;
+    private final HttpInterceptor interceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
