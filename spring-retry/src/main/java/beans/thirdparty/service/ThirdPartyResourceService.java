@@ -1,14 +1,14 @@
-package beans.thirdparty;
+package beans.thirdparty.service;
 
-import beans.retry.exceptions.RecoverableResourceException;
-import beans.retry.exceptions.UnrecoverableResourceException;
+import beans.thirdparty.exceptions.RecoverableResourceException;
+import beans.thirdparty.exceptions.UnrecoverableResourceException;
 import org.springframework.stereotype.Service;
 
 /**
  * provides access to an unstable resource
  */
 @Service
-public class ThirdPartyResource {
+public class ThirdPartyResourceService {
 
     public String stableResource() {
         return "stable resource";

@@ -1,7 +1,7 @@
 package beans.retry.configuration;
 
-import beans.retry.exceptions.RecoverableResourceException;
-import beans.retry.exceptions.UnrecoverableResourceException;
+import beans.thirdparty.exceptions.RecoverableResourceException;
+import beans.thirdparty.exceptions.UnrecoverableResourceException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
