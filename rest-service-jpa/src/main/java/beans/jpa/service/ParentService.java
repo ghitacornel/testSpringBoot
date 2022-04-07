@@ -4,20 +4,17 @@ import beans.jpa.model.Child;
 import beans.jpa.model.Parent;
 import beans.jpa.repository.ChildRepository;
 import beans.jpa.repository.ParentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ParentService {
 
-    final ParentRepository parentRepository;
-    final ChildRepository childRepository;
-
-    public ParentService(ParentRepository parentRepository, ChildRepository childRepository) {
-        this.parentRepository = parentRepository;
-        this.childRepository = childRepository;
-    }
+    private final ParentRepository parentRepository;
+    private final ChildRepository childRepository;
 
     public List<Parent> findAll() {
         return parentRepository.findAll();
