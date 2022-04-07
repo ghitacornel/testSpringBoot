@@ -18,6 +18,7 @@
         <module>rest-clients</module>
         <module>spring-retry</module>
         <module>rest-service-jdbc</module>
+        <module>aop</module>
     </modules>
 
     <properties>
