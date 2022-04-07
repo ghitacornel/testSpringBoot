@@ -1,5 +1,6 @@
 package beans.jms.transactional;
 
+import beans.jms.AbstractTestSpringBootContext;
 import beans.jms.transactional.consumer.JMSConsumerTransactionalQueue;
 import beans.jms.transactional.model.JMSMessageTransactionalQueue;
 import beans.jms.transactional.repository.JMSEntityRepository;
@@ -9,7 +10,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import template.AbstractTestSpringBootContext;
 
 import java.util.List;
 

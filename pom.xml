@@ -13,6 +13,7 @@
         <module>security</module>
         <module>http</module>
         <module>transactional</module>
+        <module>jms</module>
     </modules>
 
     <properties>
