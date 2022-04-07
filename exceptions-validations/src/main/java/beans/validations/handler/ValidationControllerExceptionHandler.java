@@ -1,6 +1,7 @@
 package beans.validations.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class ValidationControllerExceptionHandler extends ResponseEntityExceptio
     }
 
     /**
-     * override how validation constraints in SERVICE layer are handled
+     * override how validation constraints are handled
      */
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
@@ -53,6 +54,20 @@ public class ValidationControllerExceptionHandler extends ResponseEntityExceptio
                         .map(fieldError -> new FieldErrorJson(fieldError.getPropertyPath().toString(), fieldError.getMessage(), fieldError.getMessageTemplate()))
                         .sorted()// keep them ordered for predictability
                         .collect(Collectors.toList()),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * define custom hibernate exception handling
+     */
+    @ExceptionHandler(IdentifierGenerationException.class)
+    public ResponseEntity<Object> handleIdentifierGenerationException(IdentifierGenerationException e) {
+
+        // can log errors here and not in the application
+        log.error("validation error", e);
+
+        return new ResponseEntity<>(
+                new FieldErrorJson("@Id", e.getMessage(), ""),
                 HttpStatus.BAD_REQUEST);
     }
 

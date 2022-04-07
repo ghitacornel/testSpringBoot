@@ -29,4 +29,9 @@ public class ValidationController {
         return service.invoke(model);
     }
 
+    // model validated in the Repository layer
+    @PutMapping(value = "repository")
+    public ValidationModel invokeRepository(@RequestBody ValidationModel model) {
+        return service.invokeRepository(model);
+    }
 }
