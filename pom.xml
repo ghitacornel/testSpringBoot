@@ -9,6 +9,7 @@
     <modules>
         <module>yaml</module>
         <module>all</module>
+        <module>cache</module>
     </modules>
 
     <properties>

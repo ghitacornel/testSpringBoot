@@ -1,4 +1,4 @@
-package beans.cache;
+package cache.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

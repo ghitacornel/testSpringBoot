@@ -1,4 +1,4 @@
-package beans.cache;
+package cache.simple;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-import static beans.cache.CacheConfiguration.CACHE_NAME;
+import static cache.simple.CacheConfiguration.CACHE_NAME;
 
 @Service
 @CacheConfig(cacheNames = CACHE_NAME)

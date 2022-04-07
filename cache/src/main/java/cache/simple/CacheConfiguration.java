@@ -1,4 +1,4 @@
-package beans.cache;
+package cache.simple;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
@@ -24,7 +24,7 @@ public class CacheConfiguration {
     }
 
     @Bean
-    public CacheManager cacheManager(Caffeine caffeine) {
+    public CacheManager cacheManager(Caffeine<Object, Object> caffeine) {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCaffeine(caffeine);
         return caffeineCacheManager;

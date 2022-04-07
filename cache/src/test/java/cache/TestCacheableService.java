@@ -1,11 +1,14 @@
-package beans.cache;
+package cache;
 
+import cache.simple.CacheableModel;
+import cache.simple.CacheableService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import template.AbstractTestSpringBootContext;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class TestCacheableService extends AbstractTestSpringBootContext {
+@SpringBootTest
+public class TestCacheableService {
 
     @Autowired
     CacheableService cacheableService;
