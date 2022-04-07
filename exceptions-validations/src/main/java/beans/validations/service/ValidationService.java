@@ -1,6 +1,6 @@
-package beans.rest.validation.service;
+package beans.validations.service;
 
-import beans.rest.validation.model.ValidationModel;
+import beans.validations.model.ValidationModel;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

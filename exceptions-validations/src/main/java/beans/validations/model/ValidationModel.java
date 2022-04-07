@@ -1,4 +1,4 @@
-package beans.rest.validation.model;
+package beans.validations.model;
 
 import lombok.Data;
 

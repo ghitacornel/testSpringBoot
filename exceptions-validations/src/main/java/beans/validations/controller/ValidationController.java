@@ -1,7 +1,7 @@
-package beans.rest.validation.controller;
+package beans.validations.controller;
 
-import beans.rest.validation.model.ValidationModel;
-import beans.rest.validation.service.ValidationService;
+import beans.validations.model.ValidationModel;
+import beans.validations.service.ValidationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

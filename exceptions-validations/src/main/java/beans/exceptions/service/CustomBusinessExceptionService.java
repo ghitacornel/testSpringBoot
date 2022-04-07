@@ -1,11 +1,11 @@
-package beans.rest.exception;
+package beans.exceptions.service;
 
-import beans.rest.exceptions.CustomBusinessException;
-import beans.rest.exceptions.CustomBusinessExceptionMarked;
+import beans.exceptions.exception.CustomBusinessException;
+import beans.exceptions.exception.CustomBusinessExceptionMarked;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BusinessExceptionService {
+public class CustomBusinessExceptionService {
 
     public void executeAndRaiseBusinessException() {
         throw new CustomBusinessException();

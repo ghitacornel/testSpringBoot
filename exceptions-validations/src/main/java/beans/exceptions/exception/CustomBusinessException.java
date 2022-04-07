@@ -1,4 +1,4 @@
-package beans.rest.exceptions;
+package beans.exceptions.exception;
 
 public class CustomBusinessException extends RuntimeException {
 

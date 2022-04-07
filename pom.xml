@@ -20,6 +20,7 @@
         <module>rest-service-jdbc</module>
         <module>aop</module>
         <module>rest-versioning</module>
+        <module>exceptions-validations</module>
     </modules>
 
     <properties>
