@@ -16,6 +16,7 @@
         <module>jms</module>
         <module>freemarker</module>
         <module>rest-clients</module>
+        <module>spring-retry</module>
     </modules>
 
     <properties>

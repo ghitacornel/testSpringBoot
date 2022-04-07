@@ -1,4 +1,4 @@
-package beans.rest.retry.entity;
+package beans.retry.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

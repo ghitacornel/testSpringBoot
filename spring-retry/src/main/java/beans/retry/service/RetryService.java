@@ -1,7 +1,7 @@
-package beans.rest.retry.service;
+package beans.retry.service;
 
-import beans.rest.retry.exceptions.RecoverableResourceException;
-import beans.rest.retry.thirdparty.ThirdPartyResource;
+import beans.retry.exceptions.RecoverableResourceException;
+import beans.retry.thirdparty.ThirdPartyResource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.retry.annotation.Backoff;

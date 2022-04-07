@@ -1,8 +1,8 @@
-package beans.rest.retry.controller;
+package beans.retry.controller;
 
-import beans.rest.retry.entity.RetryEntity;
-import beans.rest.retry.service.RetryService;
-import beans.rest.retry.service.RetryServiceTransactional;
+import beans.retry.entity.RetryEntity;
+import beans.retry.service.RetryService;
+import beans.retry.service.RetryServiceTransactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

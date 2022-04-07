@@ -1,7 +1,7 @@
-package beans.rest.retry.thirdparty;
+package beans.retry.thirdparty;
 
-import beans.rest.retry.exceptions.RecoverableResourceException;
-import beans.rest.retry.exceptions.UnrecoverableResourceException;
+import beans.retry.exceptions.RecoverableResourceException;
+import beans.retry.exceptions.UnrecoverableResourceException;
 import org.springframework.stereotype.Service;
 
 /**
