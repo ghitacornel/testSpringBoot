@@ -1,14 +1,15 @@
 package beans.jms.queue;
 
-import beans.jms.AbstractTestSpringBootContext;
 import beans.jms.queue.consumer.JMSConsumerQueue;
 import beans.jms.queue.model.JMSMessageQueue;
 import beans.jms.queue.producer.JMSProducerQueue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class TestJMSQueue extends AbstractTestSpringBootContext {
+@SpringBootTest
+public class TestJMSQueue {
 
     @Autowired
     JMSProducerQueue jmsProducer;
