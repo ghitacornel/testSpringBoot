@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+// used for testing methods provided out of the box by Spring Data Repository
 @Entity
 @Getter
 @Setter
