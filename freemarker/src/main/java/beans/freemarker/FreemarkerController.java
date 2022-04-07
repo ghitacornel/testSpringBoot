@@ -1,4 +1,4 @@
-package beans.mvc.freemarker;
+package beans.freemarker;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
