@@ -1,7 +1,7 @@
-package beans.http.filters.configuration;
+package http.filters.configuration;
 
-import beans.http.filters.CustomFilter;
-import beans.http.filters.CustomFilterPOST;
+import http.filters.CustomFilter;
+import http.filters.CustomFilterPOST;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

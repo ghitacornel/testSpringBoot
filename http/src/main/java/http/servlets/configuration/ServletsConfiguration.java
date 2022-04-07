@@ -1,8 +1,8 @@
-package beans.http.servlets.configuration;
+package http.servlets.configuration;
 
-import beans.http.servlets.CustomServlet;
-import beans.http.servlets.CustomServletGET;
-import beans.http.servlets.CustomServletPOST;
+import http.servlets.CustomServlet;
+import http.servlets.CustomServletGET;
+import http.servlets.CustomServletPOST;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
