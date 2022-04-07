@@ -21,12 +21,21 @@ public class SecuredControllerTest {
 
     @Test
     public void securedResource() throws Exception {
-        mvc.perform(get("/secured").with(user("admin").password("admin").roles("USER", "ADMIN")))
+        mvc.perform(get("/secured").with(user("user").password("password")))
+                .andExpect(status().isOk())
+                .andExpect(content().string("secured answer"));
+
+        mvc.perform(get("/secured").with(user("admin").password("admin")))
                 .andExpect(status().isOk())
                 .andExpect(content().string("secured answer"));
 
         mvc.perform(get("/secured").with(anonymous()))
                 .andExpect(status().isUnauthorized());
+
+        // this one still works ???
+        mvc.perform(get("/secured").with(user("xxx").password("yyy").roles("zzz")))
+                .andExpect(status().isOk())
+                .andExpect(content().string("secured answer"));
     }
 
 }
