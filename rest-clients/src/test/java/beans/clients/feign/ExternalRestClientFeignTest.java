@@ -1,9 +1,9 @@
-package beans.rest.clients.feign;
+package beans.clients.feign;
 
+import beans.clients.AbstractTestSpringBootContext;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import template.AbstractTestSpringBootContext;
 
 public class ExternalRestClientFeignTest extends AbstractTestSpringBootContext {
 

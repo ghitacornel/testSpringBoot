@@ -1,4 +1,4 @@
-package beans.rest.clients.external;
+package beans.external;
 
 import org.springframework.web.bind.annotation.*;
 

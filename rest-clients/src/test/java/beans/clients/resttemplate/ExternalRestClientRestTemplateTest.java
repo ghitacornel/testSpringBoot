@@ -1,9 +1,9 @@
-package beans.rest.clients.resttemplate;
+package beans.clients.resttemplate;
 
+import beans.clients.AbstractTestSpringBootContext;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import template.AbstractTestSpringBootContext;
 
 public class ExternalRestClientRestTemplateTest extends AbstractTestSpringBootContext {
 

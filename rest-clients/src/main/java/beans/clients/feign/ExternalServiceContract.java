@@ -1,7 +1,7 @@
-package beans.rest.clients.feign;
+package beans.clients.feign;
 
-import beans.rest.clients.external.ExternalRestServiceInputModel;
-import beans.rest.clients.external.ExternalRestServiceOutputModel;
+import beans.external.ExternalRestServiceInputModel;
+import beans.external.ExternalRestServiceOutputModel;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;

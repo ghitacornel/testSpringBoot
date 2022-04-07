@@ -1,6 +1,6 @@
-package beans.rest.clients.feign;
+package beans.clients.feign;
 
-import beans.rest.clients.external.ExternalRestServiceInputModel;
+import beans.external.ExternalRestServiceInputModel;
 import feign.Feign;
 import feign.Logger;
 import feign.gson.GsonDecoder;

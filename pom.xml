@@ -15,6 +15,7 @@
         <module>transactional</module>
         <module>jms</module>
         <module>freemarker</module>
+        <module>rest-clients</module>
     </modules>
 
     <properties>
