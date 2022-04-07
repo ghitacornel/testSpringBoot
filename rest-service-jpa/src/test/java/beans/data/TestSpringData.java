@@ -1,7 +1,7 @@
 package beans.data;
 
-import beans.jpa.model.Item;
-import beans.jpa.repository.ItemRepository;
+import beans.data.model.Item;
+import beans.data.repository.ItemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

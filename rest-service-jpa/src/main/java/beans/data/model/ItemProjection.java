@@ -1,4 +1,4 @@
-package beans.jpa.model;
+package beans.data.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
