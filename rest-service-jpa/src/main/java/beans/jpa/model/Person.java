@@ -1,10 +1,7 @@
 package beans.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +10,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "Person.findByPassword", query = "select t from Person t where t.password = :password")
-@Data
-@EqualsAndHashCode(of = "id")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
