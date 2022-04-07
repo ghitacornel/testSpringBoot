@@ -62,14 +62,18 @@ public class TestRestJPA {
 
     @Test
     public void testFindByIdWithNoResult() throws Exception {
-        mvc.perform(get("/person/{id}", "-1")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "-1"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("No value present"));
     }
 
     @Test
     public void testReadCreateReadUpdateDelete() throws Exception {
 
         // read
-        mvc.perform(get("/person/{id}", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "3"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("No value present"));
 
         // create
         {
@@ -113,7 +117,9 @@ public class TestRestJPA {
         mvc.perform(delete("/person/{id}", "3")).andExpect(status().isOk());
 
         // read
-        mvc.perform(get("/person/{id}", "3")).andExpect(status().isNotFound());
+        mvc.perform(get("/person/{id}", "3"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("No value present"));
 
     }
 
