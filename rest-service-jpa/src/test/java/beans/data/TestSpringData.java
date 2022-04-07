@@ -1,21 +1,22 @@
 package beans.data;
 
-import beans.rest.jpa.model.Item;
-import beans.rest.jpa.repository.ItemRepository;
+import beans.jpa.model.Item;
+import beans.jpa.repository.ItemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-import template.AbstractTestSpringBootContext;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@SpringBootTest
 @Rollback
-public class TestSpringData extends AbstractTestSpringBootContext {
+public class TestSpringData {
 
     @Autowired
     ItemRepository repository;
