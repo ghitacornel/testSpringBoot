@@ -1,4 +1,4 @@
-package beans.retry.thirdparty;
+package beans.thirdparty;
 
 import beans.retry.exceptions.RecoverableResourceException;
 import beans.retry.exceptions.UnrecoverableResourceException;

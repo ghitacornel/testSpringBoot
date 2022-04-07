@@ -1,6 +1,6 @@
 package beans.retry.controller;
 
-import beans.retry.entity.RetryEntity;
+import beans.retry.repository.entity.RetryEntity;
 import beans.retry.service.RetryService;
 import beans.retry.service.RetryServiceTransactional;
 import lombok.RequiredArgsConstructor;

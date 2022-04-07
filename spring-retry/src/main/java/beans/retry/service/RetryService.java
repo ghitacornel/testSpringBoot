@@ -1,7 +1,7 @@
 package beans.retry.service;
 
 import beans.retry.exceptions.RecoverableResourceException;
-import beans.retry.thirdparty.ThirdPartyResource;
+import beans.thirdparty.ThirdPartyResource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.retry.annotation.Backoff;
@@ -20,7 +20,7 @@ public class RetryService {
         return thirdPartyResource.stableResource();
     }
 
-    @Retryable(value = RecoverableResourceException.class, backoff = @Backoff(delay = 100))
+    @Retryable(value = RecoverableResourceException.class, backoff = @Backoff(delay = 100), maxAttempts = 10)
     public String resourceFailBasedOnParameter(boolean parameter) {
         log.info("retrying ...");
         return thirdPartyResource.resourceFailBasedOnParameterWithRecoverableError(parameter);
@@ -31,7 +31,7 @@ public class RetryService {
         return e.getMessage() + " for now, returning default for parameter=" + parameter;
     }
 
-    @Retryable
+    @Retryable(backoff = @Backoff(delay = 100), maxAttempts = 10)
     public String resourceFailWithNoBackup() {
         log.info("retrying ...");
         return thirdPartyResource.resourceFailBasedOnParameterWithUnrecoverableError(true);

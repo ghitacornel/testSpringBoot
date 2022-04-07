@@ -1,4 +1,4 @@
-package beans.retry.entity;
+package beans.retry.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name = "RETRY_ENTITY")
-@Data
-@EqualsAndHashCode(of = "id")
+@Data// for test purpose
 @NoArgsConstructor
 @AllArgsConstructor
 public class RetryEntity {

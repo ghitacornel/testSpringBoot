@@ -1,6 +1,6 @@
 package beans.retry.service;
 
-import beans.retry.entity.RetryEntity;
+import beans.retry.repository.entity.RetryEntity;
 import beans.retry.repository.RetryEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
