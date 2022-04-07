@@ -36,6 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
         // this one disables all security
-        http.anonymous().and().httpBasic().and().mvcMatcher("*").authorizeRequests().anyRequest().permitAll();
+        // http.anonymous().and().httpBasic().and().mvcMatcher("*").authorizeRequests().anyRequest().permitAll();
     }
 }
