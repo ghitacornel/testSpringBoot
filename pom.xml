@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>yaml</module>
-        <module>all</module>
+        <module>metrics</module>
         <module>cache</module>
         <module>security</module>
         <module>http</module>
