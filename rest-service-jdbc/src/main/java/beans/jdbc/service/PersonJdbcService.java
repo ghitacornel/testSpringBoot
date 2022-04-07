@@ -1,14 +1,11 @@
-package beans.rest.jdbc.service;
+package beans.jdbc.service;
 
-import beans.aop.LogExecution;
-import beans.aop.LogExecutionTime;
-import beans.rest.jdbc.model.PersonJdbc;
-import beans.rest.jdbc.repository.PersonJdbcRepository;
+import beans.jdbc.model.PersonJdbc;
+import beans.jdbc.repository.PersonJdbcRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@LogExecution
 @Service
 public class PersonJdbcService {
 
@@ -18,7 +15,6 @@ public class PersonJdbcService {
         this.repository = repository;
     }
 
-    @LogExecutionTime
     public List<PersonJdbc> findAll() {
         return repository.findAll();
     }

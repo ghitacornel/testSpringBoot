@@ -1,25 +1,19 @@
-package beans.rest.jdbc.controller;
+package beans.jdbc.controller;
 
-import beans.aop.LogExecution;
-import beans.aop.LogExecutionTime;
-import beans.rest.jdbc.model.PersonJdbc;
-import beans.rest.jdbc.service.PersonJdbcService;
+import beans.jdbc.model.PersonJdbc;
+import beans.jdbc.service.PersonJdbcService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@LogExecution
 @RestController
 @RequestMapping(value = "user")
+@RequiredArgsConstructor
 public class PersonJdbcController {
 
-    final PersonJdbcService service;
+    private final PersonJdbcService service;
 
-    public PersonJdbcController(PersonJdbcService service) {
-        this.service = service;
-    }
-
-    @LogExecutionTime
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<PersonJdbc> findAll() {
         return service.findAll();

@@ -1,4 +1,4 @@
-package beans.rest.jdbc.model;
+package beans.jdbc.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

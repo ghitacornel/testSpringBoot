@@ -17,6 +17,7 @@
         <module>freemarker</module>
         <module>rest-clients</module>
         <module>spring-retry</module>
+        <module>rest-service-jdbc</module>
     </modules>
 
     <properties>

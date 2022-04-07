@@ -1,4 +1,4 @@
-package beans.rest.jdbc.repository;
+package beans.jdbc.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

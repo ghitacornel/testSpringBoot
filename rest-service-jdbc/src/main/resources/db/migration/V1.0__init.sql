@@ -1,4 +1,4 @@
-create table person
+create table person_jdbc
 (
     id   int primary key,
     name varchar(50),

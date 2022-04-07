@@ -1,18 +1,15 @@
-package beans.rest.jdbc.repository;
+package beans.jdbc.repository;
 
-import beans.aop.LogExecution;
-import beans.aop.LogExecutionTime;
-import beans.rest.jdbc.model.PersonJdbc;
+import beans.jdbc.model.PersonJdbc;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@LogExecution
 @Repository
 public class PersonJdbcRepository extends JdbcRepository<PersonJdbc, Integer> {
 
-    @LogExecutionTime
+
     @Override
     public List<PersonJdbc> findAll() {
         return jdbcTemplate.query("SELECT * FROM person_jdbc", new BeanPropertyRowMapper<>(PersonJdbc.class));
