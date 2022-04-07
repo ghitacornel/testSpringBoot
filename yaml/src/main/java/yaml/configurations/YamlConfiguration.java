@@ -1,4 +1,4 @@
-package beans.configurations;
+package yaml.configurations;
 
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
