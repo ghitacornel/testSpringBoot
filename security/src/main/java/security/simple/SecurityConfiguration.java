@@ -1,4 +1,4 @@
-package beans.security;
+package security.simple;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

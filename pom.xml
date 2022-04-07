@@ -10,6 +10,7 @@
         <module>yaml</module>
         <module>all</module>
         <module>cache</module>
+        <module>security</module>
     </modules>
 
     <properties>
