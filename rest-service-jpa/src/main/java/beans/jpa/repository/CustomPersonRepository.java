@@ -1,6 +1,6 @@
-package beans.rest.jpa.repository;
+package beans.jpa.repository;
 
-import beans.rest.jpa.model.Person;
+import beans.jpa.model.Person;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 

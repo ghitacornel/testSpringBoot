@@ -1,4 +1,4 @@
-package beans.rest.jpa.model;
+package beans.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

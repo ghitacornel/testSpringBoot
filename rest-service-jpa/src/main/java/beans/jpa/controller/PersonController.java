@@ -1,7 +1,7 @@
-package beans.rest.jpa.controller;
+package beans.jpa.controller;
 
-import beans.rest.jpa.model.Person;
-import beans.rest.jpa.service.PersonService;
+import beans.jpa.model.Person;
+import beans.jpa.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

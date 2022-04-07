@@ -1,8 +1,8 @@
-package beans.rest.jpa.service;
+package beans.jpa.service;
 
-import beans.rest.jpa.model.Person;
-import beans.rest.jpa.repository.CustomPersonRepository;
-import beans.rest.jpa.repository.PersonRepository;
+import beans.jpa.model.Person;
+import beans.jpa.repository.CustomPersonRepository;
+import beans.jpa.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

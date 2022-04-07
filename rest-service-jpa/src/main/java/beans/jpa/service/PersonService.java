@@ -1,6 +1,6 @@
-package beans.rest.jpa.service;
+package beans.jpa.service;
 
-import beans.rest.jpa.model.Person;
+import beans.jpa.model.Person;
 
 import java.util.List;
 

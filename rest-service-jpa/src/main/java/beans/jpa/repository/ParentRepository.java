@@ -1,6 +1,6 @@
-package beans.rest.jpa.repository;
+package beans.jpa.repository;
 
-import beans.rest.jpa.model.Parent;
+import beans.jpa.model.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ParentRepository extends JpaRepository<Parent, Integer> {

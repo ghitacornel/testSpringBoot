@@ -1,9 +1,9 @@
-package beans.rest.jpa.service;
+package beans.jpa.service;
 
-import beans.rest.jpa.model.Child;
-import beans.rest.jpa.model.Parent;
-import beans.rest.jpa.repository.ChildRepository;
-import beans.rest.jpa.repository.ParentRepository;
+import beans.jpa.model.Child;
+import beans.jpa.model.Parent;
+import beans.jpa.repository.ChildRepository;
+import beans.jpa.repository.ParentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

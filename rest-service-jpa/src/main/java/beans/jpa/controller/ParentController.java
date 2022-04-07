@@ -1,7 +1,7 @@
-package beans.rest.jpa.controller;
+package beans.jpa.controller;
 
-import beans.rest.jpa.model.Parent;
-import beans.rest.jpa.service.ParentService;
+import beans.jpa.model.Parent;
+import beans.jpa.service.ParentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

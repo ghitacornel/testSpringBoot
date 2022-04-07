@@ -1,21 +1,23 @@
-package beans.rest.jpa;
+package beans.jpa;
 
-import beans.rest.jpa.model.Person;
-import beans.rest.jpa.repository.PersonRepository;
-import org.junit.jupiter.api.AfterEach;
+import beans.Utils;
+import beans.jpa.model.Person;
+import beans.jpa.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import template.AbstractTestSpringBootContext;
-import template.Utils;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class TestRestJPA extends AbstractTestSpringBootContext {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@AutoConfigureMockMvc
+public class TestRestJPA {
 
     @Autowired
     MockMvc mvc;
@@ -25,42 +27,16 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
 
     @BeforeEach
     public void before() {
-
-        // add data for this tests only
-        Person person = new Person();
-        person.setId(2);
-        person.setName("gheorghe");
-        person.setPassword("db pass gheorghe");
-        personRepository.save(person);
-        personRepository.flush();
-
-//        final Runnable r = () -> {
-//            System.out.println("LAUNCHING HSQL DBMANAGERSWING");
-//            final String[] args = { "--url", "jdbc:hsqldb:mem:testdb" ,"--noexit"};
-//            try {
-//                DatabaseManagerSwing.main(args);
-//            } catch (final Exception e) {
-//                System.out.println("Could not start hsqldb database manager GUI: " + e.getMessage());
-//            }
-//        };
-//        new Thread(r).start();
-
-    }
-
-    @AfterEach
-    public void after() {
-
-        // clear data added for this tests only
-
-        personRepository.deleteById(2);
-        personRepository.flush();
+        personRepository.deleteAll();
+        personRepository.save(new Person(1, "ion", "db pass ion"));
+        personRepository.save(new Person(2, "gheorghe", "db pass gheorghe"));
     }
 
     @Test
     public void testFindAll() throws Exception {
         String content = Utils.readFile("output/TestRestJPA_testFindAll.json");
         mvc.perform(get("/person/all")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(content));
@@ -99,8 +75,8 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         {
             String content = Utils.readFile("input/TestRestJPA_testReadCreateReadUpdateDelete_CREATE.json");
             mvc.perform(put("/person")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(content))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(content))
                     .andExpect(status().isOk())
                     .andExpect(content().string(""));
         }
@@ -118,8 +94,8 @@ public class TestRestJPA extends AbstractTestSpringBootContext {
         {
             String content = Utils.readFile("input/TestRestJPA_testReadCreateReadUpdateDelete_UPDATE.json");
             mvc.perform(post("/person")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(content))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(content))
                     .andExpect(status().isOk())
                     .andExpect(content().string(""));
         }

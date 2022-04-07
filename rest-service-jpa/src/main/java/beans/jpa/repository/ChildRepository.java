@@ -1,6 +1,6 @@
-package beans.rest.jpa.repository;
+package beans.jpa.repository;
 
-import beans.rest.jpa.model.Child;
+import beans.jpa.model.Child;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
