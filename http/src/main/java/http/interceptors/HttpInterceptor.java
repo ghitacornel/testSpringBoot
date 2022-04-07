@@ -13,6 +13,7 @@ public class HttpInterceptor implements HandlerInterceptor {
 
     // intercept all
     // see other methods available for overriding
+    // seems impossible to alter the content of response
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) {
         // add custom logic here
         // see other methods
