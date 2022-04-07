@@ -1,4 +1,4 @@
-package beans.rest.pagination.controllers;
+package beans.pagination.model;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package beans.rest.pagination.repositories;
+package beans.pagination.repository.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

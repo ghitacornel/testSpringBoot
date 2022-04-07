@@ -1,9 +1,9 @@
-package beans.rest.pagination.services;
+package beans.pagination.service;
 
-import beans.rest.pagination.controllers.PageableDto;
-import beans.rest.pagination.controllers.SortDto;
-import beans.rest.pagination.repositories.PageableEntity;
-import beans.rest.pagination.repositories.PageableEntityRepository;
+import beans.pagination.model.PageableDto;
+import beans.pagination.model.SortDto;
+import beans.pagination.repository.PageableEntityRepository;
+import beans.pagination.repository.entity.PageableEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
@@ -20,22 +19,12 @@ public class PageableEntityService {
 
     private final PageableEntityRepository repository;
 
-    @PostConstruct
-    public void insertSomeDummyData() {
-        repository.deleteAll();
-        for (int i = 0; i < 100; i++) {
-            PageableEntity pageableEntity = new PageableEntity();
-            pageableEntity.setData("dummy data " + i);
-            repository.save(pageableEntity);
-        }
-    }
-
     public List<PageableEntity> findAll() {
         return repository.findAll();
     }
 
     public List<PageableEntity> findAll(SortDto sortDto) {
-        Sort sort = sortDto.getOrder().equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+        Sort sort = Sort.Direction.ASC.name().equalsIgnoreCase(sortDto.getOrder()) ?
                 Sort.by(sortDto.getProperty()).ascending()
                 : Sort.by(sortDto.getProperty()).descending();
         return repository.findAll(sort);

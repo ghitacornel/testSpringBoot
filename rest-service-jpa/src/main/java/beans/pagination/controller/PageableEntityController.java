@@ -1,7 +1,9 @@
-package beans.rest.pagination.controllers;
+package beans.pagination.controller;
 
-import beans.rest.pagination.repositories.PageableEntity;
-import beans.rest.pagination.services.PageableEntityService;
+import beans.pagination.model.PageableDto;
+import beans.pagination.model.SortDto;
+import beans.pagination.repository.entity.PageableEntity;
+import beans.pagination.service.PageableEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
