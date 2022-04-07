@@ -12,6 +12,7 @@
         <module>cache</module>
         <module>security</module>
         <module>http</module>
+        <module>transactional</module>
     </modules>
 
     <properties>
