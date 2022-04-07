@@ -1,4 +1,4 @@
-package beans.rest.versioning.model;
+package beans.versioning.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,16 +1,15 @@
-package beans.rest.versioning.model;
+package beans.versioning.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * model latest version
+ * model version 2
  */
 @Data
 @AllArgsConstructor
-public class VersionedModel {
+public class VersionedModelV2 {
 
-    private Integer id;
     private String firstName;
     private String lastName;
 

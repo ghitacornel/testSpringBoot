@@ -1,33 +1,33 @@
-package beans.rest.versioning;
+package beans.versioning;
 
-import beans.rest.versioning.model.VersionedModel;
-import beans.rest.versioning.model.VersionedModelV1;
-import beans.rest.versioning.model.VersionedModelV2;
+import beans.versioning.model.VersionedModel;
+import beans.versioning.model.VersionedModelV1;
+import beans.versioning.model.VersionedModelV2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller with REST endpoint versioning using HTTP query params
+ * Controller with REST versioning using path prefix
  */
 @RestController
-@RequestMapping(value = "version/param")
-public class ParamVersioningController {
+@RequestMapping(value = "version/path")
+public class PathVersioningController {
 
-    @GetMapping(value = "invoke", params = "version=1")
+    @GetMapping("v1/invoke")
     public VersionedModelV1 studentV1() {
         return new VersionedModelV1("Bob Charlie");
     }
 
-    @GetMapping(value = "invoke", params = "version=2")
+    @GetMapping("v2/invoke")
     public VersionedModelV2 studentV2() {
         return new VersionedModelV2("Bob", "Charlie");
     }
 
     /**
-     * no param => default use latest
+     * no prefix => default use latest
      */
-    @GetMapping(value = "invoke")
+    @GetMapping("invoke")
     public VersionedModel student() {
         return new VersionedModel(1, "Bob", "Charlie");
     }

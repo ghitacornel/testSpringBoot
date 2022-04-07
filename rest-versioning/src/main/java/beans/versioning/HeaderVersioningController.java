@@ -1,9 +1,9 @@
-package beans.rest.versioning;
+package beans.versioning;
 
-import beans.rest.versioning.model.VersionedModel;
-import beans.rest.versioning.model.VersionedModelV1;
-import beans.rest.versioning.model.VersionedModelV2;
-import io.swagger.v3.oas.annotations.Hidden;
+
+import beans.versioning.model.VersionedModel;
+import beans.versioning.model.VersionedModelV1;
+import beans.versioning.model.VersionedModelV2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller with REST endpoint versioning using HTTP headers
  */
-@Hidden// do not expose it via Swagger due to issues on OpenAPI parsing of headers
 @RestController
 @RequestMapping(value = "version/header")
 public class HeaderVersioningController {
