@@ -1,4 +1,4 @@
-package beans.rest.swagger.configuration;
+package beans.swagger.configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

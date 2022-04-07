@@ -22,6 +22,7 @@
         <module>rest-versioning</module>
         <module>exceptions-validations</module>
         <module>rest-service-jpa</module>
+        <module>open-api</module>
     </modules>
 
     <properties>

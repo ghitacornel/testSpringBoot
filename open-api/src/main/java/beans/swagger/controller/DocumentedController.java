@@ -1,7 +1,7 @@
-package beans.rest.swagger.controller;
+package beans.swagger.controller;
 
-import beans.rest.swagger.model.DocumentedInputModel;
-import beans.rest.swagger.model.DocumentedOutputModel;
+import beans.swagger.model.DocumentedInputModel;
+import beans.swagger.model.DocumentedOutputModel;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
