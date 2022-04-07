@@ -4,7 +4,12 @@
 
     <groupId>testSpringBoot</groupId>
     <artifactId>testSpringBoot</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>yaml</module>
+        <module>all</module>
+    </modules>
 
     <properties>
         <maven.compiler.target>17</maven.compiler.target>
