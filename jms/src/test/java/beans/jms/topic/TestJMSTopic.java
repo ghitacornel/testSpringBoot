@@ -2,6 +2,7 @@ package beans.jms.topic;
 
 import beans.jms.topic.consumer.JMSConsumer1Topic;
 import beans.jms.topic.consumer.JMSConsumer2Topic;
+import beans.jms.topic.consumer.JMSConsumer3TopicRecorder;
 import beans.jms.topic.model.JMSMessageForTopic;
 import beans.jms.topic.producer.JMSProducerTopic;
 import org.junit.jupiter.api.Assertions;
@@ -21,10 +22,14 @@ public class TestJMSTopic {
     @Autowired
     JMSConsumer2Topic consumer2Topic;
 
+    @Autowired
+    JMSConsumer3TopicRecorder recorder;
+
     @Test
     public void testJMS() throws Exception {
         Assertions.assertNull(consumer1Topic.message);
         Assertions.assertNull(consumer2Topic.message);
+        Assertions.assertNull(recorder.message);
 
         producerTopic.createMessageAndSendItToTheQueueWithTopic();
 
@@ -33,6 +38,7 @@ public class TestJMSTopic {
 
         Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), consumer1Topic.message);
         Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), consumer2Topic.message);
+        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), recorder.message);
     }
 
 }
