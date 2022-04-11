@@ -23,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class TestPagination {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    @Autowired
+    ObjectMapper MAPPER = new ObjectMapper();
 
     @Autowired
     MockMvc mvc;
