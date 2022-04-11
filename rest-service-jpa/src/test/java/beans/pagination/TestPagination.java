@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TestPagination {
 
     @Autowired
-    ObjectMapper MAPPER = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     MockMvc mvc;
@@ -55,7 +55,7 @@ public class TestPagination {
         String content = Utils.readFile("output/TestPagination_testSort.json");
         mvc.perform(post("/pageable/sort")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(MAPPER.writeValueAsString(new SortDto("data", "desc"))))
+                        .content(objectMapper.writeValueAsString(new SortDto("data", "desc"))))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(content));
@@ -66,7 +66,7 @@ public class TestPagination {
         String content = Utils.readFile("output/TestPagination_testPage.json");
         mvc.perform(post("/pageable/page")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(MAPPER.writeValueAsString(new PageableDto(2, 5, "data", "desc"))))
+                        .content(objectMapper.writeValueAsString(new PageableDto(2, 5, "data", "desc"))))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(content));
