@@ -4,15 +4,10 @@ import beans.external.ExternalRestServiceInputModel;
 import beans.external.ExternalRestServiceOutputModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor

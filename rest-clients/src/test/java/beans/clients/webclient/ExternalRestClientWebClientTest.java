@@ -1,12 +1,10 @@
 package beans.clients.webclient;
 
 import beans.clients.AbstractTestSpringBootContext;
-import beans.clients.resttemplate.ExternalRestClientRestTemplate;
 import beans.clients.webflux.ExternalRestClientWebFlux;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 public class ExternalRestClientWebClientTest extends AbstractTestSpringBootContext {
 
     @Autowired
