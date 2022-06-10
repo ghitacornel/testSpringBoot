@@ -23,6 +23,7 @@
         <module>exceptions-validations</module>
         <module>rest-service-jpa</module>
         <module>open-api</module>
+        <module>standalone</module>
     </modules>
 
     <properties>
