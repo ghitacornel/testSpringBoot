@@ -52,7 +52,7 @@ public class TestSpringData {
     @Transactional// due to returned proxy
     @Test
     public void getOne() {
-        Assertions.assertEquals(items.get(0), repository.getById(0));
+        Assertions.assertEquals(items.get(0), repository.getReferenceById(0));
     }
 
     @Test
