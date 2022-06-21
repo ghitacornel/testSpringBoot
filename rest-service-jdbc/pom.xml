@@ -27,6 +27,12 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
+        <!-- DATABASE FOR PRODUCTION -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+        </dependency>
+
         <!-- DATABASE FOR TEST -->
         <dependency>
             <groupId>org.hsqldb</groupId>
