@@ -17,4 +17,8 @@ public class ItemService {
         return repository.findAll();
     }
 
+    public List<Item> findByNameAndLength(String name, Integer length) {
+        return repository.findByNameAndLength(name, length);
+    }
+
 }

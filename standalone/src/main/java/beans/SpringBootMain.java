@@ -22,6 +22,7 @@ public class SpringBootMain implements CommandLineRunner {
     public void run(String... args) {
         // main job starts from here
         System.err.println(itemService.findAll());
+        System.err.println(itemService.findByNameAndLength("calcium", 122));
     }
 
 }
