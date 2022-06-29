@@ -21,12 +21,12 @@ public class PersonJdbcRepository extends JdbcRepository<PersonJdbc, Integer> {
     }
 
     public void create(PersonJdbc e) {
-        jdbcTemplate.update("INSERT INTO person_jdbc(id,name,pass) VALUES (?,?,?);", e.getId(), e.getName(), e.getPass());
+        jdbcTemplate.update("INSERT INTO person_jdbc(id,name,pass) VALUES (?,?,?)", e.getId(), e.getName(), e.getPass());
     }
 
     @Override
     public void update(PersonJdbc e) {
-        jdbcTemplate.update("UPDATE person_jdbc SET name = ?, pass = ? WHERE id = ?;", e.getName(), e.getPass(), e.getId());
+        jdbcTemplate.update("UPDATE person_jdbc SET name = ?, pass = ? WHERE id = ?", e.getName(), e.getPass(), e.getId());
     }
 
     @Override
