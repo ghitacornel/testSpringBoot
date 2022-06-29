@@ -37,6 +37,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.4</version>
                 <configuration>
                     <!-- OPTIONAL but in case multiple MAIN classes are present better be explicit -->
                     <mainClass>beans.SpringBootMain</mainClass>
