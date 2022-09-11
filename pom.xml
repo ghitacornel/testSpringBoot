@@ -24,6 +24,7 @@
         <module>rest-service-jpa</module>
         <module>open-api</module>
         <module>standalone</module>
+        <module>spring-mvc</module>
     </modules>
 
     <properties>
