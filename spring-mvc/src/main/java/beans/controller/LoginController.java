@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @GetMapping("/login")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+    public String gotoLoginPage(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         return "loginPage";
     }
 }
