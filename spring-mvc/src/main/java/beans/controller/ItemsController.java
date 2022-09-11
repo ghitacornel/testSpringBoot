@@ -23,7 +23,7 @@ public class ItemsController {
     private final ItemService service;
 
     @PostMapping("/items")
-    public String greeting(@ModelAttribute("loginData") LoginData loginData, Model model) {
+    public String gotoItemsPage(@ModelAttribute("loginData") LoginData loginData, Model model) {
 
         // TODO add security check
         log.error("user logged with credentials : user = " + loginData.getUser() + " ; pass = " + loginData.getPass());
@@ -33,19 +33,19 @@ public class ItemsController {
     }
 
     @PostMapping("/items/delete")
-    public String delete(@ModelAttribute(value = "deleteRequest") DeleteRequest request, Model model) {
+    public String deleteItem(@ModelAttribute(value = "deleteRequest") DeleteRequest request, Model model) {
         service.deleteById(request.getId());
         model.addAttribute("items", service.findAll());
         return "itemsPage";
     }
 
     @GetMapping("/items/gotoCreatePage")
-    public String gotoCreatePage() {
+    public String gotoCreateItemPage() {
         return "itemCreatePage";
     }
 
     @PostMapping("/items/create")
-    public String create(@ModelAttribute(value = "createItemRequest") CreateItemRequest request, Model model) {
+    public String createItem(@ModelAttribute(value = "createItemRequest") CreateItemRequest request, Model model) {
         ItemModel itemModel = ItemModel.builder()
                 .name(request.getName())
                 .quantity(request.getQuantity())
