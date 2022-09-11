@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form action="#" th:action="@{/items}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="user"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="pass"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Login"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
