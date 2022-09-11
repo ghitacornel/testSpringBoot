@@ -16,9 +16,9 @@ class DatabaseInitialDataConfiguration {
 
     @PostConstruct
     public void setupDatabaseData() {
-        service.save(ItemModel.builder().name("product 1").quantity(1).price(1D).registerDate(new Date()).build());
-        service.save(ItemModel.builder().name("product 2").quantity(2).price(2D).registerDate(new Date()).build());
-        service.save(ItemModel.builder().name("product 3").quantity(3).price(3D).registerDate(new Date()).build());
+        service.save(ItemModel.builder().name("product 1").quantity(11).price(11.11D).registerDate(new Date()).build());
+        service.save(ItemModel.builder().name("product 2").quantity(22).price(22.22D).registerDate(new Date()).build());
+        service.save(ItemModel.builder().name("product 3").quantity(33).price(33.33D).registerDate(new Date()).build());
     }
 
 }

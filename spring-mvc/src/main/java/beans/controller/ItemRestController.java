@@ -15,7 +15,7 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 @RequestMapping("item")
-public class ItemController {
+public class ItemRestController {
 
     private final ItemService service;
 

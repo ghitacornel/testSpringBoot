@@ -1,9 +1,38 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-<body>all items are here
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Register Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${items.empty}">
+        <td colspan="2"> No Items Available</td>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td><span th:text="${item.id}"> Id </span></td>
+        <td><span th:text="${item.name}"> Name </span></td>
+        <td><span th:text="${item.quantity}"> Quantity </span></td>
+        <td><span th:text="${item.price}"> Price </span></td>
+        <td><span th:text="${item.registerDate}"> Register Date </span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
