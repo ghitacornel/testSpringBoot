@@ -12,11 +12,11 @@ import javax.jms.Queue;
 public class JMSProducerTransactionalQueue {
 
     private final Queue transactionalQueue;
-    private final JmsTemplate jmsTemplateTransactionalQueue;
+    private final JmsTemplate jmsTemplateTransactional;
 
     public void createMessageAndSendItToTheTransactionalQueue() {
         JMSMessageTransactionalQueue message = new JMSMessageTransactionalQueue(1, "payload for transactional queue");
-        jmsTemplateTransactionalQueue.convertAndSend(transactionalQueue, message);
+        jmsTemplateTransactional.convertAndSend(transactionalQueue, message);
     }
 
 }
