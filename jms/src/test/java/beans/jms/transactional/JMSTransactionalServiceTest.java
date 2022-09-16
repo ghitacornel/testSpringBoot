@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class JMSServiceTest {
+public class JMSTransactionalServiceTest {
 
     @Autowired
     JMSService jmsService;
