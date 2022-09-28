@@ -35,7 +35,7 @@ public class CacheConfiguration {
 
     @Bean
     public CacheManager cacheManager(Caffeine<Object, Object> caffeine) {
-        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
+        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager(CACHE_NAME);
         caffeineCacheManager.setCaffeine(caffeine);
         cacheManager = caffeineCacheManager;// for test purposes only
         return caffeineCacheManager;
