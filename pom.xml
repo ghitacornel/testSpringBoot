@@ -26,6 +26,7 @@
         <module>standalone</module>
         <module>spring-mvc</module>
         <module>mapstruct</module>
+        <module>sonarqube</module>
     </modules>
 
     <properties>
