@@ -37,6 +37,7 @@ services:
   #http://localhost:9000/projects
   #user=admin
   #pass=admin
+  #webhookSecret
   SonarQube:
     image: sonarqube:latest
     volumes:
