@@ -30,8 +30,7 @@ pipeline {
               withSonarQubeEnv('SonarQubeServer') {
                 sh 'mvn sonar:sonar \
                       -Dsonar.projectKey=testSpringBoot \
-                      -Dsonar.host.url=http://localhost:9000 \
-                      -Dsonar.login=sqp_bbe4cd4bf9e0497a9787e5c9c7383caa7146e311'
+                      -Dsonar.host.url=http://localhost:9000 '
               }
             }
           }
