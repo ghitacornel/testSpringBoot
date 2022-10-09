@@ -1,6 +1,12 @@
 # docker-compose.yaml for CI
 services:
 
+  # ab2444e185624e83b0c795a85b16887d
+  # user = cornel
+  # pass = sefusefu
+  # full name = cornel
+  # email = ghita_cornel@yahoo.com
+  # url = http://localhost:8080/
   jenkins:
     image: jenkins/jenkins:latest
     container_name: jenkins
@@ -11,6 +17,16 @@ services:
       - 50000:50000
     volumes:
       - jenkins_configuration:/var/jenkins_home
+
+  jenkins_agent:
+    image: jenkins/ssh-agent:jdk17
+    container_name: jenkins_agent
+    privileged: true
+    user: root
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5KyZYqZO6mfr9uo5CdlwxI9t9QihodW94RxJcihbXCiXhecBwj2gm5EYTWc+W6AueZbZ700MCv0MCOO6jso7LClfq6Ibti9m1NK0laGg5lbXIPdhW8jeObN1TF+3qiWnS5ZY003ar8jHg+DLXn62HbnT3ZOifflaXm35iH/iRAc+Xqrt6GxjarpA+iJwrEAIaZy6dwgV4VDxTi8Wk0Xq8cMGoNJHRBydZcwfhw9pEFmLFNPqDVSEubRatny9ZYTXiChgsSZHad/PtG84g3TMckA8oFo16Zar7QUXK4Vr026Dz9mDgplI7dBbgY/2XYqatKW8A+f61+L/CYJwTkQVk7QnaUITNrGAj4853AhSnAz2A+yzG/sWyamnnW63NfnlXzbjETJ1w4oSrSsrCD+OdzRM6DIJauZjLKN3GeVI8cVdWGZNqZGW8AxtdmAc1BDVvQQ7in70F/ErWuURdAzgr37QgHlkYHFDPGu7ZHcmXIUIniHXKjUnste1jQmTBIPc= cornel@cornel
 
 volumes:
   jenkins_configuration:
