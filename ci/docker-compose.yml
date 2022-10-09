@@ -1,0 +1,16 @@
+# docker-compose.yaml for CI
+services:
+
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_configuration:/var/jenkins_home
+
+volumes:
+  jenkins_configuration:
