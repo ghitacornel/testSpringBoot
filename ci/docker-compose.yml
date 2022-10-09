@@ -66,6 +66,14 @@ services:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
 
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    volumes:
+      - nexus_data:/sonatype-work
+    ports:
+      - "8081:8081"
+
 volumes:
   jenkins_configuration:
   jenkins_agent_data_var_run:
@@ -78,3 +86,4 @@ volumes:
   SonarQube_logs:
   postgresql:
   postgresql_data:
+  nexus_data:
