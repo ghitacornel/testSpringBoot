@@ -31,7 +31,7 @@ pipeline {
                 sh 'mvn sonar:sonar \
                       -Dsonar.projectKey=testSpringBoot \
                       -Dsonar.host.url=http://sonarQube:9000 \
-                      -Dsonar.login=sqp_b6f53a9f719ac5311379132a8db45577d3a5fb92'
+                      -Dsonar.login=sqp_697690f385dcb2bc296e288da0bdc747c053da50'
               }
             }
           }
