@@ -34,6 +34,18 @@ services:
       - jenkins_agent_data_run:/run
       - jenkins_agent_data_tmp:/tmp
 
+  #http://localhost:9000/projects
+  #user=admin
+  #pass=admin
+  SonarQube:
+    image: sonarqube:latest
+    volumes:
+      - SonarQube_data:/opt/SonarQube/data
+      - SonarQube_extensions:/opt/SonarQube/extensions
+      - SonarQube_logs:/opt/SonarQube/logs
+    ports:
+      - 9000:9000
+
 volumes:
   jenkins_configuration:
   jenkins_agent_data_var_run:
