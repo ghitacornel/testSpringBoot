@@ -5,9 +5,14 @@ pipeline {
       jdk 'jdk17'
     }
     stages {
+        stage('Clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
         }
         stage('Test') {
