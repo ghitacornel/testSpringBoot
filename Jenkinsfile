@@ -28,7 +28,7 @@ pipeline {
         stage("SonarQube analysis") {
             steps {
               withSonarQubeEnv('SonarQubeServer') {
-                sh 'mvn clean verify sonar:sonar \
+                sh 'mvn sonar:sonar \
                       -Dsonar.projectKey=testSpringBoot \
                       -Dsonar.host.url=http://localhost:9000 \
                       -Dsonar.login=sqp_1b08e0d3787d65c34a0e278320c61552e6343528'
