@@ -38,7 +38,8 @@ services:
   #user=admin
   #pass=admin
   #webhookSecret
-  SonarQube:
+  sonarQube:
+    container_name: sonarQube
     image: sonarqube:latest
     volumes:
       - SonarQube_data:/opt/SonarQube/data
