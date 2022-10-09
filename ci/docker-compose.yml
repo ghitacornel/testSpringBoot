@@ -66,6 +66,9 @@ services:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
 
+  #http://localhost:8081
+  #user=admin
+  #pass=sefusefu
   nexus:
     image: sonatype/nexus3
     container_name: nexus
