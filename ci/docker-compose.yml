@@ -36,8 +36,7 @@ services:
 
   #http://localhost:9000/projects
   #user=admin
-  #pass=admin
-  #webhookSecret
+  #pass=sefusefu
   sonarQube:
     container_name: sonarQube
     image: sonarqube:latest
