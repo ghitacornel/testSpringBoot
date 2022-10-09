@@ -53,3 +53,6 @@ volumes:
   jenkins_agent_data_home:
   jenkins_agent_data_run:
   jenkins_agent_data_tmp:
+  SonarQube_data:
+  SonarQube_extensions:
+  SonarQube_logs:
