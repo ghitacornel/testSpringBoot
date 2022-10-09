@@ -38,14 +38,31 @@ services:
   #user=admin
   #pass=sefusefu
   sonarQube:
-    container_name: sonarQube
     image: sonarqube:latest
+    container_name: sonarQube
+    depends_on:
+      - postgresql
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
     volumes:
       - SonarQube_data:/opt/SonarQube/data
       - SonarQube_extensions:/opt/SonarQube/extensions
       - SonarQube_logs:/opt/SonarQube/logs
     ports:
       - 9000:9000
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
 
 volumes:
   jenkins_configuration:
@@ -57,3 +74,5 @@ volumes:
   SonarQube_data:
   SonarQube_extensions:
   SonarQube_logs:
+  postgresql:
+  postgresql_data:
