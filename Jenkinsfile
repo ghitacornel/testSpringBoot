@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn package -DskipTests'
+                sh 'mvn install -DskipTests'
             }
         }
         stage('Test') {
