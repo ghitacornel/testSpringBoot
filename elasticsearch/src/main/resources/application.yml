@@ -3,6 +3,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        search:
+          default:
+            indexmanager: elasticsearch
+            elasticsearch:
+              host: localhost:9200
+              index_schema_management_strategy: drop-and-create
+              required_index_status: yellow
   hibernate:
     ddl-auto: create-drop
   show-sql: true
