@@ -5,11 +5,9 @@ import lombok.Setter;
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Normalizer;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +25,10 @@ public class Parent {
 
     @Field(name = "content", analyzer = @Analyzer(definition = "stop"))
     private String content;
+
+    @Field(normalizer = @Normalizer(definition = "lowercase"))
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     final private List<Child> children = new ArrayList<>();
