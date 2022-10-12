@@ -7,8 +7,7 @@
 services:
 
   es01:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: es01
     environment:
       - node.name=es01
@@ -28,8 +27,7 @@ services:
       - elastic_network
 
   es02:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: es02
     environment:
       - node.name=es02
@@ -49,8 +47,7 @@ services:
       - elastic_network
 
   es03:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: es03
     environment:
       - node.name=es03
