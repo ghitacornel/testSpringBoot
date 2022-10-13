@@ -26,7 +26,7 @@ public class ElasticSearchService {
         SearchPredicateFactory predicateFactory = scope.predicate();
         BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
 
-        booleanJunction.should(predicateFactory.match().field("content").matching(content).toPredicate());
+        booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
 
         return searchSession.search(Parent.class).where(booleanJunction.toPredicate()).fetchHits(100);
     }
