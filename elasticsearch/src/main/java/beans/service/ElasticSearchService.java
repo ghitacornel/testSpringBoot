@@ -3,6 +3,7 @@ package beans.service;
 import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
+import beans.projections.ChildProjection;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
@@ -67,7 +68,7 @@ public class ElasticSearchService {
                 .fetchAllHits();
     }
 
-    public List<List<?>> findChildProjectionByContent(String content) {
+    public List<ChildProjection> findChildProjectionByContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Child> scope = searchSession.scope(Child.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
@@ -77,7 +78,7 @@ public class ElasticSearchService {
         booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
 
         return searchSession.search(scope)
-                .select(f -> f.composite(
+                .select(f -> f.composite(ChildProjection::new,
                         f.field("id", Integer.class),
                         f.field("name", String.class),
                         f.field("content", String.class)

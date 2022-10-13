@@ -4,6 +4,7 @@ package beans.controller;
 import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
+import beans.projections.ChildProjection;
 import beans.service.ElasticSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ public class ElasticController {
     }
 
     @GetMapping(value = "/child/projection/{content}")
-    public List<List<?>> findChildProjectionByContent(@PathVariable(name = "content") String content) {
+    public List<ChildProjection> findChildProjectionByContent(@PathVariable(name = "content") String content) {
         return service.findChildProjectionByContent(content);
     }
 
