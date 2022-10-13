@@ -105,8 +105,8 @@ public class DataSetup {
         {
             SimpleDataModel simpleDataModel = new SimpleDataModel();
             simpleDataModel.setId(3);
-            simpleDataModel.setName("john");
-            simpleDataModel.setContent("this name has some serious stuff");
+            simpleDataModel.setName("john stuff");
+            simpleDataModel.setContent("this name has some serious content");
         }
     }
 }

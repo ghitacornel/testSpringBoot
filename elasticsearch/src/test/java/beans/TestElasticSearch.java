@@ -71,7 +71,7 @@ public class TestElasticSearch {
 
     @Test
     public void testSearchSimple() throws Exception {
-        MvcResult result = mvc.perform(get("/elastic/simple/{content}", "name"))
+        MvcResult result = mvc.perform(get("/elastic/simple/{content}", "content"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();
