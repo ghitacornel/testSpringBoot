@@ -49,11 +49,6 @@ public class TestRestJPA {
     @Test
     public void testReadCreateReadUpdateDelete() throws Exception {
 
-        // read
-        mvc.perform(get("/parent"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-
         // create
         {
 
