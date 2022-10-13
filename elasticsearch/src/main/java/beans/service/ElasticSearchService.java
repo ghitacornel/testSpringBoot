@@ -4,6 +4,7 @@ import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
+import beans.projections.ParentChildrenProjection;
 import beans.projections.ParentProjection;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
@@ -60,6 +61,25 @@ public class ElasticSearchService {
                 .fetchAllHits();
     }
 
+    public List<ParentChildrenProjection> findParentChildrenProjectionByContent(String content) {
+        SearchSession searchSession = Search.session(entityManager);
+        SearchScope<Parent> scope = searchSession.scope(Parent.class);
+        SearchPredicateFactory predicateFactory = scope.predicate();
+        BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
+
+        booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
+        booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
+
+        return searchSession.search(scope)
+                .select(f -> f.composite(ParentChildrenProjection::new,
+                        f.field("id", Integer.class),
+                        f.field("name", String.class),
+                        f.field("content", String.class)
+                ))
+                .where(booleanJunction.toPredicate())
+                .fetchAllHits();
+    }
+
     public List<Child> findChildByContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Child> scope = searchSession.scope(Child.class);
@@ -102,8 +122,9 @@ public class ElasticSearchService {
         booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
         booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
 
-        return searchSession.search(SimpleDataModel.class)
+        return searchSession.search(scope)
                 .where(booleanJunction.toPredicate())
                 .fetchAllHits();
     }
+
 }

@@ -40,6 +40,16 @@ public class TestElasticSearch {
     }
 
     @Test
+    public void testSearchParentChildProjection() throws Exception {
+        MvcResult result = mvc.perform(get("/elastic/parent/children/projection/{content}", "initial dummy data"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andReturn();
+        System.err.println(result.getResponse().getContentAsString());
+        // observe no SQL select is executed
+    }
+
+    @Test
     public void testSearchChild() throws Exception {
         MvcResult result = mvc.perform(get("/elastic/child/{content}", "anna"))
                 .andExpect(status().isOk())
