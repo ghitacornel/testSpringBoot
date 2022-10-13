@@ -2,8 +2,8 @@ package beans.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -19,8 +19,8 @@ public class IndexConfig {
     @PostConstruct
     public void initIndex() throws InterruptedException {
         log.info("Initiating indexing...");
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
-        fullTextEntityManager.createIndexer().startAndWait();
+        SearchSession session = Search.session(em);
+        session.massIndexer().start();
         log.info("All entities indexed");
     }
 }
