@@ -70,7 +70,7 @@ public class ElasticSearchService {
 
     public List<ChildProjection> findChildProjectionByContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
-        SearchScope<Child> scope = searchSession.scope(Child.class);
+        SearchScope<ChildProjection> scope = searchSession.scope(ChildProjection.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
         BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
 

@@ -9,6 +9,7 @@ import beans.repository.SimpleDataModelRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
@@ -16,13 +17,13 @@ import javax.annotation.PostConstruct;
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
 public class DataSetup {
 
     private final ParentRepository parentRepository;
     private final SimpleDataModelRepository simpleDataModelRepository;
 
     @PostConstruct
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addInitialData() {
         {
             Parent parent = new Parent();
