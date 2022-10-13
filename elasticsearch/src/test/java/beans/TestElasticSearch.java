@@ -25,7 +25,7 @@ public class TestElasticSearch {
 
 
     @Test
-    public void testSearch() throws Exception {
+    public void testSearchParent() throws Exception {
 
 
         // read
@@ -39,4 +39,18 @@ public class TestElasticSearch {
 
     }
 
+    @Test
+    public void testSearchChild() throws Exception {
+
+
+        // read
+        {
+            MvcResult result = mvc.perform(get("/elastic/child/{content}", "anna"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andReturn();
+            System.out.println(result.getResponse().getContentAsString());
+        }
+
+    }
 }

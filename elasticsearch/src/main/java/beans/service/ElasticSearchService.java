@@ -1,5 +1,6 @@
 package beans.service;
 
+import beans.model.Child;
 import beans.model.Parent;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
@@ -20,7 +21,7 @@ public class ElasticSearchService {
 
     private final EntityManager entityManager;
 
-    public List<Parent> findByContent(String content) {
+    public List<Parent> findParentByContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
@@ -35,5 +36,16 @@ public class ElasticSearchService {
         }
 
         return parents;
+    }
+
+    public List<Child> findChildByContent(String content) {
+        SearchSession searchSession = Search.session(entityManager);
+        SearchScope<Child> scope = searchSession.scope(Child.class);
+        SearchPredicateFactory predicateFactory = scope.predicate();
+        BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
+
+        booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
+
+        return searchSession.search(Child.class).where(booleanJunction.toPredicate()).fetchAllHits();
     }
 }

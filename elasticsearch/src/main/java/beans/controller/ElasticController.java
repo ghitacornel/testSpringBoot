@@ -1,6 +1,7 @@
 package beans.controller;
 
 
+import beans.model.Child;
 import beans.model.Parent;
 import beans.service.ElasticSearchService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,13 @@ public class ElasticController {
     private final ElasticSearchService service;
 
     @GetMapping(value = "/parent/{content}")
-    public List<Parent> findByContent(@PathVariable(name = "content") String content) {
-        return service.findByContent(content);
+    public List<Parent> findParentByContent(@PathVariable(name = "content") String content) {
+        return service.findParentByContent(content);
+    }
+
+    @GetMapping(value = "/child/{content}")
+    public List<Child> findChildByContent(@PathVariable(name = "content") String content) {
+        return service.findChildByContent(content);
     }
 
 }
