@@ -18,7 +18,7 @@ public class ElasticController {
 
     private final ElasticSearchService service;
 
-    @GetMapping(value = "{content}")
+    @GetMapping(value = "/parent/{content}")
     public List<Parent> findByContent(@PathVariable(name = "content") String content) {
         return service.findByContent(content);
     }

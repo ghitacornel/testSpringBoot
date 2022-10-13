@@ -30,7 +30,7 @@ public class TestElasticSearch {
 
         // read
         {
-            MvcResult result = mvc.perform(get("/elastic/{content}", "initial dummy data"))
+            MvcResult result = mvc.perform(get("/elastic/parent/{content}", "initial dummy data"))
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                     .andReturn();
