@@ -2,10 +2,9 @@ package beans.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.annotations.Analyzer;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Normalizer;
+import org.hibernate.search.engine.backend.types.Projectable;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,13 +19,13 @@ public class Parent {
     @Id
     private Integer id;
 
-    @Field
+    @GenericField(name = "name", projectable = Projectable.YES)
     private String name;
 
-    @Field(name = "content", analyzer = @Analyzer(definition = "stop"))
+    @GenericField(name = "content", projectable = Projectable.YES)
     private String content;
 
-    @Field(normalizer = @Normalizer(definition = "lowercase"))
+    @GenericField(name = "status", projectable = Projectable.YES)
     @Enumerated(EnumType.STRING)
     private Status status;
 
