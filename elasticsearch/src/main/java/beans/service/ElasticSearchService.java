@@ -28,6 +28,6 @@ public class ElasticSearchService {
 
         booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
 
-        return searchSession.search(Parent.class).where(booleanJunction.toPredicate()).fetchHits(100);
+        return searchSession.search(Parent.class).where(booleanJunction.toPredicate()).fetchAllHits();
     }
 }
