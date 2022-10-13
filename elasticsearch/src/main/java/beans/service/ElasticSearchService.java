@@ -28,6 +28,12 @@ public class ElasticSearchService {
 
         booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
 
-        return searchSession.search(Parent.class).where(booleanJunction.toPredicate()).fetchAllHits();
+        List<Parent> parents = searchSession.search(Parent.class).where(booleanJunction.toPredicate()).fetchAllHits();
+
+        for (Parent parent : parents) {
+            parent.getChildren().size();
+        }
+
+        return parents;
     }
 }
