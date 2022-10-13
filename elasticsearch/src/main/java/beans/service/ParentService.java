@@ -15,7 +15,6 @@ import java.util.List;
 public class ParentService {
 
     private final ParentRepository parentRepository;
-    private final ElasticSearchService elasticSearchService;
 
     public List<Parent> findAll() {
         return parentRepository.findAll();
@@ -36,7 +35,4 @@ public class ParentService {
         parentRepository.save(parent);
     }
 
-    public List<Parent> findByContent(String content) {
-        return elasticSearchService.findByContent(content);
-    }
 }

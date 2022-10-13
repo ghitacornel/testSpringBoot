@@ -25,11 +25,6 @@ public class ParentController {
         return service.findById(id);
     }
 
-    @GetMapping(value = "/elastic/{content}")
-    public List<Parent> findByContent(@PathVariable(name = "content") String content) {
-        return service.findByContent(content);
-    }
-
     @PutMapping
     public void createSome(@RequestBody Parent parent) {
         service.createParent(parent);
