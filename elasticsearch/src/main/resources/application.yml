@@ -8,13 +8,13 @@ spring:
         format_sql: true
         search:
           default:
-            indexBase: /app/microservices/test/parent
-            indexmanager: elasticsearch
+#            indexBase: /app/microservices/test/parent
+#            indexmanager: elasticsearch
             elasticsearch:
-              host: localhost:9200
-              index_schema_management_strategy: CREATE
+#              host: localhost:9200
+#              index_schema_management_strategy: CREATE
               version: 7.5.1
-              required_index_status: yellow
+#              required_index_status: yellow
           automatic_indexing:
             synchronization:
               strategy: sync
