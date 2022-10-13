@@ -16,6 +16,7 @@ import javax.persistence.Id;
 public class SimpleDataModel {
 
     @Id
+    @GenericField(name = "id", projectable = Projectable.YES)
     private Integer id;
 
     @GenericField(name = "name", projectable = Projectable.YES)
