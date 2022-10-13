@@ -2,7 +2,6 @@ package beans.projections;
 
 import lombok.Data;
 
-
 @Data
 public class ChildProjection {
 

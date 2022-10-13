@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 public class Child {
 
     @Id
+    @GenericField(name = "id", projectable = Projectable.YES)
     private Integer id;
 
     @GenericField(name = "name", projectable = Projectable.YES)
