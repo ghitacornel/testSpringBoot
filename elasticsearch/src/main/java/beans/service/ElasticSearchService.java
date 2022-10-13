@@ -45,7 +45,10 @@ public class ElasticSearchService {
         BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
 
         booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
+        booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
 
-        return searchSession.search(Child.class).where(booleanJunction.toPredicate()).fetchAllHits();
+        return searchSession.search(Child.class)
+                .where(booleanJunction.toPredicate())
+                .fetchAllHits();
     }
 }
