@@ -2,8 +2,10 @@ package beans.config;
 
 import beans.model.Child;
 import beans.model.Parent;
+import beans.model.SimpleDataModel;
 import beans.model.Status;
 import beans.repository.ParentRepository;
+import beans.repository.SimpleDataModelRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,7 @@ import javax.annotation.PostConstruct;
 public class DataSetup {
 
     private final ParentRepository parentRepository;
+    private final SimpleDataModelRepository simpleDataModelRepository;
 
     @PostConstruct
     public void addInitialData() {
@@ -84,6 +87,25 @@ public class DataSetup {
                 parent.getChildren().add(child);
             }
             parentRepository.save(parent);
+        }
+
+        {
+            SimpleDataModel simpleDataModel = new SimpleDataModel();
+            simpleDataModel.setId(1);
+            simpleDataModel.setName("first name");
+            simpleDataModel.setContent("first content");
+        }
+        {
+            SimpleDataModel simpleDataModel = new SimpleDataModel();
+            simpleDataModel.setId(2);
+            simpleDataModel.setName("another name");
+            simpleDataModel.setContent("some additional stuff");
+        }
+        {
+            SimpleDataModel simpleDataModel = new SimpleDataModel();
+            simpleDataModel.setId(3);
+            simpleDataModel.setName("john");
+            simpleDataModel.setContent("has some serious content");
         }
     }
 }

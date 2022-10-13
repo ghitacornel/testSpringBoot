@@ -53,4 +53,19 @@ public class TestElasticSearch {
         }
 
     }
+
+    @Test
+    public void testSearchSimple() throws Exception {
+
+
+        // read
+        {
+            MvcResult result = mvc.perform(get("/elastic/simple/{content}", "name"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andReturn();
+            System.out.println(result.getResponse().getContentAsString());
+        }
+
+    }
 }

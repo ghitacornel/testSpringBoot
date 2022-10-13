@@ -2,6 +2,7 @@ package beans.service;
 
 import beans.model.Child;
 import beans.model.Parent;
+import beans.model.SimpleDataModel;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
@@ -48,6 +49,20 @@ public class ElasticSearchService {
         booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
 
         return searchSession.search(Child.class)
+                .where(booleanJunction.toPredicate())
+                .fetchAllHits();
+    }
+
+    public List<SimpleDataModel> findSimpleByContent(String content) {
+        SearchSession searchSession = Search.session(entityManager);
+        SearchScope<SimpleDataModel> scope = searchSession.scope(SimpleDataModel.class);
+        SearchPredicateFactory predicateFactory = scope.predicate();
+        BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
+
+        booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
+        booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
+
+        return searchSession.search(SimpleDataModel.class)
                 .where(booleanJunction.toPredicate())
                 .fetchAllHits();
     }

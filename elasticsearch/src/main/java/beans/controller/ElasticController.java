@@ -3,6 +3,7 @@ package beans.controller;
 
 import beans.model.Child;
 import beans.model.Parent;
+import beans.model.SimpleDataModel;
 import beans.service.ElasticSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,11 @@ public class ElasticController {
     @GetMapping(value = "/child/{content}")
     public List<Child> findChildByContent(@PathVariable(name = "content") String content) {
         return service.findChildByContent(content);
+    }
+
+    @GetMapping(value = "/simple/{content}")
+    public List<SimpleDataModel> findSimpleByContent(@PathVariable(name = "content") String content) {
+        return service.findSimpleByContent(content);
     }
 
 }
