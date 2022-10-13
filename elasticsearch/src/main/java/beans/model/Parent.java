@@ -2,6 +2,7 @@ package beans.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.engine.backend.types.ObjectStructure;
 import org.hibernate.search.engine.backend.types.Projectable;
 import org.hibernate.search.mapper.pojo.automaticindexing.ReindexOnUpdate;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
@@ -33,7 +34,7 @@ public class Parent {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @IndexedEmbedded(name = "children")
+    @IndexedEmbedded(name = "children", structure = ObjectStructure.NESTED)
     @IndexingDependency(reindexOnUpdate = ReindexOnUpdate.SHALLOW)
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     final private List<Child> children = new ArrayList<>();
