@@ -93,7 +93,7 @@ public class DataSetup {
         {
             SimpleDataModel simpleDataModel = new SimpleDataModel();
             simpleDataModel.setId(1);
-            simpleDataModel.setName("first name");
+            simpleDataModel.setName("a name");
             simpleDataModel.setContent("first content");
         }
         {
@@ -106,7 +106,7 @@ public class DataSetup {
             SimpleDataModel simpleDataModel = new SimpleDataModel();
             simpleDataModel.setId(3);
             simpleDataModel.setName("john");
-            simpleDataModel.setContent("this name has some serious content");
+            simpleDataModel.setContent("this name has some serious stuff");
         }
     }
 }
