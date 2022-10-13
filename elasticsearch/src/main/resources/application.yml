@@ -1,16 +1,20 @@
 spring:
   jpa:
+    open-in-view: false
+    show-sql: true
     properties:
       hibernate:
+        ddl-auto: create-drop
         format_sql: true
         search:
           default:
+            indexBase: /app/microservices/test/parent
             indexmanager: elasticsearch
             elasticsearch:
-              host: http://localhost:9200
-              index_schema_management_strategy: drop-and-create
+              host: localhost:9200
+              index_schema_management_strategy: CREATE
+              version: 7.5.1
               required_index_status: yellow
-  hibernate:
-    ddl-auto: create-drop
-  show-sql: true
-  open-in-view: false
+          automatic_indexing:
+            synchronization:
+              strategy: sync
