@@ -25,7 +25,7 @@ public class DataSetup {
             parent.setId(1000);
             parent.setName("parent one");
             parent.setStatus(Status.NEW);
-            parent.setContent("initial dummy content");
+            parent.setContent("initial dummy data");
             parentRepository.save(parent);
         }
         {
@@ -33,7 +33,7 @@ public class DataSetup {
             parent.setId(1001);
             parent.setName("two");
             parent.setStatus(Status.ACTIVE);
-            parent.setContent("some more detailed content here");
+            parent.setContent("some detailed content here");
             parentRepository.save(parent);
         }
         {
@@ -49,7 +49,7 @@ public class DataSetup {
             parent.setId(1003);
             parent.setName("deleted parent");
             parent.setStatus(Status.DELETED);
-            parent.setContent("old content is removed");
+            parent.setContent("old content/data is removed");
             parentRepository.save(parent);
         }
     }
