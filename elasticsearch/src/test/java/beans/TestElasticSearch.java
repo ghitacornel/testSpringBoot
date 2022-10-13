@@ -1,6 +1,5 @@
 package beans;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,23 +19,14 @@ public class TestElasticSearch {
     @Autowired
     MockMvc mvc;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
-
     @Test
     public void testSearchParent() throws Exception {
-
-
-        // read
-        {
-            MvcResult result = mvc.perform(get("/elastic/parent/{content}", "initial dummy data"))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                    .andReturn();
-            System.out.println(result.getResponse().getContentAsString());
-        }
-
+        MvcResult result = mvc.perform(get("/elastic/parent/{content}", "initial dummy data"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andReturn();
+        System.err.println(result.getResponse().getContentAsString());
+        // observe an SQL select is executed
     }
 
     @Test
