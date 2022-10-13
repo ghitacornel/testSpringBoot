@@ -5,7 +5,6 @@ import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
-import beans.projections.ParentChildrenProjection;
 import beans.projections.ParentProjection;
 import beans.service.ElasticSearchService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,7 @@ public class ElasticController {
     }
 
     @GetMapping(value = "/parent/children/projection/{content}")
-    public List<ParentChildrenProjection> findParentChildrenProjectionByContent(@PathVariable(name = "content") String content) {
+    public List<List<?>> findParentChildrenProjectionByContent(@PathVariable(name = "content") String content) {
         return service.findParentChildrenProjectionByContent(content);
     }
 
