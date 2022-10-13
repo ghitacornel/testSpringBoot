@@ -17,6 +17,7 @@ import java.util.List;
 public class Parent {
 
     @Id
+    @GenericField(name = "id", projectable = Projectable.YES)
     private Integer id;
 
     @GenericField(name = "name", projectable = Projectable.YES)
