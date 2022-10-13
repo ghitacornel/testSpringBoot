@@ -4,6 +4,7 @@ import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
+import beans.projections.ParentChildrenProjection;
 import beans.projections.ParentProjection;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
@@ -75,6 +76,7 @@ public class ElasticSearchService {
                         f.field("id", Integer.class),
                         f.field("name", String.class),
                         f.field("content", String.class),
+//                        f.field("children", ChildProjection.class).multi()
                         f.field("children.id", Integer.class).multi(),
                         f.field("children.name", String.class).multi(),
                         f.field("children.content", String.class).multi()
