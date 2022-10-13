@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-@Indexed(index = "idx_simple_data_model")
+@Indexed(index = "idx_sdm")
 public class SimpleDataModel {
 
     @Id
