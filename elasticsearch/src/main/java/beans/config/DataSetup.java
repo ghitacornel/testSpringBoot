@@ -1,5 +1,6 @@
 package beans.config;
 
+import beans.model.Child;
 import beans.model.Parent;
 import beans.model.Status;
 import beans.repository.ParentRepository;
@@ -26,6 +27,14 @@ public class DataSetup {
             parent.setName("parent one");
             parent.setStatus(Status.NEW);
             parent.setContent("initial dummy data");
+            {
+                Child child = new Child();
+                child.setId(2000);
+                child.setName("anna");
+                child.setContent("an apple for anna");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
             parentRepository.save(parent);
         }
         {
@@ -34,6 +43,22 @@ public class DataSetup {
             parent.setName("two");
             parent.setStatus(Status.ACTIVE);
             parent.setContent("some detailed content here");
+            {
+                Child child = new Child();
+                child.setId(2001);
+                child.setName("john");
+                child.setContent("a pineapple for john");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
+            {
+                Child child = new Child();
+                child.setId(2002);
+                child.setName("george");
+                child.setContent("a melon for george");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
             parentRepository.save(parent);
         }
         {
@@ -50,6 +75,14 @@ public class DataSetup {
             parent.setName("deleted parent");
             parent.setStatus(Status.DELETED);
             parent.setContent("old content/data is removed");
+            {
+                Child child = new Child();
+                child.setId(2003);
+                child.setName("simon");
+                child.setContent("a pear for simon");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
             parentRepository.save(parent);
         }
     }
