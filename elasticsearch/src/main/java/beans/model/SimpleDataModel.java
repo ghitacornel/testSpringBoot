@@ -3,6 +3,7 @@ package beans.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.engine.backend.types.Projectable;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
@@ -19,10 +20,10 @@ public class SimpleDataModel {
     @GenericField(name = "id", projectable = Projectable.YES)
     private Integer id;
 
-    @GenericField(name = "name", projectable = Projectable.YES)
+    @FullTextField
     private String name;
 
-    @GenericField(name = "content", projectable = Projectable.YES)
+    @FullTextField
     private String content;
 
 }
