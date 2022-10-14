@@ -95,18 +95,21 @@ public class DataSetup {
             simpleDataModel.setId(1);
             simpleDataModel.setName("a name");
             simpleDataModel.setContent("first content");
+            simpleDataModelRepository.save(simpleDataModel);
         }
         {
             SimpleDataModel simpleDataModel = new SimpleDataModel();
             simpleDataModel.setId(2);
             simpleDataModel.setName("another name");
             simpleDataModel.setContent("some additional stuff");
+            simpleDataModelRepository.save(simpleDataModel);
         }
         {
             SimpleDataModel simpleDataModel = new SimpleDataModel();
             simpleDataModel.setId(3);
             simpleDataModel.setName("john stuff");
             simpleDataModel.setContent("this name has some serious content");
+            simpleDataModelRepository.save(simpleDataModel);
         }
     }
 }
