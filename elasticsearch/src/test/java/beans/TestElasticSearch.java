@@ -47,6 +47,7 @@ public class TestElasticSearch {
                 .andReturn();
         System.err.println(result.getResponse().getContentAsString());
         // observe no SQL select is executed
+        // observe child is not properly composed
     }
 
     @Test
