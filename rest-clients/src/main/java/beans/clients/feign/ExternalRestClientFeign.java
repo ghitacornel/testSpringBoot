@@ -29,6 +29,9 @@ public class ExternalRestClientFeign {
 
     public String invokeGet(String input) {
 
+        // thread safe
+        // can use a factory to build
+        // can be injected
         ExternalServiceContract client = Feign.builder()
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
@@ -39,6 +42,9 @@ public class ExternalRestClientFeign {
 
     public String invokePost(String input) {
 
+        // thread safe
+        // can use a factory to build
+        // can be injected
         ExternalServiceContract client = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
