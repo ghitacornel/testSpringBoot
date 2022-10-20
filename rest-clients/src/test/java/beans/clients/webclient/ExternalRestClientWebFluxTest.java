@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @WireMockTest
 @AutoConfigureMockMvc
-public class ExternalRestClientWebClientTest {
+public class ExternalRestClientWebFluxTest {
 
     @Autowired
     ExternalRestClientWebFlux client;
