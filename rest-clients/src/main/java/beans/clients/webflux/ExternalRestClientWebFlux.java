@@ -1,7 +1,7 @@
 package beans.clients.webflux;
 
-import beans.external.ExternalRestServiceInputModel;
-import beans.external.ExternalRestServiceOutputModel;
+import beans.external.RequestDto;
+import beans.external.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -26,19 +26,19 @@ public class ExternalRestClientWebFlux {
     }
 
     public String callExternalService(String input) {
-        ExternalRestServiceInputModel inputModel = new ExternalRestServiceInputModel();
+        RequestDto inputModel = new RequestDto();
         inputModel.setInput(input);
 
         WebClient webClient = WebClient.builder()
                 .baseUrl(url)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
-        ExternalRestServiceOutputModel outputModel = webClient
+        ResponseDto outputModel = webClient
                 .post()
                 .uri("externalService")
                 .bodyValue(inputModel)
                 .retrieve()
-                .bodyToMono(ExternalRestServiceOutputModel.class)
+                .bodyToMono(ResponseDto.class)
                 .block();
 
         return outputModel.getOutput() + " + added by internal client";

@@ -1,7 +1,7 @@
 package beans.clients.feign;
 
-import beans.external.ExternalRestServiceInputModel;
-import beans.external.ExternalRestServiceOutputModel;
+import beans.external.RequestDto;
+import beans.external.ResponseDto;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
@@ -14,6 +14,6 @@ public interface ExternalServiceContract {
 
     @RequestLine("POST /externalService")
     @Headers("Content-Type: application/json")
-    ExternalRestServiceOutputModel invokePost(ExternalRestServiceInputModel inputModel);
+    ResponseDto invokePost(RequestDto inputModel);
 
 }

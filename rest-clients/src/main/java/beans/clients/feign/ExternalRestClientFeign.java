@@ -1,6 +1,6 @@
 package beans.clients.feign;
 
-import beans.external.ExternalRestServiceInputModel;
+import beans.external.RequestDto;
 import feign.Feign;
 import feign.Logger;
 import feign.gson.GsonDecoder;
@@ -37,7 +37,7 @@ public class ExternalRestClientFeign {
     }
 
     public String invokePost(String input) {
-        ExternalRestServiceInputModel inputModel = new ExternalRestServiceInputModel();
+        RequestDto inputModel = new RequestDto();
         inputModel.setInput(input);
 
         ExternalServiceContract client = Feign.builder()

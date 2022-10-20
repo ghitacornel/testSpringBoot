@@ -3,7 +3,7 @@ package beans.external;
 import lombok.Data;
 
 @Data
-public class ExternalRestServiceOutputModel {
+public class ResponseDto {
 
     private String output;
     

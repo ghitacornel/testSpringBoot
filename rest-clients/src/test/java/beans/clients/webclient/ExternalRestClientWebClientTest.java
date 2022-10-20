@@ -1,8 +1,8 @@
 package beans.clients.webclient;
 
 import beans.clients.webflux.ExternalRestClientWebFlux;
-import beans.external.ExternalRestServiceInputModel;
-import beans.external.ExternalRestServiceOutputModel;
+import beans.external.RequestDto;
+import beans.external.ResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
@@ -35,9 +35,9 @@ public class ExternalRestClientWebClientTest {
     @SneakyThrows
     public void testClient() {
 
-        ExternalRestServiceInputModel inputModel = new ExternalRestServiceInputModel();
+        RequestDto inputModel = new RequestDto();
         inputModel.setInput("input data");
-        ExternalRestServiceOutputModel outputModel = new ExternalRestServiceOutputModel();
+        ResponseDto outputModel = new ResponseDto();
         outputModel.setOutput(inputModel.getInput() + " + added by external client");
 
         WireMock.stubFor(WireMock.post("/externalService")
