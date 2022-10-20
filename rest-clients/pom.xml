@@ -41,7 +41,13 @@
             <version>11.10</version>
         </dependency>
 
-        <!-- MOCK server -->
+        <!-- MOCK servers -->
+
+        <!--        https://www.mock-server.com/-->
+        <!--        https://github.com/mock-server/mockserver-->
+
+        <!--        https://wiremock.org/-->
+        <!--        https://github.com/wiremock/wiremock-->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8</artifactId>
