@@ -17,9 +17,14 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ExternalRestClientRestTemplate {
 
-    private final ServerProperties serverProperties;
+    // thread safe
+    // can use a factory to build
+    // can be injected
+    private final RestTemplate restTemplate = new RestTemplate();
+
     @Setter
     private String url;
+    private final ServerProperties serverProperties;
 
     @PostConstruct
     private void setUpUrl() {
@@ -27,12 +32,11 @@ public class ExternalRestClientRestTemplate {
     }
 
     public String callExternalService(String input) {
+
         RequestDto inputModel = new RequestDto();
         inputModel.setInput(input);
-
         HttpEntity<RequestDto> request = new HttpEntity<>(inputModel);
 
-        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ResponseDto> response = restTemplate.postForEntity(url, request, ResponseDto.class);
         return Objects.requireNonNull(response.getBody()).getOutput() + " + added by internal client";
     }

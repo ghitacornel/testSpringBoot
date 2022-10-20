@@ -18,10 +18,9 @@ import javax.annotation.PostConstruct;
 @RequiredArgsConstructor
 public class ExternalRestClientFeign {
 
-    private final ServerProperties serverProperties;
-
     @Setter
     private String url;
+    private final ServerProperties serverProperties;
 
     @PostConstruct
     private void setUpUrl() {
@@ -29,16 +28,16 @@ public class ExternalRestClientFeign {
     }
 
     public String invokeGet(String input) {
+
         ExternalServiceContract client = Feign.builder()
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
+
         return client.invokeGet(input) + " + added by internal client";
     }
 
     public String invokePost(String input) {
-        RequestDto inputModel = new RequestDto();
-        inputModel.setInput(input);
 
         ExternalServiceContract client = Feign.builder()
                 .client(new OkHttpClient())
@@ -47,6 +46,9 @@ public class ExternalRestClientFeign {
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
+
+        RequestDto inputModel = new RequestDto();
+        inputModel.setInput(input);
 
         return client.invokePost(inputModel).getOutput() + " + added by internal client";
     }

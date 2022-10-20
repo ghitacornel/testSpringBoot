@@ -15,10 +15,10 @@ import javax.annotation.PostConstruct;
 @Component
 @RequiredArgsConstructor
 public class ExternalRestClientWebFlux {
-    private final ServerProperties serverProperties;
 
     @Setter
     private String url;
+    private final ServerProperties serverProperties;
 
     @PostConstruct
     private void setUpUrl() {
@@ -26,13 +26,18 @@ public class ExternalRestClientWebFlux {
     }
 
     public String callExternalService(String input) {
+
         RequestDto inputModel = new RequestDto();
         inputModel.setInput(input);
 
+        // thread safe
+        // can use a factory to build
+        // can be injected
         WebClient webClient = WebClient.builder()
                 .baseUrl(url)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
+
         ResponseDto outputModel = webClient
                 .post()
                 .uri("externalService")
