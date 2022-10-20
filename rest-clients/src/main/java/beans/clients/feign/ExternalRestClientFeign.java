@@ -8,8 +8,11 @@ import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
@@ -17,11 +20,19 @@ public class ExternalRestClientFeign {
 
     private final ServerProperties serverProperties;
 
+    @Setter
+    private String url;
+
+    @PostConstruct
+    private void setUpUrl() {
+        url = "http://localhost:" + serverProperties.getPort();
+    }
+
     public String invokeGet(String input) {
         ExternalServiceContract client = Feign.builder()
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
-                .target(ExternalServiceContract.class, "http://localhost:" + serverProperties.getPort());
+                .target(ExternalServiceContract.class, url);
         return client.invokeGet(input) + " + added by internal client";
     }
 
@@ -35,7 +46,7 @@ public class ExternalRestClientFeign {
                 .decoder(new GsonDecoder())
                 .logger(new Slf4jLogger(ExternalServiceContract.class))
                 .logLevel(Logger.Level.FULL)
-                .target(ExternalServiceContract.class, "http://localhost:" + serverProperties.getPort());
+                .target(ExternalServiceContract.class, url);
 
         return client.invokePost(inputModel).getOutput() + " + added by internal client";
     }
