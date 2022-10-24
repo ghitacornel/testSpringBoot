@@ -7,11 +7,13 @@ import beans.projections.ChildProjection;
 import beans.projections.ParentChildrenProjection;
 import beans.projections.ParentProjection;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.search.engine.backend.types.ObjectStructure;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.scope.SearchScope;
 import org.hibernate.search.mapper.orm.session.SearchSession;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
