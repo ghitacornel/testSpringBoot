@@ -1,0 +1,15 @@
+{
+  "query": {
+    "nested": {
+      "path": "children",
+      "query": {
+        "bool": {
+          "must": [
+            { "match": { "children.name": "john" }},
+            { "match": { "children.content":  "last" }}
+          ]
+        }
+      }
+    }
+  }
+}
