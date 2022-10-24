@@ -34,7 +34,8 @@ public class Parent {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @IndexedEmbedded(name = "children", structure = ObjectStructure.NESTED)
+    @IndexedEmbedded(name = "children", structure = ObjectStructure.FLATTENED)
+//    @IndexedEmbedded(name = "children", structure = ObjectStructure.NESTED, includePaths = {"id", "name", "content"})
     @IndexingDependency(reindexOnUpdate = ReindexOnUpdate.SHALLOW)
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     final private List<Child> children = new ArrayList<>();

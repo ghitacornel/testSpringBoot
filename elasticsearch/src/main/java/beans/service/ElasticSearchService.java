@@ -69,6 +69,8 @@ public class ElasticSearchService {
 
         booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
         booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
+        booleanJunction.must(predicateFactory.wildcard().field("children.name").matching("john").toPredicate());
+        booleanJunction.must(predicateFactory.wildcard().field("children.content").matching("last").toPredicate());
 
         return searchSession.search(scope)
                 .select(f -> f.composite(

@@ -39,6 +39,14 @@ public class DataSetup {
                 child.setParent(parent);
                 parent.getChildren().add(child);
             }
+            {
+                Child child = new Child();
+                child.setId(1991);
+                child.setName("john");
+                child.setContent("an apple for john");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
             parentRepository.save(parent);
         }
 
@@ -52,7 +60,7 @@ public class DataSetup {
                 Child child = new Child();
                 child.setId(2001);
                 child.setName("john");
-                child.setContent("a pineapple for john");
+                child.setContent("first");
                 child.setParent(parent);
                 parent.getChildren().add(child);
             }
@@ -60,7 +68,7 @@ public class DataSetup {
                 Child child = new Child();
                 child.setId(2002);
                 child.setName("george");
-                child.setContent("a melon for george");
+                child.setContent("first");
                 child.setParent(parent);
                 parent.getChildren().add(child);
             }
@@ -68,7 +76,7 @@ public class DataSetup {
                 Child child = new Child();
                 child.setId(2003);
                 child.setName("george");
-                child.setContent("an apple for george");
+                child.setContent("last");
                 child.setParent(parent);
                 parent.getChildren().add(child);
             }
