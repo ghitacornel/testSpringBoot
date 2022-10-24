@@ -41,6 +41,7 @@ public class DataSetup {
             }
             parentRepository.save(parent);
         }
+
         {
             Parent parent = new Parent();
             parent.setId(1001);
@@ -63,8 +64,17 @@ public class DataSetup {
                 child.setParent(parent);
                 parent.getChildren().add(child);
             }
+            {
+                Child child = new Child();
+                child.setId(2003);
+                child.setName("george");
+                child.setContent("an apple for george");
+                child.setParent(parent);
+                parent.getChildren().add(child);
+            }
             parentRepository.save(parent);
         }
+
         {
             Parent parent = new Parent();
             parent.setId(1002);
