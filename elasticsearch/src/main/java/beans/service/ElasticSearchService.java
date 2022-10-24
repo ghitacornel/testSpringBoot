@@ -4,16 +4,14 @@ import beans.model.Child;
 import beans.model.Parent;
 import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
-import beans.projections.ParentChildrenProjection;
 import beans.projections.ParentProjection;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.search.engine.backend.types.ObjectStructure;
+import org.hibernate.search.engine.search.predicate.SearchPredicate;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.scope.SearchScope;
 import org.hibernate.search.mapper.orm.session.SearchSession;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,12 +65,20 @@ public class ElasticSearchService {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
-        BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
 
-        booleanJunction.should(predicateFactory.wildcard().field("content").matching(content).toPredicate());
-        booleanJunction.should(predicateFactory.wildcard().field("name").matching(content).toPredicate());
-        booleanJunction.must(predicateFactory.wildcard().field("children.name").matching("john").toPredicate());
-        booleanJunction.must(predicateFactory.wildcard().field("children.content").matching("last").toPredicate());
+
+        BooleanPredicateClausesStep<?> innerNestedBooleanPredicate = predicateFactory.bool();
+        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.name").matching("john").toPredicate());
+        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.content").matching("first").toPredicate());
+
+        SearchPredicate nestedPredicate = predicateFactory
+                .nested()
+                .objectField("children")
+                .nest(innerNestedBooleanPredicate)
+                .toPredicate();
+
+        BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
+        booleanJunction.must(nestedPredicate);
 
         return searchSession.search(scope)
                 .select(f -> f.composite(
