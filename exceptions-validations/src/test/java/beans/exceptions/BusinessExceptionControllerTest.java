@@ -8,7 +8,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class BusinessExceptionControllerTest extends AbstractTestSpringBootContext {
@@ -18,9 +17,10 @@ public class BusinessExceptionControllerTest extends AbstractTestSpringBootConte
 
     @Test
     public void executeAndRaiseBusinessException() throws Exception {
-        mvc.perform(get("/exceptions/executeAndRaiseBusinessException"))
+        MvcResult mvcResult = mvc.perform(get("/exceptions/executeAndRaiseBusinessException"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("custom business exception message"));
+                .andReturn();
+        Assertions.assertThat(mvcResult.getResolvedException().getMessage()).isEqualTo("custom business exception message");
     }
 
     @Test
