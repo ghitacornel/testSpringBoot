@@ -21,7 +21,7 @@ public class BusinessExceptionControllerTest extends AbstractTestSpringBootConte
                 .andExpect(status().isBadRequest())
                 .andReturn();
         Assertions.assertThat(mvcResult.getResolvedException().getMessage()).isEqualTo("custom business exception message");
-        Assertions.assertThat(mvcResult.getResponse().getHeader("error-content")).isEqualTo("custom error header error value");
+        Assertions.assertThat(mvcResult.getResponse().getHeader("custom-response-header")).isEqualTo("custom response header value");
     }
 
     @Test
@@ -30,6 +30,6 @@ public class BusinessExceptionControllerTest extends AbstractTestSpringBootConte
                 .andExpect(status().isNotFound())
                 .andReturn();
         Assertions.assertThat(mvcResult.getResolvedException().getMessage()).isEqualTo("custom business exception message marked");
-        Assertions.assertThat(mvcResult.getResponse().getHeader("error-content")).isEqualTo("custom error header error value");
+        Assertions.assertThat(mvcResult.getResponse().getHeader("custom-response-header")).isEqualTo("custom response header value");
     }
 }

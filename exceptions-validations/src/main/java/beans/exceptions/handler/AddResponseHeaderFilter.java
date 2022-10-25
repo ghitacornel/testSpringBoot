@@ -13,9 +13,9 @@ public class AddResponseHeaderFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setHeader("error-content", "custom error header error value");
         chain.doFilter(request, response);
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        httpServletResponse.setHeader("custom-response-header", "custom response header value");
     }
 
 }
