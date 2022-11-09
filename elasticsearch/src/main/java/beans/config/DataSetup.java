@@ -27,7 +27,7 @@ public class DataSetup {
     public void addInitialData() {
         {
             Parent parent = new Parent();
-            parent.setId(1000);
+            parent.setId(1);
             parent.setName("parent one");
             parent.setStatus(Status.NEW);
             parent.setContent("initial dummy data");
@@ -52,8 +52,8 @@ public class DataSetup {
 
         {
             Parent parent = new Parent();
-            parent.setId(1001);
-            parent.setName("two");
+            parent.setId(2);
+            parent.setName("parent two");
             parent.setStatus(Status.ACTIVE);
             parent.setContent("some detailed content here");
             {
