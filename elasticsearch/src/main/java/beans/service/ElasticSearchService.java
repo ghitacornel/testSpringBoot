@@ -6,7 +6,6 @@ import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
 import beans.projections.ParentProjection;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.search.engine.search.predicate.SearchPredicate;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
 import org.hibernate.search.mapper.orm.Search;
@@ -66,18 +65,16 @@ public class ElasticSearchService {
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
         BooleanPredicateClausesStep<?> booleanJunction = predicateFactory.bool();
+
         booleanJunction.must(predicateFactory.wildcard().field("content").matching("*" + content + "*"));// parents with id  in { 1 2 3 } are matched
 
-        BooleanPredicateClausesStep<?> innerNestedBooleanPredicate = predicateFactory.bool();
-        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.name").matching("john"));
-        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.content").matching("first"));
-
-        SearchPredicate nestedPredicate = predicateFactory
+        booleanJunction.must(predicateFactory
                 .nested()
                 .objectField("children")
-                .nest(innerNestedBooleanPredicate)
-                .toPredicate();
-        booleanJunction.must(nestedPredicate);// only parent with child john+first is matched
+                .nest(predicateFactory.bool()
+                        .must(predicateFactory.wildcard().field("children.name").matching("john"))
+                        .must(predicateFactory.wildcard().field("children.content").matching("first"))
+                ));// only parent with child john+first is matched
 
         return searchSession.search(scope)
                 .select(f -> f.composite(ParentProjection::new,
