@@ -85,16 +85,16 @@ public class DataSetup {
 
         {
             Parent parent = new Parent();
-            parent.setId(1002);
-            parent.setName("third one");
+            parent.setId(3);
+            parent.setName("parent 3 no children");
             parent.setStatus(Status.ACTIVE);
             parent.setContent("more dummy stuff");
             parentRepository.save(parent);
         }
         {
             Parent parent = new Parent();
-            parent.setId(1003);
-            parent.setName("deleted parent");
+            parent.setId(4);
+            parent.setName("parent 4 deleted");
             parent.setStatus(Status.DELETED);
             parent.setContent("old content/data is removed");
             {
