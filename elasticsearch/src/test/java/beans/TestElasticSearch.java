@@ -41,7 +41,7 @@ public class TestElasticSearch {
 
     @Test
     public void testSearchParentChildProjection() throws Exception {
-        MvcResult result = mvc.perform(get("/elastic/parent/projection/nested/{content}", "some detailed content here"))
+        MvcResult result = mvc.perform(get("/elastic/parent/projection/nested/{content}", "dummy"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();

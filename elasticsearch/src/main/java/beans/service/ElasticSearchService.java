@@ -66,10 +66,11 @@ public class ElasticSearchService {
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
 
+        predicateFactory.bool().must(predicateFactory.wildcard().field("content").matching(content));
 
         BooleanPredicateClausesStep<?> innerNestedBooleanPredicate = predicateFactory.bool();
-        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.name").matching("john").toPredicate());
-        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.content").matching("first").toPredicate());
+        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.name").matching("john"));
+        innerNestedBooleanPredicate.must(predicateFactory.wildcard().field("children.content").matching("first"));
 
         SearchPredicate nestedPredicate = predicateFactory
                 .nested()

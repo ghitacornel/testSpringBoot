@@ -26,61 +26,61 @@ public class DataSetup {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addInitialData() {
         {
-            Parent parent = new Parent();
-            parent.setId(1);
-            parent.setName("parent one");
-            parent.setStatus(Status.NEW);
-            parent.setContent("initial dummy data");
+            Parent parent1 = new Parent();
+            parent1.setId(1);
+            parent1.setName("parent 1");
+            parent1.setStatus(Status.NEW);
+            parent1.setContent("initial dummy data");
             {
                 Child child = new Child();
                 child.setId(2000);
                 child.setName("anna");
                 child.setContent("an apple for anna");
-                child.setParent(parent);
-                parent.getChildren().add(child);
+                child.setParent(parent1);
+                parent1.getChildren().add(child);
             }
             {
                 Child child = new Child();
                 child.setId(1991);
                 child.setName("john");
                 child.setContent("an apple for john");
-                child.setParent(parent);
-                parent.getChildren().add(child);
+                child.setParent(parent1);
+                parent1.getChildren().add(child);
             }
-            parentRepository.save(parent);
+            parentRepository.save(parent1);
         }
 
         {
-            Parent parent = new Parent();
-            parent.setId(2);
-            parent.setName("parent two");
-            parent.setStatus(Status.ACTIVE);
-            parent.setContent("some detailed content here");
+            Parent parent2 = new Parent();
+            parent2.setId(2);
+            parent2.setName("parent 2");
+            parent2.setStatus(Status.ACTIVE);
+            parent2.setContent("some detailed content here, still dummy");
             {
                 Child child = new Child();
                 child.setId(2001);
                 child.setName("john");
                 child.setContent("first");
-                child.setParent(parent);
-                parent.getChildren().add(child);
+                child.setParent(parent2);
+                parent2.getChildren().add(child);
             }
             {
                 Child child = new Child();
                 child.setId(2002);
                 child.setName("george");
                 child.setContent("first");
-                child.setParent(parent);
-                parent.getChildren().add(child);
+                child.setParent(parent2);
+                parent2.getChildren().add(child);
             }
             {
                 Child child = new Child();
                 child.setId(2003);
                 child.setName("george");
                 child.setContent("last");
-                child.setParent(parent);
-                parent.getChildren().add(child);
+                child.setParent(parent2);
+                parent2.getChildren().add(child);
             }
-            parentRepository.save(parent);
+            parentRepository.save(parent2);
         }
 
         {
