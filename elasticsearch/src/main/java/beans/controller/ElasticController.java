@@ -32,9 +32,9 @@ public class ElasticController {
         return service.findParentProjectionByContent(content);
     }
 
-    @GetMapping(value = "/parent/children/projection/{content}")
-    public List<List<?>> findParentChildrenProjectionByContent(@PathVariable(name = "content") String content) {
-        return service.findParentChildrenProjectionByContent(content);
+    @GetMapping(value = "/parent/children/projection/nested/{content}")
+    public List<List<?>> findParentChildrenProjectionByNestedChildNameAndContent(@PathVariable(name = "content") String content) {
+        return service.findParentChildrenProjectionByNestedChildNameAndContent(content);
     }
 
     @GetMapping(value = "/child/{content}")

@@ -61,7 +61,7 @@ public class ElasticSearchService {
                 .fetchAllHits();
     }
 
-    public List<List<?>> findParentChildrenProjectionByContent(String content) {
+    public List<List<?>> findParentChildrenProjectionByNestedChildNameAndContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
