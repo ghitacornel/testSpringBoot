@@ -61,7 +61,7 @@ public class ElasticSearchService {
                 .fetchAllHits();
     }
 
-    public List<List<?>> findParentChildrenProjectionByNestedChildNameAndContent(String content) {
+    public List<ParentProjection> findParentProjectionByNestedChildNameAndContent(String content) {
         SearchSession searchSession = Search.session(entityManager);
         SearchScope<Parent> scope = searchSession.scope(Parent.class);
         SearchPredicateFactory predicateFactory = scope.predicate();
@@ -81,15 +81,10 @@ public class ElasticSearchService {
         booleanJunction.must(nestedPredicate);
 
         return searchSession.search(scope)
-                .select(f -> f.composite(
-//                        ParentChildrenProjection::new,
+                .select(f -> f.composite(ParentProjection::new,
                         f.field("id", Integer.class),
                         f.field("name", String.class),
-                        f.field("content", String.class),
-//                        f.field("children", ChildProjection.class).multi()
-                        f.field("children.id", Integer.class).multi(),
-                        f.field("children.name", String.class).multi(),
-                        f.field("children.content", String.class).multi()
+                        f.field("content", String.class)
                 ))
                 .where(booleanJunction.toPredicate())
                 .fetchAllHits();
