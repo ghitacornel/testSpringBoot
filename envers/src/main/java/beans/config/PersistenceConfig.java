@@ -17,4 +17,5 @@ public class PersistenceConfig {
     AuditorAware<String> auditorProvider() {
         return (AuditorAware) () -> Optional.of(user);
     }
+
 }
