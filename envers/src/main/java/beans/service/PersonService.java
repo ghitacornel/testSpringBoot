@@ -16,6 +16,10 @@ public class PersonService {
 
     private final PersonRepository repository;
 
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
     public List<Person> findAll() {
         return repository.findAll();
     }

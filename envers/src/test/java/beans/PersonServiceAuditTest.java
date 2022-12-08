@@ -1,13 +1,17 @@
 package beans;
 
+import beans.config.AuditService;
 import beans.config.PersistenceConfig;
 import beans.entity.Person;
 import beans.entity.Status;
 import beans.service.PersonService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 public class PersonServiceAuditTest {
@@ -17,6 +21,14 @@ public class PersonServiceAuditTest {
 
     @Autowired
     PersistenceConfig config;
+
+    @Autowired
+    AuditService auditService;
+
+    @BeforeEach
+    public void setUp() {
+        service.deleteAll();
+    }
 
     @Test
     public void testCrud() {
@@ -42,6 +54,11 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getCreatedDate()).isPositive();
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Ghita");
             Assertions.assertThat(person.getModifiedDate()).isPositive();
+
+            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            Assertions.assertThat(revisions.size()).isEqualTo(1);
+            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+
             System.err.println(person);
             reference.setCreatedDate(person.getCreatedDate());
             reference.setModifiedDate(person.getModifiedDate());
