@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -18,6 +19,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(exclude = {"createdDate", "modifiedDate", "createdBy", "modifiedBy"})
 @EntityListeners(AuditingEntityListener.class)
 @ToString
+@Audited
 public class Person {
 
     @Id
