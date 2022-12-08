@@ -25,7 +25,7 @@ public class AuditService {
 
     public List<?> getAllRevisions(Class<?> clazz, Object id) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
-        AuditQuery auditQuery = auditReader.createQuery().forRevisionsOfEntity(clazz, true);
+        AuditQuery auditQuery = auditReader.createQuery().forRevisionsOfEntity(clazz, false, true);
         auditQuery.add(AuditEntity.id().eq(id));
         return auditQuery.getResultList();
     }
