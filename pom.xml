@@ -28,6 +28,7 @@
         <module>mapstruct</module>
         <module>ci</module>
         <module>elasticsearch</module>
+        <module>envers</module>
     </modules>
 
     <properties>
