@@ -22,7 +22,7 @@ public class AuditService {
         return auditReader.getRevisions(clazz, id);
     }
 
-    public List<?> getAllRevisions(Class<?> clazz, Object id) {
+    public List<Object[]> getAllRevisions(Class<?> clazz, Object id) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
         return auditReader.createQuery()
                 .forRevisionsOfEntity(clazz, false, true)
