@@ -74,6 +74,12 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
+
+            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            Assertions.assertThat(revisions.size()).isEqualTo(2);
+            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+            Assertions.assertThat(revisions.get(1)).isEqualTo(2);
+
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
         }
@@ -87,6 +93,13 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
+
+            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            Assertions.assertThat(revisions.size()).isEqualTo(3);
+            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+            Assertions.assertThat(revisions.get(1)).isEqualTo(2);
+            Assertions.assertThat(revisions.get(2)).isEqualTo(3);
+
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
         }
@@ -100,6 +113,14 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
+
+            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            Assertions.assertThat(revisions.size()).isEqualTo(4);
+            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+            Assertions.assertThat(revisions.get(1)).isEqualTo(2);
+            Assertions.assertThat(revisions.get(2)).isEqualTo(3);
+            Assertions.assertThat(revisions.get(3)).isEqualTo(4);
+
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
         }
@@ -108,6 +129,14 @@ public class PersonServiceAuditTest {
             service.deleteById(1);
             Assertions.assertThat(service.findAll()).isEmpty();
             Assertions.assertThat(service.findById(1)).isNull();
+
+            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            Assertions.assertThat(revisions.size()).isEqualTo(5);
+            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+            Assertions.assertThat(revisions.get(1)).isEqualTo(2);
+            Assertions.assertThat(revisions.get(2)).isEqualTo(3);
+            Assertions.assertThat(revisions.get(3)).isEqualTo(4);
+            Assertions.assertThat(revisions.get(4)).isEqualTo(5);
         }
 
     }
