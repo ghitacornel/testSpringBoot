@@ -3,7 +3,6 @@ package beans.service;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
-import org.hibernate.envers.query.AuditQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,9 +24,10 @@ public class AuditService {
 
     public List<?> getAllRevisions(Class<?> clazz, Object id) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
-        AuditQuery auditQuery = auditReader.createQuery().forRevisionsOfEntity(clazz, false, true);
-        auditQuery.add(AuditEntity.id().eq(id));
-        return auditQuery.getResultList();
+        return auditReader.createQuery()
+                .forRevisionsOfEntity(clazz, false, true)
+                .add(AuditEntity.id().eq(id))
+                .getResultList();
     }
 
 }
