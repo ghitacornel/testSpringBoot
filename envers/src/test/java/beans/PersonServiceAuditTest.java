@@ -59,7 +59,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.size()).isEqualTo(1);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
 
-            List<Person> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<?> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(1);
 
             System.err.println(person);
@@ -83,7 +83,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
 
-            List<Person> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<?> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(2);
 
             System.err.println(person);
@@ -106,7 +106,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
             Assertions.assertThat(revisions.get(2)).isEqualTo(3);
 
-            List<Person> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<?> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(3);
 
             System.err.println(person);
@@ -130,7 +130,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.get(2)).isEqualTo(3);
             Assertions.assertThat(revisions.get(3)).isEqualTo(4);
 
-            List<Person> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<?> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(4);
 
             System.err.println(person);
@@ -150,7 +150,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.get(3)).isEqualTo(4);
             Assertions.assertThat(revisions.get(4)).isEqualTo(5);
 
-            List<Person> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<?> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(5);
 
         }
