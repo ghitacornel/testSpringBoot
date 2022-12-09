@@ -6,6 +6,7 @@ import beans.entity.Person;
 import beans.entity.Status;
 import beans.service.PersonService;
 import org.assertj.core.api.Assertions;
+import org.hibernate.envers.RevisionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,7 @@ public class PersonServiceAuditTest {
             List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(1);
             Assertions.assertThat(allRevisions.get(0)[0]).isEqualTo(reference);
+            Assertions.assertThat(allRevisions.get(0)[2]).isEqualTo(RevisionType.ADD);
 
             System.err.println(person);
             reference.setCreatedDate(person.getCreatedDate());
@@ -87,6 +89,7 @@ public class PersonServiceAuditTest {
             List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(2);
             Assertions.assertThat(allRevisions.get(1)[0]).isEqualTo(reference);
+            Assertions.assertThat(allRevisions.get(1)[2]).isEqualTo(RevisionType.MOD);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -111,6 +114,7 @@ public class PersonServiceAuditTest {
             List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(3);
             Assertions.assertThat(allRevisions.get(2)[0]).isEqualTo(reference);
+            Assertions.assertThat(allRevisions.get(2)[2]).isEqualTo(RevisionType.MOD);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -136,6 +140,7 @@ public class PersonServiceAuditTest {
             List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
             Assertions.assertThat(allRevisions.size()).isEqualTo(4);
             Assertions.assertThat(allRevisions.get(3)[0]).isEqualTo(reference);
+            Assertions.assertThat(allRevisions.get(3)[2]).isEqualTo(RevisionType.MOD);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -165,6 +170,7 @@ public class PersonServiceAuditTest {
             reference.setCreatedBy(null);
             reference.setModifiedBy(null);
             Assertions.assertThat(allRevisions.get(4)[0]).isEqualTo(reference);
+            Assertions.assertThat(allRevisions.get(4)[2]).isEqualTo(RevisionType.DEL);
 
         }
 
