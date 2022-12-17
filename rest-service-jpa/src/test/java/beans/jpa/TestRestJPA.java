@@ -3,6 +3,7 @@ package beans.jpa;
 import beans.Utils;
 import beans.jpa.model.Person;
 import beans.jpa.repository.PersonRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Calendar;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -17,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@Transactional
 public class TestRestJPA {
 
     @Autowired
@@ -24,6 +29,9 @@ public class TestRestJPA {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @BeforeEach
     public void before() {
@@ -123,4 +131,40 @@ public class TestRestJPA {
 
     }
 
+    @Test
+    public void testReadCreateReadUpdateDelete_Date() throws Exception {
+        personRepository.deleteAll();
+
+        Person person = new Person(1, "testForDate", "pass");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2022, 10, 11, 12, 13, 14);
+        person.setDateOfBirth(calendar.getTime());
+
+        // read
+        mvc.perform(get("/person/{id}", person.getId()))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("No value present"));
+
+        // create
+        String personJson = objectMapper.writeValueAsString(person);
+        {
+            mvc.perform(put("/person")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(personJson))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(""));
+        }
+
+        System.err.println("json = " + personJson);
+        System.err.println("entity = " + personRepository.findById(person.getId()).get());
+
+        // read
+        {
+            mvc.perform(get("/person/{id}", person.getId()))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(content().json(personJson));
+        }
+
+    }
 }
