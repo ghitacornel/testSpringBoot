@@ -21,6 +21,8 @@
 
         <!-- use CAFFEINE as cache implementation overriding the default implementation-->
         <!-- can use REDIS also with minimal configuration only changes -->
+        <!-- https://www.digitalocean.com/community/tutorials/spring-boot-redis-cache -->
+        <!-- https://www.baeldung.com/spring-boot-redis-cache -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
