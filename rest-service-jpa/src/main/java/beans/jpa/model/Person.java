@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -31,7 +33,7 @@ public class Person {
     private String password;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
     public Person(Integer id, String name, String password) {
         this.id = id;

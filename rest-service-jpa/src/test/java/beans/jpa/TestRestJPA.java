@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -136,9 +138,8 @@ public class TestRestJPA {
         personRepository.deleteAll();
 
         Person person = new Person(1, "testForDate", "pass");
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2022, 10, 11, 12, 13, 14);
-        person.setDateOfBirth(calendar.getTime());
+
+        person.setDateOfBirth(LocalDateTime.of(2022, 10, 11, 12, 13, 14));
 
         // read
         mvc.perform(get("/person/{id}", person.getId()))
