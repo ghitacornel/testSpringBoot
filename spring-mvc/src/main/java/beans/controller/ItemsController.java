@@ -25,20 +25,6 @@ public class ItemsController {
     private final ItemService service;
     private final UserDetailsSession userDetailsSession;
 
-    @PostMapping("/postLogin")
-    public ModelAndView postLogin(@ModelAttribute("loginData") LoginData loginData) {
-
-        // TODO add security check
-        log.error("user logged with credentials : user = " + loginData.getUser() + " ; pass = " + loginData.getPass());
-
-        // TODO add stuff on session
-        userDetailsSession.setUser(loginData.getUser());
-        userDetailsSession.setPass(loginData.getPass());
-
-        // forward to the actual first page
-        return new ModelAndView("redirect:/items");
-    }
-
     @GetMapping("/items")
     public String gotoItemsPage(Model model) {
         model.addAttribute("items", service.findAll());
