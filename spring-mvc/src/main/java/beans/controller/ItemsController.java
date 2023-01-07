@@ -36,10 +36,10 @@ public class ItemsController {
         userDetailsSession.setPass(loginData.getPass());
 
         // forward to the actual first page
-        return new ModelAndView("forward:/items");
+        return new ModelAndView("redirect:/items");
     }
 
-    @PostMapping("/items")
+    @GetMapping("/items")
     public String gotoItemsPage(Model model) {
         model.addAttribute("items", service.findAll());
         model.addAttribute("loggedUser", userDetailsSession.getUser());
