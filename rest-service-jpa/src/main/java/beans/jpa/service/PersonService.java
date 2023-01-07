@@ -1,21 +1,42 @@
 package beans.jpa.service;
 
 import beans.jpa.model.Person;
+import beans.jpa.repository.CustomPersonRepository;
+import beans.jpa.repository.PersonRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface PersonService {
+@Service
+@RequiredArgsConstructor
+public class PersonService {
 
-    List<Person> findAll();
+    private final PersonRepository repository;
+    private final CustomPersonRepository customPersonRepository;
 
-    Person findById(Integer id);
+    public List<Person> findAll() {
+        return repository.findAll();
+    }
 
-    void deleteById(Integer id);
+    public Person findById(Integer id) {
+        return repository.findById(id).get();
+    }
 
-    void save(Person person);
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
 
-    List<Person> findByPassword(String password);
+    public void save(Person person) {
+        repository.save(person);
+    }
 
-    void deleteAll();
+    public List<Person> findByPassword(String password) {
+        return customPersonRepository.findByPassword(password);
+    }
+
+    public void deleteAll() {
+        repository.deleteAll();
+    }
 
 }
