@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -24,15 +25,21 @@ public class ItemsController {
     private final ItemService service;
     private final UserDetailsSession userDetailsSession;
 
-    @PostMapping("/items")
-    public String gotoItemsPage(@ModelAttribute("loginData") LoginData loginData, Model model) {
+    @PostMapping("/postLogin")
+    public ModelAndView postLogin(@ModelAttribute("loginData") LoginData loginData) {
 
         // TODO add security check
         log.error("user logged with credentials : user = " + loginData.getUser() + " ; pass = " + loginData.getPass());
         userDetailsSession.setUser(loginData.getUser());
         userDetailsSession.setPass(loginData.getPass());
 
+        return new ModelAndView("forward:/items");
+    }
+
+    @PostMapping("/items")
+    public String gotoItemsPage(Model model) {
         model.addAttribute("items", service.findAll());
+        model.addAttribute("loggedUser", userDetailsSession.getUser());
         return "itemsPage";
     }
 
