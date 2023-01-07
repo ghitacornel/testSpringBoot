@@ -3,6 +3,7 @@ package beans.controller;
 import beans.controller.model.CreateItemRequest;
 import beans.controller.model.DeleteRequest;
 import beans.controller.model.LoginData;
+import beans.controller.session.UserDetailsSession;
 import beans.service.ItemService;
 import beans.service.model.ItemModel;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,15 @@ import java.util.Date;
 public class ItemsController {
 
     private final ItemService service;
+    private final UserDetailsSession userDetailsSession;
 
     @PostMapping("/items")
     public String gotoItemsPage(@ModelAttribute("loginData") LoginData loginData, Model model) {
 
         // TODO add security check
         log.error("user logged with credentials : user = " + loginData.getUser() + " ; pass = " + loginData.getPass());
+        userDetailsSession.setUser(loginData.getUser());
+        userDetailsSession.setPass(loginData.getPass());
 
         model.addAttribute("items", service.findAll());
         return "itemsPage";
