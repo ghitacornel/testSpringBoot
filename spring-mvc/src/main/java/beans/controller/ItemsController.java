@@ -30,9 +30,12 @@ public class ItemsController {
 
         // TODO add security check
         log.error("user logged with credentials : user = " + loginData.getUser() + " ; pass = " + loginData.getPass());
+
+        // TODO add stuff on session
         userDetailsSession.setUser(loginData.getUser());
         userDetailsSession.setPass(loginData.getPass());
 
+        // forward to the actual first page
         return new ModelAndView("forward:/items");
     }
 
