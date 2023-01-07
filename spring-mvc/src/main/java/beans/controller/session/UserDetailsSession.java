@@ -8,7 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Data
 @NoArgsConstructor
-@Component("userDetailsSession")
+@Component
 @SessionScope
 public class UserDetailsSession {
 
