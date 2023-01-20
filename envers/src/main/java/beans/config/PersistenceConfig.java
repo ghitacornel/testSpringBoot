@@ -15,7 +15,7 @@ public class PersistenceConfig {
 
     @Bean
     AuditorAware<String> auditorProvider() {
-        return (AuditorAware) () -> Optional.of(user);
+        return () -> Optional.of(user);
     }
 
 }
