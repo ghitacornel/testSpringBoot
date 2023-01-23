@@ -67,6 +67,17 @@ services:
     networks:
       - elastic_network
 
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.1
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana.example.org
+      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
+    ports:
+      - 5601:5601
+    networks:
+      - elastic_network
+
 volumes:
   data01:
     driver: local
