@@ -26,9 +26,8 @@
         <module>standalone</module>
         <module>spring-mvc</module>
         <module>mapstruct</module>
-        <module>ci</module>
         <module>envers</module>
-        <module>elasticsearch</module>
+<!--        <module>elasticsearch</module>-->
     </modules>
 
     <properties>
