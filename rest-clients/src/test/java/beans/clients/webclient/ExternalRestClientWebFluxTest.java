@@ -3,8 +3,8 @@ package beans.clients.webclient;
 import beans.clients.webflux.ExternalRestClientWebFlux;
 import beans.external.RequestDto;
 import beans.external.ResponseDto;
+import beans.mock.MockServerSetup;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @WireMockTest
-public class ExternalRestClientWebFluxTest {
+public class ExternalRestClientWebFluxTest extends MockServerSetup {
 
     @Autowired
     ExternalRestClientWebFlux client;
@@ -37,10 +37,6 @@ public class ExternalRestClientWebFluxTest {
         inputModel.setInput("input data");
         ResponseDto outputModel = new ResponseDto();
         outputModel.setOutput(inputModel.getInput() + " + added by external client");
-
-        WireMock.stubFor(WireMock.post("/externalService")
-                .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
-                .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
 
         Assertions.assertThat(client.callExternalService("input data"))
                 .isEqualTo("input data + added by external client + added by internal client");

@@ -16,5 +16,6 @@ spring:
               version: 7.5.1
 #              required_index_status: yellow
           automatic_indexing:
+#            strategy: none
             synchronization:
               strategy: sync
