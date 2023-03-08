@@ -1,6 +1,7 @@
 package beans.clients.feign;
 
-import beans.external.RequestDto;
+import beans.external.PersonRequestDto;
+import beans.external.PersonResponseDto;
 import feign.Feign;
 import feign.Logger;
 import feign.gson.GsonDecoder;
@@ -21,31 +22,17 @@ public class ExternalRestClientFeign {
     @Setter
     private String url;
     private final ServerProperties serverProperties;
+    private ExternalServiceContract client;
 
     @PostConstruct
     private void setUpUrl() {
         url = "http://localhost:" + serverProperties.getPort();
-    }
 
-    public String invokeGet(String input) {
 
         // thread safe
         // can use a factory to build
         // can be injected
-        ExternalServiceContract client = Feign.builder()
-                .logger(new Slf4jLogger(ExternalServiceContract.class))
-                .logLevel(Logger.Level.FULL)
-                .target(ExternalServiceContract.class, url);
-
-        return client.invokeGet(input) + " + added by internal client";
-    }
-
-    public String invokePost(String input) {
-
-        // thread safe
-        // can use a factory to build
-        // can be injected
-        ExternalServiceContract client = Feign.builder()
+        client = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
@@ -53,10 +40,38 @@ public class ExternalRestClientFeign {
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
 
-        RequestDto inputModel = new RequestDto();
-        inputModel.setInput(input);
+    }
 
-        return client.invokePost(inputModel).getOutput() + " + added by internal client";
+    public PersonResponseDto invokeGet(String input) {
+
+        // thread safe
+        // can use a factory to build
+        // can be injected
+        client = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(ExternalServiceContract.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ExternalServiceContract.class, url);
+
+        return client.invokeGet(input);
+    }
+
+    public PersonResponseDto invokePost(PersonRequestDto inputModel) {
+
+        // thread safe
+        // can use a factory to build
+        // can be injected
+        client = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(ExternalServiceContract.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ExternalServiceContract.class, url);
+
+        return client.invokePost(inputModel);
     }
 
 }

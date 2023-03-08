@@ -1,7 +1,7 @@
 package beans.clients.resttemplate;
 
-import beans.external.RequestDto;
-import beans.external.ResponseDto;
+import beans.external.PersonRequestDto;
+import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
@@ -30,12 +30,9 @@ public class ExternalRestClientRestTemplateTest extends MockServerSetup {
     @SneakyThrows
     public void testClient() {
 
-        RequestDto inputModel = new RequestDto();
-        inputModel.setInput("input data");
-        ResponseDto outputModel = new ResponseDto();
-        outputModel.setOutput(inputModel.getInput() + " + added by external client");
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
-        Assertions.assertThat(client.callExternalService("input data"))
-                .isEqualTo(outputModel.getOutput() + " + added by internal client");
+        Assertions.assertThat(client.callExternalService(inputModel)).isEqualTo(outputModel);
     }
 }

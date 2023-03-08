@@ -1,5 +1,7 @@
 package beans.clients.feign;
 
+import beans.external.PersonRequestDto;
+import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
@@ -27,16 +29,18 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testPost() {
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
-        Assertions.assertThat(client.invokePost("input data"))
-                .isEqualTo("input data + added by external client + added by internal client");
+        Assertions.assertThat(client.invokePost(inputModel)).isEqualTo(outputModel);
     }
 
     @Test
     @SneakyThrows
     public void testGet() {
 
-        Assertions.assertThat(client.invokeGet("XXX"))
-                .isEqualTo("input data + added by external client + added by internal client");
+        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
+
+        Assertions.assertThat(client.invokeGet("3")).isEqualTo(outputModel);
     }
 }

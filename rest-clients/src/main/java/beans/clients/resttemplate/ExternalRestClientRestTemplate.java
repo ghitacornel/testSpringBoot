@@ -1,7 +1,7 @@
 package beans.clients.resttemplate;
 
-import beans.external.RequestDto;
-import beans.external.ResponseDto;
+import beans.external.PersonRequestDto;
+import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -31,13 +30,11 @@ public class ExternalRestClientRestTemplate {
         url = "http://localhost:" + serverProperties.getPort() + "/externalService";
     }
 
-    public String callExternalService(String input) {
+    public PersonResponseDto callExternalService(PersonRequestDto inputModel) {
 
-        RequestDto inputModel = new RequestDto();
-        inputModel.setInput(input);
-        HttpEntity<RequestDto> request = new HttpEntity<>(inputModel);
+        HttpEntity<PersonRequestDto> request = new HttpEntity<>(inputModel);
 
-        ResponseEntity<ResponseDto> response = restTemplate.postForEntity(url, request, ResponseDto.class);
-        return Objects.requireNonNull(response.getBody()).getOutput() + " + added by internal client";
+        ResponseEntity<PersonResponseDto> response = restTemplate.postForEntity(url, request, PersonResponseDto.class);
+        return response.getBody();
     }
 }
