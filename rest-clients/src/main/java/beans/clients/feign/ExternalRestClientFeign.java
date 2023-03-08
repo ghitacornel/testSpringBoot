@@ -10,10 +10,7 @@ import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
@@ -21,14 +18,8 @@ public class ExternalRestClientFeign {
 
     @Setter
     private String url;
-    private final ServerProperties serverProperties;
 
-    @PostConstruct
-    private void setUpUrl() {
-        url = "http://localhost:" + serverProperties.getPort();
-    }
-
-    public PersonResponseDto invokeGet(String input) {
+    public PersonResponseDto invokeGET(String input) {
 
         // can use a factory to build
         // can be injected
@@ -43,7 +34,7 @@ public class ExternalRestClientFeign {
         return client.invokeGET(input);
     }
 
-    public PersonResponseDto invokePost(PersonRequestDto inputModel) {
+    public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
 
         // thread safe
         // can use a factory to build

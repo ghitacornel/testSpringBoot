@@ -1,4 +1,4 @@
-package beans.clients.feign;
+package beans.clients.retrofit;
 
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class ExternalRestClientFeignTest extends MockServerSetup {
+public class ExternalRestClientRetrofitTest extends MockServerSetup {
 
     @Autowired
-    ExternalRestClientFeign client;
+    ExternalRestClientRetrofit client;
 
     @Autowired
     ObjectMapper objectMapper;

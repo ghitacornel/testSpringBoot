@@ -4,13 +4,10 @@ import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
@@ -18,12 +15,6 @@ public class ExternalRestClientWebFlux {
 
     @Setter
     private String url;
-    private final ServerProperties serverProperties;
-
-    @PostConstruct
-    private void setUpUrl() {
-        url = "http://localhost:" + serverProperties.getPort();
-    }
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
 

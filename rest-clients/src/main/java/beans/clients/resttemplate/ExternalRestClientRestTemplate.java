@@ -4,7 +4,6 @@ import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -23,12 +22,6 @@ public class ExternalRestClientRestTemplate {
 
     @Setter
     private String url;
-    private final ServerProperties serverProperties;
-
-    @PostConstruct
-    private void setUpUrl() {
-        url = "http://localhost:" + serverProperties.getPort() + "/externalService";
-    }
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
         HttpEntity<PersonRequestDto> request = new HttpEntity<>(inputModel);
