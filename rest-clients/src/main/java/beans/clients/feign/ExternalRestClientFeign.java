@@ -55,7 +55,7 @@ public class ExternalRestClientFeign {
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
 
-        return client.invokeGet(input);
+        return client.invokeGET(input);
     }
 
     public PersonResponseDto invokePost(PersonRequestDto inputModel) {
@@ -71,7 +71,7 @@ public class ExternalRestClientFeign {
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
 
-        return client.invokePost(inputModel);
+        return client.invokePOST(inputModel);
     }
 
 }

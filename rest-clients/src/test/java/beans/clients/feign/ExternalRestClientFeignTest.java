@@ -28,7 +28,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
     @Test
     @SneakyThrows
-    public void testPost() {
+    public void testPOST() {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
@@ -37,7 +37,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
     @Test
     @SneakyThrows
-    public void testGet() {
+    public void testGET() {
 
         PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 

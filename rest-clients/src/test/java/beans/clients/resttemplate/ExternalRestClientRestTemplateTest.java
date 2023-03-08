@@ -28,11 +28,20 @@ public class ExternalRestClientRestTemplateTest extends MockServerSetup {
 
     @Test
     @SneakyThrows
-    public void testClient() {
+    public void testPOST() {
 
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
-        Assertions.assertThat(client.callExternalService(inputModel)).isEqualTo(outputModel);
+        Assertions.assertThat(client.invokePOST(inputModel)).isEqualTo(outputModel);
+    }
+
+    @Test
+    @SneakyThrows
+    public void testGET() {
+
+        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
+
+        Assertions.assertThat(client.invokeGET("3")).isEqualTo(outputModel);
     }
 }

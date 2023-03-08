@@ -10,10 +10,10 @@ public interface ExternalServiceContract {
 
     @RequestLine("GET /externalService/{input}")
     @Headers("Content-Type: application/json")
-    PersonResponseDto invokeGet(@Param("input") String input);
+    PersonResponseDto invokeGET(@Param("input") String input);
 
     @RequestLine("POST /externalService")
     @Headers("Content-Type: application/json")
-    PersonResponseDto invokePost(PersonRequestDto inputModel);
+    PersonResponseDto invokePOST(PersonRequestDto inputModel);
 
 }

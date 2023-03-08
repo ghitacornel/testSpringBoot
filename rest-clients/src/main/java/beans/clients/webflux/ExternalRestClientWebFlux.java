@@ -25,7 +25,7 @@ public class ExternalRestClientWebFlux {
         url = "http://localhost:" + serverProperties.getPort();
     }
 
-    public PersonResponseDto callExternalService(PersonRequestDto inputModel) {
+    public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
 
         // thread safe
         // can use a factory to build
@@ -42,6 +42,23 @@ public class ExternalRestClientWebFlux {
                 .retrieve()
                 .bodyToMono(PersonResponseDto.class)
                 .block();
+    }
 
+    public PersonResponseDto invokeGET(String input) {
+
+        // thread safe
+        // can use a factory to build
+        // can be injected
+        WebClient webClient = WebClient.builder()
+                .baseUrl(url)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
+        return webClient
+                .get()
+                .uri("externalService" + "/" + input)
+                .retrieve()
+                .bodyToMono(PersonResponseDto.class)
+                .block();
     }
 }

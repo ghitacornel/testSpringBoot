@@ -30,11 +30,14 @@ public class ExternalRestClientRestTemplate {
         url = "http://localhost:" + serverProperties.getPort() + "/externalService";
     }
 
-    public PersonResponseDto callExternalService(PersonRequestDto inputModel) {
-
+    public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
         HttpEntity<PersonRequestDto> request = new HttpEntity<>(inputModel);
-
         ResponseEntity<PersonResponseDto> response = restTemplate.postForEntity(url, request, PersonResponseDto.class);
+        return response.getBody();
+    }
+
+    public PersonResponseDto invokeGET(String input) {
+        ResponseEntity<PersonResponseDto> response = restTemplate.getForEntity(url + "/" + input, PersonResponseDto.class);
         return response.getBody();
     }
 }

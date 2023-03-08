@@ -19,6 +19,7 @@ public abstract class MockServerSetup {
     @SneakyThrows
     public void setupExternalApplicationAsMock() {
 
+        // mock POST
         {
             PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
             PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
@@ -28,6 +29,7 @@ public abstract class MockServerSetup {
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
+        // mock GET
         {
             PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 
