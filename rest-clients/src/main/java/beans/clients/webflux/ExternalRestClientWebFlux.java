@@ -27,7 +27,6 @@ public class ExternalRestClientWebFlux {
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
 
-        // thread safe
         // can use a factory to build
         // can be injected
         WebClient webClient = WebClient.builder()

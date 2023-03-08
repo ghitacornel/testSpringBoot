@@ -22,32 +22,17 @@ public class ExternalRestClientFeign {
     @Setter
     private String url;
     private final ServerProperties serverProperties;
-    private ExternalServiceContract client;
 
     @PostConstruct
     private void setUpUrl() {
         url = "http://localhost:" + serverProperties.getPort();
-
-
-        // thread safe
-        // can use a factory to build
-        // can be injected
-        client = Feign.builder()
-                .client(new OkHttpClient())
-                .encoder(new GsonEncoder())
-                .decoder(new GsonDecoder())
-                .logger(new Slf4jLogger(ExternalServiceContract.class))
-                .logLevel(Logger.Level.FULL)
-                .target(ExternalServiceContract.class, url);
-
     }
 
     public PersonResponseDto invokeGet(String input) {
 
-        // thread safe
         // can use a factory to build
         // can be injected
-        client = Feign.builder()
+        ExternalServiceContract client = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
@@ -63,7 +48,7 @@ public class ExternalRestClientFeign {
         // thread safe
         // can use a factory to build
         // can be injected
-        client = Feign.builder()
+        ExternalServiceContract client = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())

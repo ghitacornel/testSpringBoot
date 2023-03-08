@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @RequiredArgsConstructor
 public class ExternalRestClientRestTemplate {
 
-    // thread safe
+    // "DEPRECATED"
     // can use a factory to build
     // can be injected
     private final RestTemplate restTemplate = new RestTemplate();
