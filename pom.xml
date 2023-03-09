@@ -28,6 +28,7 @@
         <module>mapstruct</module>
         <module>envers</module>
         <module>elasticsearch</module>
+        <module>soap-wsdl</module>
     </modules>
 
     <properties>

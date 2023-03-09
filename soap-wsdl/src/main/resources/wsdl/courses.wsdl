@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://helloworld.tutorialspoint.com/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="HelloWorld"
+                  targetNamespace="http://helloworld.tutorialspoint.com/">
+    <wsdl:types>
+        <xsd:schema attributeFormDefault="unqualified"
+                    elementFormDefault="qualified"
+                    targetNamespace="http://helloworld.tutorialspoint.com/">
+            <xsd:element name="greetings" type="tns:greetings"/>
+            <xsd:complexType name="greetings">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="arg0" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="greetingsResponse"
+                         type="tns:greetingsResponse"/>
+            <xsd:complexType name="greetingsResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="greetings">
+        <wsdl:part element="tns:greetings" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="greetingsResponse">
+        <wsdl:part element="tns:greetingsResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="HelloWorldPortType">
+        <wsdl:operation name="greetings">
+            <wsdl:input message="tns:greetings" name="greetings"></wsdl:input>
+            <wsdl:output message="tns:greetingsResponse" name="greetingsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="HelloWorldSoapBinding" type="tns:HelloWorldPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="greetings">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="greetings"></wsdl:input>
+            <wsdl:output name="greetingsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HelloWorldService">
+        <wsdl:port binding="tns:HelloWorldSoapBinding" name="HelloWorldPort">
+            <soap:address location="http://localhost:9090/HelloServerPort"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
