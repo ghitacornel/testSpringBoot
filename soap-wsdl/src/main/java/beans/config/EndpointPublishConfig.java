@@ -2,7 +2,6 @@ package beans.config;
 
 import beans.service.HelloWorldService;
 import lombok.RequiredArgsConstructor;
-import org.apache.cxf.feature.LoggingFeature;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -17,8 +16,7 @@ public class EndpointPublishConfig {
     @PostConstruct
     public void setup() {
         Endpoint.publish("http://localhost:9090/HelloServerPort",
-                service,
-                new LoggingFeature());
+                service);
         // check http://localhost:9090/HelloServerPort?wsdl
     }
 }
