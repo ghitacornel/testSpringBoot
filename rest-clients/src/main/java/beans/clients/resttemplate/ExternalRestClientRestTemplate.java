@@ -28,7 +28,7 @@ public class ExternalRestClientRestTemplate {
     }
 
     public PersonResponseDto invokeGET(String path, String query) {
-        ResponseEntity<PersonResponseDto> response = restTemplate.getForEntity(url + "/" + path + "?parameter=" + query, PersonResponseDto.class);
+        ResponseEntity<PersonResponseDto> response = restTemplate.getForEntity(url + "/{path}?parameter={query}", PersonResponseDto.class, path, query);
         return response.getBody();
     }
 }
