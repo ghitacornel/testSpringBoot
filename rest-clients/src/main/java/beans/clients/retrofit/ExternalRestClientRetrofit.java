@@ -37,7 +37,7 @@ public class ExternalRestClientRetrofit {
         }
     }
 
-    public PersonResponseDto invokeGET(String input) {
+    public PersonResponseDto invokeGET(String path, String query) {
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -50,7 +50,7 @@ public class ExternalRestClientRetrofit {
         ExternalServiceContract externalServiceContract = retrofit.create(ExternalServiceContract.class);
 
         try {
-            return externalServiceContract.invokeGET(input).execute().body();
+            return externalServiceContract.invokeGET(path, query).execute().body();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

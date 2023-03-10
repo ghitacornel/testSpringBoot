@@ -34,7 +34,7 @@ public class ExternalRestClientWebFlux {
                 .block();
     }
 
-    public PersonResponseDto invokeGET(String input) {
+    public PersonResponseDto invokeGET(String path, String query) {
 
         // thread safe
         // can use a factory to build
@@ -46,7 +46,10 @@ public class ExternalRestClientWebFlux {
 
         return webClient
                 .get()
-                .uri("externalService" + "/" + input)
+                .uri(uriBuilder -> uriBuilder
+                        .path("externalService/{path}")
+                        .queryParam("parameter", query)
+                        .build(path))
                 .retrieve()
                 .bodyToMono(PersonResponseDto.class)
                 .block();

@@ -19,7 +19,7 @@ public class ExternalRestClientFeign {
     @Setter
     private String url;
 
-    public PersonResponseDto invokeGET(String input) {
+    public PersonResponseDto invokeGET(String path, String query) {
 
         // can use a factory to build
         // can be injected
@@ -31,7 +31,7 @@ public class ExternalRestClientFeign {
                 .logLevel(Logger.Level.FULL)
                 .target(ExternalServiceContract.class, url);
 
-        return client.invokeGET(input);
+        return client.invokeGET(path, query);
     }
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {

@@ -8,9 +8,9 @@ import feign.RequestLine;
 
 public interface ExternalServiceContract {
 
-    @RequestLine("GET /externalService/{input}")
+    @RequestLine("GET /externalService/{path}?parameter={query}")
     @Headers("Content-Type: application/json")
-    PersonResponseDto invokeGET(@Param("input") String input);
+    PersonResponseDto invokeGET(@Param("path") String path, @Param("query") String query);
 
     @RequestLine("POST /externalService")
     @Headers("Content-Type: application/json")

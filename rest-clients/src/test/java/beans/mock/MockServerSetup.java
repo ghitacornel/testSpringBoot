@@ -33,7 +33,7 @@ public abstract class MockServerSetup {
         {
             PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 
-            WireMock.stubFor(WireMock.get("/externalService/" + "3")
+            WireMock.stubFor(WireMock.get("/externalService/" + "3?parameter=4")
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
     }

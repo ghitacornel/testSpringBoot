@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
-
 @Component
 @RequiredArgsConstructor
 public class ExternalRestClientRestTemplate {
@@ -29,8 +27,8 @@ public class ExternalRestClientRestTemplate {
         return response.getBody();
     }
 
-    public PersonResponseDto invokeGET(String input) {
-        ResponseEntity<PersonResponseDto> response = restTemplate.getForEntity(url + "/" + input, PersonResponseDto.class);
+    public PersonResponseDto invokeGET(String path, String query) {
+        ResponseEntity<PersonResponseDto> response = restTemplate.getForEntity(url + "/" + path + "?parameter=" + query, PersonResponseDto.class);
         return response.getBody();
     }
 }

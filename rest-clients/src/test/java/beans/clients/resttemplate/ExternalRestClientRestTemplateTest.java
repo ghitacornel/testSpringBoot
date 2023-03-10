@@ -42,6 +42,6 @@ public class ExternalRestClientRestTemplateTest extends MockServerSetup {
 
         PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 
-        Assertions.assertThat(client.invokeGET("3")).isEqualTo(outputModel);
+        Assertions.assertThat(client.invokeGET("3", "4")).isEqualTo(outputModel);
     }
 }
