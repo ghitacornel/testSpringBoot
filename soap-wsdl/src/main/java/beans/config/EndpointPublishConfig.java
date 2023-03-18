@@ -2,9 +2,11 @@ package beans.config;
 
 import beans.service.HelloWorldService;
 import lombok.RequiredArgsConstructor;
+import org.apache.cxf.Bus;
+import org.apache.cxf.jaxws.EndpointImpl;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 import javax.xml.ws.Endpoint;
 
 @Configuration
@@ -13,10 +15,12 @@ public class EndpointPublishConfig {
 
     private final HelloWorldService service;
 
-    @PostConstruct
-    public void setup() {
-        Endpoint.publish("http://localhost:9090/HelloServerPort",
-                service);
-        // check http://localhost:9090/HelloServerPort?wsdl
+    private final Bus bus;
+
+    @Bean
+    public Endpoint endpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, service);
+        endpoint.publish("/Hello");
+        return endpoint;
     }
 }
