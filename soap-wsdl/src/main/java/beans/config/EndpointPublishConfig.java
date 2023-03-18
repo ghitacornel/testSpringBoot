@@ -23,4 +23,5 @@ public class EndpointPublishConfig {
         endpoint.publish("/Hello");
         return endpoint;
     }
+//    http://localhost:8080/services/Hello?wsdl
 }
