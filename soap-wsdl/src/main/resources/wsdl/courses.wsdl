@@ -25,14 +25,14 @@
         </xsd:schema>
     </wsdl:types>
     <wsdl:message name="greetings">
-        <wsdl:part element="tns:greetings" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:greetings" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="greetingsResponse">
-        <wsdl:part element="tns:greetingsResponse" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:greetingsResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:portType name="HelloWorldPortType">
         <wsdl:operation name="greetings">
-            <wsdl:input message="tns:greetings" name="greetings"></wsdl:input>
+            <wsdl:input message="tns:greetings" name="greetings"/>
             <wsdl:output message="tns:greetingsResponse" name="greetingsResponse">
             </wsdl:output>
         </wsdl:operation>
@@ -42,7 +42,7 @@
                       transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="greetings">
             <soap:operation soapAction="" style="document"/>
-            <wsdl:input name="greetings"></wsdl:input>
+            <wsdl:input name="greetings"/>
             <wsdl:output name="greetingsResponse">
                 <soap:body use="literal"/>
             </wsdl:output>
