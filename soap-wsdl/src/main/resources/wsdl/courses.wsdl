@@ -6,9 +6,9 @@
                   name="HelloWorld"
                   targetNamespace="http://helloworld.tutorialspoint.com/">
     <wsdl:types>
-        <xsd:schema attributeFormDefault="unqualified"
-                    elementFormDefault="qualified"
-                    targetNamespace="http://helloworld.tutorialspoint.com/">
+        <xsd:schema
+                elementFormDefault="qualified"
+                targetNamespace="http://helloworld.tutorialspoint.com/">
             <xsd:element name="greetings" type="tns:greetings"/>
             <xsd:complexType name="greetings">
                 <xsd:sequence>
