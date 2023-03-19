@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:soap="http://localhost:8080/services/Hello/">
+    <soap:Body>
+        <AccountDetailsResponse xmlns="http://com/blog/samples/webservices/accountservice">
+            <AccountDetails>
+                <AccountNumber>xxx</AccountNumber>
+                <AccountName>custom account name</AccountName>
+                <AccountBalance>123.0</AccountBalance>
+                <AccountStatus>Active</AccountStatus>
+            </AccountDetails>
+        </AccountDetailsResponse>
+    </soap:Body>
+</soap:Envelope>
