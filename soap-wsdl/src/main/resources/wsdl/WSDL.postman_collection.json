@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "7c0ff9ec-9a90-430b-8552-c5cc2595cd7c",
+		"name": "WSDL",
+		"description": "\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"content is empty\", () => {\r",
+							"  pm.expect(pm.response.body()).to.eql(\"\r",
+							"\r",
+							"<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r",
+							"    <soap:Body>\r",
+							"        <AccountDetailsResponse xmlns=\"http://com/blog/samples/webservices/accountservice\">\r",
+							"            <AccountDetails>\r",
+							"                <AccountNumber>xxx</AccountNumber>\r",
+							"                <AccountName>custom account name</AccountName>\r",
+							"                <AccountBalance>123.0</AccountBalance>\r",
+							"                <AccountStatus>Active</AccountStatus>\r",
+							"            </AccountDetails>\r",
+							"        </AccountDetailsResponse>\r",
+							"    </soap:Body>\r",
+							"</soap:Envelope>\r",
+							"\r",
+							"  \");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <AccountDetailsRequest xmlns=\"http://com/blog/samples/webservices/accountservice\">\n      <accountNumber>xxx</accountNumber>\n    </AccountDetailsRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/services/Hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"services",
+						"Hello"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "greetings response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <greetings xmlns=\"http://helloworld.tutorialspoint.com/\">\n      <arg0>string</arg0>\n    </greetings>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/HelloServerPort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"HelloServerPort"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/xml; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <greetingsResponse xmlns=\"http://helloworld.tutorialspoint.com/\">\n      <return>string</return>\n    </greetingsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
