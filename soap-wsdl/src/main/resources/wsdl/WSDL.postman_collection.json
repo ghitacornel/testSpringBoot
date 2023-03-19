@@ -51,7 +51,7 @@
 			},
 			"response": [
 				{
-					"name": "greetings response",
+					"name": "hello response",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
