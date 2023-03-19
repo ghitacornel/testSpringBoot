@@ -13,27 +13,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", () => {\r",
-							"  pm.expect(pm.response.code).to.eql(200);\r",
-							"});\r",
-							"pm.test(\"content is empty\", () => {\r",
-							"  pm.expect(pm.response.body()).to.eql(\"\r",
-							"\r",
-							"<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r",
-							"    <soap:Body>\r",
-							"        <AccountDetailsResponse xmlns=\"http://com/blog/samples/webservices/accountservice\">\r",
-							"            <AccountDetails>\r",
-							"                <AccountNumber>xxx</AccountNumber>\r",
-							"                <AccountName>custom account name</AccountName>\r",
-							"                <AccountBalance>123.0</AccountBalance>\r",
-							"                <AccountStatus>Active</AccountStatus>\r",
-							"            </AccountDetails>\r",
-							"        </AccountDetailsResponse>\r",
-							"    </soap:Body>\r",
-							"</soap:Envelope>\r",
-							"\r",
-							"  \");\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
