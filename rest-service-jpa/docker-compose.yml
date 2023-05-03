@@ -2,7 +2,7 @@ services:
 
   postgres_clients:
     image: postgres:latest
-    container_name: clients
+    container_name: demo
     ports:
       - "5432:5432"
     environment:
