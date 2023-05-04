@@ -24,6 +24,9 @@
             <column name="name" type="varchar(255)"/>
             <column name="parent_id" type="int"/>
         </createTable>
+        <addForeignKeyConstraint baseTableName="Child" baseColumnNames="parent_id"
+                                 constraintName="parent_fk"
+                                 referencedTableName="Parent" referencedColumnNames="id"/>
         <createTable tableName="Item">
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
