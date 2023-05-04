@@ -7,65 +7,39 @@
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="pass" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="date_Of_Birth" type="timestamp">
-                <constraints nullable="true"/>
-            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="pass" type="varchar(255)"/>
+            <column name="date_Of_Birth" type="timestamp"/>
         </createTable>
         <createTable tableName="Parent">
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
+            <column name="name" type="varchar(255)"/>
         </createTable>
         <createTable tableName="Child">
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="parent_id" type="int">
-                <constraints nullable="true"/>
-            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="parent_id" type="int"/>
         </createTable>
         <createTable tableName="Item">
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="length" type="int">
-                <constraints nullable="true"/>
-            </column>
-            <column name="weight" type="double">
-                <constraints nullable="true"/>
-            </column>
-            <column name="registration" type="timestamp">
-                <constraints nullable="true"/>
-            </column>
-            <column name="fake" type="boolean">
-                <constraints nullable="true"/>
-            </column>
-            <column name="state" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="length" type="int"/>
+            <column name="weight" type="double"/>
+            <column name="registration" type="timestamp"/>
+            <column name="fake" type="boolean"/>
+            <column name="state" type="varchar(255)"/>
         </createTable>
         <createTable tableName="Pageable_Entity">
             <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="data" type="varchar(255)">
-                <constraints nullable="true"/>
-            </column>
+            <column name="data" type="varchar(255)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
