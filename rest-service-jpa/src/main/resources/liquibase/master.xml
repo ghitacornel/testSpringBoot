@@ -1,0 +1,71 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="initial" author="user">
+        <createTable tableName="Person">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="pass" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_Of_Birth" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="Parent">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="Child">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="parent_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="Item">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="length" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="weight" type="double">
+                <constraints nullable="true"/>
+            </column>
+            <column name="registration" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="fake" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+            <column name="state" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="Pageable_Entity">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="data" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
