@@ -71,8 +71,8 @@ public class TransactionalService {
     }
 
     @Transactional(timeout = 10)
-    public String verifyTimeout() {
-        return longRunningService.longRunningBusiness();
+    public String verifyTimeout(Integer seconds) {
+        return longRunningService.longRunningBusiness(seconds);
     }
 
 }

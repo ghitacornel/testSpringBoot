@@ -19,14 +19,14 @@ public class LongRunningService {
     private final ExecutorService executorService = Executors.newFixedThreadPool(5);
     private final TransactionalEntityRepository repository;
 
-    public String longRunningBusiness() {
+    public String longRunningBusiness(Integer seconds) {
         log.info("start long running business");
 
         Future<String> future = executorService.submit(() -> {
 
             // ensure the request takes at least a couple of seconds to complete
             try {
-                Thread.sleep(5000);
+                Thread.sleep(seconds);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

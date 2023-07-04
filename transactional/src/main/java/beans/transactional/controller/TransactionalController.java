@@ -44,8 +44,8 @@ public class TransactionalController {
         service.validateModifyWithLock(id);
     }
 
-    @GetMapping("timeout")
-    public String verifyTimeout() {
-        return service.verifyTimeout();
+    @GetMapping("timeout/{seconds}")
+    public String verifyTimeout(@PathVariable("seconds") Integer seconds) {
+        return service.verifyTimeout(seconds);
     }
 }

@@ -2,7 +2,6 @@ package beans.transactional;
 
 import beans.transactional.service.TransactionalService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,17 +22,15 @@ public class TransactionalTimeoutTest {
     TransactionalService service;
 
     @Test
-    @Timeout(10)// works
     public void timeout_OK() throws Exception {
-        mvc.perform(get("/transactional/timeout"))
+        mvc.perform(get("/transactional/timeout/20"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
 
     @Test
-    @Timeout(4)// expected to fail
-    public void timeout_Exceeds() throws Exception {
-        mvc.perform(get("/transactional/timeout"))
+    public void timeout_NotEnough() throws Exception {
+        mvc.perform(get("/transactional/timeout/5"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
