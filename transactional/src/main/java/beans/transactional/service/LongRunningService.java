@@ -23,9 +23,7 @@ public class LongRunningService {
     public String longRunningBusiness() {
         log.info("start long running business");
 
-        for (TransactionalEntity transactionalEntity : repository.findAll()) {
-            log.info("loaded from db for simulating a DB interaction " + transactionalEntity);
-        }
+        log.info("loaded from db for simulating a DB interaction " + repository.findAll());
 
         Future<String> future = executorService.submit(() -> {
 
