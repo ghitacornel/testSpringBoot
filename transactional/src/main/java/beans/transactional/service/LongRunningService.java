@@ -35,6 +35,7 @@ public class LongRunningService {
 
         });
 
+        // first wait
         String result;
         try {
             result = future.get();
@@ -42,6 +43,8 @@ public class LongRunningService {
             throw new RuntimeException("bad luck", e);
         }
 
+        // second do a db call
+        // looks like it doesn't work without this
         log.info("loaded from db for simulating a DB interaction " + repository.findAll());
 
         log.info("end long running business");
