@@ -1,20 +1,30 @@
 package beans.transactional.service;
 
+import beans.transactional.repository.TransactionalEntityRepository;
+import beans.transactional.repository.entity.TransactionalEntity;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-@Repository
+@Service
+@RequiredArgsConstructor
 @Slf4j
 public class LongRunningService {
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private final TransactionalEntityRepository repository;
 
     public String longRunningBusiness() {
         log.info("start long running business");
+
+        for (TransactionalEntity transactionalEntity : repository.findAll()) {
+            log.info("loaded from db for simulating a DB interaction " + transactionalEntity);
+        }
 
         Future<String> future = executorService.submit(() -> {
 
