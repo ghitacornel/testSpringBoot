@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransactionalService {
 
     private final TransactionalEntityRepository repository;
+    private final LongRunningService longRunningService;
 
     @Autowired
     @Lazy// due to injection process
@@ -69,17 +70,9 @@ public class TransactionalService {
         }
     }
 
-//    @Transactional(timeout = 1)
+    //    @Transactional(timeout = 1)
     public String verifyTimeout() {
-
-        // ensure the request takes at least a couple of seconds to complete
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return "OK";
+        return longRunningService.longRunningBusiness();
     }
 
 }
