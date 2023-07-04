@@ -1,7 +1,6 @@
 package beans.transactional.service;
 
 import beans.transactional.repository.TransactionalEntityRepository;
-import beans.transactional.repository.entity.TransactionalEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
