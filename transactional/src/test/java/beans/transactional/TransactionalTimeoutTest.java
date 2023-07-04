@@ -22,14 +22,14 @@ public class TransactionalTimeoutTest {
     TransactionalService service;
 
     @Test
-    public void timeout_OK() throws Exception {
+    public void timeout_Exceeded() throws Exception {
         mvc.perform(get("/transactional/timeout/20"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
     }
 
     @Test
-    public void timeout_NotEnough() throws Exception {
+    public void timeout_Met() throws Exception {
         mvc.perform(get("/transactional/timeout/5"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("OK"));
