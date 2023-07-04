@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -22,18 +23,7 @@ public class LongRunningService {
     public String longRunningBusiness(Integer seconds) {
         log.info("start long running business");
 
-        Future<String> future = executorService.submit(() -> {
-
-            // ensure the request takes at least a couple of seconds to complete
-            try {
-                Thread.sleep(seconds);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            return "OK";
-
-        });
+        Future<String> future = executorService.submit(new StringCallable(seconds));
 
         // first wait
         String result;
@@ -49,5 +39,27 @@ public class LongRunningService {
 
         log.info("end long running business");
         return result;
+    }
+
+    private static class StringCallable implements Callable<String> {
+        private final Integer seconds;
+
+        public StringCallable(Integer seconds) {
+            this.seconds = seconds;
+        }
+
+        @Override
+        public String call() {
+
+            // ensure the request takes at least a couple of seconds to complete
+            try {
+                Thread.sleep(seconds);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            return "OK";
+
+        }
     }
 }
