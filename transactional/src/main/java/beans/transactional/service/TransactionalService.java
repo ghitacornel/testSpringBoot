@@ -74,7 +74,7 @@ public class TransactionalService {
 
         // ensure the request takes at least 2 seconds to complete
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
