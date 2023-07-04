@@ -23,7 +23,7 @@ public class TransactionalTimeoutTest {
     TransactionalService service;
 
     @Test
-    @Timeout(3)// works
+    @Timeout(6)// works
     public void timeout_OK() throws Exception {
         mvc.perform(get("/transactional/timeout"))
                 .andExpect(status().isOk())
@@ -31,7 +31,7 @@ public class TransactionalTimeoutTest {
     }
 
     @Test
-    @Timeout(2)// expected to fail
+    @Timeout(5)// expected to fail
     public void timeout_Exceeds() throws Exception {
         mvc.perform(get("/transactional/timeout"))
                 .andExpect(status().isOk())
