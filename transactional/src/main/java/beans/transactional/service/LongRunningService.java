@@ -12,7 +12,6 @@ public class LongRunningService {
     private final ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     public String longRunningBusiness() {
-
         log.info("start long running business");
 
         Future<String> future = executorService.submit(() -> {
@@ -37,6 +36,5 @@ public class LongRunningService {
 
         log.info("end long running business");
         return result;
-
     }
 }
