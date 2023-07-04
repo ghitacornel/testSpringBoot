@@ -69,4 +69,16 @@ public class TransactionalService {
         }
     }
 
+    public String verifyTimeout() {
+
+        // ensure the request takes at least 2 seconds to complete
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "OK";
+    }
+
 }
