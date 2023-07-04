@@ -9,11 +9,12 @@ import java.util.concurrent.*;
 @Slf4j
 public class LongRunningService {
 
+    private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+
     public String longRunningBusiness() {
 
         log.info("start long running business");
 
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
         Future<String> future = executorService.submit(() -> {
 
             // ensure the request takes at least a couple of seconds to complete
@@ -26,9 +27,6 @@ public class LongRunningService {
             return "OK";
 
         });
-
-        executorService.shutdown();
-
 
         try {
             String result = future.get();
