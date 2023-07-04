@@ -23,8 +23,6 @@ public class LongRunningService {
     public String longRunningBusiness() {
         log.info("start long running business");
 
-        log.info("loaded from db for simulating a DB interaction " + repository.findAll());
-
         Future<String> future = executorService.submit(() -> {
 
             // ensure the request takes at least a couple of seconds to complete
@@ -44,6 +42,8 @@ public class LongRunningService {
         } catch (Exception e) {
             throw new RuntimeException("bad luck", e);
         }
+
+        log.info("loaded from db for simulating a DB interaction " + repository.findAll());
 
         log.info("end long running business");
         return result;
