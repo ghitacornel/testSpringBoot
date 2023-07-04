@@ -70,7 +70,6 @@ public class TransactionalService {
         }
     }
 
-    @Transactional(timeout = 2)
     public String verifyTimeout() {
         return longRunningService.longRunningBusiness();
     }

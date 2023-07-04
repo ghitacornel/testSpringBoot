@@ -2,6 +2,7 @@ package beans.transactional.controller;
 
 import beans.transactional.service.TransactionalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,7 @@ public class TransactionalController {
     }
 
     @GetMapping("timeout")
+    @Transactional(timeout = 1)
     public String verifyTimeout() {
         return service.verifyTimeout();
     }
