@@ -55,7 +55,7 @@ public class LongRunningService {
             // ensure the request takes at least a couple of seconds to complete
             try {
                 log.info("processing thread start" + Thread.currentThread());
-                Thread.sleep(seconds);
+                this.wait(seconds * 1000);
                 log.info("processing thread stop" + Thread.currentThread());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
