@@ -23,6 +23,7 @@ public class LongRunningService {
     public String longRunningBusiness(Integer seconds) {
         log.info("start long running business");
 
+        log.info("starting thread " + Thread.currentThread());
         Future<String> future = executorService.submit(new StringCallable(seconds));
 
         // first wait
@@ -53,7 +54,9 @@ public class LongRunningService {
 
             // ensure the request takes at least a couple of seconds to complete
             try {
+                log.info("processing thread start" + Thread.currentThread());
                 Thread.sleep(seconds);
+                log.info("processing thread stop" + Thread.currentThread());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
