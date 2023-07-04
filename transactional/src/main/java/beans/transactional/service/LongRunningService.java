@@ -28,13 +28,15 @@ public class LongRunningService {
 
         });
 
+        String result;
         try {
-            String result = future.get();
-            log.info("end long running business");
-            return result;
+            result = future.get();
         } catch (Exception e) {
-            throw new RuntimeException("muie", e);
+            throw new RuntimeException("bad luck", e);
         }
+
+        log.info("end long running business");
+        return result;
 
     }
 }
