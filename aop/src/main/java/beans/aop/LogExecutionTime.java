@@ -8,4 +8,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogExecutionTime {
+
+    // log as warning if specified timeout is exceeded
+    int warnTimeout() default 500;
+
 }
