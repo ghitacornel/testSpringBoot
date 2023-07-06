@@ -1,7 +1,7 @@
 package beans.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Slf4j
 public class LogExecutionTimeAspect {
 
     @Around("@annotation(logExecutionTime)")
@@ -25,9 +26,9 @@ public class LogExecutionTimeAspect {
             long executionTime = System.currentTimeMillis() - start;
 
             if (executionTime >= warnTimeout) {
-                System.err.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+                log.warn(joinPoint.getSignature() + " executed in " + executionTime + "ms");
             } else {
-                System.out.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+                log.info(joinPoint.getSignature() + " executed in " + executionTime + "ms");
             }
 
         }
