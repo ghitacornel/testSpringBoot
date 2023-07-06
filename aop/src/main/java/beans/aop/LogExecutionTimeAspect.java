@@ -15,10 +15,12 @@ public class LogExecutionTimeAspect {
     @Around("@annotation(beans.aop.LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
-        Object proceed = joinPoint.proceed();
-        long executionTime = System.currentTimeMillis() - start;
-        System.err.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
-        return proceed;
+        try {
+            return joinPoint.proceed();
+        } finally {
+            long executionTime = System.currentTimeMillis() - start;
+            System.err.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+        }
     }
 
 }
