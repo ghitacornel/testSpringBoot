@@ -44,7 +44,15 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("[{\"fieldName\":\"invokeDirect.parameter1\",\"message\":\"must not be blank\",\"messageCode\":\"{javax.validation.constraints.NotBlank.message}\"}]"));
 
+        mvc.perform(get(URL + "/xxx/partialPath/ "))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.parameter2\",\"message\":\"must not be blank\",\"messageCode\":\"{javax.validation.constraints.NotBlank.message}\"}]"));
+
         mvc.perform(get(URL + "//partialPath/yyy"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(""));
+
+        mvc.perform(get(URL + "/xxx/partialPath/"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(""));
     }
