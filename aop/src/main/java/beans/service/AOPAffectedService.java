@@ -13,7 +13,7 @@ public class AOPAffectedService {
     @LogExecutionTime(warnTimeout = 750)
     public String method2() {
 
-        // ensure execution time exceeds warning threshold
+        // ensure execution time exceeds default warning threshold but not the overwritten threshold
         try {
             Thread.sleep(550);
         } catch (InterruptedException e) {
