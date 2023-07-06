@@ -15,7 +15,7 @@ public class AOPAffectedService {
 
         // ensure execution time exceeds warning threshold
         try {
-            Thread.sleep(500);
+            Thread.sleep(550);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
