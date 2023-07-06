@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping(value = "validateParameters")
@@ -18,6 +19,11 @@ public class ValidationControllerParameters {
     @GetMapping(value = "{id}")
     public int invokeDirect(@PathVariable("id") @Min(5) int x) {
         return x;
+    }
+
+    @GetMapping(value = "{parameter1}/partialPath/{parameter2}")
+    public String invokeDirect(@PathVariable("parameter1") @NotBlank String parameter1, @PathVariable("parameter2") @NotBlank String parameter2) {
+        return parameter1 + parameter2;
     }
 
 }

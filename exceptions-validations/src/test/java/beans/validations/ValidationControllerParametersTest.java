@@ -30,4 +30,18 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
                 .andExpect(content().string("[{\"fieldName\":\"invokeDirect.x\",\"message\":\"must be greater than or equal to 5\",\"messageCode\":\"{javax.validation.constraints.Min.message}\"}]"));
     }
 
+    @Test
+    public void testIsValidMultipleParameters() throws Exception {
+        mvc.perform(get(URL + "/xxx/partialPath/yyy"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("xxxyyy"));
+    }
+
+    @Test
+    public void testIsValidMultipleParametersFirstOneBlank() throws Exception {
+        mvc.perform(get(URL + "//partialPath/yyy"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(""));
+    }
+
 }
