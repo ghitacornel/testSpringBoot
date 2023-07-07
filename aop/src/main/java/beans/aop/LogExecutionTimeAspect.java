@@ -25,6 +25,7 @@ public class LogExecutionTimeAspect {
         } finally {
             long executionTime = System.currentTimeMillis() - start;
 
+            // various customizations can go here
             if (executionTime >= warnTimeout) {
                 log.warn(joinPoint.getSignature() + " executed in " + executionTime + "ms");
             } else {
