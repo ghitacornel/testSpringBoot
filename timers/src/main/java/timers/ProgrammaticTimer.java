@@ -1,5 +1,6 @@
 package timers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Component;
@@ -9,10 +10,10 @@ import java.time.Instant;
 import java.util.Date;
 
 @Component
+@RequiredArgsConstructor
 public class ProgrammaticTimer {
 
-    @Autowired
-    private TaskScheduler scheduler;
+    private final TaskScheduler scheduler;
 
     // starter
     @PostConstruct
