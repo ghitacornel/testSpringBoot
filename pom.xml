@@ -29,6 +29,7 @@
         <module>envers</module>
 <!--        <module>elasticsearch</module>-->
         <module>soap-wsdl</module>
+        <module>timers</module>
     </modules>
 
     <properties>
