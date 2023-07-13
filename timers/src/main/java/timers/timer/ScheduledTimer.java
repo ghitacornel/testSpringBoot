@@ -1,4 +1,4 @@
-package timers;
+package timers.timer;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -10,10 +10,10 @@ import java.util.Date;
  * Feel free to test with various settings or CRON expressions
  */
 @Component
-public class Timer {
+class ScheduledTimer {
 
     @Scheduled(fixedRate = 1000)
-    public void reportCurrentTime() {
+    private void reportCurrentTime() {
         System.out.println(this + " stupid timer was triggered at " + new Date());
     }
 

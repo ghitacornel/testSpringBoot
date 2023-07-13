@@ -1,7 +1,6 @@
-package timers;
+package timers.timer;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +10,13 @@ import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
-public class ProgrammaticTimer {
+class ProgrammaticTimer {
 
     private final TaskScheduler scheduler;
 
     // starter
     @PostConstruct
-    public void reportCurrentTime() {
+    private void triggerScheduledMethod() {
         scheduler.schedule(this::programmaticScheduledMethod, Instant.now().plusSeconds(5));
     }
 
