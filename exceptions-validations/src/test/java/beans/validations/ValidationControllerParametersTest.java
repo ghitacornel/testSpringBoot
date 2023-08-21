@@ -57,4 +57,17 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
                 .andExpect(content().string(""));
     }
 
+    @Test
+    public void customParameterValue() throws Exception {
+        mvc.perform(get(URL + "/customParameterValue/UP"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("UP is OK"));
+        mvc.perform(get(URL + "/customParameterValue/DOWN"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("DOWN is OK"));
+        mvc.perform(get(URL + "/customParameterValue/xxx"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("[{\"fieldName\":\"customParameterValue.data\",\"message\":\"only UP or DOWN accepted\",\"messageCode\":\"only UP or DOWN accepted\"}]"));
+    }
+
 }

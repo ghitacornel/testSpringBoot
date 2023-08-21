@@ -1,11 +1,13 @@
 package beans.validations.controller;
 
+import beans.validations.custom.CustomValidationRuleForParameter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -26,4 +28,8 @@ public class ValidationControllerParameters {
         return parameter1 + parameter2;
     }
 
+    @GetMapping("customParameterValue/{data}")
+    public String customParameterValue(@Valid @CustomValidationRuleForParameter @PathVariable("data") String data) {
+        return data + " is OK";
+    }
 }
