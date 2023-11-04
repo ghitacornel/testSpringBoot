@@ -16,4 +16,7 @@ public interface ExternalServiceContract {
     @Headers("Content-Type: application/json")
     PersonResponseDto invokePOST(PersonRequestDto inputModel);
 
+    @RequestLine("PATCH /externalService")
+    @Headers("Content-Type: application/json")
+    PersonResponseDto invokePATCH(PersonRequestDto inputModel);
 }

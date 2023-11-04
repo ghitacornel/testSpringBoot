@@ -37,6 +37,15 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
     @Test
     @SneakyThrows
+    public void testPATCH() {
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
+
+        Assertions.assertThat(client.invokePATCH(inputModel)).isEqualTo(outputModel);
+    }
+
+    @Test
+    @SneakyThrows
     public void testGET() {
 
         PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");

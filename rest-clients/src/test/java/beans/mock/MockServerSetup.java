@@ -5,6 +5,7 @@ import beans.external.PersonResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,16 @@ public abstract class MockServerSetup {
     @BeforeEach
     @SneakyThrows
     public void setupExternalApplicationAsMock() {
+
+        // mock PATCH
+        {
+            PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH");
+            PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
+
+            WireMock.stubFor(WireMock.patch(UrlPattern.fromOneOf("/externalService", null, null, null))
+                    .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
+                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+        }
 
         // mock POST
         {

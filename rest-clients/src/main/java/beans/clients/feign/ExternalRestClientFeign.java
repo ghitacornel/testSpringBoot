@@ -50,4 +50,20 @@ public class ExternalRestClientFeign {
         return client.invokePOST(inputModel);
     }
 
+    public PersonResponseDto invokePATCH(PersonRequestDto inputModel) {
+
+        // thread safe
+        // can use a factory to build
+        // can be injected
+        ExternalServiceContract client = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(ExternalServiceContract.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ExternalServiceContract.class, url);
+
+        return client.invokePATCH(inputModel);
+    }
+
 }
