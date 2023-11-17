@@ -3,7 +3,6 @@ package beans.clients.retrofit;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +17,8 @@ public class ExternalRestClientRetrofitTest extends MockServerSetup {
     ExternalRestClientRetrofit client;
 
     @BeforeEach
-    public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {
-        client.setUrl("http://localhost:" + wmRuntimeInfo.getHttpPort());
+    public void setUpClientWiremockUrl() {
+        client.setUrl(url);
     }
 
     @Test

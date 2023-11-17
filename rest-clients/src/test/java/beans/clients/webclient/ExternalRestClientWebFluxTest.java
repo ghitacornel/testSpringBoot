@@ -4,7 +4,6 @@ import beans.clients.webflux.ExternalRestClientWebFlux;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
@@ -21,8 +20,8 @@ public class ExternalRestClientWebFluxTest extends MockServerSetup {
     ExternalRestClientWebFlux client;
 
     @BeforeEach
-    public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {
-        client.setUrl("http://localhost:" + wmRuntimeInfo.getHttpPort());
+    public void setUpClientWiremockUrl() {
+        client.setUrl(url);
     }
 
     @Test

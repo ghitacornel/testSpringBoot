@@ -3,10 +3,8 @@ package beans.clients.feign;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,11 +14,6 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
     @Autowired
     FeignContract contract;
-
-    @BeforeEach
-    public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {
-        System.err.println(wmRuntimeInfo.getHttpPort());
-    }
 
     @Test
     @SneakyThrows
