@@ -3,32 +3,20 @@ package beans.mock;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static beans.mock.WireMockExtension.wireMockServer;
+
+@ExtendWith(WireMockExtension.class)
 public abstract class MockServerSetup {
 
     @Autowired
     protected ObjectMapper objectMapper;
-
-    private static final int port = 1111;
-    protected static final String url = "http://localhost:" + port;
-
-    private static final WireMockServer wireMockServer;
-    static {
-        wireMockServer = new WireMockServer(port);
-        wireMockServer.start();
-    }
-
-//    @BeforeAll
-//    public static void setupWireMockServer() {
-//        wireMockServer = new WireMockServer(port);
-//        wireMockServer.start();
-//    }
 
     @BeforeEach
     @SneakyThrows
@@ -70,10 +58,5 @@ public abstract class MockServerSetup {
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
     }
-
-//    @AfterAll
-//    public static void tearDownWireMockServer() {
-//        wireMockServer.shutdown();
-//    }
 
 }
