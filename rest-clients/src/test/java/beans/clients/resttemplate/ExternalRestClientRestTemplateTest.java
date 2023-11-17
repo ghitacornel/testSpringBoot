@@ -5,23 +5,15 @@ import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static beans.mock.WireMockExtension.url;
 
 @SpringBootTest
 public class ExternalRestClientRestTemplateTest extends MockServerSetup {
 
     @Autowired
     ExternalRestClientRestTemplate client;
-
-    @BeforeEach
-    public void setUpClientWiremockUrl() {
-        client.setUrl(url + "/externalService");
-    }
 
     @Test
     @SneakyThrows

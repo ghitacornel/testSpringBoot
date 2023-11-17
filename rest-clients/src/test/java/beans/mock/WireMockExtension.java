@@ -10,7 +10,6 @@ public class WireMockExtension implements BeforeAllCallback, ExtensionContext.St
 
     private static boolean started = false;
     protected static final int port = 1111;
-    public static final String url = "http://localhost:" + port;
 
     protected static WireMockServer wireMockServer;
 

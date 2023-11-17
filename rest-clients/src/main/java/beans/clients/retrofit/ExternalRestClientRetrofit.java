@@ -3,8 +3,8 @@ package beans.clients.retrofit;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import okhttp3.OkHttpClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ExternalRestClientRetrofit {
 
-    @Setter
+    @Value("${retrofit.client.url}")
     private String url;
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {

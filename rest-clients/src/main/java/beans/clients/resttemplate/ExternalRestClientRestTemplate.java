@@ -3,7 +3,7 @@ package beans.clients.resttemplate;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class ExternalRestClientRestTemplate {
     // can be injected
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Setter
+    @Value("${resttemplate.client.url}")
     private String url;
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {

@@ -3,7 +3,7 @@ package beans.clients.webflux;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class ExternalRestClientWebFlux {
 
-    @Setter
+    @Value("${webflux.client.url}")
     private String url;
 
     public PersonResponseDto invokePOST(PersonRequestDto inputModel) {
