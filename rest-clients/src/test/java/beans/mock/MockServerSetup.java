@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WireMockTest
+@WireMockTest(httpPort = 1111)
 public abstract class MockServerSetup {
 
     @Autowired
