@@ -6,7 +6,7 @@ import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 
-public interface ExternalServiceContract {
+public interface FeignContract {
 
     @RequestLine("GET /externalService/{path}?parameter={query}")
     @Headers("Content-Type: application/json")

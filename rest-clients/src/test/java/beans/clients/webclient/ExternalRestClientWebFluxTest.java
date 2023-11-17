@@ -4,7 +4,6 @@ import beans.clients.webflux.ExternalRestClientWebFlux;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
@@ -20,9 +19,6 @@ public class ExternalRestClientWebFluxTest extends MockServerSetup {
 
     @Autowired
     ExternalRestClientWebFlux client;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @BeforeEach
     public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {

@@ -3,7 +3,6 @@ package beans.clients.feign;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
@@ -16,14 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ExternalRestClientFeignTest extends MockServerSetup {
 
     @Autowired
-    ExternalRestClientFeign client;
-
-    @Autowired
-    ObjectMapper objectMapper;
+    FeignContract contract;
 
     @BeforeEach
     public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {
-        client.setUrl("http://localhost:" + wmRuntimeInfo.getHttpPort());
+        System.err.println(wmRuntimeInfo.getHttpPort());
     }
 
     @Test
@@ -32,7 +28,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
-        Assertions.assertThat(client.invokePOST(inputModel)).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invokePOST(inputModel)).isEqualTo(outputModel);
     }
 
     @Test
@@ -41,7 +37,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH");
         PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
 
-        Assertions.assertThat(client.invokePATCH(inputModel)).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invokePATCH(inputModel)).isEqualTo(outputModel);
     }
 
     @Test
@@ -50,7 +46,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
         PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 
-        Assertions.assertThat(client.invokeGET("3", "4")).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invokeGET("3", "4")).isEqualTo(outputModel);
     }
 
     @Test
@@ -59,6 +55,6 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
         PersonResponseDto outputModel = new PersonResponseDto(-3, "");
 
-        Assertions.assertThat(client.invokeGETBadData()).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invokeGETBadData()).isEqualTo(outputModel);
     }
 }

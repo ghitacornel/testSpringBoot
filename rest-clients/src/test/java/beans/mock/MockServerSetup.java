@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class MockServerSetup {
 
     @Autowired
-    ObjectMapper objectMapper;
+    protected ObjectMapper objectMapper;
 
     @BeforeEach
     @SneakyThrows

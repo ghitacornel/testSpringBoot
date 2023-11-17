@@ -3,7 +3,6 @@ package beans.clients.resttemplate;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
@@ -17,9 +16,6 @@ public class ExternalRestClientRestTemplateTest extends MockServerSetup {
 
     @Autowired
     ExternalRestClientRestTemplate client;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @BeforeEach
     public void setUpClientWiremockUrl(WireMockRuntimeInfo wmRuntimeInfo) {
