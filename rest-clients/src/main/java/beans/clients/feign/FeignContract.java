@@ -5,7 +5,11 @@ import beans.external.PersonResponseDto;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+
+@Validated
 public interface FeignContract {
 
     @RequestLine("GET /externalService/{path}?parameter={query}")
@@ -20,7 +24,9 @@ public interface FeignContract {
     @Headers("Content-Type: application/json")
     PersonResponseDto invokePATCH(PersonRequestDto inputModel);
 
+    @Valid
     @RequestLine("GET /externalService/badData")
     @Headers("Content-Type: application/json")
     PersonResponseDto invokeGETBadData();
+
 }

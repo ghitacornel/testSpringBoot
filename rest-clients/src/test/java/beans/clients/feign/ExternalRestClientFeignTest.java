@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.validation.ConstraintViolationException;
+
 @SpringBootTest
 public class ExternalRestClientFeignTest extends MockServerSetup {
 
@@ -45,9 +47,6 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testGETBadData() {
-
-        PersonResponseDto outputModel = new PersonResponseDto(-3, "");
-
-        Assertions.assertThat(contract.invokeGETBadData()).isEqualTo(outputModel);
+        Assertions.assertThatThrownBy(() -> contract.invokeGETBadData()).isExactlyInstanceOf(ConstraintViolationException.class);
     }
 }
