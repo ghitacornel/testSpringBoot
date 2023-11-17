@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ExternalRestClientRetrofitTest extends MockServerSetup {
 
     @Autowired
-    ExternalRestClientRetrofit client;
+    RetrofitContract client;
 
     @Test
     @SneakyThrows
@@ -21,7 +21,7 @@ public class ExternalRestClientRetrofitTest extends MockServerSetup {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
-        Assertions.assertThat(client.invokePOST(inputModel)).isEqualTo(outputModel);
+        Assertions.assertThat(client.invokePOST(inputModel).execute().body()).isEqualTo(outputModel);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class ExternalRestClientRetrofitTest extends MockServerSetup {
 
         PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
 
-        Assertions.assertThat(client.invokeGET("3", "4")).isEqualTo(outputModel);
+        Assertions.assertThat(client.invokeGET("3", "4").execute().body()).isEqualTo(outputModel);
     }
 }

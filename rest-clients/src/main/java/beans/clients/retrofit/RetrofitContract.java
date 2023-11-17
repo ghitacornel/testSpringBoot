@@ -5,7 +5,7 @@ import beans.external.PersonResponseDto;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-public interface ExternalServiceContract {
+public interface RetrofitContract {
 
     @GET("/externalService/{path}")
     Call<PersonResponseDto> invokeGET(@Path("path") String path, @Query("parameter") String query);
