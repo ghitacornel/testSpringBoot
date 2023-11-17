@@ -23,4 +23,9 @@ public class ValidationService {
         repository.save(model);
         return model;
     }
+
+    @Valid
+    public ValidationModel returnBadData() {
+        return new ValidationModel();
+    }
 }
