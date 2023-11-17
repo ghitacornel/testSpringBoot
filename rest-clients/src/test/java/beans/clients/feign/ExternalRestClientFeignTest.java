@@ -52,4 +52,13 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
 
         Assertions.assertThat(client.invokeGET("3", "4")).isEqualTo(outputModel);
     }
+
+    @Test
+    @SneakyThrows
+    public void testGETBadData() {
+
+        PersonResponseDto outputModel = new PersonResponseDto(-3, "");
+
+        Assertions.assertThat(client.invokeGETBadData()).isEqualTo(outputModel);
+    }
 }

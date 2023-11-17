@@ -47,5 +47,13 @@ public abstract class MockServerSetup {
             WireMock.stubFor(WireMock.get("/externalService/" + "3?parameter=4")
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
+
+        // mock GET bd data
+        {
+            PersonResponseDto outputModel = new PersonResponseDto(-3, "");
+
+            WireMock.stubFor(WireMock.get("/externalService/badData")
+                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+        }
     }
 }

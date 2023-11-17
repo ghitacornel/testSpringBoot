@@ -19,4 +19,8 @@ public interface ExternalServiceContract {
     @RequestLine("PATCH /externalService")
     @Headers("Content-Type: application/json")
     PersonResponseDto invokePATCH(PersonRequestDto inputModel);
+
+    @RequestLine("GET /externalService/badData")
+    @Headers("Content-Type: application/json")
+    PersonResponseDto invokeGETBadData();
 }

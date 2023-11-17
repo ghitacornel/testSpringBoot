@@ -66,4 +66,15 @@ public class ExternalRestClientFeign {
         return client.invokePATCH(inputModel);
     }
 
+    public PersonResponseDto invokeGETBadData() {
+        ExternalServiceContract client = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(ExternalServiceContract.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ExternalServiceContract.class, url);
+
+        return client.invokeGETBadData();
+    }
 }
