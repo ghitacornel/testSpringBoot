@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
 public class WireMockExtension implements BeforeAllCallback, ExtensionContext.Store.CloseableResource {
 
     private static boolean started = false;
-    protected static final int port = 1111;
+    private static final int port = 1111;
 
     protected static WireMockServer wireMockServer;
 

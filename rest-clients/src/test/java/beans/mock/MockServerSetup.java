@@ -50,7 +50,7 @@ public abstract class MockServerSetup {
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
-        // mock GET bd data
+        // mock GET bad data
         {
             PersonResponseDto outputModel = new PersonResponseDto(-3, "");
 
