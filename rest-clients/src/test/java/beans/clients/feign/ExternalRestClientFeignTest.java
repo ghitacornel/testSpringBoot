@@ -49,4 +49,10 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     public void testGETBadData() {
         Assertions.assertThatThrownBy(() -> contract.invokeGETBadData()).isExactlyInstanceOf(ConstraintViolationException.class);
     }
+
+    @Test
+    @SneakyThrows
+    public void testSendBadData() {
+        Assertions.assertThatThrownBy(() -> contract.invokePATCH(new PersonRequestDto(1, ""))).isExactlyInstanceOf(ConstraintViolationException.class);
+    }
 }

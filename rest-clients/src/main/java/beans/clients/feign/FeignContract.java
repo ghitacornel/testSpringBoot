@@ -20,9 +20,10 @@ public interface FeignContract {
     @Headers("Content-Type: application/json")
     PersonResponseDto invokePOST(PersonRequestDto inputModel);
 
+    @Valid
     @RequestLine("PATCH /externalService")
     @Headers("Content-Type: application/json")
-    PersonResponseDto invokePATCH(PersonRequestDto inputModel);
+    PersonResponseDto invokePATCH(@Valid PersonRequestDto inputModel);
 
     @Valid
     @RequestLine("GET /externalService/badData")
