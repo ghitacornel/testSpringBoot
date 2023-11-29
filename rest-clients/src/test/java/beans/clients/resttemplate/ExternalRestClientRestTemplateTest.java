@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @SpringBootTest
 public class ExternalRestClientRestTemplateTest extends MockServerSetup {
 
@@ -19,7 +22,7 @@ public class ExternalRestClientRestTemplateTest extends MockServerSetup {
     @SneakyThrows
     public void testPOST() {
 
-        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
         Assertions.assertThat(client.invokePOST(inputModel)).isEqualTo(outputModel);

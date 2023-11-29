@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.validation.ConstraintViolationException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootTest
 public class ExternalRestClientFeignTest extends MockServerSetup {
@@ -20,7 +22,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testPOST() {
-        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
         PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
         Assertions.assertThat(contract.invokePOST(inputModel)).isEqualTo(outputModel);
@@ -29,7 +31,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testPATCH() {
-        PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH");
+        PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
         PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
 
         Assertions.assertThat(contract.invokePATCH(inputModel)).isEqualTo(outputModel);
@@ -53,6 +55,6 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testSendBadData() {
-        Assertions.assertThatThrownBy(() -> contract.invokePATCH(new PersonRequestDto(1, ""))).isExactlyInstanceOf(ConstraintViolationException.class);
+        Assertions.assertThatThrownBy(() -> contract.invokePATCH(new PersonRequestDto(1, "", null, null))).isExactlyInstanceOf(ConstraintViolationException.class);
     }
 }

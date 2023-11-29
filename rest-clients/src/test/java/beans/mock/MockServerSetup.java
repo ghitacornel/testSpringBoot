@@ -10,6 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import static beans.mock.WireMockExtension.wireMockServer;
 
 @ExtendWith(WireMockExtension.class)
@@ -24,7 +27,7 @@ public abstract class MockServerSetup {
 
         // mock PATCH
         {
-            PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH");
+            PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
             PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
 
             wireMockServer.stubFor(WireMock.patch(UrlPattern.fromOneOf("/externalService", null, null, null))
@@ -34,7 +37,7 @@ public abstract class MockServerSetup {
 
         // mock POST
         {
-            PersonRequestDto inputModel = new PersonRequestDto(1, "input POST");
+            PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
             PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
 
             wireMockServer.stubFor(WireMock.post("/externalService")
