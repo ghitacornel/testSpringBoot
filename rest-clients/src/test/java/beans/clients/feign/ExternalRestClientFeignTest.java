@@ -23,7 +23,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testPOST() {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
-        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(contract.invokePOST(inputModel)).isEqualTo(outputModel);
     }
@@ -32,7 +32,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testPATCH() {
         PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
-        PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(contract.invokePATCH(inputModel)).isEqualTo(outputModel);
     }
@@ -41,7 +41,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testGET() {
 
-        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
+        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(contract.invokeGET("3", "4")).isEqualTo(outputModel);
     }

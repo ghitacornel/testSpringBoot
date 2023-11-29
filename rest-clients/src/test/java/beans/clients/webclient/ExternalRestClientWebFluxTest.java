@@ -26,7 +26,7 @@ public class ExternalRestClientWebFluxTest extends MockServerSetup {
     public void testPOST() {
 
         PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
-        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
+        PersonResponseDto outputModel = new PersonResponseDto(2, "output POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(client.invokePOST(inputModel)).isEqualTo(outputModel);
     }
@@ -35,7 +35,7 @@ public class ExternalRestClientWebFluxTest extends MockServerSetup {
     @SneakyThrows
     public void testGET() {
 
-        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
+        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(client.invokeGET("3", "4")).isEqualTo(outputModel);
     }

@@ -28,7 +28,7 @@ public abstract class MockServerSetup {
         // mock PATCH
         {
             PersonRequestDto inputModel = new PersonRequestDto(1, "input PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
-            PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH");
+            PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             wireMockServer.stubFor(WireMock.patch(UrlPattern.fromOneOf("/externalService", null, null, null))
                     .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
@@ -38,7 +38,7 @@ public abstract class MockServerSetup {
         // mock POST
         {
             PersonRequestDto inputModel = new PersonRequestDto(1, "input POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
-            PersonResponseDto outputModel = new PersonResponseDto(2, "output POST");
+            PersonResponseDto outputModel = new PersonResponseDto(2, "output POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             wireMockServer.stubFor(WireMock.post("/externalService")
                     .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
@@ -47,7 +47,7 @@ public abstract class MockServerSetup {
 
         // mock GET
         {
-            PersonResponseDto outputModel = new PersonResponseDto(3, "output GET");
+            PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             wireMockServer.stubFor(WireMock.get("/externalService/" + "3?parameter=4")
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
@@ -55,7 +55,7 @@ public abstract class MockServerSetup {
 
         // mock GET bad data
         {
-            PersonResponseDto outputModel = new PersonResponseDto(-3, "");
+            PersonResponseDto outputModel = new PersonResponseDto(-3, "", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             wireMockServer.stubFor(WireMock.get("/externalService/badData")
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
