@@ -4,10 +4,13 @@ import beans.entity.Person;
 import beans.entity.Status;
 import beans.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.history.Revision;
+import org.springframework.data.history.Revisions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +52,13 @@ public class PersonService {
 
     public void deleteById(Integer id) {
         repository.deleteById(id);
+    }
+
+    public List<Integer> getRevisions(Integer id) {
+        return repository.findRevisions(id).stream().map(Revision::getRevisionNumber).map(integer -> integer.orElse(null)).collect(Collectors.toList());
+    }
+
+    public Revisions<Integer, Person> getAllRevisions(Integer id) {
+        return repository.findRevisions(id);
     }
 }

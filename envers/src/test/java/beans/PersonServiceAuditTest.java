@@ -1,16 +1,16 @@
 package beans;
 
-import beans.service.AuditService;
 import beans.config.PersistenceConfig;
 import beans.entity.Person;
 import beans.entity.Status;
 import beans.service.PersonService;
 import org.assertj.core.api.Assertions;
-import org.hibernate.envers.RevisionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.history.Revision;
+import org.springframework.data.history.RevisionMetadata;
 
 import java.util.List;
 
@@ -22,9 +22,6 @@ public class PersonServiceAuditTest {
 
     @Autowired
     PersistenceConfig config;
-
-    @Autowired
-    AuditService auditService;
 
     @BeforeEach
     public void setUp() {
@@ -56,14 +53,16 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Ghita");
             Assertions.assertThat(person.getModifiedDate()).isPositive();
 
-            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            List<Integer> revisions = service.getRevisions(1);
             Assertions.assertThat(revisions.size()).isEqualTo(1);
-            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
+            Assertions.assertThat(revisions.getFirst()).isEqualTo(1);
 
-            List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<RevisionMetadata<Integer>> allRevisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getMetadata)
+                    .toList();
             Assertions.assertThat(allRevisions.size()).isEqualTo(1);
-            Assertions.assertThat(allRevisions.get(0)[0]).isEqualTo(reference);
-            Assertions.assertThat(allRevisions.get(0)[2]).isEqualTo(RevisionType.ADD);
+            Assertions.assertThat(allRevisions.getFirst().getRequiredRevisionNumber()).isEqualTo(1L);
+            Assertions.assertThat(allRevisions.getFirst().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.INSERT);
 
             System.err.println(person);
             reference.setCreatedDate(person.getCreatedDate());
@@ -81,15 +80,17 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            List<Integer> revisions = service.getRevisions(1);
             Assertions.assertThat(revisions.size()).isEqualTo(2);
-            Assertions.assertThat(revisions.get(0)).isEqualTo(1);
-            Assertions.assertThat(revisions.get(1)).isEqualTo(2);
+            Assertions.assertThat(revisions.getFirst()).isEqualTo(1);
+            Assertions.assertThat(revisions.getLast()).isEqualTo(2);
 
-            List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<RevisionMetadata<Integer>> allRevisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getMetadata)
+                    .toList();
             Assertions.assertThat(allRevisions.size()).isEqualTo(2);
-            Assertions.assertThat(allRevisions.get(1)[0]).isEqualTo(reference);
-            Assertions.assertThat(allRevisions.get(1)[2]).isEqualTo(RevisionType.MOD);
+            Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(2L);
+            Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -105,16 +106,18 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            List<Integer> revisions = service.getRevisions(1);
             Assertions.assertThat(revisions.size()).isEqualTo(3);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
             Assertions.assertThat(revisions.get(2)).isEqualTo(3);
 
-            List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<RevisionMetadata<Integer>> allRevisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getMetadata)
+                    .toList();
             Assertions.assertThat(allRevisions.size()).isEqualTo(3);
-            Assertions.assertThat(allRevisions.get(2)[0]).isEqualTo(reference);
-            Assertions.assertThat(allRevisions.get(2)[2]).isEqualTo(RevisionType.MOD);
+            Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(3L);
+            Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -130,17 +133,19 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            List<Integer> revisions = service.getRevisions(1);
             Assertions.assertThat(revisions.size()).isEqualTo(4);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
             Assertions.assertThat(revisions.get(2)).isEqualTo(3);
             Assertions.assertThat(revisions.get(3)).isEqualTo(4);
 
-            List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<RevisionMetadata<Integer>> allRevisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getMetadata)
+                    .toList();
             Assertions.assertThat(allRevisions.size()).isEqualTo(4);
-            Assertions.assertThat(allRevisions.get(3)[0]).isEqualTo(reference);
-            Assertions.assertThat(allRevisions.get(3)[2]).isEqualTo(RevisionType.MOD);
+            Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(4L);
+            Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
 
             System.err.println(person);
             reference.setModifiedDate(person.getModifiedDate());
@@ -151,7 +156,7 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(service.findAll()).isEmpty();
             Assertions.assertThat(service.findById(1)).isNull();
 
-            List<Number> revisions = auditService.getRevisions(Person.class, 1);
+            List<Integer> revisions = service.getRevisions(1);
             Assertions.assertThat(revisions.size()).isEqualTo(5);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
@@ -159,7 +164,9 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(revisions.get(3)).isEqualTo(4);
             Assertions.assertThat(revisions.get(4)).isEqualTo(5);
 
-            List<Object[]> allRevisions = auditService.getAllRevisions(Person.class, 1);
+            List<RevisionMetadata<Integer>> allRevisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getMetadata)
+                    .toList();
             Assertions.assertThat(allRevisions.size()).isEqualTo(5);
 
             reference.setName(null);
@@ -169,8 +176,8 @@ public class PersonServiceAuditTest {
             reference.setModifiedDate(0);
             reference.setCreatedBy(null);
             reference.setModifiedBy(null);
-            Assertions.assertThat(allRevisions.get(4)[0]).isEqualTo(reference);
-            Assertions.assertThat(allRevisions.get(4)[2]).isEqualTo(RevisionType.DEL);
+            Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(5L);
+            Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.DELETE);
 
         }
 
