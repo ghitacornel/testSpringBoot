@@ -53,7 +53,10 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Ghita");
             Assertions.assertThat(person.getModifiedDate()).isPositive();
 
-            List<Integer> revisions = service.getRevisions(1);
+            List<Integer> revisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getRevisionNumber)
+                    .map(integer -> integer.orElse(null))
+                    .toList();
             Assertions.assertThat(revisions.size()).isEqualTo(1);
             Assertions.assertThat(revisions.getFirst()).isEqualTo(1);
 
@@ -80,7 +83,10 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Integer> revisions = service.getRevisions(1);
+            List<Integer> revisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getRevisionNumber)
+                    .map(integer -> integer.orElse(null))
+                    .toList();
             Assertions.assertThat(revisions.size()).isEqualTo(2);
             Assertions.assertThat(revisions.getFirst()).isEqualTo(1);
             Assertions.assertThat(revisions.getLast()).isEqualTo(2);
@@ -106,7 +112,10 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Integer> revisions = service.getRevisions(1);
+            List<Integer> revisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getRevisionNumber)
+                    .map(integer -> integer.orElse(null))
+                    .toList();
             Assertions.assertThat(revisions.size()).isEqualTo(3);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
@@ -133,7 +142,10 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
             Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
-            List<Integer> revisions = service.getRevisions(1);
+            List<Integer> revisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getRevisionNumber)
+                    .map(integer -> integer.orElse(null))
+                    .toList();
             Assertions.assertThat(revisions.size()).isEqualTo(4);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
@@ -156,7 +168,10 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(service.findAll()).isEmpty();
             Assertions.assertThat(service.findById(1)).isNull();
 
-            List<Integer> revisions = service.getRevisions(1);
+            List<Integer> revisions = service.getAllRevisions(1).stream()
+                    .map(Revision::getRevisionNumber)
+                    .map(integer -> integer.orElse(null))
+                    .toList();
             Assertions.assertThat(revisions.size()).isEqualTo(5);
             Assertions.assertThat(revisions.get(0)).isEqualTo(1);
             Assertions.assertThat(revisions.get(1)).isEqualTo(2);
