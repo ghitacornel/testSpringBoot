@@ -19,8 +19,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-envers</artifactId>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-envers</artifactId>
         </dependency>
 
         <!-- DATABASE -->
