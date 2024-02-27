@@ -2,6 +2,7 @@ package beans;
 
 import beans.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +11,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @RequiredArgsConstructor
-public class SpringBootMain implements CommandLineRunner {
+@Slf4j
+public class SpringBootStandaloneMain implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootMain.class, args);
+        SpringApplication.run(SpringBootStandaloneMain.class, args);
     }
 
     private final ItemService itemService;
@@ -21,8 +23,8 @@ public class SpringBootMain implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // main job starts from here
-        System.err.println(itemService.findAll());
-        System.err.println(itemService.findByNameAndLength("calcium", 122));
+        log.error(String.valueOf(itemService.findAll()));
+        log.error(String.valueOf(itemService.findByNameAndLength("calcium", 122)));
     }
 
 }
