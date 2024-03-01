@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest
 @Rollback
-public class TestSpringData {
+public class SpringDataIT {
 
     @Autowired
     ItemRepository repository;
