@@ -53,6 +53,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -74,16 +75,42 @@
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.5.2.Final</version>
+                            <version>1.5.5.Final</version>
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <compilerArg>
                             -Amapstruct.defaultComponentModel=spring
                         </compilerArg>
+                        <compilerArg>
+                            -Amapstruct.unmappedTargetPolicy=ERROR
+                        </compilerArg>
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- Unit Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+
+            <!-- Integration Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.2.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
