@@ -1,6 +1,6 @@
 services:
 
-  batch:
+  database:
     image: postgres:latest
     container_name: postgresql_db
     ports:
