@@ -3,14 +3,17 @@ package docker.service;
 import docker.mappers.PersonMapper;
 import docker.model.CreatePersonDto;
 import docker.model.PersonDto;
+import docker.model.entities.Person;
 import docker.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class PersonService {
 
@@ -29,7 +32,7 @@ public class PersonService {
         repository.deleteById(id);
     }
 
-    public void save(CreatePersonDto personDto) {
+    public void save(PersonDto personDto) {
         repository.save(mapper.map(personDto));
     }
 
@@ -37,4 +40,9 @@ public class PersonService {
         repository.deleteAll();
     }
 
+    public PersonDto create(CreatePersonDto createPersonDto) {
+        Person person = mapper.map(createPersonDto);
+        repository.save(person);
+        return mapper.map(person);
+    }
 }

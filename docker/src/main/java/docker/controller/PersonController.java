@@ -25,13 +25,13 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @PutMapping
-    public void create(@RequestBody CreatePersonDto personDto) {
-        service.save(personDto);
+    @PostMapping
+    public PersonDto create(@RequestBody CreatePersonDto personDto) {
+        return service.create(personDto);
     }
 
-    @PostMapping
-    public void update(@RequestBody CreatePersonDto personDto) {
+    @PutMapping
+    public void update(@RequestBody PersonDto personDto) {
         service.save(personDto);
     }
 
