@@ -46,4 +46,19 @@ class PersonControllerTest {
 
     }
 
+    @Test
+    void deleteAll() {
+
+        // given
+
+        // when
+        controller.deleteAll();
+
+        // then
+        InOrder inOrder = Mockito.inOrder(service);
+        inOrder.verify(service).deleteAll();
+        inOrder.verifyNoMoreInteractions();
+
+    }
+
 }
