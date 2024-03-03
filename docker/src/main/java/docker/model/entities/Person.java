@@ -1,12 +1,10 @@
 package docker.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,9 +19,13 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dateOfBirth;
+    @NotNull
+    @Column(name = "date_of_birth", nullable = false)
+    @Builder.Default
+    private LocalDateTime dateOfBirth = LocalDateTime.now();
 
 }
