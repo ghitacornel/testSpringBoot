@@ -9,3 +9,13 @@ services:
       - POSTGRES_USER=cornel
       - POSTGRES_PASSWORD=sefusefu
       - POSTGRES_DB=my_database
+    network_mode: bridge
+
+  application_service:
+    image: my-docker-image
+    container_name: application
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database_service
+    network_mode: bridge

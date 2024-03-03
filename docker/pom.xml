@@ -242,6 +242,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.2.3</version>
+                <configuration>
+                    <image>
+                        <name>my-docker-image</name>
+                    </image>
+                </configuration>
             </plugin>
 
         </plugins>
