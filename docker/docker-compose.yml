@@ -1,0 +1,11 @@
+services:
+
+  batch:
+    image: postgres:latest
+    container_name: postgresql_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=cornel
+      - POSTGRES_PASSWORD=sefusefu
+      - POSTGRES_DB=my_database
