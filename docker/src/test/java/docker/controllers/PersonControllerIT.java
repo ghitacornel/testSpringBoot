@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -44,7 +44,7 @@ class PersonControllerIT {
 
         CreatePersonDto createPersonDto = CreatePersonDto.builder()
                 .name("John")
-                .dateOfBirth(LocalDate.of(2024, 3, 4))
+                .registerDate(LocalDateTime.of(2024, 3, 4, 10, 11, 2))
                 .build();
         PersonDto personDto;
 
@@ -59,7 +59,7 @@ class PersonControllerIT {
             personDto = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), PersonDto.class);
             Assertions.assertThat(personDto.getId()).isNotNull();
             Assertions.assertThat(personDto.getName()).isEqualTo(createPersonDto.getName());
-            Assertions.assertThat(personDto.getDateOfBirth()).isEqualTo(createPersonDto.getDateOfBirth());
+            Assertions.assertThat(personDto.getRegisterDate()).isEqualTo(createPersonDto.getRegisterDate());
         }
 
         // read
@@ -100,7 +100,7 @@ class PersonControllerIT {
         // read
         mvc.perform(get("/person/{id}", personDto.getId()))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("no person found for id = 0"));
+                .andExpect(content().string("no person found for id = " + personDto.getId()));
 
     }
 

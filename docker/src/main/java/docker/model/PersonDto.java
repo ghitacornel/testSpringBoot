@@ -26,8 +26,7 @@ public class PersonDto {
     private String name;
 
     @NotNull
-    @Schema(description = "date of birth of the person", defaultValue = "2024-03-04", example = "2024-03-04", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime dateOfBirth;
+    @Schema(description = "register date", requiredMode = Schema.RequiredMode.REQUIRED)
+    private LocalDateTime registerDate;
 
 }

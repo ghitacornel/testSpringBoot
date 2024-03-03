@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -22,8 +21,7 @@ public class CreatePersonDto {
     private String name;
 
     @NotNull
-    @Schema(description = "date of birth of person", defaultValue = "2024-03-04", example = "2024-03-04", requiredMode = Schema.RequiredMode.REQUIRED)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth;
+    @Schema(description = "register date", requiredMode = Schema.RequiredMode.REQUIRED)
+    private LocalDateTime registerDate;
 
 }

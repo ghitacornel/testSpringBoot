@@ -25,8 +25,8 @@ public class Person {
     private String name;
 
     @NotNull
-    @Column(name = "date_of_birth", nullable = false)
+    @Column(name = "register_date", nullable = false)
     @Builder.Default
-    private LocalDate dateOfBirth = LocalDate.now();
+    private LocalDateTime registerDate = LocalDateTime.now();
 
 }
