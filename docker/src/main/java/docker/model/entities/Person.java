@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,6 +27,6 @@ public class Person {
     @NotNull
     @Column(name = "date_of_birth", nullable = false)
     @Builder.Default
-    private LocalDateTime dateOfBirth = LocalDateTime.now();
+    private LocalDate dateOfBirth = LocalDate.now();
 
 }

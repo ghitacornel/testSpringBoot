@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -44,7 +44,7 @@ class PersonControllerIT {
 
         CreatePersonDto createPersonDto = CreatePersonDto.builder()
                 .name("John")
-                .dateOfBirth(LocalDateTime.of(2024, 3, 4, 11, 22))
+                .dateOfBirth(LocalDate.of(2024, 3, 4))
                 .build();
         PersonDto personDto;
 
