@@ -104,4 +104,13 @@ class PersonControllerIT {
 
     }
 
+    @Test
+    void testValidation() throws Exception {
+
+        mvc.perform(get("/person/"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("no person found for id = -1"));
+
+    }
+
 }
