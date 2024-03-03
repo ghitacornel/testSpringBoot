@@ -43,12 +43,12 @@ class PersonControllerIT {
                 .andExpect(content().json("[]"));
 
         CreatePersonDto createPersonDto = CreatePersonDto.builder()
-                .name("john")
+                .name("John")
                 .dateOfBirth(LocalDateTime.of(2024, 3, 4, 11, 22))
                 .build();
+        PersonDto personDto;
 
         // create
-        PersonDto personDto;
         {
             MvcResult mvcResult = mvc.perform(post("/person")
                             .contentType(MediaType.APPLICATION_JSON)
@@ -70,25 +70,27 @@ class PersonControllerIT {
                     .andExpect(content().json(objectMapper.writeValueAsString(personDto)));
         }
 
+        personDto.setName("Doe");
+
         // update
-//        {
-//            mvc.perform(post("/person")
-//                            .contentType(MediaType.APPLICATION_JSON)
-//                            .content(content))
-//                    .andExpect(status().isOk())
-//                    .andExpect(content().string(""));
-//        }
+        {
+            mvc.perform(put("/person")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(personDto)))
+                    .andExpect(status().isNoContent());
+        }
 
         // read
-//        {
-//            mvc.perform(get("/person/{id}", "3"))
-//                    .andExpect(status().isOk())
-//                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-//                    .andExpect(content().json(content));
-//        }
+        {
+            mvc.perform(get("/person/{id}", personDto.getId()))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(content().json(objectMapper.writeValueAsString(personDto)));
+        }
 
         // delete
-        mvc.perform(delete("/person/{id}", personDto.getId())).andExpect(status().isOk());
+        mvc.perform(delete("/person/{id}", personDto.getId()))
+                .andExpect(status().isNoContent());
 
         // read all
         mvc.perform(get("/person"))
@@ -98,7 +100,7 @@ class PersonControllerIT {
         // read
         mvc.perform(get("/person/{id}", personDto.getId()))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("No value present"));
+                .andExpect(content().string("no person found for id = 0"));
 
     }
 

@@ -32,7 +32,7 @@ public class PersonService {
         repository.deleteById(id);
     }
 
-    public void save(PersonDto personDto) {
+    public void update(PersonDto personDto) {
         repository.save(mapper.map(personDto));
     }
 

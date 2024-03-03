@@ -4,6 +4,7 @@ import docker.model.CreatePersonDto;
 import docker.model.PersonDto;
 import docker.service.PersonService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,16 +32,19 @@ public class PersonController {
     }
 
     @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody PersonDto personDto) {
-        service.save(personDto);
+        service.update(personDto);
     }
 
     @DeleteMapping(value = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id) {
         service.deleteById(id);
     }
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
         service.deleteAll();
     }
