@@ -3,19 +3,15 @@ services:
   database_service:
     image: postgres:latest
     container_name: database
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_USER=cornel
       - POSTGRES_PASSWORD=sefusefu
       - POSTGRES_DB=my_database
-    network_mode: bridge
+    network_mode: service:application_service
 
   application_service:
     image: my-docker-image
     container_name: application
     ports:
       - "8080:8080"
-    depends_on:
-      - database_service
     network_mode: bridge
