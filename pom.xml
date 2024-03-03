@@ -31,6 +31,7 @@
         <module>soap-wsdl</module>
         <module>timers</module>
         <module>web-sockets</module>
+        <module>docker</module>
     </modules>
 
     <properties>
