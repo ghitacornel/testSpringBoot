@@ -1,0 +1,11 @@
+services:
+
+  database_service:
+    image: postgres:latest
+    container_name: database
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=cornel
+      - POSTGRES_PASSWORD=sefusefu
+      - POSTGRES_DB=my_database
