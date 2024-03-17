@@ -16,5 +16,5 @@ import org.springframework.context.annotation.Configuration;
  */
 @OpenAPIDefinition(info = @Info(title = "Custom REST Documentation title", description = "All REST API custom description", version = "1"))
 @Configuration
-public class SwaggerConfiguration {
+class SwaggerConfiguration {
 }
