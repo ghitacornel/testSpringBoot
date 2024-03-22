@@ -1,5 +1,6 @@
 package beans.jms.config;
 
+import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,7 @@ class ActiveMQConfig {
     private String BROKER_PASSWORD;
 
     @Bean
-    public ActiveMQConnectionFactory connectionFactory() {
+    ConnectionFactory connectionFactory() {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setTrustAllPackages(true);
         connectionFactory.setBrokerURL(BROKER_URL);
