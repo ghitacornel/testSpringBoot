@@ -1,5 +1,6 @@
 package beans.jms.topic.configuration;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
@@ -17,7 +18,7 @@ public class JMSConfigurationTopic {
     public static final String TOPIC_NAME = "topicName";
 
     @Bean
-    Topic topic(JmsTemplate jmsTemplateTopic) throws JMSException {
+    Topic topic(@Qualifier("jmsTemplateTopic") JmsTemplate jmsTemplateTopic) throws JMSException {
         return jmsTemplateTopic.getConnectionFactory()
                 .createConnection()
                 .createSession()

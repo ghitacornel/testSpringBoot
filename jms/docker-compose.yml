@@ -1,0 +1,9 @@
+services:
+
+  jms:
+    image: webcenter/activemq
+    container_name: activeMQ
+    ports:
+      - 8161:8161
+      - 61616:61616
+      - 61613:61613
