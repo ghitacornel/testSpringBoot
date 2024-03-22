@@ -2,7 +2,6 @@ package cache.simple;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,6 @@ import static cache.simple.CacheConfiguration.CACHE_NAME;
 public class CacheableService {
 
     private final Map<Integer, CacheableModel> data = new HashMap<>();
-
-    @CachePut(key = "#model.id")
-    public CacheableModel addAlsoInCache(CacheableModel model) {
-        data.put(model.getId(), model);
-        return model;
-    }
 
     public void add(CacheableModel model) {
         data.put(model.getId(), model);
