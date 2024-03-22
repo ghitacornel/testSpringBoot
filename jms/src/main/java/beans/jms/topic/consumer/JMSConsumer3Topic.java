@@ -7,12 +7,10 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-// do not work due to lazy initialisation
-//@org.springframework.context.annotation.Scope("prototype")
-//@org.springframework.context.annotation.Lazy
 @RequiredArgsConstructor
 public class JMSConsumer3Topic {
 
+    // record last message for test purpose
     private final JMSConsumer3TopicRecorder recorder;
 
     @JmsListener(destination = JMSConfigurationTopic.TOPIC_NAME, containerFactory = "topicConnectionFactory")
