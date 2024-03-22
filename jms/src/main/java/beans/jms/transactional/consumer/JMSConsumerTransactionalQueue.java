@@ -1,7 +1,7 @@
 package beans.jms.transactional.consumer;
 
 import beans.jms.transactional.configuration.JMSConfigurationTransactionalQueue;
-import beans.jms.transactional.model.JMSMessageTransactionalQueue;
+import beans.jms.transactional.model.MessageForTransactional;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class JMSConsumerTransactionalQueue {
 
     // record last message for test purpose
-    public JMSMessageTransactionalQueue message;
+    public MessageForTransactional message;
 
     @JmsListener(destination = JMSConfigurationTransactionalQueue.TRANSACTIONAL_QUEUE)
-    public void listenerForQueue1(JMSMessageTransactionalQueue message) {
+    public void listenerForQueue1(MessageForTransactional message) {
         this.message = message;
     }
 

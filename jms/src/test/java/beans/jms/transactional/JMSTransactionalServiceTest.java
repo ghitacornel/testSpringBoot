@@ -1,7 +1,7 @@
 package beans.jms.transactional;
 
 import beans.jms.transactional.consumer.JMSConsumerTransactionalQueue;
-import beans.jms.transactional.model.JMSMessageTransactionalQueue;
+import beans.jms.transactional.model.MessageForTransactional;
 import beans.jms.transactional.repository.JMSEntityRepository;
 import beans.jms.transactional.repository.entity.JMSEntity;
 import beans.jms.transactional.service.JMSService;
@@ -40,7 +40,7 @@ public class JMSTransactionalServiceTest {
         Assertions.assertThat(all.size()).isEqualTo(1);
         Assertions.assertThat(all.get(0)).isEqualTo(new JMSEntity(1, "message"));
 
-        Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue"));
+        Assertions.assertThat(consumer.message).isEqualTo(new MessageForTransactional(1, "payload for transactional queue"));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class JMSTransactionalServiceTest {
         Assertions.assertThat(all.size()).isEqualTo(1);
         Assertions.assertThat(all.get(0)).isEqualTo(new JMSEntity(1, "message"));
 
-        Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue non transactional"));
+        Assertions.assertThat(consumer.message).isEqualTo(new MessageForTransactional(1, "payload for transactional queue non transactional"));
     }
 
     @Test
@@ -88,6 +88,6 @@ public class JMSTransactionalServiceTest {
         List<JMSEntity> all = repository.findAll();
         Assertions.assertThat(all.isEmpty()).isTrue();
 
-        Assertions.assertThat(consumer.message).isEqualTo(new JMSMessageTransactionalQueue(1, "payload for transactional queue non transactional"));
+        Assertions.assertThat(consumer.message).isEqualTo(new MessageForTransactional(1, "payload for transactional queue non transactional"));
     }
 }

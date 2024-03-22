@@ -3,7 +3,7 @@ package beans.jms.topic;
 import beans.jms.topic.consumer.JMSConsumer1Topic;
 import beans.jms.topic.consumer.JMSConsumer2Topic;
 import beans.jms.topic.consumer.JMSConsumer3TopicRecorder;
-import beans.jms.topic.model.JMSMessageForTopic;
+import beans.jms.topic.model.MessageForTopic;
 import beans.jms.topic.producer.JMSProducerTopic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,9 +36,9 @@ public class TestJMSTopic {
         // wait a little
         Thread.sleep(100);
 
-        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), consumer1Topic.message);
-        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), consumer2Topic.message);
-        Assertions.assertEquals(new JMSMessageForTopic(3, "payload for queue with topic"), recorder.message);
+        Assertions.assertEquals(new MessageForTopic(3, "payload for queue with topic"), consumer1Topic.message);
+        Assertions.assertEquals(new MessageForTopic(3, "payload for queue with topic"), consumer2Topic.message);
+        Assertions.assertEquals(new MessageForTopic(3, "payload for queue with topic"), recorder.message);
     }
 
 }

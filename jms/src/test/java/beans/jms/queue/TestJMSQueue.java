@@ -1,7 +1,7 @@
 package beans.jms.queue;
 
 import beans.jms.queue.consumer.JMSConsumerQueue;
-import beans.jms.queue.model.JMSMessageQueue;
+import beans.jms.queue.model.MessageForQueue;
 import beans.jms.queue.producer.JMSProducerQueue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,8 +28,8 @@ public class TestJMSQueue {
         // wait a little
         Thread.sleep(100);
 
-        Assertions.assertEquals(new JMSMessageQueue(1, "payload for queue 1"), jmsConsumer.messageFromQueue1);
-        Assertions.assertEquals(new JMSMessageQueue(2, "payload for queue 2"), jmsConsumer.messageFromQueue2);
+        Assertions.assertEquals(new MessageForQueue(1, "payload for queue 1"), jmsConsumer.messageFromQueue1);
+        Assertions.assertEquals(new MessageForQueue(2, "payload for queue 2"), jmsConsumer.messageFromQueue2);
     }
 
 }

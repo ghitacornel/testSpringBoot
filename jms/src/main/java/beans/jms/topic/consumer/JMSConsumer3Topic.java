@@ -1,7 +1,7 @@
 package beans.jms.topic.consumer;
 
 import beans.jms.topic.configuration.JMSConfigurationTopic;
-import beans.jms.topic.model.JMSMessageForTopic;
+import beans.jms.topic.model.MessageForTopic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class JMSConsumer3Topic {
     private final JMSConsumer3TopicRecorder recorder;
 
     @JmsListener(destination = JMSConfigurationTopic.TOPIC_NAME, containerFactory = "topicConnectionFactory")
-    public void listener3ForQueueWithTopic(JMSMessageForTopic message) {
+    public void listener3ForQueueWithTopic(MessageForTopic message) {
         recorder.message = message;
     }
 
