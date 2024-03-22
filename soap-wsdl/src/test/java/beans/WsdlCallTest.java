@@ -2,33 +2,30 @@ package beans;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.autoconfigure.webservices.server.WebServiceServerTest;
+import org.springframework.ws.test.server.MockWebServiceClient;
+import org.springframework.xml.transform.StringSource;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.ws.test.server.RequestCreators.withPayload;
+import static org.springframework.ws.test.server.ResponseMatchers.noFault;
+import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
+@WebServiceServerTest
 public class WsdlCallTest {
 
     @Autowired
-    MockMvc mvc;
+    MockWebServiceClient client;
 
     @Test
-    public void testWsdlCall() throws Exception {
+    public void testWsdlCall() {
 
         String request = Utils.readFile("WsdlRequest.xml");
         String response = Utils.readFile("WsdlResponse.xml");
 
-        mvc.perform(post("/services/Hello/")
-                        .contentType(MediaType.APPLICATION_XML)
-                        .content(request))
-                .andExpect(status().isOk())
-                .andExpect(content().string(response));
+        client.sendRequest(withPayload(new StringSource(request)))
+                .andExpect(noFault())
+                .andExpect(payload(new StringSource(response)));
 
     }
 }
+
