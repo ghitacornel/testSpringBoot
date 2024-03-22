@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 
 @Service
 @RequiredArgsConstructor

@@ -7,7 +7,7 @@ import feign.Param;
 import feign.RequestLine;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Validated
 public interface FeignContract {

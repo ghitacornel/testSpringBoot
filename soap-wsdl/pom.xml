@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-            <version>3.5.5</version>
+            <version>4.0.4</version>
         </dependency>
 
     </dependencies>
@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.5.5</version>
+                <version>4.0.4</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
@@ -47,7 +47,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>add-source</id>

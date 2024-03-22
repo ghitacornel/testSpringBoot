@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.persistence.LockModeType;
+import jakarta.persistence.LockModeType;
 
 public interface TransactionalEntityRepository extends JpaRepository<TransactionalEntity, Integer> {
 

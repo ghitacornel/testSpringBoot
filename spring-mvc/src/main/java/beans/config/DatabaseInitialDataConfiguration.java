@@ -5,7 +5,7 @@ import beans.service.model.ItemModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.Date;
 
 @Configuration

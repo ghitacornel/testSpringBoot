@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolationException;
+
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -22,7 +24,7 @@ public class ValidationControllerExceptionHandler extends ResponseEntityExceptio
      * override how validation constraints in REST layer are handled
      */
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
         // can log errors here and not in the application
         log.error("validation error", e);

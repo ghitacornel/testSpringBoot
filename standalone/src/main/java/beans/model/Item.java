@@ -2,8 +2,8 @@ package beans.model;
 
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 @ToString
