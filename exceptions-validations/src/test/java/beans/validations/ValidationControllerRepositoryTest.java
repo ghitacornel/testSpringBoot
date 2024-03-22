@@ -42,7 +42,7 @@ public class ValidationControllerRepositoryTest extends AbstractTestSpringBootCo
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"vasile\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"fieldName\":\"@Id\",\"message\":\"ids for this class must be manually assigned before calling save(): beans.validations.model.ValidationModel\",\"messageCode\":\"\"}"));
+                .andExpect(content().string("{\"fieldName\":\"@Id\",\"message\":\"Identifier of entity 'beans.validations.model.ValidationModel' must be manually assigned before calling 'persist()'\",\"messageCode\":\"\"}"));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ValidationControllerRepositoryTest extends AbstractTestSpringBootCo
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"{javax.validation.constraints.NotEmpty.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"{jakarta.validation.constraints.NotEmpty.message}\"}]"));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ValidationControllerRepositoryTest extends AbstractTestSpringBootCo
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"{javax.validation.constraints.NotEmpty.message}\"},{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"{javax.validation.constraints.Size.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"name\",\"message\":\"must not be empty\",\"messageCode\":\"{jakarta.validation.constraints.NotEmpty.message}\"},{\"fieldName\":\"name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"{jakarta.validation.constraints.Size.message}\"}]"));
     }
 
 }

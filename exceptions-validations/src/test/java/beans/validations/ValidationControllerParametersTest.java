@@ -27,7 +27,7 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
     public void testIsInvalid() throws Exception {
         mvc.perform(get(URL + "/4"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.x\",\"message\":\"must be greater than or equal to 5\",\"messageCode\":\"{javax.validation.constraints.Min.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.arg0\",\"message\":\"must be greater than or equal to 5\",\"messageCode\":\"{jakarta.validation.constraints.Min.message}\"}]"));
     }
 
     @Test
@@ -42,19 +42,19 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
 
         mvc.perform(get(URL + "/ /partialPath/yyy"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.parameter1\",\"message\":\"must not be blank\",\"messageCode\":\"{javax.validation.constraints.NotBlank.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.arg0\",\"message\":\"must not be blank\",\"messageCode\":\"{jakarta.validation.constraints.NotBlank.message}\"}]"));
 
         mvc.perform(get(URL + "/xxx/partialPath/ "))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.parameter2\",\"message\":\"must not be blank\",\"messageCode\":\"{javax.validation.constraints.NotBlank.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invokeDirect.arg1\",\"message\":\"must not be blank\",\"messageCode\":\"{jakarta.validation.constraints.NotBlank.message}\"}]"));
 
         mvc.perform(get(URL + "//partialPath/yyy"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string(""));
+                .andExpect(content().string("{\"type\":\"about:blank\",\"title\":\"Not Found\",\"status\":404,\"detail\":\"No static resource validateParameters/partialPath/yyy.\",\"instance\":\"/validateParameters/partialPath/yyy\"}"));
 
         mvc.perform(get(URL + "/xxx/partialPath/"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string(""));
+                .andExpect(content().string("{\"type\":\"about:blank\",\"title\":\"Not Found\",\"status\":404,\"detail\":\"No static resource validateParameters/xxx/partialPath.\",\"instance\":\"/validateParameters/xxx/partialPath/\"}"));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ValidationControllerParametersTest extends AbstractTestSpringBootCo
                 .andExpect(content().string("DOWN is OK"));
         mvc.perform(get(URL + "/customParameterValue/xxx"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"customParameterValue.data\",\"message\":\"only UP or DOWN accepted\",\"messageCode\":\"only UP or DOWN accepted\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"customParameterValue.arg0\",\"message\":\"only UP or DOWN accepted\",\"messageCode\":\"only UP or DOWN accepted\"}]"));
     }
 
 }

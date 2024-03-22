@@ -32,7 +32,7 @@ public class ValidationControllerServiceTest extends AbstractTestSpringBootConte
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"vasile\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invoke.model.id\",\"message\":\"must not be null\",\"messageCode\":\"{javax.validation.constraints.NotNull.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invoke.arg0.id\",\"message\":\"must not be null\",\"messageCode\":\"{jakarta.validation.constraints.NotNull.message}\"}]"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ValidationControllerServiceTest extends AbstractTestSpringBootConte
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invoke.model.name\",\"message\":\"must not be empty\",\"messageCode\":\"{javax.validation.constraints.NotEmpty.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invoke.arg0.name\",\"message\":\"must not be empty\",\"messageCode\":\"{jakarta.validation.constraints.NotEmpty.message}\"}]"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ValidationControllerServiceTest extends AbstractTestSpringBootConte
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\":3,\"name\":\"\"}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("[{\"fieldName\":\"invoke.model.name\",\"message\":\"must not be empty\",\"messageCode\":\"{javax.validation.constraints.NotEmpty.message}\"},{\"fieldName\":\"invoke.model.name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"{javax.validation.constraints.Size.message}\"}]"));
+                .andExpect(content().string("[{\"fieldName\":\"invoke.arg0.name\",\"message\":\"must not be empty\",\"messageCode\":\"{jakarta.validation.constraints.NotEmpty.message}\"},{\"fieldName\":\"invoke.arg0.name\",\"message\":\"size must be between 2 and 30\",\"messageCode\":\"{jakarta.validation.constraints.Size.message}\"}]"));
     }
 
 }
