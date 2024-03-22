@@ -1,4 +1,4 @@
-<soap:Envelope xmlns:soap="http://localhost:8080/services/Hello/">
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
     <soap:Body>
         <AccountDetailsResponse xmlns="http://com/blog/samples/webservices/accountservice">
             <AccountDetails>
