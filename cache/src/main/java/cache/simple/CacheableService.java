@@ -1,5 +1,7 @@
 package cache.simple;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,14 +33,9 @@ public class CacheableService {
         data.remove(id);
     }
 
+    @Getter
+    @Setter
     // for test purpose
     private boolean cacheHit = false;
 
-    public boolean isCacheHit() {
-        return cacheHit;
-    }
-
-    public void setCacheHit(boolean cacheHit) {
-        this.cacheHit = cacheHit;
-    }
 }
