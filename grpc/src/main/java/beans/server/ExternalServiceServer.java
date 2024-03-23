@@ -7,7 +7,7 @@ import io.grpc.stub.StreamObserver;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExternalServiceServer extends ExternalServiceGrpc.ExternalServiceImplBase {
+class ExternalServiceServer extends ExternalServiceGrpc.ExternalServiceImplBase {
 
     @Override
     public void invokeExternal(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
