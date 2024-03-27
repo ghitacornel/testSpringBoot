@@ -12,7 +12,20 @@ class ExternalServiceServer extends ExternalServiceGrpc.ExternalServiceImplBase 
     @Override
     public void invokeExternal(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
 
-        ResponseMessage responseMessage = ResponseMessage.newBuilder()
+        ResponseMessage responseMessage;
+
+        if (request.getMessage().equalsIgnoreCase("blank")) {
+            responseMessage = ResponseMessage.newBuilder()
+                    .setContent("")
+                    .build();
+        } else {
+            responseMessage = ResponseMessage.newBuilder()
+                    .setContent(request.getMessage() + " with response " + request.getCount())
+                    .setStatus(request.getFlag())
+                    .build();
+        }
+
+        ResponseMessage.newBuilder()
                 .setContent(request.getMessage() + " with response " + request.getCount())
                 .setStatus(request.getFlag())
                 .build();

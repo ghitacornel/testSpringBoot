@@ -15,5 +15,5 @@ message RequestMessage {
 
 message ResponseMessage {
   bool status = 1;
-  string content = 2;
+  optional string content = 2;
 }

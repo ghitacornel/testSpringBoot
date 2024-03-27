@@ -48,4 +48,16 @@ class GrpcTest {
                         .build())));
     }
 
+    @Test
+    @SneakyThrows
+    public void testInvokeWithBlankParameter() {
+        mvc.perform(get("/invoke/grpc").param("content", "blank"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(objectMapper.writeValueAsString(ResponseDto.builder()
+                        .content("")
+                        .status(false)
+                        .build())));
+    }
+
 }
