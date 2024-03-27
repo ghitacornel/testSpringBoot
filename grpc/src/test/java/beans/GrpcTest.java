@@ -2,10 +2,7 @@ package beans;
 
 import beans.etc.ResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.grpc.Server;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,30 +24,26 @@ class GrpcTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @Autowired
-    Server server;
-
-    @BeforeEach
-    @SneakyThrows
-    public void before() {
-        server.start();
-    }
-
-    @AfterEach
-    @SneakyThrows
-    public void after() {
-        server.shutdown();
-    }
-
     @Test
     @SneakyThrows
-    public void testFindAll() {
-        mvc.perform(get("/invoke/grpc")
-                        .contentType(MediaType.APPLICATION_JSON))
+    public void testInvokeNoParameter() {
+        mvc.perform(get("/invoke/grpc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(objectMapper.writeValueAsString(ResponseDto.builder()
                         .content("request body with response 111")
+                        .status(true)
+                        .build())));
+    }
+
+    @Test
+    @SneakyThrows
+    public void testInvokeWithParameter() {
+        mvc.perform(get("/invoke/grpc").param("content", "dummy"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(objectMapper.writeValueAsString(ResponseDto.builder()
+                        .content("dummy with response 111")
                         .status(true)
                         .build())));
     }
