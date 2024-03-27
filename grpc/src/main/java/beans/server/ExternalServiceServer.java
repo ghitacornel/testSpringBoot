@@ -16,7 +16,7 @@ class ExternalServiceServer extends ExternalServiceGrpc.ExternalServiceImplBase 
 
         if (request.getMessage().equalsIgnoreCase("blank")) {
             responseMessage = ResponseMessage.newBuilder()
-                    .setContent("")
+                    .setContent("")// cannot set to null even with "optional"
                     .build();
         } else {
             responseMessage = ResponseMessage.newBuilder()
