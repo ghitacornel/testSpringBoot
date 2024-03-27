@@ -13,11 +13,11 @@ public class BusinessService {
     // multiple types of stubs available
     private final ExternalServiceGrpc.ExternalServiceBlockingStub stub;
 
-    public ResponseDto invokeExternal() {
+    public ResponseDto invokeExternal(String content) {
 
         // request
         RequestMessage request = RequestMessage.newBuilder()
-                .setMessage("request body")
+                .setMessage(content == null ? "request body" : content)
                 .setFlag(true)
                 .setCount(111)
                 .build();
