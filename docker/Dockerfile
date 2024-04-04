@@ -6,6 +6,7 @@ EXPOSE 8080
 
 #build image
 #docker build -t japp .
-
 #run image
 #docker run -it --rm japp
+#run container
+#docker run -d --name docker-container -p 8080:8080 japp
