@@ -1,0 +1,37 @@
+#kubectl apply -f bb.yaml
+#http://localhost:30001/swagger-ui/index.html
+#kubectl get deployments
+#kubectl get services
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bb-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+        - name: bb-site
+          image: japp
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bb-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    bb: web
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30001
