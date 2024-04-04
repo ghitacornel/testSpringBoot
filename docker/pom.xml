@@ -49,15 +49,13 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <scope>test</scope>
         </dependency>
 
-        <!-- SWAGGER -->
-        <!-- http://localhost:8080/swagger-ui/index.html -->
+        <!-- http://localhost:8080/swagger-ui/index.html#/ -->
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.7.0</version>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.4.0</version>
         </dependency>
 
     </dependencies>
