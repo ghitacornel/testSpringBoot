@@ -2,6 +2,7 @@
 #http://localhost:30001/swagger-ui/index.html
 #kubectl get deployments
 #kubectl get services
+#kubectl delete -f bb.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
