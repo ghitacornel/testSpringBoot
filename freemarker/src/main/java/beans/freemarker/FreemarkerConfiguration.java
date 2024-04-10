@@ -6,17 +6,17 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @Configuration
-public class FreemarkerConfiguration {
+class FreemarkerConfiguration {
 
     @Bean
-    public FreeMarkerConfigurer freemarkerConfig() {
+    FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("classpath:freemarker");
         return freeMarkerConfigurer;
     }
 
     @Bean
-    public FreeMarkerViewResolver freemarkerViewResolver() {
+    FreeMarkerViewResolver freemarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
         resolver.setCache(true);
         resolver.setPrefix("");
@@ -24,4 +24,5 @@ public class FreemarkerConfiguration {
         resolver.setContentType("text/html;charset=UTF-8");
         return resolver;
     }
+
 }
