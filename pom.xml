@@ -33,6 +33,7 @@
         <module>web-sockets</module>
         <module>docker</module>
         <module>grpc</module>
+        <module>shedlock</module>
     </modules>
 
     <properties>
