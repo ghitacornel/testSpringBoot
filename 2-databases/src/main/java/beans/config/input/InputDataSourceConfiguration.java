@@ -20,16 +20,12 @@ class InputDataSourceConfiguration {
     @Value("${spring.datasource.input.password}")
     private String password;
 
-    @Value("${spring.datasource.input.driver}")
-    private String driver;
-
     @Bean
     DataSource inputDataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
         config.setPassword(password);
-        config.setDriverClassName(driver);
         return new HikariDataSource(config);
     }
 
