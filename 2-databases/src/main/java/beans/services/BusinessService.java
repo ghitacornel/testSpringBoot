@@ -7,10 +7,12 @@ import beans.config.output.repository.OutputEntityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional// uses the @Primary one but can target a specific one
 public class BusinessService {
 
     private final InputEntityRepository inputEntityRepository;
