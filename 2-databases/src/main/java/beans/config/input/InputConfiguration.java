@@ -33,7 +33,7 @@ class InputConfiguration {
         map.put("javax.persistence.schema-generation.database.action", action);
         return builder
                 .dataSource(dataSource)
-                .packages("jpa.configuration.input.entity")
+                .packages("beans.config.input.entity")
                 .persistenceUnit("inputPU")
                 .properties(map)
                 .build();

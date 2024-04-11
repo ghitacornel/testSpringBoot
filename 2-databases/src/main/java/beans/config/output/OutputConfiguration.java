@@ -33,7 +33,7 @@ class OutputConfiguration {
         map.put("javax.persistence.schema-generation.database.action", action);
         return builder
                 .dataSource(dataSource)
-                .packages("jpa.configuration.output.entity")
+                .packages("beans.config.output.entity")
                 .persistenceUnit("outputPU")
                 .properties(map)
                 .build();
