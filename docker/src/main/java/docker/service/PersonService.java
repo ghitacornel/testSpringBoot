@@ -3,7 +3,7 @@ package docker.service;
 import docker.mappers.PersonMapper;
 import docker.model.CreatePersonDto;
 import docker.model.PersonDto;
-import docker.model.entities.Person;
+import docker.entities.Person;
 import docker.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

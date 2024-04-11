@@ -2,7 +2,7 @@ package docker.mappers;
 
 import docker.model.CreatePersonDto;
 import docker.model.PersonDto;
-import docker.model.entities.Person;
+import docker.entities.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
