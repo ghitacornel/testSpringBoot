@@ -18,10 +18,12 @@ public class BusinessService {
 
     public void play() {
         inputEntityRepository.save(InputEntity.builder()
+                .id(1)
                 .firstName("firstName1")
                 .lastName("lastName1")
                 .build());
         outputEntityRepository.save(OutputEntity.builder()
+                .id(2)
                 .firstName("firstName2")
                 .lastName("lastName2")
                 .build());
