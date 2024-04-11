@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class PersonService {
     }
 
     public PersonDto findById(Integer id) {
-        return repository.findById(id).map(mapper::map).orElseThrow(() -> new EntityNotFoundException("no person found for id = " + id));
+        return mapper.map(repository.getReferenceById(id));
     }
 
     public void deleteById(Integer id) {

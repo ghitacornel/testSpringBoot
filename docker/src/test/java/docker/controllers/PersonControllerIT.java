@@ -100,7 +100,7 @@ class PersonControllerIT {
         // read
         mvc.perform(get("/person/{id}", personDto.getId()))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("no person found for id = " + personDto.getId()));
+                .andExpect(content().string("Unable to find docker.model.entities.Person with id " + personDto.getId()));
 
     }
 
