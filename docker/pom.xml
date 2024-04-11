@@ -235,31 +235,42 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- build fat jar -->
-            <!-- mvn clean install -DskipTests -->
-            <!-- run fat jar -->
-            <!-- java -jar docker-0.0.1-SNAPSHOT.jar -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <image>
-                        <name>my-docker-image</name><!-- only if spring-boot:build-image is used -->
-                    </image>
-                    <mainClass>docker.DockerSpringBootApp</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>fat-jar</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- build fat jar -->
+                    <!-- mvn clean install -DskipTests -Pfat-jar -->
+                    <!-- run fat jar -->
+                    <!-- java -jar docker-0.0.1-SNAPSHOT.jar -->
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <version>3.2.4</version>
+                        <configuration>
+                            <image>
+                                <name>my-docker-image</name><!-- only if spring-boot:build-image is used -->
+                            </image>
+                            <mainClass>docker.DockerSpringBootApp</mainClass>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>repackage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
