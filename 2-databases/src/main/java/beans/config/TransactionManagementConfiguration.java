@@ -22,7 +22,7 @@ class TransactionManagementConfiguration {
             @Qualifier("inputTransactionManager") PlatformTransactionManager transactionManager1,
             @Qualifier("outputTransactionManager") PlatformTransactionManager transactionManager2
     ) {
-        return new ChainedTransactionManager(transactionManager1, transactionManager2);
+        return new ChainedTransactionManager(transactionManager1, transactionManager2);// need something better
     }
 
     @Bean
