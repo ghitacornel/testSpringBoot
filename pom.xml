@@ -34,6 +34,7 @@
         <module>docker</module>
         <module>grpc</module>
         <module>shedlock</module>
+        <module>2-databases</module>
     </modules>
 
     <properties>
