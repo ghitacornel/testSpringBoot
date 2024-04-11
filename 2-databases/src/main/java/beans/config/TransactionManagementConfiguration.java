@@ -1,21 +1,20 @@
 package beans.config;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.support.JdbcTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
+import java.util.HashMap;
 
 @Configuration
+@EnableTransactionManagement
 class TransactionManagementConfiguration {
 
-    @Primary
     @Bean
-    PlatformTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
-        return new JdbcTransactionManager(dataSource);
+    EntityManagerFactoryBuilder entityManagerFactoryBuilder() {
+        return new EntityManagerFactoryBuilder(new HibernateJpaVendorAdapter(), new HashMap<>(), null);
     }
 
 }
