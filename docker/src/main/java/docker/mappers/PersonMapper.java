@@ -5,6 +5,7 @@ import docker.model.PersonDto;
 import docker.model.entities.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -16,7 +17,8 @@ public interface PersonMapper {
 
     PersonDto map(Person person);
 
-    Person map(PersonDto personDto);
+    @Mapping(target = "id", ignore = true)
+    void update(@MappingTarget Person person, PersonDto personDto);
 
     List<PersonDto> map(List<Person> all);
 

@@ -32,7 +32,7 @@ public class PersonService {
     }
 
     public void update(PersonDto personDto) {
-        repository.save(mapper.map(personDto));
+        mapper.update(repository.getReferenceById(personDto.getId()), personDto);
     }
 
     public void deleteAll() {
