@@ -1,4 +1,4 @@
-create table person
+create table persons
 (
     id            integer generated always as identity primary key,
     name          varchar(50),
