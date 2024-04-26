@@ -35,6 +35,7 @@
         <module>grpc</module>
         <module>shedlock</module>
         <module>2-databases</module>
+        <module>audited-entity</module>
     </modules>
 
     <properties>
