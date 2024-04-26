@@ -21,4 +21,9 @@ public class AuditedPersonService {
     public AuditedPerson findById(Long id) {
         return repository.findById(id).orElse(null);
     }
+
+    public void doubleSalary(Long id) {
+        AuditedPerson reference = repository.getReferenceById(id);
+        reference.setSalary(reference.getSalary() * 2);
+    }
 }
