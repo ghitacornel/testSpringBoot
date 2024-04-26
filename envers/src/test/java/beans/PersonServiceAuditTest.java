@@ -48,10 +48,6 @@ public class PersonServiceAuditTest {
             Person person = service.findById(1);
 
             Assertions.assertThat(person).isEqualTo(reference);
-            Assertions.assertThat(person.getCreatedBy()).isEqualTo("Ghita");
-            Assertions.assertThat(person.getCreatedDate()).isPositive();
-            Assertions.assertThat(person.getModifiedBy()).isEqualTo("Ghita");
-            Assertions.assertThat(person.getModifiedDate()).isPositive();
 
             List<Integer> revisions = service.getAllRevisions(1).stream()
                     .map(Revision::getRevisionNumber)
@@ -67,9 +63,6 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(allRevisions.getFirst().getRequiredRevisionNumber()).isEqualTo(1L);
             Assertions.assertThat(allRevisions.getFirst().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.INSERT);
 
-            System.err.println(person);
-            reference.setCreatedDate(person.getCreatedDate());
-            reference.setModifiedDate(person.getModifiedDate());
         }
 
         reference.setName(reference.getName() + " " + reference.getName());
@@ -78,10 +71,6 @@ public class PersonServiceAuditTest {
             service.duplicateName(1);
             Person person = service.findById(1);
             Assertions.assertThat(person).isEqualTo(reference);
-            Assertions.assertThat(person.getCreatedBy()).isEqualTo("Ghita");
-            Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
-            Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
-            Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
             List<Integer> revisions = service.getAllRevisions(1).stream()
                     .map(Revision::getRevisionNumber)
@@ -98,8 +87,6 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(2L);
             Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
 
-            System.err.println(person);
-            reference.setModifiedDate(person.getModifiedDate());
         }
 
         reference.setSalary(2 * reference.getSalary());
@@ -107,10 +94,6 @@ public class PersonServiceAuditTest {
             service.duplicateSalary(1);
             Person person = service.findById(1);
             Assertions.assertThat(person).isEqualTo(reference);
-            Assertions.assertThat(person.getCreatedBy()).isEqualTo("Ghita");
-            Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
-            Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
-            Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
             List<Integer> revisions = service.getAllRevisions(1).stream()
                     .map(Revision::getRevisionNumber)
@@ -127,9 +110,6 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(allRevisions.size()).isEqualTo(3);
             Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(3L);
             Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
-
-            System.err.println(person);
-            reference.setModifiedDate(person.getModifiedDate());
         }
 
         reference.setStatus(Status.BUSY);
@@ -137,10 +117,6 @@ public class PersonServiceAuditTest {
             service.makeBusy(1);
             Person person = service.findById(1);
             Assertions.assertThat(person).isEqualTo(reference);
-            Assertions.assertThat(person.getCreatedBy()).isEqualTo("Ghita");
-            Assertions.assertThat(person.getCreatedDate()).isEqualTo(reference.getCreatedDate());
-            Assertions.assertThat(person.getModifiedBy()).isEqualTo("Cornel");
-            Assertions.assertThat(person.getModifiedDate()).isGreaterThan(reference.getModifiedDate());
 
             List<Integer> revisions = service.getAllRevisions(1).stream()
                     .map(Revision::getRevisionNumber)
@@ -159,8 +135,6 @@ public class PersonServiceAuditTest {
             Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(4L);
             Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.UPDATE);
 
-            System.err.println(person);
-            reference.setModifiedDate(person.getModifiedDate());
         }
 
         {
@@ -187,10 +161,6 @@ public class PersonServiceAuditTest {
             reference.setName(null);
             reference.setSalary(null);
             reference.setStatus(null);
-            reference.setCreatedDate(0);
-            reference.setModifiedDate(0);
-            reference.setCreatedBy(null);
-            reference.setModifiedBy(null);
             Assertions.assertThat(allRevisions.getLast().getRequiredRevisionNumber()).isEqualTo(5L);
             Assertions.assertThat(allRevisions.getLast().getRevisionType()).isEqualTo(RevisionMetadata.RevisionType.DELETE);
 

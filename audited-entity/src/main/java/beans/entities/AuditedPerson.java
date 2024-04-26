@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@ToString
 public class AuditedPerson {
 
     @Id

@@ -5,11 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
 
@@ -17,7 +12,6 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"createdDate", "modifiedDate", "createdBy", "modifiedBy"})
-@EntityListeners(AuditingEntityListener.class)
 @ToString
 @Audited
 public class Person {
@@ -31,17 +25,5 @@ public class Person {
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.AVAILABLE;
-
-    @CreatedDate
-    private long createdDate;
-
-    @LastModifiedDate
-    private long modifiedDate;
-
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedBy
-    private String modifiedBy;
 
 }
