@@ -26,7 +26,7 @@
         <module>standalone</module>
         <module>spring-mvc</module>
         <module>mapstruct</module>
-        <module>envers</module>
+        <module>versioned-entity-envers</module>
 <!--        <module>elasticsearch</module>-->
         <module>soap-wsdl</module>
         <module>timers</module>

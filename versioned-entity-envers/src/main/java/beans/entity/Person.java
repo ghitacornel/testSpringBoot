@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"createdDate", "modifiedDate", "createdBy", "modifiedBy"})
+@EqualsAndHashCode
 @ToString
 @Audited
 public class Person {
