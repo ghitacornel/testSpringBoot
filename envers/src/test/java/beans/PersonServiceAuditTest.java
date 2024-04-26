@@ -1,6 +1,5 @@
 package beans;
 
-import beans.config.PersistenceConfig;
 import beans.entity.Person;
 import beans.entity.Status;
 import beans.service.PersonService;
@@ -19,9 +18,6 @@ public class PersonServiceAuditTest {
 
     @Autowired
     PersonService service;
-
-    @Autowired
-    PersistenceConfig config;
 
     @BeforeEach
     public void setUp() {
@@ -42,7 +38,6 @@ public class PersonServiceAuditTest {
         reference.setSalary(111.222);
         reference.setStatus(Status.OOO);
         {
-            config.user = "Ghita";
             service.save(reference);
             Assertions.assertThat(service.findAll().size()).isEqualTo(1);
             Person person = service.findById(1);
@@ -67,7 +62,6 @@ public class PersonServiceAuditTest {
 
         reference.setName(reference.getName() + " " + reference.getName());
         {
-            config.user = "Cornel";
             service.duplicateName(1);
             Person person = service.findById(1);
             Assertions.assertThat(person).isEqualTo(reference);
