@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
-public class ValidationControllerExceptionHandler extends ResponseEntityExceptionHandler {
+class ValidationControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * override how validation constraints in REST layer are handled
