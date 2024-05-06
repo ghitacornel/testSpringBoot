@@ -19,7 +19,7 @@ public class LogExecutionAspect {
 
     private final List<String> logs = new ArrayList<>();// for test purpose
 
-    @Around("@within(beans.aop.LogExecution)")
+    @Around("@annotation(beans.aop.LogExecution)")
     public Object logExecution(ProceedingJoinPoint joinPoint) throws Throwable {
         String messageStart = joinPoint.getSignature() + " started";
         System.err.println(messageStart);
