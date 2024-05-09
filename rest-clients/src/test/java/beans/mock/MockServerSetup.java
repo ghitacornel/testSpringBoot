@@ -59,6 +59,12 @@ public abstract class MockServerSetup {
             wireMockServer.stubFor(WireMock.get("/externalService/badData")
                     .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
         }
+
+        // mock GET no data found
+        {
+            wireMockServer.stubFor(WireMock.get("/externalService/" + "1111?parameter=1111")
+                    .willReturn(WireMock.notFound()));
+        }
     }
 
 }

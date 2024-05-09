@@ -3,6 +3,7 @@ package beans.clients.feign;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
+import feign.FeignException;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -50,6 +51,12 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testGETBadData() {
         Assertions.assertThatThrownBy(() -> contract.invokeGETBadData()).isExactlyInstanceOf(ConstraintViolationException.class);
+    }
+
+    @Test
+    @SneakyThrows
+    public void testGETNoContent() {
+        Assertions.assertThatThrownBy(() ->contract.invokeGET("1111", "1111")).isExactlyInstanceOf(FeignException.NotFound.class);
     }
 
     @Test
