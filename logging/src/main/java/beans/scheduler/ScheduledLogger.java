@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class ScheduledLogger {
 
     // task is scheduled to run every 6 seconds
-    @Scheduled(cron = "0/6 * * * * *")
+    @Scheduled(cron = "0/1 * * * * *")
     public void scheduledTaskEvery6Seconds() {
         log.info("info message {}", Thread.currentThread());
         log.warn("warn message {}", Thread.currentThread());
