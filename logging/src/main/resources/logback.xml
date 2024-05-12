@@ -18,4 +18,21 @@
         </root>
     </springProfile>
 
+    <springProfile name="json">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%date{HH:mm:ss.SSS} %yellow(%5p) %magenta(%25.256t) %cyan(%logger{40}) - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="beans.scheduler.debug" level="DEBUG"/>
+        <logger name="beans.scheduler.error" level="ERROR"/>
+        <logger name="beans.scheduler.info" level="INFO"/>
+        <logger name="beans.scheduler.trace" level="TRACE"/>
+        <logger name="beans.scheduler.warn" level="WARN"/>
+        <root level="info">
+            <appender-ref ref="stdout"/>
+        </root>
+    </springProfile>
+
 </configuration>
