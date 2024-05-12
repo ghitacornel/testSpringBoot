@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="default">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%date{HH:mm:ss.SSS} %yellow(%5p) %magenta(%25.256t) %cyan(%logger{40}) - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <logger name="org.springframework" level="INFO"/>
+        <root level="info">
+            <appender-ref ref="stdout"/>
+        </root>
+    </springProfile>
+
+</configuration>

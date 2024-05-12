@@ -37,6 +37,7 @@
         <module>2-databases</module>
         <module>audited-entity</module>
         <module>resilience4j</module>
+        <module>logging</module>
     </modules>
 
     <properties>
