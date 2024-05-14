@@ -38,6 +38,7 @@
         <module>audited-entity</module>
         <module>resilience4j</module>
         <module>logging</module>
+        <module>time-io</module>
     </modules>
 
     <properties>
