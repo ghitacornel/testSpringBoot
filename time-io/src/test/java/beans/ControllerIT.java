@@ -3,6 +3,7 @@ package beans;
 
 import beans.model.Model;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class ControllerIT {
@@ -39,21 +41,24 @@ class ControllerIT {
                 .localDateTime(LocalDateTime.now())
                 .localTime(LocalTime.now())
                 .build();
+        String requestAsString = objectMapper.writeValueAsString(request);
+        log.error("request:{}", requestAsString);
 
         MvcResult mvcResult = mvc.perform(post("/format")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
+                        .content(requestAsString))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();
 
-        String contentAsString = mvcResult.getResponse().getContentAsString();
-        Model result = objectMapper.readValue(contentAsString, Model.class);
+        String responseAsString = mvcResult.getResponse().getContentAsString();
+        Model response = objectMapper.readValue(responseAsString, Model.class);
+        log.error("response:{}", responseAsString);
 
-        Assertions.assertThat(result.getName()).isEqualTo(request.getName() + " altered");
-        Assertions.assertThat(result.getLocalDate()).isEqualTo(request.getLocalDate().plusDays(1));
-        Assertions.assertThat(result.getLocalDateTime()).isEqualTo(request.getLocalDateTime().plusDays(1));
-        Assertions.assertThat(result.getLocalTime()).isEqualTo(request.getLocalTime().plusHours(1));
+        Assertions.assertThat(response.getName()).isEqualTo(request.getName() + " altered");
+        Assertions.assertThat(response.getLocalDate()).isEqualTo(request.getLocalDate().plusDays(1));
+        Assertions.assertThat(response.getLocalDateTime()).isEqualTo(request.getLocalDateTime().plusDays(1));
+        Assertions.assertThat(response.getLocalTime()).isEqualTo(request.getLocalTime().plusHours(1));
 
     }
 
