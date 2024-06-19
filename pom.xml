@@ -39,6 +39,7 @@
         <module>resilience4j</module>
         <module>logging</module>
         <module>time-io</module>
+        <module>async</module>
     </modules>
 
     <properties>
