@@ -87,9 +87,9 @@
         <!--        https://github.com/wiremock/wiremock-->
         <!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock-jre8 -->
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
+            <groupId>org.wiremock</groupId>
             <artifactId>wiremock-standalone</artifactId>
-            <version>3.0.1</version>
+            <version>3.6.0</version>
             <scope>test</scope>
         </dependency>
 
