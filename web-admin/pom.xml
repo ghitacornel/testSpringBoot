@@ -13,8 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>client</module>
-        <module>server</module>
+        <module>web-admin-client</module>
+        <module>web-admin-server</module>
     </modules>
 
     <repositories>
