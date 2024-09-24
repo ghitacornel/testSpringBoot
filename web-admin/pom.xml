@@ -12,6 +12,8 @@
     <artifactId>web-admin</artifactId>
     <packaging>pom</packaging>
 
+    <!-- https://medium.com/@sachinmewar800/managing-and-monitoring-application-with-spring-boot-admin-8867b1a321c5 -->
+    <!-- https://www.baeldung.com/spring-boot-admin -->
     <modules>
         <module>web-admin-client</module>
         <module>web-admin-server</module>
