@@ -10,26 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web-admin</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- server and client also -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>3.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>3.3.3</version>
-        </dependency>
-
-    </dependencies>
+    <modules>
+        <module>client</module>
+        <module>server</module>
+    </modules>
 
     <repositories>
         <repository>

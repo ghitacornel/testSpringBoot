@@ -1,13 +1,14 @@
-package org.example;
+package testSpringBoot;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@EnableAdminServer
 @SpringBootApplication
-public class WebAdminMain {
+public class ClientMain {
+
+    // start client second
+    // check http://localhost:8082/dummy
     public static void main(String[] args) {
-        SpringApplication.run(WebAdminMain.class, args);
+        SpringApplication.run(ClientMain.class, args);
     }
 }

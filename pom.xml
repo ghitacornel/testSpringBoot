@@ -41,6 +41,8 @@
         <module>time-io</module>
         <module>async</module>
         <module>web-admin</module>
+        <module>web-admin/server</module>
+        <module>web-admin/client</module>
     </modules>
 
     <properties>

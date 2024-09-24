@@ -1,4 +1,4 @@
-package org.example.controller;
+package testSpringBoot.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
