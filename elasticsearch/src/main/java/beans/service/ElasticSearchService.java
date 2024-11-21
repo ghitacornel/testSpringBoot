@@ -5,6 +5,7 @@ import beans.model.Parent;
 import beans.model.SimpleDataModel;
 import beans.projections.ChildProjection;
 import beans.projections.ParentProjection;
+import beans.repository.ParentRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;

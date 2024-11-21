@@ -2,41 +2,36 @@ package beans.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.engine.backend.types.ObjectStructure;
-import org.hibernate.search.engine.backend.types.Projectable;
-import org.hibernate.search.mapper.pojo.automaticindexing.ReindexOnUpdate;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexingDependency;
 
 import jakarta.persistence.*;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Indexed(index = "idx_parent")
+@Document(indexName = "idx_parent")
 public class Parent {
 
     @Id
-    @GenericField(name = "id", projectable = Projectable.YES)
+    @Field(name = "id")
     private Integer id;
 
-    @GenericField(name = "name", projectable = Projectable.YES)
+    @Field(name = "name")
     private String name;
 
-    @GenericField(name = "content", projectable = Projectable.YES)
+    @Field(name = "content")
     private String content;
 
-    @GenericField(name = "status", projectable = Projectable.YES)
+    @Field(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    //    @IndexedEmbedded(name = "children", structure = ObjectStructure.FLATTENED)
-    @IndexedEmbedded(name = "children", structure = ObjectStructure.NESTED)
-    @IndexingDependency(reindexOnUpdate = ReindexOnUpdate.SHALLOW)
+    @Field(name = "children", type = FieldType.Nested, includeInParent = true)
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     final private List<Child> children = new ArrayList<>();
 

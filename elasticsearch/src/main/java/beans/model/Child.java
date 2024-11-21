@@ -3,29 +3,28 @@ package beans.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.engine.backend.types.Projectable;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 @Entity
 @Getter
 @Setter
-@Indexed(index = "idx_child")
+@Document(indexName = "idx_child")
 public class Child {
 
     @Id
-    @GenericField(name = "id", projectable = Projectable.YES)
+    @Field(name = "id")
     private Integer id;
 
-    @GenericField(name = "name", projectable = Projectable.YES)
+    @Field(name = "name")
     private String name;
 
-    @GenericField(name = "content", projectable = Projectable.YES)
+    @Field(name = "content")
     private String content;
 
     @JsonIgnore

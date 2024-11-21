@@ -2,28 +2,26 @@ package beans.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.engine.backend.types.Projectable;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 @Entity
 @Getter
 @Setter
-@Indexed(index = "idx_sdm")
+@Document(indexName = "idx_sdm")
 public class SimpleDataModel {
 
     @Id
-    @GenericField(name = "id", projectable = Projectable.YES)
+    @Field(name = "id")
     private Integer id;
 
-    @FullTextField
+    @Field(name = "name")
     private String name;
 
-    @FullTextField
+    @Field(name = "content")
     private String content;
 
 }
