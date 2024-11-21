@@ -1,11 +1,7 @@
 package beans.controller;
 
 
-import beans.model.Child;
-import beans.model.Parent;
-import beans.model.SimpleDataModel;
-import beans.projections.ChildProjection;
-import beans.projections.ParentProjection;
+import beans.model.*;
 import beans.service.ElasticSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,32 +19,32 @@ public class ElasticController {
     private final ElasticSearchService service;
 
     @GetMapping(value = "/parent/{content}")
-    public List<Parent> findParentByContent(@PathVariable(name = "content") String content) {
+    public List<ParentELK> findParentByContent(@PathVariable(name = "content") String content) {
         return service.findParentByContent(content);
     }
 
     @GetMapping(value = "/parent/projection/{content}")
-    public List<ParentProjection> findParentProjectionByContent(@PathVariable(name = "content") String content) {
+    public List<ParentELK> findParentProjectionByContent(@PathVariable(name = "content") String content) {
         return service.findParentProjectionByContent(content);
     }
 
     @GetMapping(value = "/parent/projection/nested/{content}")
-    public List<ParentProjection> findParentProjectionByNestedChildNameAndContent(@PathVariable(name = "content") String content) {
+    public List<ParentELK> findParentProjectionByNestedChildNameAndContent(@PathVariable(name = "content") String content) {
         return service.findParentProjectionByNestedChildNameAndContent(content);
     }
 
     @GetMapping(value = "/child/{content}")
-    public List<Child> findChildByContent(@PathVariable(name = "content") String content) {
+    public List<ChildELK> findChildByContent(@PathVariable(name = "content") String content) {
         return service.findChildByContent(content);
     }
 
     @GetMapping(value = "/child/projection/{content}")
-    public List<ChildProjection> findChildProjectionByContent(@PathVariable(name = "content") String content) {
+    public List<ChildELK> findChildProjectionByContent(@PathVariable(name = "content") String content) {
         return service.findChildProjectionByContent(content);
     }
 
     @GetMapping(value = "/simple/{content}")
-    public List<SimpleDataModel> findSimpleByContent(@PathVariable(name = "content") String content) {
+    public List<SimpleDataModelELK> findSimpleByContent(@PathVariable(name = "content") String content) {
         return service.findSimpleByContent(content);
     }
 
