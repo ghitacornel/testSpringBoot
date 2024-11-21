@@ -1,29 +1,29 @@
 package beans.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@Document(indexName = "idx_parent")
 public class Parent {
 
-    @Id
+    @Field
     private Integer id;
 
+    @Field
     private String name;
 
+    @Field
     private String content;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Field(name = "children", type = FieldType.Nested, includeInParent = true)
     final private List<Child> children = new ArrayList<>();
 
 }

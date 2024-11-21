@@ -1,7 +1,10 @@
 package beans.repository;
 
 import beans.model.SimpleDataModel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
-public interface SimpleDataModelRepository extends JpaRepository<SimpleDataModel, Integer> {
+import java.util.List;
+
+public interface SimpleDataModelRepository extends ElasticsearchRepository<SimpleDataModel, Integer> {
+    List<SimpleDataModel> findByContent(String content);
 }

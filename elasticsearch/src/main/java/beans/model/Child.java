@@ -1,28 +1,22 @@
 package beans.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-@Entity
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@Document(indexName = "idx_child")
 public class Child {
 
-    @Id
+    @Field
     private Integer id;
 
+    @Field
     private String name;
 
+    @Field
     private String content;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Parent parent;
 
 }

@@ -1,9 +1,9 @@
 package beans.service;
 
 import beans.model.*;
-import beans.repository.ChildELKRepository;
-import beans.repository.ParentELKRepository;
-import beans.repository.SimpleDataModelELKRepository;
+import beans.repository.ChildRepository;
+import beans.repository.ParentRepository;
+import beans.repository.SimpleDataModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,32 +16,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ElasticSearchService {
 
-    private final ParentELKRepository parentELKRepository;
-    private final ChildELKRepository childELKRepository;
-    private final SimpleDataModelELKRepository simpleDataModelELKRepository;
+    private final ParentRepository parentRepository;
+    private final ChildRepository childRepository;
+    private final SimpleDataModelRepository simpleDataModelRepository;
 
-    public List<ParentELK> findParentByContent(String content) {
-        return parentELKRepository.findByContent(content);
+    public List<Parent> findParentByContent(String content) {
+        return parentRepository.findByContent(content);
     }
 
-    public List<ParentELK> findParentProjectionByContent(String content) {
-        return new ArrayList<>();
+    public List<Child> findChildByContent(String content) {
+        return childRepository.findByContent(content);
     }
 
-    public List<ParentELK> findParentProjectionByNestedChildNameAndContent(String content) {
-        return new ArrayList<>();
-    }
-
-    public List<ChildELK> findChildByContent(String content) {
-        return childELKRepository.findByContent(content);
-    }
-
-    public List<ChildELK> findChildProjectionByContent(String content) {
-        return new ArrayList<>();
-    }
-
-    public List<SimpleDataModelELK> findSimpleByContent(String content) {
-        return simpleDataModelELKRepository.findByContent(content);
+    public List<SimpleDataModel> findSimpleByContent(String content) {
+        return simpleDataModelRepository.findByContent(content);
     }
 
 }

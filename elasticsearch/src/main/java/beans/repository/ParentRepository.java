@@ -1,7 +1,10 @@
 package beans.repository;
 
 import beans.model.Parent;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
-public interface ParentRepository extends JpaRepository<Parent, Integer> {
+import java.util.List;
+
+public interface ParentRepository extends ElasticsearchRepository<Parent, Integer> {
+    List<Parent> findByContent(String content);
 }
