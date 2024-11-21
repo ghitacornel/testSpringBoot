@@ -26,28 +26,6 @@ public class TestElasticSearch {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();
         System.err.println(result.getResponse().getContentAsString());
-        // observe an SQL select is executed
-    }
-
-    @Test
-    public void testSearchParentProjection() throws Exception {
-        MvcResult result = mvc.perform(get("/elastic/parent/projection/{content}", "initial dummy data"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andReturn();
-        System.err.println(result.getResponse().getContentAsString());
-        // observe no SQL select is executed
-    }
-
-    @Test
-    public void testSearchParentChildProjection() throws Exception {
-        MvcResult result = mvc.perform(get("/elastic/parent/projection/nested/{content}", "dummy"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andReturn();
-        System.err.println(result.getResponse().getContentAsString());
-        // observe no SQL select is executed
-        // observe child is not properly composed
     }
 
     @Test
@@ -57,17 +35,6 @@ public class TestElasticSearch {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();
         System.err.println(result.getResponse().getContentAsString());
-        // observe an SQL select is executed
-    }
-
-    @Test
-    public void testSearchChildProjection() throws Exception {
-        MvcResult result = mvc.perform(get("/elastic/child/projection/{content}", "anna"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andReturn();
-        System.err.println(result.getResponse().getContentAsString());
-        // observe no SQL select is executed
     }
 
     @Test
@@ -77,6 +44,6 @@ public class TestElasticSearch {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andReturn();
         System.err.println(result.getResponse().getContentAsString());
-        // observe no SQL select is executed
     }
+
 }
