@@ -27,12 +27,12 @@
         <dependency>
             <groupId>org.hibernate.search</groupId>
             <artifactId>hibernate-search-mapper-orm</artifactId>
-            <version>6.1.7.Final</version>
+            <version>6.2.4.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.search</groupId>
             <artifactId>hibernate-search-backend-elasticsearch</artifactId>
-            <version>6.1.7.Final</version>
+            <version>6.2.4.Final</version>
         </dependency>
 
         <dependency>
