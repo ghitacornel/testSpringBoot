@@ -1,0 +1,324 @@
+﻿SCOPE 
+
+
+encapsulate every database integration point into a dedicated module
+
+
+MEANS 
+
+
+use DAO design pattern ( https://en.wikipedia.org/wiki/Data_access_object )
+
+
+encapsulate specific database usage in specific module
+
+
+define 1 module (or even globally shared library) for encapsulating generic classes such as : 
+DAO template, Entity template, DAO interceptor, DAO Exception
+
+
+DAO design pattern must NOT follow RICH model design principle 
+( https://en.wikipedia.org/wiki/Anemic_domain_model )
+
+
+
+
+REASONS
+
+
+KISS principle (https://en.wikipedia.org/wiki/KISS_principle)
+* Only DAO classes encapsulate database specific logic
+* DAO templates reduce code
+* 1 type of exception to manage communication failure with the database
+* DAO interceptors can control DAO access
+* DAO interceptors can log DAO usage
+
+
+DATA MODEL 
+
+
+Must define :
+* Entities defined in pure POJO https://en.wikipedia.org/wiki/Plain_old_Java_object#JavaBeans
+* entities database mappings
+* entities relationships
+* entities specific Enums
+* Entity listeners
+* attribute converters
+
+
+EXCEPTION HANDLING
+
+
+DAO classes must throw only DAO Exceptions
+DAO exceptions must be unchecked exceptions ( since we can hardly recover from one )
+DAO exceptions must be used for wrapping all internally raised exceptions
+DAO exceptions must not be processed by DAO layer
+DAO exceptions recovery is usually not possible (recovery from a database exception is usually not possible)
+
+
+Raised DAO exceptions must not commit (or rollback) existing business (or database) transactions
+
+
+A DAO interceptor can automatically wrap internally raised exceptions (JPA, JDBC specific exceptions) into specific DAO Exceptions
+
+
+LOGGING
+
+
+DAO classes must log only specific logs
+A DAO interceptor can be designed in order to provide general logging capability.
+
+
+TRANSACTIONS
+
+
+There must not be any kind of relation between this layer and any kind of transactions
+
+
+DAO classes cannot define or control any kind of business or database transaction.
+Raised DAO exceptions must not be processed and commit (or rollback) existing business (or database) transactions, this is done in the SERVICE layer through other mechanisms
+
+
+DATA MODEL VALIDATION
+
+
+DAO classes or technologies used for persistence must validate the DAO data model
+
+
+Data model usage must be validated in case of defined named queries
+Data model usage must be validated against the database schema
+Data model usage must be validated when synchronized with the database data
+CAn use bean validation specs for DAO data model validation
+Data model validation rules must mirror (be keep in synch with) database columns validations
+
+
+SECURITY
+
+
+There must not be any kind of relation between this layer and any kind of security
+
+
+DAO classes must not perform security checks
+
+
+
+
+
+
+
+
+
+
+
+
+COMMUNICATION WITH OTHER LAYERS
+
+
+DAO layer does not communicate with any kind of other layers
+
+
+DAO classes cannot delegate work to other classes.
+DAO methods cannot delegate work to other methods; KISS => 1 DAO method = 1 SQL query
+
+
+DAO classes DESIGN CONSIDERATIONS
+
+
+1 DAO template abstract class must be provided_(superseded by SpringData)
+DAO template class must provide simple out of the box CRUD specific database operations
+DAO template class must use generics in order to link DAO with entities and entitiesID type
+DAO template class can be affected by a DAO interceptor
+DAO template class interceptor must affect its subclasses also
+
+
+DAO methods cannot delegate work to other DAO methods 
+More than 1 database call per method means the method means the DAO method is in fact a business method, and not a DAO method.
+
+
+DAO classes (superseded by SpringData)
+DAO classes must follow the Template design pattern
+DAO classes must extend the DAO template abstract class
+DAO classes must be created per specific Entity
+
+
+DAO classes can manually validate input data ( but better use bean validation for validating data models )
+DAO classes must provide only simple dedicated methods for data access; CRUD methods must be provided by the DAO template class.
+DAO classes must follow naming policy : find/get/persist/merge/remove/flush/detach/refresh
+DAO classes are allowed to throw only DAO Exceptions.
+DAO classes can use helper/util/utility classes (Math like classes).
+
+
+DAO entities DESIGN CONSIDERATIONS
+
+
+1 Entity Template abstract class must be provided
+
+
+Entity template must use generics in order to link subclasses to certain ID types.
+Entity template must define generic equals/hashCode generic methods based on IDs declared in subclasses.
+Entity template ensures minimum logging support (using toString method) based on actual class type and ID value.
+More than 1 Entity template class might be provided.
+
+
+Entity templates can be affected by entity listeners.
+Entity template ensures that at any time a uniform listener can be applied over the entire hierarchy.
+Example of entity listeners : audit , versioning, read only, prevent deletion.
+
+
+Entities
+Entities must be pure Java Beans
+Entities must extend an Entity template
+Entities are not required to be Serializable
+Entities must not implement any kind of business; the RICH model is forbidden
+Entity mappings must be defined in Java code, NO XML
+Entity relationships must be defined in Java code, NO XML
+
+
+SPECIAL CASE : Java Wrappers vs primitives
+
+
+Primitives should be used for mapping of columns that can be mapped to a primitive, are not null and have a default value. Hence use wrappers instead of primitives when any of these conditions is not met.
+
+
+Notes:
+* Primitives cannot encapsulate null values
+* Default value availability is not a reason to use primitives
+* Default values for fields can be specified for primitives but also for wrappers
+* Can use bean validation regardless if the field is primitive or not
+* Not null wrappers entity properties can be wrapped in Optional for NPE protection
+
+
+SPECIAL CASE : primitives over Java Wrappers
+
+
+Primitives must be used for mapping of columns that:
+* can be mapped to a primitive
+* are not null
+* have a default value
+
+
+Notes :
+* The main advantage of primitives over wrappers is speed and protection against NPE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SPECIAL CASE : Enums instead of dictionary tables
+
+
+If specific database dictionary table values are used for making business decisions 
+then that database dictionary table must be replaced by an enum
+
+
+Notes:
+* For readability and easier maintenance use STRING mapping
+* Avoid using ORDINAL unless really needed for performance
+* Pair Enum usage with database CHECK constraints
+* Enums usage means : less database tables, less database joins, less entities, less entities relationships, less Repositories/DAOs, a cleaner business/data model, a cleaner business logic
+
+
+SPECIAL CASE : Embeddable vs ONE - TO - ONE
+
+
+Favor Embeddable over ONE-TO-ONE mappings when performance is not an issue
+
+
+SPECIAL CASE : ONE - TO - ONE => MARKED AS LAZY BUT BEHAVE AS EAGER
+
+
+JPA One - to - One LAZY marked relationships are EAGER when the foreign key is not owned by the targeted entity
+Consider not mapping the relationship bi directional 
+
+
+SPECIAL CASE : Avoid mapping 1-N or N-1 relationships as N-M relationships when not needed.
+
+
+SPECIAL CASE : EAGER vs LAZY loading is NOT a generic decision to make
+
+
+Be careful of JPA defaults mappings.
+Usage of EAGER is recommended for very strict dependency relationships like strong ONE-TO-MANY relationships
+
+
+Usage of EAGER is not recommended for not very strict dependency relationships like ONE-TO-MANY. Ensure loading all needed LAZY dependencies in Service layer otherwise
+
+
+LazyInitializationException errors might appear in GUI.
+Use FETCH JOIN queries to load LAZY relationships when really needed
+
+
+
+
+
+
+
+
+
+
+
+
+SPECIAL CASE : Query type design decision 
+
+
+When designing queries use the following query types with the following preference order : 
+* named queries (instead of simple JPQL queries)
+* metamodel criteria builder queries
+* string criteria builder queries
+* named native queries (with result set mappings)
+* native queries (only for really specific SQL advantages related to performance issues)
+* stored procedures
+
+
+SPECIAL CASE : attribute converters
+
+
+Do not use entities getters/setters for data conversions
+Use attribute converters
+
+
+Notes :
+* Attribute converters can be defined for global access and automatic conversion
+* Attribute converters can be defined for mapping any kind of object types to any kind of database type
+
+
+SPECIAL CASE : entities validation
+
+
+Do not validate entities properties using setters
+
+
+Notes :
+* Use bean validation annotations
+* JPA honors bean validation markers automatically
+
+
+SPECIAL CASE : default properties / column values
+
+
+If default values are available for entities properties then assign them in the code upon field declaration and make sure they are also defined in the database columns definitions
+
+
+SPECIAL CASE : projections
+
+
+Define and use projections instead of entities when data is required only for a READ ONLY scope such as reporting and not for persistence

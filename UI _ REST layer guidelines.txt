@@ -1,0 +1,98 @@
+﻿SCOPE 
+
+
+encapsulate every REST integration point into a dedicated module.
+
+
+MEANS :
+
+
+define 1 module per each specific REST application
+
+
+REASONS
+
+
+KISS principle (https://en.wikipedia.org/wiki/KISS_principle)
+
+
+* REST classes contains only REST web service endpoints declarations
+* REST interceptors wrap all internally raised exceptions into REST Exceptions
+* REST exceptions can be served to the user in a user-friendly manner
+
+
+
+
+DATA MODEL
+
+
+Must define :
+* Input / Output data model encapsulated in a JSON data model and defined in pure Java Beans
+* REST Exceptions
+
+
+EXCEPTIONS HANDLING
+
+
+REST classes are allowed to throw only REST exceptions.
+REST exceptions must be unchecked exceptions. 
+REST exceptions must be used for wrapping all internally raised REST exceptions
+REST exceptions must not be processed
+REST exceptions custom raised must not commit/rollback existing business transactions.
+
+
+REST interceptor / exception handler can wrap internally raised REST exceptions into specific JSON Exceptions details
+REST interceptor / exception handler must wrap internally raised Service exceptions into specific JSON Exceptions details
+REST interceptor / exception handler must wrap all raised exceptions into generic JSON Exceptions details
+
+
+LOGGING
+
+
+At least 1 REST interceptor / exception handler must be provided in order to provide general logging capability.
+REST classes must log only specific logs
+Generic logs can be managed by a REST interceptor
+
+
+TRANSACTIONS
+
+
+There must not be any kind of relation between this layer and any kind of transactions
+
+
+REST classes cannot define business/database transactions.
+REST classes cannot control business/database transactions.
+
+
+DATA MODEL VALIDATION
+
+
+REST classes must validate JSON data models.
+Use bean validation specs for REST data model validation.
+JSON data model can be generated via UML definitions 
+(in any kind of form) having validation already specified in the provided definition.
+
+
+SECURITY
+
+
+REST classes can perform security checks in terms of RESOURCE specifics
+REST interceptors can be used for security checks
+
+
+COMMUNICATION WITH OTHER LAYERS
+
+
+REST classes must delegate work to SERVICE classes
+REST classes cannot delegate work to other REST classes
+REST classes cannot delegate work to DAO classes
+
+
+DESIGN CONSIDERATIONS
+
+
+REST classes must use all available REST web method types (GET/POST/PUT/DELETE/PATCH) according to REST principles.
+
+
+KISS principle => 1 REST class must delegate work to 1 corresponding SERVICE class
+KISS principle => 1 REST method must delegate work to 1 corresponding SERVICE method

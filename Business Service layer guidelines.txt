@@ -1,0 +1,218 @@
+﻿SCOPE
+
+
+encapsulate business specific flows into dedicated module
+
+
+MEANS
+
+
+define modules per each specific business concept whenever possible.
+
+
+REASONS
+
+
+KISS principle (https://en.wikipedia.org/wiki/KISS_principle)
+SERVICE classes:
+* encapsulate application business specific logic
+* encapsulate application integration points
+* define and control business / database transactions
+* define and control application security
+* validate Service data model
+
+
+DATA MODEL
+
+
+Must define:
+* business specific data model encapsulated in pure Java Beans
+* business specific Enums
+* SERVICE Exceptions
+
+
+EXCEPTIONS HANDLING
+
+
+SERVICE classes are allowed to throw only Service exceptions.
+SERVICE exceptions can be checked or unchecked exceptions.
+SERVICE exceptions can be processed.
+SERVICE exceptions recovery is usually possible.
+SERVICE exceptions can mark for rollback existing business transactions.
+Usually 2 generic types of business exceptions should be provided : Technical + Business.
+Business Exceptions encapsulate violated business rules
+Technical Exceptions encapsulate technical (and integrational) errors
+
+
+LOGGING
+
+
+SERVICE classes do not have restrictions in terms of logging
+
+
+
+
+
+
+
+
+TRANSACTIONS
+
+
+Only SERVICE classes must define and control transactions
+
+
+Notes:
+* Declarative transactions management should be used as the norm
+* Manual transactions management is an exception that needs to be fully documented and justified.
+
+
+DATA MODEL VALIDATION
+
+
+SERVICE classes must validate business data models
+
+
+Notes:
+* Use bean validation specs for business data model validation
+* SERVICE classes do not have restrictions in terms of data model validation
+
+
+SECURITY
+
+
+SERVICE classes must perform security checks
+
+
+COMMUNICATION WITH OTHER LAYERS
+
+
+SERVICE classes cannot delegate work to REST classes
+SERVICE classes can delegate work to other Service classes
+SERVICE classes can delegate work to other DAO classes
+SERVICE classes can use dedicated clients for integration with other systems (JMS, REST clients, JNDI, JDBC)
+
+
+DESIGN CONSIDERATIONS
+
+
+Integration points should be isolated to certain well defined packages, or even Maven modules.
+
+
+SERVICE classes must encapsulate communication with other systems (internal or external systems).
+SERVICE classes must control communication with other systems (internal or external systems).
+SERVICE classes are responsible for mapping data models when communicating with other systems (internal or external systems)
+
+
+For each integration point it is recommended to wrap in custom exceptions the integration connectivity issues.
+
+
+
+
+
+
+SPECIAL CASE : LOGGED USER AND SECURITY
+
+
+Define and use special classes that allow obtaining information regarding logged user , user rights and user preferences.
+
+
+These security related classes:
+* must hide the application security framework
+* must be defined in well known packages/modules/libraries
+* can use ThreadLocal 
+* can use a static method approach
+
+
+SPECIAL CASE : APPLICATION PROPERTIES / SETTINGS
+
+
+Application properties or settings must be encapsulated in well defined Configuration classes.
+
+
+Configuration classes:
+* Can allow application settings auto reload in case of changes
+* Can be designed as Utility classes
+* Are recommended to be managed by a bean container
+* Can be defined for multiple Configuration business aspects
+* Should be designed based on KISS principle => 1 set of related settings  = 1 Configuration class
+
+
+SPECIAL CASE : APPLICATION DATA FORMAT SETTINGS
+
+
+Define and use global Configuration classes that hold the data formatters and their patterns
+Define and use global Configuration classes that hold the data parsers and their patterns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SPECIAL CASE : UTILITY / HELPER CLASSES
+
+
+Some SERVICE classes can become complex.
+Complexity can be split into multiple privately used class methods and constants.
+Privately defined and used class methods and constants can be marked as static (not in all cases)
+Such privately defined and used static class methods and fields can be extracted in helper classes.
+
+
+KISS principle => 1 Helped class - > 1 Helper class
+Helper classes:
+* must not be public
+* have members and methods static and not public
+* must be defined in the same package as the helped class
+* must use a naming convention in order to be easily spotted and their scope easily guessed
+* should be designed based on KISS principle => 1 Helped class  = 1 Helper class
+* Can use Lombok @UtiliyClass
+
+
+
+
+SPECIAL CASE : MAPPING CLASSES
+
+
+Mapping classes:
+* encapsulate mapping rules
+* define business mapping rules
+* can use other Mapping classes
+* can use other Services
+* can perform data model validations
+* must perform data correlation checks
+
+
+Notes:
+* Due to the scope mapping classes can be considered as classes that encapsulate business rules
+* Mapping different data models can be done using certain technologies like MapStruct/Apache Beanutils/Dozer, or even manual utility mapping classes.
+
+
+SPECIAL CASE : APPLICATION REPORTS
+
+
+For each application report separate Service classes can be defined in separate modules
+Can have 1 package/module per report.
+Such reports can have their own data model and data model mapping rules
+Ensure consistency of data formatting in such reports through the usage of global configuration formatters
