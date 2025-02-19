@@ -14,7 +14,12 @@ import org.springframework.context.annotation.Configuration;
  * Packages to include : springdoc.packagesToScan=com.package1, com.package2
  * Paths to include : springdoc.pathsToMatch=/v1, /api/balance/**
  */
-@OpenAPIDefinition(info = @Info(title = "Custom REST Documentation title", description = "All REST API custom description", version = "1"))
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Custom REST Documentation title",
+                description = "All REST API custom description", version = "1"
+        )
+)
 @Configuration
 class SwaggerConfiguration {
 }
