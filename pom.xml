@@ -41,7 +41,8 @@
         <module>time-io</module>
         <module>async</module>
         <module>web-admin</module>
-<!--        <module>spring-solr</module>-->
+        <module>mockito-module</module>
+        <!--        <module>spring-solr</module>-->
     </modules>
 
     <properties>
