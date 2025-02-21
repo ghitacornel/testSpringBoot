@@ -12,15 +12,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class CustomServiceTest {
 
     @InjectMocks
-    CustomService customService;
+    CustomService service;
 
     @Mock
-    CustomServiceDependency customServiceDependency;
+    CustomServiceHelper helper;
 
     @Test
     void returnString() {
-        Mockito.when(customServiceDependency.returnString()).thenReturn("dummy");
-        String result = customService.returnString();
+        Mockito.when(helper.returnString()).thenReturn("dummy");
+        String result = service.returnString();
         Assertions.assertEquals("dummy", result);
     }
 }

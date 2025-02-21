@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomService {
 
-    private final CustomServiceDependency customServiceDependency;
+    private final CustomServiceHelper helper;
 
     public String returnString() {
-        return customServiceDependency.returnString();
+        return helper.returnString();
     }
 
 }
