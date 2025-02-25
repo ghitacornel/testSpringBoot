@@ -4,7 +4,6 @@ import beans.clients.webflux.ExternalRestClientWebFlux;
 import beans.external.PersonRequestDto;
 import beans.external.PersonResponseDto;
 import beans.mock.MockServerSetup;
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-@WireMockTest
 public class ExternalRestClientWebFluxTest extends MockServerSetup {
 
     @Autowired
