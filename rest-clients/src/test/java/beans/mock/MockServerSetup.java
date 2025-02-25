@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 @WireMockTest(httpPort = 1111)
 public abstract class MockServerSetup {
@@ -30,8 +30,8 @@ public abstract class MockServerSetup {
             PersonResponseDto outputModel = new PersonResponseDto(2, "output PATCH", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             stubFor(WireMock.patch("/externalService")
-                    .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
-                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+                    .withRequestBody(equalToJson(objectMapper.writeValueAsString(inputModel)))
+                    .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
         // mock POST
@@ -40,30 +40,30 @@ public abstract class MockServerSetup {
             PersonResponseDto outputModel = new PersonResponseDto(2, "output POST", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             stubFor(WireMock.post("/externalService")
-                    .withRequestBody(WireMock.equalToJson(objectMapper.writeValueAsString(inputModel)))
-                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+                    .withRequestBody(equalToJson(objectMapper.writeValueAsString(inputModel)))
+                    .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
         // mock GET
         {
             PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
-            stubFor(WireMock.get("/externalService/" + "3?parameter=4")
-                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+            stubFor(get("/externalService/" + "3?parameter=4")
+                    .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
         // mock GET bad data
         {
             PersonResponseDto outputModel = new PersonResponseDto(-3, "", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
-            stubFor(WireMock.get("/externalService/badData")
-                    .willReturn(WireMock.okJson(objectMapper.writeValueAsString(outputModel))));
+            stubFor(get("/externalService/badData")
+                    .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
         }
 
         // mock GET no data found
         {
-            stubFor(WireMock.get("/externalService/" + "1111?parameter=1111")
-                    .willReturn(WireMock.notFound()));
+            stubFor(get("/externalService/" + "1111?parameter=1111")
+                    .willReturn(notFound()));
         }
     }
 
