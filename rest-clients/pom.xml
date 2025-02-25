@@ -49,17 +49,17 @@
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>
-            <version>13.2</version>
+            <version>13.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-jackson</artifactId>
-            <version>13.2</version>
+            <version>13.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-slf4j</artifactId>
-            <version>13.2</version>
+            <version>13.5</version>
         </dependency>
 
         <!-- RETROFIT REST client-->
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.wiremock</groupId>
             <artifactId>wiremock-standalone</artifactId>
-            <version>3.6.0</version>
+            <version>3.12.0</version>
             <scope>test</scope>
         </dependency>
 
