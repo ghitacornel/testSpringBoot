@@ -14,9 +14,6 @@ public class TestRedisConfiguration {
     @Value("${spring.data.redis.port}")
     private int port;
 
-    @Value("${spring.data.redis.host}")
-    private String host;
-
     private RedisServer redisServer;
 
     @PostConstruct
