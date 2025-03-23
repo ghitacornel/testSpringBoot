@@ -3,11 +3,11 @@ package beans.mapper;
 import beans.model.InputModel;
 import beans.model.OutputModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
-// componentModel = "spring" is redundant here due to plugin setting -Amapstruct.defaultComponentModel=spring
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface InputOutputMapper {
 
     OutputModel map(InputModel inputModel);
