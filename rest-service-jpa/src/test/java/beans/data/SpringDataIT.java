@@ -89,4 +89,9 @@ public class SpringDataIT {
         Assertions.assertEquals(2, repository.findUsingProjection("2").size());
     }
 
+    @Test
+    public void findInterfaceDtoNative() {
+        Assertions.assertEquals(2, repository.findUsingProjectionNative("%2").size());
+    }
+
 }

@@ -29,4 +29,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("select new beans.data.model.ItemProjection(t.id,t.name) from Item t where t.name like %:value")
     List<ItemProjection> findUsingProjection(@Param("value") String value);
 
+    @Query(value = "select t.id, t.name from Item t where t.name like ?1", nativeQuery = true)
+    List<ItemProjection> findUsingProjectionNative(String value);
+
 }
