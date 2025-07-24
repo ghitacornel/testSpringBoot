@@ -43,6 +43,7 @@
         <module>web-admin</module>
         <module>mockito-module</module>
         <module>redis</module>
+        <module>google-spanner</module>
         <!--        <module>spring-solr</module>-->
     </modules>
 
