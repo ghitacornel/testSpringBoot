@@ -11,6 +11,18 @@
 
     <artifactId>google-spanner</artifactId>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>1.52.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -22,8 +34,30 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-spanner-hibernate-dialect</artifactId>
+            <version>3.9.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-spanner-jdbc</artifactId>
+            <version>2.31.2</version>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.hsqldb</groupId>-->
+        <!--            <artifactId>hsqldb</artifactId>-->
+        <!--        </dependency>-->
+
+        <!-- Add OpenTelemetry for tracing and metrics. -->
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-sdk</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud.opentelemetry</groupId>
+            <artifactId>exporter-trace</artifactId>
+            <version>0.35.0</version>
         </dependency>
 
     </dependencies>
