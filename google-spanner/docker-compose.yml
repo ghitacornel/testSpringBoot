@@ -1,0 +1,10 @@
+services:
+
+  postgres_demo:
+    image: gcr.io/cloud-spanner-emulator/emulator
+    container_name: demo
+    ports:
+      - "9010:9010"
+      - "9020:9020"
+
+#test it with http://localhost:8080/person
