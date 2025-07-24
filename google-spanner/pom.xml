@@ -44,22 +44,6 @@
             <version>2.31.2</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.hsqldb</groupId>-->
-        <!--            <artifactId>hsqldb</artifactId>-->
-        <!--        </dependency>-->
-
-        <!-- Add OpenTelemetry for tracing and metrics. -->
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-sdk</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.cloud.opentelemetry</groupId>
-            <artifactId>exporter-trace</artifactId>
-            <version>0.35.0</version>
-        </dependency>
-
     </dependencies>
 
 </project>
