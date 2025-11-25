@@ -38,6 +38,9 @@ class AuditedPersonControllerService {
         AuditedPerson person = repository.findById(1L).orElseThrow(() -> new RuntimeException("Not Found"));
         person.setSalary(person.getSalary() * 2);
 
+        // needed for triggering the to be updated audit fields on managed entity
+        repository.flush();
+
         return PersonResponse.builder()
                 .id(person.getId())
                 .name(person.getName())
