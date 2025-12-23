@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @SpringBootTest
 public class ExternalRestClientFeignTest extends MockServerSetup {
 
@@ -21,9 +18,9 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testGET() {
 
-        ClientResponseDto outputModel = new ClientResponseDto(3, "output GET");
+        ClientResponseDto outputModel = new ClientResponseDto(1, "output GET");
 
-        Assertions.assertThat(contract.invokeGET("3", "4")).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invokeGET("1", "1")).isEqualTo(outputModel);
     }
 
 }

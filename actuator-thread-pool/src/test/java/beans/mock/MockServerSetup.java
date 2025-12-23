@@ -20,8 +20,8 @@ public abstract class MockServerSetup {
     public void setupExternalApplicationAsMock() {
 
         // mock GET
-        ClientResponseDto outputModel = new ClientResponseDto(3, "output GET");
-        stubFor(get("/externalService/" + "3?parameter=4").willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
+        ClientResponseDto outputModel = new ClientResponseDto(1, "output GET");
+        stubFor(get("/externalService/" + "1?parameter=1").willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
 
     }
 
