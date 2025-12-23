@@ -1,6 +1,5 @@
 package beans.clients.model;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +10,6 @@ import lombok.NoArgsConstructor;
 public class ClientRequestDto {
 
     private Integer id;
-
-    @NotBlank
     private String content;
 
 }
