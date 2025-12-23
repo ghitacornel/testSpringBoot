@@ -6,9 +6,11 @@ import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
+@ActiveProfiles("test")
 @WireMockTest(httpPort = 1111)
 public abstract class MockServerSetup {
 
