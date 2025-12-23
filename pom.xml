@@ -44,6 +44,7 @@
         <module>mockito-module</module>
         <module>redis</module>
         <module>google-spanner</module>
+        <module>actuator-thread-pool</module>
         <!--        <module>spring-solr</module>-->
     </modules>
 
