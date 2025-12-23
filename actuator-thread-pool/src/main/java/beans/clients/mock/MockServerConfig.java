@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +15,10 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 @Profile("!test")
 @Configuration
+@RequiredArgsConstructor
 class MockServerConfig {
 
-    @Autowired
-    protected ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     private WireMockServer wireMockServer;
 
