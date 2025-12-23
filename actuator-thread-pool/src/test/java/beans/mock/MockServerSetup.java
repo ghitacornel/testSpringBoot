@@ -20,7 +20,7 @@ public abstract class MockServerSetup {
     @BeforeEach
     @SneakyThrows
     public void setupExternalApplicationAsMock() {
-        stubFor(get("/externalService/OK").willReturn(okJson(objectMapper.writeValueAsString(new ClientResponseDto("OK GET dummy content")))));
+        stubFor(get("/externalService/ok").willReturn(okJson(objectMapper.writeValueAsString(new ClientResponseDto("OK GET dummy content")))));
     }
 
 }
