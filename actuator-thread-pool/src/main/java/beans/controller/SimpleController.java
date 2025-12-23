@@ -12,7 +12,7 @@ class SimpleController {
 
     @GetMapping
     public String testSimple() {
-        return "all good";
+        return "all good " + Thread.currentThread().getName();
     }
 
     @GetMapping("delay")
@@ -22,7 +22,7 @@ class SimpleController {
 
         //just sleep
         try {
-            Thread.currentThread().sleep(30000);
+            Thread.currentThread().sleep(10 * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
