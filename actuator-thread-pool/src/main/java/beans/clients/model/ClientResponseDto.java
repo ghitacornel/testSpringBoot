@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClientResponseDto {
 
-    private Integer id;
     private String content;
 
 }

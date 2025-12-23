@@ -18,11 +18,7 @@ public abstract class MockServerSetup {
     @BeforeEach
     @SneakyThrows
     public void setupExternalApplicationAsMock() {
-
-        // mock GET
-        ClientResponseDto outputModel = new ClientResponseDto(1, "output GET");
-        stubFor(get("/externalService/" + "1?parameter=1").willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
-
+        stubFor(get("/externalService/OK").willReturn(okJson(objectMapper.writeValueAsString(new ClientResponseDto("OK GET dummy content")))));
     }
 
 }

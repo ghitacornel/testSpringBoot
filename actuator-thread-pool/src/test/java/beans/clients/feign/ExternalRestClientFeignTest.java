@@ -17,10 +17,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @Test
     @SneakyThrows
     public void testGET() {
-
-        ClientResponseDto outputModel = new ClientResponseDto(1, "output GET");
-
-        Assertions.assertThat(contract.invokeGET("1", "1")).isEqualTo(outputModel);
+        Assertions.assertThat(contract.invoke("OK")).isEqualTo(new ClientResponseDto("OK GET dummy content"));
     }
 
 }
