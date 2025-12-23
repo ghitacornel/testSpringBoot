@@ -12,7 +12,7 @@ class SimpleController {
 
     @GetMapping
     public String testSimple() {
-        return "all good " + Thread.currentThread().getName();
+        return "all good no delay for thread " + Thread.currentThread().getName();
     }
 
     @GetMapping("delay")
