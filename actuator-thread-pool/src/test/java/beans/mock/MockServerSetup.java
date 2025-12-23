@@ -1,6 +1,6 @@
 package beans.mock;
 
-import beans.clients.external.PersonResponseDto;
+import beans.clients.model.ClientResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import lombok.SneakyThrows;
@@ -24,7 +24,7 @@ public abstract class MockServerSetup {
 
         // mock GET
         {
-            PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
+            ClientResponseDto outputModel = new ClientResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             stubFor(get("/externalService/" + "3?parameter=4")
                     .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));
@@ -32,7 +32,7 @@ public abstract class MockServerSetup {
 
         // mock GET bad data
         {
-            PersonResponseDto outputModel = new PersonResponseDto(-3, "", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
+            ClientResponseDto outputModel = new ClientResponseDto(-3, "", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
             stubFor(get("/externalService/badData")
                     .willReturn(okJson(objectMapper.writeValueAsString(outputModel))));

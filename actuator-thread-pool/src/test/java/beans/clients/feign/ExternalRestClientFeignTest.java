@@ -1,6 +1,6 @@
 package beans.clients.feign;
 
-import beans.clients.external.PersonResponseDto;
+import beans.clients.model.ClientResponseDto;
 import beans.mock.MockServerSetup;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
@@ -21,7 +21,7 @@ public class ExternalRestClientFeignTest extends MockServerSetup {
     @SneakyThrows
     public void testGET() {
 
-        PersonResponseDto outputModel = new PersonResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
+        ClientResponseDto outputModel = new ClientResponseDto(3, "output GET", LocalDate.of(2023, 12, 19), LocalDateTime.of(2023, 12, 19, 10, 11, 12));
 
         Assertions.assertThat(contract.invokeGET("3", "4")).isEqualTo(outputModel);
     }

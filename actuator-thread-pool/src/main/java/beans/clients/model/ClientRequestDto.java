@@ -1,9 +1,7 @@
-package beans.clients.external;
-
+package beans.clients.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +12,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonResponseDto {
+public class ClientRequestDto {
 
-    @Positive
     private Integer id;
 
     @NotBlank
