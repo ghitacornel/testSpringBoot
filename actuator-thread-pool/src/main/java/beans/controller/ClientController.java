@@ -1,7 +1,6 @@
 package beans.controller;
 
 import beans.clients.feign.FeignContract;
-import beans.clients.model.ClientResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +14,13 @@ class ClientController {
     private final FeignContract feignContract;
 
     @GetMapping("ok")
-    public ClientResponseDto ok() {
-        return feignContract.invoke("OK");
+    public String ok() {
+        return feignContract.invoke("ok") + " processed by app thread " + Thread.currentThread().getName();
     }
 
     @GetMapping("delay")
-    public ClientResponseDto delay() {
-        return feignContract.invoke("delay");
+    public String delay() {
+        return feignContract.invoke("delay") + " processed by app thread " + Thread.currentThread().getName();
     }
 
 }
