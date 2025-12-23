@@ -15,8 +15,13 @@ class ClientController {
     private final FeignContract feignContract;
 
     @GetMapping("ok")
-    public ClientResponseDto getRequest() {
+    public ClientResponseDto ok() {
         return feignContract.invoke("OK");
+    }
+
+    @GetMapping("delay")
+    public ClientResponseDto delay() {
+        return feignContract.invoke("delay");
     }
 
 }
