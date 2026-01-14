@@ -14,7 +14,7 @@ public class TimerComponent {
     // lock prevents the previous scheduling rule, it keeps the lock for at least 10 seconds and at most 15 seconds
     @SchedulerLock(name = "scheduledTaskName", lockAtLeastFor = "PT10S", lockAtMostFor = "PT15S")
     public void scheduledTaskEvery6Seconds() {
-        log.info("scheduled task executed by " + Thread.currentThread());
+        log.info("scheduled task executed by {}", Thread.currentThread());
     }
 
 }
