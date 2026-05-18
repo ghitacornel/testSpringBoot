@@ -27,9 +27,9 @@ public class LogExecutionTimeAspect {
 
             // various customizations can go here
             if (executionTime >= warnTimeout) {
-                log.warn(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+                log.warn("{} executed in {}ms", joinPoint.getSignature(), executionTime);
             } else {
-                log.info(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+                log.info("{} executed in {}ms", joinPoint.getSignature(), executionTime);
             }
 
         }
