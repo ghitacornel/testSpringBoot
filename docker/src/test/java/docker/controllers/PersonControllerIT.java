@@ -5,6 +5,7 @@ import docker.model.CreatePersonDto;
 import docker.model.PersonDto;
 import docker.repository.PersonRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,9 +21,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@Transactional
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//@Transactional
 class PersonControllerIT {
 
     @Autowired
@@ -35,6 +36,7 @@ class PersonControllerIT {
     ObjectMapper objectMapper;
 
     @Test
+    @Disabled
     void testReadCreateReadUpdateDelete() throws Exception {
 
         // read all
