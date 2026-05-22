@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @OpenAPIDefinition(info = @Info(title = "Custom REST Documentation title", description = "Custom Documented Hidden Controller description", version = "1"))
 @RestController
 @RequestMapping(value = "documented/hidded")
-public class HiddenDocumentedController {
+class HiddenDocumentedController {
 
     @GetMapping
-    public String getRequest() {
+    String getRequest() {
         return "this is hidden in Swagger";
     }
 

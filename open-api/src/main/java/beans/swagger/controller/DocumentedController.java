@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "documented")
-public class DocumentedController {
+class DocumentedController {
 
     @Operation(summary = "GET request documentation", description = "full documentation of this GET request")
     @ApiResponses(value = {
@@ -20,13 +20,13 @@ public class DocumentedController {
     }
     )
     @GetMapping(value = "{id}")
-    public String getRequest(@Parameter(description = "Documented Model used as input for GET") @PathVariable(name = "id") Integer id) {
+    String getRequest(@Parameter(description = "Documented Model used as input for GET") @PathVariable(name = "id") Integer id) {
         return "GET an OK for this " + id;
     }
 
     @Hidden
     @GetMapping(value = "/hidden")
-    public String getRequest() {
+    String getRequest() {
         return "Rest endpoint not exposed on Swagger";
     }
 
@@ -37,7 +37,7 @@ public class DocumentedController {
     }
     )
     @DeleteMapping
-    public String deleteRequest(@Parameter(description = "Documented Model used as input for DELETE") @RequestParam(name = "id") Integer id) {
+    String deleteRequest(@Parameter(description = "Documented Model used as input for DELETE") @RequestParam(name = "id") Integer id) {
         return "GET an OK for this " + id;
     }
 
@@ -48,7 +48,7 @@ public class DocumentedController {
     }
     )
     @PostMapping
-    public DocumentedOutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody DocumentedInputModel documentedInputModel) {
+    DocumentedOutputModel postRequest(@Parameter(description = "Documented Model used as input for POST") @RequestBody DocumentedInputModel documentedInputModel) {
         return new DocumentedOutputModel();
     }
 
@@ -59,7 +59,7 @@ public class DocumentedController {
     }
     )
     @PutMapping
-    public DocumentedOutputModel putRequest(@Parameter(description = "Documented Model used as input for PUT", required = true) @RequestBody DocumentedInputModel documentedInputModel) {
+    DocumentedOutputModel putRequest(@Parameter(description = "Documented Model used as input for PUT", required = true) @RequestBody DocumentedInputModel documentedInputModel) {
         return new DocumentedOutputModel();
     }
 
