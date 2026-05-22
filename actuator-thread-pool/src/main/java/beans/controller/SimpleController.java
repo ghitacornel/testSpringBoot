@@ -22,7 +22,7 @@ class SimpleController {
 
         //just sleep
         try {
-            Thread.currentThread().sleep(10 * 1000);
+            Thread.sleep(10 * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
