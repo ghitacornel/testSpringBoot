@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 class LogExecutionTimeAspect {
 
     @Around("@annotation(logExecutionTime)")
-    public Object logExecutionTime(ProceedingJoinPoint joinPoint, beans.aop.LogExecutionTime logExecutionTime) throws Throwable {
+    Object logExecutionTime(ProceedingJoinPoint joinPoint, beans.aop.LogExecutionTime logExecutionTime) throws Throwable {
 
         int warnTimeout = logExecutionTime.warnTimeout();
 
