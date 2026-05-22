@@ -24,7 +24,7 @@ class CacheConfiguration {
     private CacheManager cacheManager;// for test purposes only
 
     @Bean
-    Caffeine caffeineConfig() {
+    Caffeine<?,?> caffeineConfig() {
         return Caffeine.newBuilder()
                 .initialCapacity(100)
                 .maximumSize(500)
