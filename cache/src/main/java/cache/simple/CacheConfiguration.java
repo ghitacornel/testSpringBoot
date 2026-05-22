@@ -17,14 +17,14 @@ import java.util.concurrent.TimeUnit;
 // defaults org.springframework.boot.autoconfigure.cache.SimpleCacheConfiguration
 // defaults org.springframework.cache.concurrent.ConcurrentMapCacheManager
 // currently overridden as an example with Caffeine
-public class CacheConfiguration {
+class CacheConfiguration {
 
     public static final String CACHE_NAME = "cache_name";
 
     private CacheManager cacheManager;// for test purposes only
 
     @Bean
-    public Caffeine caffeineConfig() {
+    Caffeine caffeineConfig() {
         return Caffeine.newBuilder()
                 .initialCapacity(100)
                 .maximumSize(500)
@@ -34,7 +34,7 @@ public class CacheConfiguration {
     }
 
     @Bean
-    public CacheManager cacheManager(Caffeine<Object, Object> caffeine) {
+    CacheManager cacheManager(Caffeine<Object, Object> caffeine) {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager(CACHE_NAME);
         caffeineCacheManager.setCaffeine(caffeine);
         cacheManager = caffeineCacheManager;// for test purposes only
@@ -43,7 +43,7 @@ public class CacheConfiguration {
 
     // for test purposes only
     @PreDestroy
-    public void close() {
+    void close() {
         CacheStats stats = ((CaffeineCache) cacheManager.getCache(CACHE_NAME)).getNativeCache().stats();
         System.err.println(stats);
     }
