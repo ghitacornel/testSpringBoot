@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class LogExecutionTimeAspect {
+class LogExecutionTimeAspect {
 
     @Around("@annotation(logExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint, beans.aop.LogExecutionTime logExecutionTime) throws Throwable {

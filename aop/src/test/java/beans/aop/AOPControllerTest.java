@@ -1,6 +1,5 @@
-package beans;
+package beans.aop;
 
-import beans.aop.LogExecutionAspect;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AOPControllerTest {
+class AOPControllerTest {
 
     @Autowired
     MockMvc mvc;

@@ -15,7 +15,7 @@ import java.util.List;
 @Aspect
 @Component
 @Getter
-public class LogExecutionAspect {
+class LogExecutionAspect {
 
     private final List<String> logs = new ArrayList<>();// for test purpose
 
