@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("retry")
 @RequiredArgsConstructor
-public class RetryController {
+class RetryController {
 
     private final RetryService retryService;
     private final RetryServiceTransactional retryServiceTransactional;

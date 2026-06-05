@@ -10,15 +10,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestControllerAdvice
-public class SpecificExceptionHandler extends ResponseEntityExceptionHandler {
+class SpecificExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RecoverableResourceException.class)
-    public ResponseEntity<Object> handleEmptyResultDataAccessException(RecoverableResourceException e) {
+    ResponseEntity<Object> handleEmptyResultDataAccessException(RecoverableResourceException e) {
         return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(UnrecoverableResourceException.class)
-    public ResponseEntity<Object> handleEmptyResultDataAccessException(UnrecoverableResourceException e) {
+    ResponseEntity<Object> handleEmptyResultDataAccessException(UnrecoverableResourceException e) {
         return new ResponseEntity<>(e.getMessage(), INTERNAL_SERVER_ERROR);
     }
 }
